@@ -1,0 +1,134 @@
+//
+//  UIButton+Zest.m
+//  ZWorkbench
+//
+//  Created by Christopher Garrett on 5/22/08.
+//  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
+//
+
+#import "UIViewController+Zest.h"
+ 
+@implementation UIViewController ( Zest )
+
+-(UIButton *)addButton:(NSString *)title action:(SEL)selector
+{
+	UIButton *button = [UIButton buttonWithType: kButtonType];	
+	button.frame = CGRectMake(kButtonLeft, [self nextViewTop], kButtonWidth, kButtonHeight);
+	[button setTitle: title forState:UIControlStateNormal];
+	button.backgroundColor = [UIColor clearColor];
+	button.adjustsImageWhenDisabled = YES;	
+	
+	[button setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];  
+	[button setTitleColor: [UIColor whiteColor] forState: UIControlStateHighlighted];  
+	[button setTitleColor: [UIColor grayColor] forState: UIControlStateDisabled];  
+	[button setTitleColor: [UIColor whiteColor] forState: UIControlStateSelected];  
+	
+	[button addTarget: self action: selector forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview: button];				
+	return button;
+}
+
+-(UILabel *)addLabelWithText: (NSString *)text usage: (UILabelUsage)usage
+{
+	UILabel *label = [[UILabel alloc] initWithFrame: CGRectZero];
+	label.text = text;
+	label.textAlignment = UITextAlignmentCenter;
+	label.textColor = kLabelInfoColor;
+	label.backgroundColor = [UIColor clearColor];
+	switch (usage) {
+		case UILabelUsageHeading:
+			label.frame = CGRectMake(kMargin, [self nextViewTop], kClippedWidth, kLargeLabelHeight);
+			label.font = [UIFont boldSystemFontOfSize: kLargeFontSize];
+			break;
+		case UILabelUsageSubheading:
+			label.frame = CGRectMake(kMargin, [self nextViewTop], kClippedWidth, kSmallLabelHeight);
+			label.font = [UIFont italicSystemFontOfSize: kSmallFontSize];
+			break;
+		case UILabelUsageProgress:
+			label.frame = CGRectMake(kMargin, [self nextViewTop] + kPadding, kClippedWidth, kMediumLabelHeight);
+			label.font = [UIFont systemFontOfSize: kMediumFontSize];
+			label.textColor = kGoldColor;
+			break;
+		case UILabelUsageInfo:
+			label.frame = CGRectMake(kMargin, [self nextViewTop] + kPadding, kClippedWidth, kMediumLabelHeight);
+			label.font = [UIFont boldSystemFontOfSize: kMediumFontSize];
+			label.textColor = kGoldColor;
+			break;
+		case UILabelUsageWarning:
+			label.frame = CGRectMake(kMargin, [self nextViewTop] + kPadding, kClippedWidth, kMediumLabelHeight);
+			label.font = [UIFont boldSystemFontOfSize: kSmallFontSize];
+			label.textColor = [UIColor yellowColor];
+			break;
+	}
+	[self.view addSubview: label];
+	[label autorelease];
+	return label;
+		
+}
+
+-(UIImageView *)addImageNamed:(NSString *)imageName
+{
+	UIImageView *result = [[UIImageView alloc] initWithImage: [UIImage imageNamed: imageName]];
+	[self.view addSubview: result];
+	[result autorelease];
+	return result;
+}
+
+-(UIActivityIndicatorView *)addActivityIndicator
+{
+	UIActivityIndicatorView *activityIndicator;
+	activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhite];
+	activityIndicator.hidesWhenStopped = YES;
+	activityIndicator.center = CGPointMake(160.0, [self nextViewTop] + kPadding + 20.0);
+	[self.view addSubview: activityIndicator];
+	[activityIndicator autorelease];
+	return activityIndicator;
+}
+
+-(void)addContentView
+{
+	//UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
+	UIView *contentView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"BackgroundGradient.jpg"]];
+	contentView.userInteractionEnabled = YES;
+	contentView.backgroundColor = kBackgroundColor;
+	contentView.autoresizesSubviews = YES;
+	self.view = contentView;	
+	[contentView release];	
+}
+
+-(UITextField *)addTextFieldWithPlaceholder:(NSString *)placeholderText
+{
+	UITextField *result = [[UITextField alloc] initWithFrame: CGRectMake(kTextFieldLeft, [self nextViewTop], kTextFieldWidth, kTextFieldHeight)];
+	result.placeholder = placeholderText;
+	result.borderStyle = UITextBorderStyleBezel;
+	result.backgroundColor = [UIColor whiteColor];
+	result.delegate = (id <UITextFieldDelegate>) self;
+	result.returnKeyType =  UIReturnKeyDone;
+	[self.view addSubview: result];
+	[result release];
+	return result;
+}
+
+-(float)nextViewTop
+{
+	UIView *viewAbove = (UIView *) [[self.view subviews] lastObject];
+	if (viewAbove) {
+		return viewAbove.frame.origin.y + viewAbove.frame.size.height + kPadding;		
+	} else {
+		return kMargin;
+	}
+}
+
+- (void)errorAlertTitle: (NSString *)title message:(NSString *)message
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
+												 message: message
+												 delegate: nil 
+												 cancelButtonTitle: @"Ok" 
+												 otherButtonTitles: nil];
+	[alert show];
+	[alert release];												
+}
+
+
+@end
