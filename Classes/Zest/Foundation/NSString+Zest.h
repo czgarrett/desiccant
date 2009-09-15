@@ -19,4 +19,6 @@
 
 - (NSString *) stringTruncatedToLength: (NSInteger)length;
 
+@property(readonly) BOOL empty;
+
 @end

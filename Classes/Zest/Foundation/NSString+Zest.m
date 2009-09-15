@@ -49,4 +49,8 @@
    }
 }
 
+- (BOOL) empty {
+   return [self length] == 0;
+}
+
 @end

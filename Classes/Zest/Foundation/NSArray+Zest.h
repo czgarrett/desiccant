@@ -16,6 +16,6 @@
 - (NSMutableArray *) shuffledArray;
 - (NSString *)stringAtIndex:(NSUInteger)index;
 - (NSDictionary *) dictionaryAtIndex:(NSUInteger)index;
-
-
+- (BOOL) empty;
+- (id) firstObject;
 @end

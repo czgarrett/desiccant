@@ -50,7 +50,7 @@
 }
 
 + (DTHTTPXMLQueryOperation *)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryOperationDelegate> *)delegate parser:(DTXMLParser *)parser {
-    return [[[self alloc] initWithURL:url delegate:delegate parser:parser] autorelease];
+    return [[[self alloc] initWithURL:url delegate: delegate parser:parser] autorelease];
 }
 
 - (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
@@ -77,7 +77,7 @@
     NSURLResponse *response;
     NSError *err;
     self.xmlData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    NSLog([err localizedDescription]);
+    NSLog(@"%@", [err localizedDescription]);
 //    NSLog([NSString stringWithUTF8String:[xmlData bytes]]);
 }
 
