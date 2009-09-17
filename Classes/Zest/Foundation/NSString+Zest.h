@@ -20,5 +20,6 @@
 - (NSString *) stringTruncatedToLength: (NSInteger)length;
 
 @property (nonatomic, retain, readonly) NSString *to_resource_path;
+@property(readonly) BOOL empty;
 
 @end

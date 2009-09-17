@@ -53,7 +53,7 @@
 }
 
 - (void)transform:(NSMutableDictionary *)data {
-    [data setObject:[data stringForKey:@"pubDateString"].to_date forKey:@"pubDate"];
+    [data setValue:[data stringForKey:@"pubDateString"].to_date forKey:@"pubDate"];
 }
 
 @end

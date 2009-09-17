@@ -114,7 +114,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self tableView:tableView rowAtIndexPath:indexPath].detailViewController) {
-        NSLog([[self tableView:tableView rowAtIndexPath:indexPath].detailViewController description]);
         [[self navigationControllerToReceivePush] pushViewController:[self tableView:tableView rowAtIndexPath:indexPath].detailViewController animated:YES];
     }
     // Navigation logic may go here. Create and push another view controller.

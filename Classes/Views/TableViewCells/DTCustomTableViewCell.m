@@ -28,10 +28,10 @@
 // Subclasses can override this to set fields given an untyped data object
 - (void)setData:(NSDictionary *)data {
     if ([data stringForKey:@"title"]) {
-        self.text = [data stringForKey:@"title"];
+        self.textLabel.text = [data stringForKey:@"title"];
     }
     if ([data stringForKey:@"image_name"]) {
-        self.image = [UIImage imageNamed:[data stringForKey:@"image_name"]];
+        self.imageView.image = [UIImage imageNamed:[data stringForKey:@"image_name"]];
     }
 }
 

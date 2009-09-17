@@ -95,9 +95,9 @@
         cell = [[[EditableCell alloc] initWithFrame: CGRectZero reuseIdentifier: CellIdentifier] autorelease];
     }
    if ([[self itemsInSection: indexPath.section] count] != indexPath.row) {
-      cell.text = [self itemForIndexPath: indexPath];      
+      cell.textField.text = [self itemForIndexPath: indexPath];      
    } else {
-      cell.text = @"";
+      cell.textField.text = @"";
    }
    cell.indexPath = indexPath;
    cell.textField.delegate = self;
@@ -244,10 +244,10 @@ toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
    NSMutableArray *itemsInSection = [self itemsInSection: cell.indexPath.section];
    if ([itemsInSection count] == cell.indexPath.row) {
       // It's the last row, which is the "+" row
-      [itemsInSection addObject: cell.text];
+      [itemsInSection addObject: cell.textLabel.text];
       [self.tableView reloadData];
    } else {
-      [itemsInSection replaceObjectAtIndex: cell.indexPath.row withObject: cell.text];      
+      [itemsInSection replaceObjectAtIndex: cell.indexPath.row withObject: cell.textLabel.text];      
    }
 }
 

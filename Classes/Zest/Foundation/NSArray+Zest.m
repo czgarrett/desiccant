@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+Zest.h"
+#import "Zest.h"
 
 @implementation NSArray ( Zest )
 
@@ -30,5 +31,17 @@
 - (NSDictionary *) dictionaryAtIndex:(NSUInteger)index {
     return (NSDictionary *)[self objectAtIndex:index];
 }
+
+- (BOOL) empty {
+   return [self count] == 0;
+}
+
+- (id) firstObject {
+   unless ([self empty]) {
+      return [self objectAtIndex: 0];      
+   }
+   return nil;
+}
+
 
 @end
