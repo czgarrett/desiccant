@@ -147,7 +147,6 @@
 	NSLog(@"Done loading!");
 	[UIApplication sharedApplication].networkActivityIndicatorVisible--;
 	[outFile closeFile];
-   NSLog(@"Data: %@", [NSString stringWithContentsOfFile: self.outFilePath]);
   	[delegate operationComplete: self]; 
 }
 
