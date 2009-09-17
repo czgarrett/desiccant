@@ -1,6 +1,6 @@
 //
 //  DTPagedScrollView.m
-//  Reader
+//  ZWorkbench
 //
 //  Created by Curtis Duhn on 8/21/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
@@ -11,7 +11,7 @@
 
 @interface DTPagedScrollView()
 @property (nonatomic, assign) id<UIScrollViewDelegate> externalDelegate;
-@property (nonatomic, retain) UIView *overlayView;
+//@property (nonatomic, retain) UIView *overlayView;
 @property (nonatomic) NSInteger pageIndex;
 - (void)preloadPageWithIndex:(NSInteger)index;
 - (CGRect)frameForPageIndex:(NSInteger)index;
@@ -27,7 +27,7 @@
 @end
 
 @implementation DTPagedScrollView
-@synthesize externalDelegate, pageIndex, dataSource, overlayView;
+@synthesize externalDelegate, pageIndex, dataSource, shouldPassNonDragTouchEndEventsToNextResponder;
 
 - (id)initWithFrame:(CGRect)aRect {
     if (self = [super initWithFrame:aRect]) {
@@ -38,17 +38,8 @@
 
 - (void)dealloc {
     [dataSource release];
-    [overlayView release];
     
     [super dealloc];
-}
-
-- (void)addSubview:(UIView *)subview {
-    [super addSubview:subview];
-    if (!overlayView) {
-        self.overlayView = [[[UIView alloc] initWithFrame:self.frame] autorelease];
-        [self addSubview:overlayView];
-    }
 }
 
 - (NSInteger)numberOfPages {
@@ -73,9 +64,9 @@
 }
 
 - (void)showPageWithIndex:(NSInteger)index animated:(BOOL)animated {
+    NSLog(@"Showing page with index: %d", index);
     [self preloadPageWithIndex:index];
     [self setContentOffset:CGPointMake(index * self.bounds.size.width, 0) animated:NO];
-//    [self scrollRectToVisible:[self frameForPageIndex:index] animated:animated];
     [self handlePageChange];
 }
 
@@ -115,6 +106,7 @@
 }
 
 - (void)preloadPageWithIndex:(NSInteger)index {
+    NSLog(@"Called preloadPageWithIndex: %d", index);
     [self increaseNumberOfPagesIfNecessaryToFitPageWithIndex:index];
     if (index >= 0 && index < self.numberOfPages && ![self viewAtIndex:index]) {
         UIView *newSubview = [dataSource pagedScrollView:self viewForPageWithIndex:index];
@@ -145,6 +137,7 @@
 
 - (void)loadFocusedViewIfNecessary {
     if (![self focusedView]) {
+        NSLog(@">>> Loading focused view with index: %d", pageIndex);
         [self preloadPageWithIndex:pageIndex];
     }
 }
@@ -223,5 +216,15 @@
     else
         [self doesNotRecognizeSelector:aSelector];
 }
+
+- (void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+    if (!self.dragging) {
+        if (self.shouldPassNonDragTouchEndEventsToNextResponder) {
+            [[self nextResponder] touchesEnded:touches withEvent:event];
+        }
+    }
+    [super touchesEnded:touches withEvent:event];
+}
+
 
 @end

@@ -23,6 +23,10 @@
     return [NSURL URLWithString:self];
 }
 
+- (NSString *)to_resource_path {
+    return [[NSBundle mainBundle] pathForResource:self ofType:nil];
+}
+
 - (NSDate *) to_date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss Z"];

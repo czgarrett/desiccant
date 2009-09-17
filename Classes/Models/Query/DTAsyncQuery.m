@@ -59,7 +59,7 @@ rawRows, rows, groups, operationQueue, delegate, updating, loaded, rowTransforme
     [super dealloc];
 }
 
-- (DTAsyncQuery *)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate {
+- (id)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate {
     if (self = [super init]) {
         [self clear];
         self.delegate = newDelegate;

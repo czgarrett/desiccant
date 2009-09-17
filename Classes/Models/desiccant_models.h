@@ -25,3 +25,5 @@
 #import "DTXMLParserDelegate.h"
 #import "DTXMLValueParserDelegate.h"
 #import "DTXMLRPCQuery.h"
+#import "DTPListQuery.h"
+#import "DTPListQueryOperation.h"

@@ -140,6 +140,7 @@
 
 - (void)queryDidFinishLoading:(DTAsyncQuery *)feed {
     [activityIndicator stopAnimating];
+    NSLog([self.tableView description]);
     [self.tableView reloadData];
     [self hideErrorForFailedQuery];
 }
@@ -182,8 +183,16 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [activityIndicator stopAnimating];
+//    [self displayMediaLoadError:error];
 }
 
+//- (void)displayMediaLoadError:(NSError *)error {
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error loading media" 
+//                                                    message:[NSString stringWithFormat:@"Sorry, but an error has occurred attempting to play this file.\n%@", [error localizedDescription]]
+//                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//    [alert show];    
+//    [alert release];
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self indexPathIsHeader:indexPath]) {
