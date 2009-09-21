@@ -1,6 +1,6 @@
 //
 //  DTPagedWebViewController.m
-//  Reader
+//  ZWorkbench
 //
 //  Created by Curtis Duhn on 8/28/09.
 //  Copyright 2009 ZWorkbench. All rights reserved.
@@ -10,7 +10,6 @@
 
 @interface DTPagedWebViewController()
 @property (nonatomic, retain) NSMutableArray *unusedWebViews;
-@property (nonatomic, retain) DTPagedScrollView *scrollView;
 - (UIWebView *)fetchWebView;
 @end
 
@@ -37,13 +36,16 @@
 
 - (UIView *)pagedScrollView:(DTPagedScrollView *)aScrollView viewForPageWithIndex:(NSInteger)index {
     UIWebView *webView = [self fetchWebView];
-    webView.tag = index;
+    NSLog(@"Setting webView tag for index: %d", index);
+    webView.tag = index+1;
     return webView;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self loadPageWithIndex:webView.tag inWebView:webView];
-    if (!didSetNumberOfPages) {
+    NSLog(@"*** Got webViewDidFinishLoad for webView with tag: %d", webView.tag);
+    [self loadPageWithIndex:webView.tag-1 inWebView:webView];
+    if (!didSetNumberOfPages && webView == [[self scrollView] focusedView]) {
+        NSLog(@"!!! Setting number of pages based on focused view.");
         scrollView.numberOfPages = [self numberOfPages];
         didSetNumberOfPages = YES;
     }

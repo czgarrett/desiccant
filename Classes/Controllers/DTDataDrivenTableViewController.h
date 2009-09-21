@@ -26,6 +26,13 @@
 // Subclasses may want to implement this to hide any visible error message once the query succeeds.  Does nothing by default.
 - (void)hideErrorForFailedQuery;
 
+// Subclasses can implement this to override the default UIAlertView display when media fails to load.
+//- (void)displayMediaLoadError:(NSError *)error;
+- (BOOL)indexPathIsHeader:(NSIndexPath *)indexPath;
+- (BOOL)hasHeaders;
+- (NSInteger)adjustSectionForHeaders:(NSInteger)section;
+- (NSIndexPath *)adjustIndexPathForHeaders:(NSIndexPath *)indexPath;
+
 @property (nonatomic, retain)  DTAsyncQuery * query;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIWebView *mediaWebView;

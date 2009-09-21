@@ -28,7 +28,7 @@
     NSString *error;
 }
 
-- (DTAsyncQuery *)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate;
+- (id)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate;
 
 // Subclasses must override this to construct and return custom query objects
 - (DTAsyncQueryOperation *)constructQueryOperation;

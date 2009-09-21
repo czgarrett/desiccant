@@ -1,6 +1,6 @@
 //
 //  DTPagedWebViewController.h
-//  Reader
+//  ZWorkbench
 //
 //  Created by Curtis Duhn on 8/28/09.
 //  Copyright 2009 ZWorkbench. All rights reserved.
@@ -15,6 +15,8 @@
     DTPagedScrollView *scrollView;
     BOOL didSetNumberOfPages;
 }
+
+@property (nonatomic, retain) DTPagedScrollView *scrollView;
 
 // Subclasses should implement this to show/load HTML content as appropriate
 - (void)reloadWebView:(UIWebView *)webView;

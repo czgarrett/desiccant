@@ -86,6 +86,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSAssert([self.sections count] > 0, @"No sections found for static table.  Make sure you're calling [super viewDidLoad] before adding rows in viewDidLoad.");
     return [self.sections count];
 }
 

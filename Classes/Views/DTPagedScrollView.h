@@ -17,13 +17,16 @@
     NSInteger pageIndex;
     NSInteger _numberOfPages;
     NSObject<DTPagedScrollViewDataSource> *dataSource;
-    UIView *overlayView;
+    BOOL shouldPassNonDragTouchEndEventsToNextResponder;
+//    UIView *overlayView;
 }
 
 @property (nonatomic, readonly) NSInteger pageIndex;
 @property (nonatomic) NSInteger numberOfPages;
 @property (nonatomic, retain) IBOutlet NSObject<DTPagedScrollViewDataSource> *dataSource;
-@property (nonatomic, retain, readonly) UIView *overlayView;
+@property (nonatomic) BOOL shouldPassNonDragTouchEndEventsToNextResponder;
+
+//@property (nonatomic, retain, readonly) UIView *overlayView;
 
 - (UIView *)focusedView;
 - (void)showPageWithIndex:(NSInteger)index animated:(BOOL)animated;

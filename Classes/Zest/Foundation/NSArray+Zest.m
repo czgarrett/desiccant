@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+Zest.h"
+#import "Zest.h"
 
 @implementation NSArray ( Zest )
 
