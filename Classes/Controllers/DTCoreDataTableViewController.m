@@ -22,6 +22,9 @@
 - (void) viewDidLoad {
    [super viewDidLoad];
    NSError *error = nil;
+   if (self.managedObjectContext == nil) {
+      self.managedObjectContext = [[DTCoreDataApplicationDelegate sharedDelegate] managedObjectContext];
+   }
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
@@ -74,31 +77,6 @@
 		}
 	}   
 }
-
-#pragma mark Table Cell Stuff
-
-- (void)configureCell:(UITableViewCell *)myCell atIndexPath:(NSIndexPath *)indexPath {
-   myCell.textLabel.text = @"Override configureCell:";
-}
-
-- (UITableViewCellStyle) defaultCellStyle {
-   return UITableViewCellStyleDefault;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   NSString *cellIdentifier = [NSString stringWithFormat: @"%@CellIdentifier", self.entityName];
-   
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-   if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithStyle: [self defaultCellStyle] reuseIdentifier: cellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-   }
-   [self configureCell: cell atIndexPath: indexPath];
-   
-   return cell;
-}
-
 
 #pragma mark Fetched results controller
 
@@ -157,7 +135,7 @@
 			break;
 			
 		case NSFetchedResultsChangeUpdate:
-			[self configureCell: [tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+			[self configureCell: (DTCustomTableViewCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
 			break;
 			
 		case NSFetchedResultsChangeMove:
@@ -200,8 +178,11 @@
 }
 
 - (void)dealloc {
-	[fetchedResultsController release];
-	[managedObjectContext release];
+   self.fetchedResultsController = nil;
+   self.managedObjectContext = nil;
+   self.entityName = nil;
+   self.sortAttribute = nil;
+   NSLog(@"Dealloc in DTCoreTableViewController");
    [super dealloc];
 }
 

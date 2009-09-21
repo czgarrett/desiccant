@@ -10,12 +10,11 @@
 
 
 @implementation DTTableViewController
-@synthesize cell;
+@synthesize tempCell;
 
 - (void)dealloc {
-    [cell release];
-    
-    [super dealloc];
+   self.tempCell = nil;
+   [super dealloc];
 }
 
 // A subclass can override this if it needs to push to a navigation controller that isn't in its stack.  An example of this

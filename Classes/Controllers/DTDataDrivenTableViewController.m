@@ -15,7 +15,7 @@
 @end
 
 @implementation DTDataDrivenTableViewController
-@synthesize query, headerRows, prototype, activityIndicator, mediaWebView;
+@synthesize query, prototype, activityIndicator, mediaWebView;
 
 - (void)dealloc {
     self.query = nil;
@@ -101,28 +101,25 @@
         return [self headerRowForIndexPath:indexPath];
     }
     else {
-        cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+        tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (tempCell == nil) {
             if (cellNibName) {
                 [[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil];
-                self.cellIdentifier = cell.reuseIdentifier;
+                self.cellIdentifier = tempCell.reuseIdentifier;
             }
             else {
-                cell = [self constructCell];
+                tempCell = [self constructCell];
                 [self customizeCell];
             }
         }
         
         indexPath = [self adjustIndexPathForHeaders:indexPath];
-        [cell setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
+        [tempCell setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
 
-        return cell;
+        return tempCell;
     }    
 }
 
-// Subclasses can implement this to change the look & feel of any cell.  This is only called if cellNibName is not set. 
-- (void)customizeCell {
-}
 
 - (void)prepareActivityIndicator {
     if (!activityIndicator) {
@@ -197,24 +194,9 @@
 - (UITableViewCell *)prototypeCell {
     if (cellNibName && !prototype) {
         [[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil];
-        self.prototype = cell;
+        self.prototype = tempCell;
     }
     return prototype;
-}
-
-// Subclasses can implement this to override the default header row height
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44.0;
-}
-
-// Subclasses can implement this to override the default data cell row height
-- (CGFloat)tableView:(UITableView *)tableView heightForDataRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.cellNibName) {
-        return [self prototypeCell].bounds.size.height;
-    }
-    else {
-        return 44.0;
-    }
 }
 
 // Subclasses can implement this to display a detail view for the associated data

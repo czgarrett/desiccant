@@ -10,12 +10,12 @@
 #import "DTCustomTableViewCell.h"
 
 @interface DTTableViewController : UITableViewController {
-    IBOutlet DTCustomTableViewCell *cell;
+    IBOutlet DTCustomTableViewCell *tempCell;
 }
 
 // The .xib should set its File's Owner to DTTableViewController, and connect this cell outlet to its
 // custom UITableViewCell.
-@property (nonatomic, retain) IBOutlet DTCustomTableViewCell *cell;    
+@property (nonatomic, retain) IBOutlet DTCustomTableViewCell *tempCell;    
 
 // A subclass can override this if it needs to push to a navigation controller that isn't in its stack.  An example of this
 // arose in the InsuranceJournal project, where the table view is displayed as a subview of a container view, which also contains 

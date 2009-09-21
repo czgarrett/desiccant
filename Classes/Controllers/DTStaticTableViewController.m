@@ -190,8 +190,8 @@
 
 - (void)addRowWithNibNamed:(NSString *)nibName data:(NSMutableDictionary *)rowData detailViewController:(UIViewController *)detailViewController {
     [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
-    [cell setData:rowData];
-    [[self currentSection] addObject:[DTTableViewRow rowWithCell:cell detailViewController:detailViewController]];
+    [tempCell setData:rowData];
+    [[self currentSection] addObject:[DTTableViewRow rowWithCell:tempCell detailViewController:detailViewController]];
 }
 
 - (NSMutableArray *)currentSection {

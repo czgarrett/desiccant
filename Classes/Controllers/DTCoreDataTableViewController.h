@@ -3,7 +3,7 @@
 #import "desiccant_controllers.h"
 
 
-@interface DTCoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+@interface DTCoreDataTableViewController : DTCustomTableViewController <NSFetchedResultsControllerDelegate> {
 
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext *managedObjectContext;
@@ -20,7 +20,5 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (id) initWithEntityName: (NSString *) myEntityName sortAttribute: (NSString *) mySortAttribute;
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-- (UITableViewCellStyle) defaultCellStyle;
 
 @end
