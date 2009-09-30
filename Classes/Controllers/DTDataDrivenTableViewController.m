@@ -140,7 +140,6 @@
 
 - (void)queryDidFinishLoading:(DTAsyncQuery *)feed {
     [activityIndicator stopAnimating];
-    NSLog([self.tableView description]);
     [self.tableView reloadData];
     [self hideErrorForFailedQuery];
 }

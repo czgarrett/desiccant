@@ -42,6 +42,7 @@
     if (self = [super init]) {
         self.url = newURL;
         self.request = [NSMutableURLRequest requestWithURL:self.url];
+        request.timeoutInterval = 30;
         self.delegate = newDelegate;
         self.parser = newParser;
         self.method = @"GET";

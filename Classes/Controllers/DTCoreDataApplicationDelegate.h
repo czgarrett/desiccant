@@ -1,4 +1,4 @@
-
+#ifdef __IPHONE_3_0
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
@@ -18,3 +18,4 @@
 @property (nonatomic, readonly) NSString *applicationDocumentsDirectory;
 
 @end
+#endif

@@ -14,7 +14,6 @@
 //@property (nonatomic, retain) UIView *overlayView;
 @property (nonatomic) NSInteger pageIndex;
 - (void)preloadPageWithIndex:(NSInteger)index;
-- (CGRect)frameForPageIndex:(NSInteger)index;
 - (UIView *)leftNeighborView;
 - (UIView *)rightNeighborView;
 - (void)handlePageChange;
@@ -24,6 +23,7 @@
 - (void)recyclePagesAboveIndex:(NSInteger)index;
 - (void)recycleSubview:(UIView *)aView;
 - (void)increaseNumberOfPagesIfNecessaryToFitPageWithIndex:(NSInteger)index;
+- (CGRect)frameForPageIndex:(NSInteger)index;
 @end
 
 @implementation DTPagedScrollView
@@ -64,7 +64,6 @@
 }
 
 - (void)showPageWithIndex:(NSInteger)index animated:(BOOL)animated {
-    NSLog(@"Showing page with index: %d", index);
     [self preloadPageWithIndex:index];
     [self setContentOffset:CGPointMake(index * self.bounds.size.width, 0) animated:NO];
     [self handlePageChange];
@@ -106,7 +105,6 @@
 }
 
 - (void)preloadPageWithIndex:(NSInteger)index {
-    NSLog(@"Called preloadPageWithIndex: %d", index);
     [self increaseNumberOfPagesIfNecessaryToFitPageWithIndex:index];
     if (index >= 0 && index < self.numberOfPages && ![self viewAtIndex:index]) {
         UIView *newSubview = [dataSource pagedScrollView:self viewForPageWithIndex:index];
@@ -137,7 +135,6 @@
 
 - (void)loadFocusedViewIfNecessary {
     if (![self focusedView]) {
-        NSLog(@">>> Loading focused view with index: %d", pageIndex);
         [self preloadPageWithIndex:pageIndex];
     }
 }
@@ -146,13 +143,13 @@
     if (![self leftNeighborView] && pageIndex > 0) {
         [self preloadLeftNeighbor];
     }
-    else if (![self rightNeighborView] && pageIndex < self.numberOfPages - 1) {
+    if (![self rightNeighborView] && pageIndex < self.numberOfPages - 1) {
         [self preloadRightNeighbor];
     }
 }
 
 - (NSInteger) indexForView:(UIView *)view {
-    // adding 1 here because the frames for subviews are offset by 1 pixel to the left.
+    // adding 1 to x here because the frames for subviews are offset by 1 pixel to the left.
     return (NSInteger) (view.frame.origin.x + 1) / self.bounds.size.width;
 }
 

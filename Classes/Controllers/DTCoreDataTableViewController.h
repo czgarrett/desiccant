@@ -1,5 +1,4 @@
-
-
+#ifdef __IPHONE_3_0
 #import "desiccant_controllers.h"
 
 
@@ -24,3 +23,4 @@
 - (UITableViewCellStyle) defaultCellStyle;
 
 @end
+#endif
