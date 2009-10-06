@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "/usr/include/sqlite3.h"
+#import <sqlite3.h>
 #import "QueryResult.h"
 
 @interface SQLitePreparedStatement : NSObject {

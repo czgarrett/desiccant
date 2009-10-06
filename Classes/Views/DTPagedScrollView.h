@@ -30,5 +30,6 @@
 
 - (UIView *)focusedView;
 - (void)showPageWithIndex:(NSInteger)index animated:(BOOL)animated;
+- (CGRect)frameForPageIndex:(NSInteger)index;
 
 @end

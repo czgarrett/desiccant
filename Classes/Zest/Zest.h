@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#ifdef __IPHONE_3_0
 #import <CoreData/CoreData.h>
+#endif
 
 #import "ISO8601DateFormatter.h"
 #import "NSData+Base64.h"

@@ -212,7 +212,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
-      cell.hidesAccessoryWhenEditing = NO;
+        cell.hidesAccessoryWhenEditing = NO;
 		[self configureCell:cell];
 	}
    NSArray *content = [self itemsInSection: indexPath.section];
@@ -220,13 +220,26 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
       // Configure the cell
       NSObject *cellItem = [self itemForIndexPath: indexPath];
       if ([cellItem isKindOfClass: [SelectableTableItem class]]) {
-         cell.image = [UIImage imageNamed: [(SelectableTableItem *)cellItem iconName]];
+#ifdef __IPHONE_3_0
+         cell.imageView.image = [UIImage imageNamed: [(SelectableTableItem *)cellItem iconName]];
+#else
+          cell.image = [UIImage imageNamed: [(SelectableTableItem *)cellItem iconName]];
+#endif
       }
+
+#ifdef __IPHONE_3_0  
+      cell.textLabel.text = [cellItem description];
+#else
       cell.text = [cellItem description];
+#endif
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		[self populateCell:cell forRowAtIndexPath:indexPath];
    } else {
+#ifdef __IPHONE_3_0  
+      cell.textLabel.text = [self addTextForSection: indexPath.section];
+#else
       cell.text = [self addTextForSection: indexPath.section];
+#endif
    }
    return cell;
 }

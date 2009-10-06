@@ -244,10 +244,18 @@ toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
    NSMutableArray *itemsInSection = [self itemsInSection: cell.indexPath.section];
    if ([itemsInSection count] == cell.indexPath.row) {
       // It's the last row, which is the "+" row
+#ifdef __IPHONE_3_0  
       [itemsInSection addObject: cell.textLabel.text];
-      [self.tableView reloadData];
+#else
+      [itemsInSection addObject: cell.text];
+#endif
+       [self.tableView reloadData];
    } else {
+#ifdef __IPHONE_3_0
       [itemsInSection replaceObjectAtIndex: cell.indexPath.row withObject: cell.textLabel.text];      
+#else
+      [itemsInSection replaceObjectAtIndex: cell.indexPath.row withObject: cell.text];      
+#endif
    }
 }
 
