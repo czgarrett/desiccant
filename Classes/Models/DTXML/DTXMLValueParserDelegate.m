@@ -51,7 +51,9 @@
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    [self.valueContext.tempValue appendString:string];
+    if (string) {
+        [self.valueContext.tempValue appendString:string];
+    }
 }
 
 // Subclasses should implement this to handle the end of any element for which 
