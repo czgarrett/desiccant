@@ -57,4 +57,13 @@
    return [self length] == 0;
 }
 
+- (BOOL) vowel {
+   NSRange foundRange = [@"AEIOU" rangeOfString: [self uppercaseString]];
+   return foundRange.location != NSNotFound;
+}
+
+- (BOOL) consonant {
+   return !self.vowel;
+}
+
 @end

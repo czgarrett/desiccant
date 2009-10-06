@@ -11,7 +11,7 @@
 
 @implementation DTCoreDataTableViewController
 
-@synthesize managedObjectContext, fetchedResultsController, entityName, sortAttribute, ascending;
+@synthesize managedObjectContext, fetchedResultsController, entityName, sortAttribute, ascending, defaultPredicate;
 
 #pragma mark Editing
 
@@ -88,6 +88,8 @@
       // Edit the entity name as appropriate.
       NSEntityDescription *entity = [NSEntityDescription entityForName: self.entityName inManagedObjectContext:managedObjectContext];
       [fetchRequest setEntity:entity];
+      
+      [fetchRequest setPredicate: self.defaultPredicate];
       
       // Edit the sort key as appropriate.
       NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: self.sortAttribute ascending: self.ascending];

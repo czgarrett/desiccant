@@ -7,6 +7,7 @@
 
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext *managedObjectContext;
+   NSPredicate *defaultPredicate;
    NSString *entityName;
    NSString *sortAttribute;
    BOOL ascending;   
@@ -14,6 +15,7 @@
 
 @property (nonatomic, retain) NSString *entityName;
 @property (nonatomic, retain) NSString *sortAttribute;
+@property (nonatomic, retain) NSPredicate *defaultPredicate;
 @property (nonatomic, assign) BOOL ascending;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

@@ -13,10 +13,11 @@
 #import "DTLinkAwayExternalWebLinkController.h"
 #import "DTDataDrivenTableViewController.h"
 #import "DTCustomTableViewController.h"
-#import "DTHeterogeneousTableViewController.h"
+#import "DTHeterogeneousSectionsTableViewController.h"
 
 #import "DTCoreDataTableViewController.h"
 #import "DTCoreDataApplicationDelegate.h"
+#import "DTCoreDataListSelectionViewController.h"
 
 #import "ACWebShowController.h"
 #import "ACWebLinkController.h"

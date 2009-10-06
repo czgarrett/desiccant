@@ -32,6 +32,15 @@
     return (NSDictionary *)[self objectAtIndex:index];
 }
 
+- (NSArray *) arrayByRemovingObject: (id) objectToRemove {
+   NSMutableArray *result = [NSMutableArray array];
+   for (id object in self) {
+      if (object != objectToRemove) [result addObject: object];
+   }
+   return result;
+}
+
+
 - (BOOL) empty {
    return [self count] == 0;
 }

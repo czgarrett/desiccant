@@ -8,9 +8,19 @@
    NSManagedObjectContext *managedObjectContext;
    NSPersistentStoreCoordinator *persistentStoreCoordinator;
    
+   UIView *splashView;
+   UIWindow *window;
+   UINavigationController *navigationController;
 }
 
 + (DTCoreDataApplicationDelegate *) sharedDelegate;
+
+- (void) setUpSplash;
+- (void) hideSplash;
+
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) UIView *splashView;
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;

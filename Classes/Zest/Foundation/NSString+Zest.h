@@ -21,5 +21,7 @@
 
 @property (nonatomic, retain, readonly) NSString *to_resource_path;
 @property(readonly) BOOL empty;
+@property(readonly) BOOL vowel;
+@property(readonly) BOOL consonant;
 
 @end
