@@ -15,14 +15,25 @@
    
    id <DTCoreDataListSelectionViewControllerDelegate> delegate;
    NSManagedObject *selectedObject;
-   IBOutlet UISearchBar *searchBar;
+   
+   IBOutlet UIBarButtonItem *editButton;
+   IBOutlet UIBarButtonItem *saveButton;
+
+   BOOL editable;
+   NSInteger tag;
 }
 
 @property (nonatomic, assign) id <DTCoreDataListSelectionViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSManagedObject *selectedObject;
-@property (nonatomic, readonly) UISearchBar *searchBar;
+@property (nonatomic, assign) NSInteger tag;
+@property (nonatomic, assign) BOOL editable;
+
 
 - (void) filterContentForSearchText: (NSString *) searchText scope: (NSInteger) scopeIndex;
 - (NSPredicate *) predicateForSearchText: (NSString *)searchText scope: (NSInteger) scopeIndex;
+
+- (IBAction) editButtonPressed: (id) button;
+- (IBAction) saveButtonPressed: (id) button;
+
 
 @end

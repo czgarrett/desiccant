@@ -19,3 +19,4 @@
 #import "DTRSSCell.h"
 #import "DTPagedScrollView.h"
 #import "DTPagedScrollViewDataSource.h"
+#import "DTTextEditorCell.h"

@@ -22,6 +22,7 @@
 #import "Foundation/NSMutableDictionary+Zest.h"
 #import "Foundation/NSURL+Zest.h"
 #import "Foundation/NSSet+Zest.h"
+#import "Foundation/NSMutableString+Zest.h"
 
 #import "UIKit/UIView+Zest.h"
 #import "UIKit/UIColor+Zest.h"

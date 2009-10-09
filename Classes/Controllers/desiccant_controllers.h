@@ -15,9 +15,16 @@
 #import "DTCustomTableViewController.h"
 #import "DTHeterogeneousSectionsTableViewController.h"
 
+#import "DTSingleTextFieldEditorViewController.h"
+#import "DTSingleTextViewEditorViewController.h"
+#import "DTSingleDateFieldEditorViewController.h"
+
 #import "DTCoreDataTableViewController.h"
 #import "DTCoreDataApplicationDelegate.h"
 #import "DTCoreDataListSelectionViewController.h"
+#import "DTCoreDataMultiSelectionViewController.h"
+
+
 
 #import "ACWebShowController.h"
 #import "ACWebLinkController.h"

@@ -12,17 +12,57 @@
 
 @implementation DTCoreDataTableViewController
 
-@synthesize managedObjectContext, fetchedResultsController, entityName, sortAttribute, ascending, defaultPredicate;
+@synthesize managedObjectContext, fetchedResultsController, entityName, sortAttribute, ascending, defaultPredicate, searchable, searchBar;
 
 #pragma mark Editing
 
 #pragma mark UITableViewDelegate methods
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+   if (self.searchDisplayController && self.searchDisplayController.active) {
+      NSString *searchText = searchBar.text;
+      // Changing this away from active resets the search text, but
+      // we dont' want that because the search results stay the same.
+      [self.searchDisplayController setActive: NO animated: YES];
+      searchBar.text = searchText;
+      return nil;
+   }
+   return indexPath;
+}
+
+#pragma mark Search display delegate methods
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+   // See note at tempSearchText declaration
+   tempSearchText = searchBar.text;
+   if (searchBar.text) {
+      [tempSearchText retain];      
+   } 
+}
+
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+   // See note at tempSearchText declaration
+   searchBar.text = tempSearchText;
+   if (tempSearchText) {
+      [tempSearchText release];
+      tempSearchText = nil;
+   }
+}
+
+
+
+
 #pragma mark View Delegate methods
 
 - (void) viewDidLoad {
    [super viewDidLoad];
+   if (self.searchable) {
+      [[self tableView] setTableHeaderView: searchBar];
+      searchBar.barStyle = UIBarStyleBlack;
+   }   
    NSError *error = nil;
+   
    if (self.managedObjectContext == nil) {
       self.managedObjectContext = [[DTCoreDataApplicationDelegate sharedDelegate] managedObjectContext];
    }
@@ -93,7 +133,13 @@
       [fetchRequest setPredicate: self.defaultPredicate];
       
       // Edit the sort key as appropriate.
-      NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: self.sortAttribute ascending: self.ascending];
+      NSAttributeDescription *sortAttrDesc = [[entity attributesByName] objectForKey: self.sortAttribute];
+      NSSortDescriptor *sortDescriptor = nil;
+      if ([sortAttrDesc attributeType] == NSStringAttributeType) {
+         sortDescriptor = [[NSSortDescriptor alloc] initWithKey: self.sortAttribute ascending: self.ascending selector: @selector(caseInsensitiveCompare:)];
+      } else {
+         sortDescriptor = [[NSSortDescriptor alloc] initWithKey: self.sortAttribute ascending: self.ascending];         
+      }
       NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
       
       [fetchRequest setSortDescriptors:sortDescriptors];
@@ -171,10 +217,27 @@
 
 #pragma mark LifeCycle
 
+- (id) init {
+   if (self = [super init]) {
+      self.ascending = YES;
+      self.searchable = YES;
+   }
+   return self;
+}
+
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+   if (self = [super initWithNibName:nibNameOrNil bundle: nibBundleOrNil]) {
+      self.ascending = YES;
+      self.searchable = YES;
+   }
+   return self;
+}
+
 - (id) initWithEntityName: (NSString *) myEntityName sortAttribute: (NSString *) mySortAttribute {
    if (self = [super initWithStyle: UITableViewStylePlain]) {
       self.entityName = myEntityName;
       self.sortAttribute = mySortAttribute;
+      self.searchable = YES;
       self.ascending = YES;
    }
    return self;
