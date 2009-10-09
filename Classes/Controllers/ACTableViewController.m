@@ -212,7 +212,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
+#ifndef __IPHONE_3_0
         cell.hidesAccessoryWhenEditing = NO;
+#endif
 		[self configureCell:cell];
 	}
    NSArray *content = [self itemsInSection: indexPath.section];

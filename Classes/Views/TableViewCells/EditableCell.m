@@ -12,9 +12,14 @@
 @implementation EditableCell
 @synthesize textField, indexPath;
 
+#ifndef __IPHONE_3_0
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-      // Set the frame to CGRectZero as it will be reset in layoutSubviews
+#else
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+#endif
+       // Set the frame to CGRectZero as it will be reset in layoutSubviews
       textField = [[UITextField alloc] initWithFrame:CGRectZero];
       textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
       textField.font = [UIFont boldSystemFontOfSize:14.0];

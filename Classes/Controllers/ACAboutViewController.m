@@ -19,7 +19,9 @@
 }
 
 - (void) reloadWebView {
-   NSString *fileContents = [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"About" ofType: @"html"]];
+   NSStringEncoding encoding;
+   NSError *error;
+   NSString *fileContents = [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"About" ofType: @"html"] usedEncoding:&encoding error:&error];
    [webView loadHTMLString: fileContents baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];   
 }
 

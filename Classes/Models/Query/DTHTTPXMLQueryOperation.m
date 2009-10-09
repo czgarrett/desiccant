@@ -61,6 +61,7 @@
 - (BOOL)executeQuery {
     [parser reset];
     [self loadXMLData];
+    if (!xmlData) return NO;
     if ([parser parseXMLDataSuccessfully:xmlData]) {
         self.rows = parser.rows;
         return YES;
@@ -78,7 +79,10 @@
     NSURLResponse *response;
     NSError *err;
     self.xmlData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    NSLog(@"%@", [err localizedDescription]);
+    if (!xmlData) {
+        self.error = @"Error downloading feed";
+    }
+//    NSLog(@"%@", [err localizedDescription]);
 //    NSLog([NSString stringWithUTF8String:[xmlData bytes]]);
 }
 

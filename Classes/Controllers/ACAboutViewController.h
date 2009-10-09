@@ -13,7 +13,7 @@
    IBOutlet UIWebView *webView;
 }
 
-@property (nonatomic, readonly) UIWebView *webView;
+@property (nonatomic, readonly) IBOutlet UIWebView *webView;
 
 - (void) reloadWebView;
 
