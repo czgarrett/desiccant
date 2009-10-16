@@ -14,6 +14,7 @@
 - (NSURL *)urlForKey:(id)key;
 - (NSInteger)integerForKey:(id)key;
 - (NSNumber *)numberForKey:(id)key;
+- (double)doubleForKey:(id)key;
 - (NSDate *)dateForKey:(id)key;
 - (NSArray *)arrayForKey:(id)key;
 - (NSDictionary *)dictionaryForKey:(id)key;

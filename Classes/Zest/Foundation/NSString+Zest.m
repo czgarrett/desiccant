@@ -11,6 +11,10 @@
 
 @implementation NSString ( Zest )
 
++ (NSString *) resourcePath {
+    return [[NSBundle mainBundle] resourcePath];
+}
+
 - (NSString *) to_s {
     return self;
 }
@@ -23,7 +27,30 @@
     return [NSURL URLWithString:self];
 }
 
+- (NSNumber *) to_n {
+    NSScanner *scanner = [NSScanner scannerWithString:self];
+    double doubleValue;
+    NSInteger integerValue;
+    if ([scanner scanDouble:&doubleValue]) {
+        return [NSNumber numberWithDouble:doubleValue];
+    }
+    else if ([scanner scanInteger:&integerValue]) {
+        return [NSNumber numberWithInteger:integerValue];
+    }
+    else {
+        return nil;
+    }
+}
+
+- (double) to_double {
+    return [self doubleValue];
+}
+
 - (NSString *)to_resource_path {
+    return [self withResourcePathPrepended];
+}
+
+- (NSString *)withResourcePathPrepended {
     return [[NSBundle mainBundle] pathForResource:self ofType:nil];
 }
 
@@ -55,6 +82,25 @@
 
 - (BOOL) empty {
    return [self length] == 0;
+}
+
+- (BOOL) isImageExtension {
+    return 
+    [self isEqual:@"jpg"] ||
+    [self isEqual:@"jpeg"] ||
+    [self isEqual:@"png"] ||
+    [self isEqual:@"gif"] ||
+    [self isEqual:@"tif"] ||
+    [self isEqual:@"tiff"] ||
+    [self isEqual:@"bmp"] ||
+    [self isEqual:@"BMPf"] ||
+    [self isEqual:@"ico"] ||
+    [self isEqual:@"cur"] ||
+    [self isEqual:@"xbm"];
+}
+
+- (BOOL) startsWith:(NSString *)prefix {
+    return [self hasPrefix:prefix];
 }
 
 @end

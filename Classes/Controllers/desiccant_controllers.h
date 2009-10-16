@@ -32,3 +32,7 @@
 #import "ACDictionaryTableController.h"
 #import "ACAboutViewController.h"
 #import "DTPagedWebViewController.h"
+#import "DTImageViewerLinkController.h"
+#import "DTImageViewerController.h"
+#import "DTMapLinkController.h"
+#import "DTMapViewController.h"

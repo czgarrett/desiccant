@@ -16,6 +16,7 @@
 #import "EditableCell.h"
 #import "DTTitleRemoteImageAgeCell.h"
 #import "DTImageView.h"
+#import "DTImageViewDelegate.h"
 #import "DTRSSCell.h"
 #import "DTPagedScrollView.h"
 #import "DTPagedScrollViewDataSource.h"

@@ -15,5 +15,6 @@
 @property (nonatomic, assign, readonly) NSInteger to_i;
 @property (nonatomic, retain, readonly) NSURL *to_url;
 @property (nonatomic, retain, readonly) NSDate *to_date;
+@property (nonatomic, retain, readonly) NSNumber *to_n;
 
 @end

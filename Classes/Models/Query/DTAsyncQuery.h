@@ -1,5 +1,5 @@
 //
-//  ACAsyncQuery.h
+//  DTAsyncQuery.h
 //  ZWorkbench
 //
 //  Created by Curtis Duhn on 6/18/09.
@@ -14,7 +14,7 @@
 
 @protocol DTAsyncQueryDelegate;
 
-@interface DTAsyncQuery : NSObject <DTAsyncQueryOperationDelegate> {
+@interface DTAsyncQuery : NSObject <DTAsyncQueryOperationDelegate, NSFastEnumeration> {
     NSArray *rawRows;
     NSMutableArray *rows;
     NSMutableArray *groups;

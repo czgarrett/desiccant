@@ -1,5 +1,5 @@
 //
-//  ACAsyncQuery.m
+//  DTAsyncQuery.m
 //  ZWorkbench
 //
 //  Created by Curtis Duhn on 6/18/09.
@@ -14,13 +14,13 @@
 #pragma mark Private Interface
 @interface DTAsyncQuery()
 @property (nonatomic, retain) NSArray *rawRows;
-@property (nonatomic, retain) NSMutableArray *rows;
 @property (nonatomic, retain) NSMutableArray *groups;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;    
 @property (nonatomic) BOOL updating;
 @property (nonatomic) BOOL loaded;
 @property (nonatomic, retain) NSMutableArray *rowTransformers;
 @property (nonatomic, retain) NSMutableArray *rowFilters;
+@property (nonatomic, retain) NSMutableArray *rows;
 - (void)transformRawRows;
 - (void)filterTransformedRows;
 - (void)groupRows;
@@ -30,8 +30,7 @@
 #pragma mark Class Implementation
 @implementation DTAsyncQuery
 
-@synthesize 
-rawRows, rows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, error;
+@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, error;
 /*
  NSArray *rawRows;
  NSMutableArray *rows;
@@ -190,6 +189,9 @@ rawRows, rows, groups, operationQueue, delegate, updating, loaded, rowTransforme
     self.updating = NO;
 }
 
-
+#pragma mark NSFastEnumeration
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len {
+    return [rows countByEnumeratingWithState:state objects:stackbuf count:len];
+}
 
 @end

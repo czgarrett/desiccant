@@ -8,6 +8,7 @@
 
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import "NSURL+Zest.h"
+#import "NSString+Zest.h"
 
 @interface NSURL ( Zest_private )
 - (BOOL)isReachableWithoutRequiringConnection:(SCNetworkReachabilityFlags)flags;
@@ -37,6 +38,10 @@
 
 
 @implementation NSURL ( Zest )
+
++ (NSURL *)resourceURL {
+    return [NSURL fileURLWithPath:[NSString resourcePath]];
+}
 
 - (NSString *) to_s {
     return [self absoluteString];
@@ -75,5 +80,10 @@
 - (NSData *) cachedData {
     return [[[NSURLCache sharedURLCache] cachedResponseForRequest:self.to_request] data];
 }
+
+- (NSString *)pathExtension {
+    return [[self path] pathExtension];
+}
+
 
 @end

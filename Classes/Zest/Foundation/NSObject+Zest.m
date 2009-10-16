@@ -27,4 +27,8 @@
     return nil;
 }
 
+- (NSNumber *)to_n {
+    return nil;
+}
+
 @end

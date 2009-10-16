@@ -24,7 +24,11 @@
 }
 
 - (NSNumber *)numberForKey:(id)key {
-    return (NSNumber *)[self objectForKey:key];
+    return ((NSObject *)[self objectForKey:key]).to_n;
+}
+
+- (double)doubleForKey:(id)key {
+    return [[self numberForKey:key] doubleValue];
 }
 
 - (NSDate *)dateForKey:(id)key {

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DTImageViewDelegate.h"
 
+@protocol DTImageViewDelegate;
+
 @interface DTImageView : UIImageView {
     NSURLConnection *connection;
     NSMutableData *data;
