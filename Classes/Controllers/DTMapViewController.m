@@ -13,10 +13,16 @@
 @end
 
 @implementation DTMapViewController
-@synthesize latitude, longitude, spanHeight, spanWidth;
+@synthesize latitude, longitude, spanHeight, spanWidth, mapDetailsToolbar, mapManagerView, currentLocationButton, mapView;
 
-- (void)dealloc {
+
+
+- (void)dealloc 
+{
     self.mapView = nil;
+	self.mapDetailsToolbar = nil;
+	self.currentLocationButton = nil;
+	self.mapManagerView = nil;
 
     [super dealloc];
 }
@@ -30,21 +36,32 @@
         self.longitude = theLongitude;
         self.spanHeight = theSpanHeight;
         self.spanWidth = theSpanWidth;
+		self.view = self.view;
     }
     return self;
 }
 
 - (void) loadView {
-    self.view = [[[MKMapView alloc] initWithFrame:CGRectZero] autorelease];
-    self.mapView.mapType = MKMapTypeHybrid;
-}
+    
 
-- (MKMapView *) mapView {
-    return (MKMapView *) self.view;
-}
+	self.mapManagerView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	[self.mapManagerView setAutoresizesSubviews: YES];
+	
+	self.view = self.mapManagerView;
+	
+	self.mapView = [[[MKMapView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height - 44.0)] autorelease];
+	self.mapView.mapType = MKMapTypeHybrid;
+	
+	self.mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;	
+	[self.mapManagerView addSubview:self.mapView];
+	
 
-- (void)setMapView:(MKMapView *)theView {
-    self.view = theView;
+	self.mapDetailsToolbar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0.0, (self.view.frame.size.height - 44.0), self.view.frame.size.width, 44.0)] autorelease];	
+	self.mapDetailsToolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+	[self.mapManagerView addSubview: mapDetailsToolbar];
+	self.currentLocationButton = [[[UIBarButtonItem alloc] initWithTitle:@"L" style:UIBarButtonItemStyleBordered target:self action:@selector(currentLocationButtonClicked:)] autorelease];
+	[self.mapDetailsToolbar setItems:[NSArray arrayWithObjects:self.currentLocationButton,nil]];
+	
 }
 
 + (DTMapViewController *) controllerWithLatitude:(CLLocationDegrees)theLatitude 
@@ -58,7 +75,8 @@
     [super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated 
+{
     [super viewWillAppear:animated];
     CLLocationCoordinate2D location;
     location.latitude = latitude;
@@ -66,7 +84,8 @@
     [self.mapView setRegion:MKCoordinateRegionMake(location, MKCoordinateSpanMake(spanHeight, spanWidth)) animated:NO];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated 
+{
     [super viewDidAppear:animated];
 }
 
@@ -74,4 +93,9 @@
     [self.mapView addAnnotation:[DTMapAnnotation annotationWithTitle:annotationTitle subtitle:annotationSubtitle latitude:theLatitude longitude:theLongitude]];
 }
 
+- (IBAction)currentLocationButtonClicked:(id)sender
+{
+	return;
+}
+								   
 @end
