@@ -54,6 +54,7 @@
 	
 	self.mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;	
 	[self.mapManagerView addSubview:self.mapView];
+	self.mapView.showsUserLocation = YES;
 	
 
 	self.mapDetailsToolbar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0.0, (self.view.frame.size.height - 44.0), self.view.frame.size.width, 44.0)] autorelease];	
@@ -95,7 +96,24 @@
 
 - (IBAction)currentLocationButtonClicked:(id)sender
 {
-	return;
+	// The user has clicked the "current location" button, so center on it
+	[self.mapView setCenterCoordinate:[self.mapView userLocation].coordinate];
 }
-								   
+	
+#pragma mark -
+#pragma mark DELEGATES
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+	// We return nil for the default view, which we'll need to do to get the "current user location" blue dot
+	MKAnnotationView *annotationView = nil;
+	
+	if(annotation != self.mapView.userLocation)
+	{
+		
+	}
+	
+	return annotationView;
+}
+
 @end
