@@ -10,6 +10,8 @@
 #import "DTAsyncQuery.h"
 #import "DTHTTPXMLQueryOperation.h"
 
+@class DTHTTPXMLQueryOperation;
+
 @interface DTXMLHTTPQuery : DTAsyncQuery {
     NSURL *url;
     DTXMLParser *parser;

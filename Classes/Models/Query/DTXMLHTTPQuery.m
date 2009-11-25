@@ -42,7 +42,7 @@
 }
 
 + (DTXMLHTTPQuery *)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryDelegate> *)delegate parser:(DTXMLParser *)parser {
-    return [[[self alloc] initWithURL:url delegate:delegate parser:parser] autorelease];
+    return [[((DTXMLHTTPQuery *)[self alloc]) initWithURL:url delegate:delegate parser:parser] autorelease];
 }
 
 - (DTAsyncQueryOperation *)constructQueryOperation {

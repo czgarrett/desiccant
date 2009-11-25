@@ -9,29 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "DTAsyncQueryOperation.h"
 #import "DTXMLParser.h"
+#import "DTHTTPQueryOperation.h"
 
 @protocol DTAsyncQueryOperationDelegate;
 
-@interface DTHTTPXMLQueryOperation : DTAsyncQueryOperation {
-    NSURL *url;
+@interface DTHTTPXMLQueryOperation : DTHTTPQueryOperation {
     DTXMLParser *parser;
-    NSData *xmlData;
     NSArray *rows;
-    NSString *error;
-    NSString *method;
-    NSData *body;
-    NSMutableURLRequest *request;
 }
 
-@property (nonatomic, retain, readonly) NSURL *url;
 @property (nonatomic, retain, readonly) DTXMLParser *parser;
 @property (nonatomic, retain, readonly) NSArray *rows;
-@property (nonatomic, retain, readonly) NSString *error;
-@property (nonatomic, retain) NSString *method;
-@property (nonatomic, retain) NSData *body;
 
+- (DTHTTPXMLQueryOperation *)initWithURL:(NSURL *)newURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)newDelegate parser:(DTXMLParser *)newParser;
 + (DTHTTPXMLQueryOperation *)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryOperationDelegate> *)delegate parser:(DTXMLParser *)parser;
-- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
 
 @end
 
