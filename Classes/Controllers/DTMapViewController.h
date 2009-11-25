@@ -6,6 +6,8 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
+#ifdef __IPHONE_3_0
+
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "desiccant.h"
@@ -49,3 +51,5 @@
 - (IBAction)currentLocationButtonClicked:(id)sender;
 
 @end
+
+#endif

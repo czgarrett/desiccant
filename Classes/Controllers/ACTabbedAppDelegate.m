@@ -1,13 +1,8 @@
-//
-//  ACNavigationAppDelegate.m
-//  ZWorkbench
-//
-//  Created by Christopher Garrett on 9/20/08.
-//  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
-//
 
 #import "ACTabbedAppDelegate.h"
 #import "SQLiteConnectionAdapter.h"
+#import "desiccant.h"
+#import "UITabBarControllerRotating.h"
 
 @implementation ACTabbedAppDelegate 
 
@@ -42,22 +37,30 @@
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {	
-   
    [self setUpTabBarController];
    [window addSubview: tabBarController.view];
    [window makeKeyAndVisible]; 
-   [self setUpSplash];  
+   [self setUpSplash];     
 }
 
 - (void) setUpTabBarController {
-   tabBarController = [[UITabBarController alloc] initWithNibName: nil bundle: nil];
+   tabBarController = [[UITabBarControllerRotating alloc] init];
    tabBarController.view.backgroundColor = [UIColor blackColor];
    tabBarController.delegate = self;
+   [self createTabs];
+}
+
+- (void) createTabs {
+   // Stub method does nothing
 }
 
 - (void) setUpSplash {
    UIImage *splashImage = [UIImage imageNamed: @"splash.png"];
+   unless (splashImage) {
+      splashImage = [UIImage imageNamed: @"Default.png"];
+   }
    if (splashImage) {
+      tabBarController.view.alpha = 0.0;
       self.splashView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)] autorelease];
       UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
       UIImageView *logo = [[UIImageView alloc] initWithImage: splashImage];
@@ -67,7 +70,7 @@
       [window bringSubviewToFront:self.splashView];
       [logoView release];
       [logo release];
-      [NSTimer scheduledTimerWithTimeInterval:2.5 
+      [NSTimer scheduledTimerWithTimeInterval: 0.5 
                                        target:self 
                                      selector:@selector(hideSplash) 
                                      userInfo:nil 
@@ -79,6 +82,7 @@
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:2.0];
 	self.splashView.alpha = 0;
+   self.tabBarController.view.alpha = 1.0;
 	[UIView commitAnimations];			
 }
 

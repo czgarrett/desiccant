@@ -2,7 +2,7 @@
 #import "desiccant_controllers.h"
 
 
-@interface DTCoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+@interface DTCoreDataTableViewController : DTTableViewController <NSFetchedResultsControllerDelegate> {
 
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext *managedObjectContext;

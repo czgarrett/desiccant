@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface ACAboutViewController : UIViewController {
+@interface ACAboutViewController : UIViewController<UIWebViewDelegate> {
    IBOutlet UIWebView *webView;
 }
 
-@property (nonatomic, readonly) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) UIWebView *webView;
 
 - (void) reloadWebView;
 

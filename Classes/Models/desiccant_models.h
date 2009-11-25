@@ -28,3 +28,6 @@
 #import "DTPListQuery.h"
 #import "DTPListQueryOperation.h"
 #import "DTMapAnnotation.h"
+#import "DTJSONQuery.h"
+#import "DTJSONQueryOperation.h"
+#import "DTResultObjectParser.h"

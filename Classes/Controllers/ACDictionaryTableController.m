@@ -90,18 +90,18 @@
     
     static NSString *CellIdentifier = @"ACDictionaryTableControllerCell";
     
-    EditableCell *cell = (EditableCell *) [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[EditableCell alloc] initWithFrame: CGRectZero reuseIdentifier: CellIdentifier] autorelease];
+    EditableCell *editableCell = (EditableCell *) [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (editableCell == nil) {
+        editableCell = [[[EditableCell alloc] initWithFrame: CGRectZero reuseIdentifier: CellIdentifier] autorelease];
     }
    if ([[self itemsInSection: indexPath.section] count] != indexPath.row) {
-      cell.textField.text = [self itemForIndexPath: indexPath];      
+      editableCell.textField.text = [self itemForIndexPath: indexPath];      
    } else {
-      cell.textField.text = @"";
+      editableCell.textField.text = @"";
    }
-   cell.indexPath = indexPath;
-   cell.textField.delegate = self;
-   return cell;
+   editableCell.indexPath = indexPath;
+   editableCell.textField.delegate = self;
+   return editableCell;
 }
 
 
@@ -240,21 +240,21 @@ toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-   EditableCell *cell = (EditableCell *) [[textField superview] superview];
-   NSMutableArray *itemsInSection = [self itemsInSection: cell.indexPath.section];
-   if ([itemsInSection count] == cell.indexPath.row) {
+   EditableCell *editableCell = (EditableCell *) [[textField superview] superview];
+   NSMutableArray *itemsInSection = [self itemsInSection: editableCell.indexPath.section];
+   if ([itemsInSection count] == editableCell.indexPath.row) {
       // It's the last row, which is the "+" row
 #ifdef __IPHONE_3_0  
-      [itemsInSection addObject: cell.textLabel.text];
+      [itemsInSection addObject: editableCell.textLabel.text];
 #else
-      [itemsInSection addObject: cell.text];
+      [itemsInSection addObject: editableCell.text];
 #endif
        [self.tableView reloadData];
    } else {
 #ifdef __IPHONE_3_0
-      [itemsInSection replaceObjectAtIndex: cell.indexPath.row withObject: cell.textLabel.text];      
+      [itemsInSection replaceObjectAtIndex: editableCell.indexPath.row withObject: editableCell.textLabel.text];      
 #else
-      [itemsInSection replaceObjectAtIndex: cell.indexPath.row withObject: cell.text];      
+      [itemsInSection replaceObjectAtIndex: editableCell.indexPath.row withObject: editableCell.text];      
 #endif
    }
 }

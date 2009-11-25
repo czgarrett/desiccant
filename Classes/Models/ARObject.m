@@ -8,19 +8,55 @@
 
 #import "ARObject.h"
 #import "SQLiteConnectionAdapter.h"
+#import "desiccant.h"
 
 @implementation ARObject
 
-@synthesize newRecord;
+@synthesize newRecord, attributes;
+
+#pragma mark Metadata
 
 + (NSString *)tableName
 {
 	return [NSString stringWithFormat: @"%@s", [[self class] description]];
 }
 
++ (SQLiteTable *)table
+{
+	return [[[self class] connection] tableNamed: [[self class] tableName]];
+}
+
++ (NSString *) primaryKeyName {
+   return kPrimaryKeyName;
+}
+
++ (NSString *) concatenatedColumnNames
+{
+	NSArray *columnNames = [[self table] columnNames];
+	return [columnNames componentsJoinedByString: @", "];   
+}
+
+- (NSString *) createdAtAttributeName
+{
+	return kCreatedAt;
+}
+- (NSString *) updatedAtAttributeName
+{
+	return kUpdatedAt;
+}
+
+- (NSString *)concatenatedColumnNames
+{
+   return [[self class] concatenatedColumnNames];
+}
+
+#pragma mark Database
+
 + (SQLiteConnectionAdapter *)connection {
 	return [SQLiteConnectionAdapter defaultInstance];
 }
+
+#pragma mark Counters
 
 + (NSInteger) count
 {
@@ -50,6 +86,7 @@
    return [self countBySQL: sql, columnFilter];
 }
 
+#pragma mark  Deletion
 
 + (void)deleteAll
 {
@@ -57,23 +94,18 @@
 	[[[self connection] preparedStatement: deleteSQL] execute];
 }
 
-+ (SQLiteTable *)table
++ (void) deleteAllWithCondition: (NSString *)condition, ...
 {
-	return [[[self class] connection] tableNamed: [[self class] tableName]];
-}
-
-+ (NSArray *) usingOperation: (NSOperation *) operation 
-             findByCondition: (NSString *)condition, ... {
+   NSString *sql = [NSString stringWithFormat: @"delete from %@ where %@", [self tableName], condition];
    va_list bindings;
    va_start(bindings, condition);          // Start scanning for arguments after firstObject.
-   return [self findBySQL: [self sqlForFindByCondition: condition] variables: bindings operation: operation];    
+   SQLitePreparedStatement *statement = [[self connection] preparedStatement: sql];
+   [statement executeWithOperation: nil bindingVariables: bindings];
 }
 
-+ (NSString *) sqlForFindByCondition: (NSString *)condition {
-   return [NSString stringWithFormat: @"select %@ from %@ where %@", [self concatenatedColumnNames], [self tableName], condition];
-}
+#pragma mark Finders
 
-+ (NSArray *) findByCondition: (NSString *)condition, ...
++ (NSMutableArray *) findByCondition: (NSString *)condition, ...
 {
    va_list bindings;
    va_start(bindings, condition);          // Start scanning for arguments after firstObject.
@@ -98,50 +130,49 @@
    return [[self findByCondition: sql, [NSNumber numberWithInteger:key]] objectAtIndex: 0];
 }
 
-+ (NSString *) primaryKeyName {
-   return kPrimaryKeyName;
++ (ARObject *) findByAttributeNamed: (NSString *) attributeName value: (NSString *) value {
+   NSString *sql = [NSString stringWithFormat: @"%@ = ?", attributeName];
+   NSArray *results = [self findByCondition: sql, value];
+   unless([results isEmpty]) {
+      return [results objectAtIndex: 0];   
+   } else {
+      return nil;      
+   }
 }
 
-+ (NSArray *) findBySQL: (NSString *)sql, ...
+
++ (NSMutableArray *) findBySQL: (NSString *)sql, ...
 {
    va_list bindings;
    va_start(bindings, sql);          // Start scanning for arguments after firstObject.
    return [self findBySQL: sql variables: bindings operation: nil];
 }
 
-+ (NSArray *) findAll {
++ (NSMutableArray *) findAll {
    return [self findBySQL: [NSString stringWithFormat: @"select * from %@", [self tableName]] variables: nil operation: nil];   
 }
 
-+ (NSArray *) findBySQL: (NSString *)sql variables: (va_list) bindings operation: (NSOperation *)operation
++ (NSMutableArray *) findBySQL: (NSString *)sql variables: (va_list) bindings operation: (NSOperation *)operation
 {
    SQLitePreparedStatement *statement = [[self connection] preparedStatement: sql];
    QueryResult *queryResult = [statement executeWithOperation: operation bindingVariables: bindings];
    return [self buildObjectsFromQueryResult: queryResult];
 }
 
-// ****************************** COLUMN METHODS *************************************
-+ (NSArray *) usingOperation: (NSOperation *) operation findValuesForColumn: (NSString *)column withCondition: (NSString *)condition, ... {
-   NSString *sql = [NSString stringWithFormat: @"select %@ from %@ where %@", column, [self tableName], condition];
-   va_list bindings;
-   va_start(bindings, condition);          // Start scanning for arguments after condition.
-   SQLitePreparedStatement *statement = [[self connection] preparedStatement: sql];
-   QueryResult *queryResult = [statement executeWithOperation: operation bindingVariables: bindings];
-   return [queryResult valuesForColumn: column];
-   
-}
+#pragma mark Low Level Operations
 
-
-+ (void) deleteAllWithCondition: (NSString *)condition, ...
-{
-   NSString *sql = [NSString stringWithFormat: @"delete from %@ where %@", [self tableName], condition];
++ (NSMutableArray *) usingOperation: (NSOperation *) operation 
+             findByCondition: (NSString *)condition, ... {
    va_list bindings;
    va_start(bindings, condition);          // Start scanning for arguments after firstObject.
-   SQLitePreparedStatement *statement = [[self connection] preparedStatement: sql];
-   [statement executeWithOperation: nil bindingVariables: bindings];
+   return [self findBySQL: [self sqlForFindByCondition: condition] variables: bindings operation: operation];    
 }
 
-+ (NSArray *)buildObjectsFromQueryResult: (QueryResult *)queryResult
++ (NSString *) sqlForFindByCondition: (NSString *)condition {
+   return [NSString stringWithFormat: @"select %@ from %@ where %@", [self concatenatedColumnNames], [self tableName], condition];
+}
+
++ (NSMutableArray *)buildObjectsFromQueryResult: (QueryResult *)queryResult
 {
    NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
    NSEnumerator *rowEnum = [queryResult rowEnumerator];
@@ -155,12 +186,33 @@
    return result;
 }
 
-+ (NSString *) concatenatedColumnNames
+
+- (void)bindAttributesToStatement:(SQLitePreparedStatement *)statement
 {
-	NSArray *columnNames = [[self table] columnNames];
-	return [columnNames componentsJoinedByString: @", "];   
+	NSEnumerator *columnEnum = [[attributes allKeys] objectEnumerator];
+	NSString *columnName;
+	int index = 0;
+	while (columnName = (NSString *)[columnEnum nextObject]) {
+      [statement bindValue: [attributes objectForKey: columnName] toColumn: index];
+		index++;
+	}	
 }
 
+
+#pragma mark Column Finders
+
++ (NSMutableArray *) usingOperation: (NSOperation *) operation findValuesForColumn: (NSString *)column withCondition: (NSString *)condition, ... {
+   NSString *sql = [NSString stringWithFormat: @"select %@ from %@ where %@", column, [self tableName], condition];
+   va_list bindings;
+   va_start(bindings, condition);          // Start scanning for arguments after condition.
+   SQLitePreparedStatement *statement = [[self connection] preparedStatement: sql];
+   QueryResult *queryResult = [statement executeWithOperation: operation bindingVariables: bindings];
+   return [queryResult valuesForColumn: column];
+   
+}
+
+
+#pragma mark Initialization / Destruction
 
 - (id)init
 {
@@ -196,10 +248,7 @@
 	[super dealloc];
 }
 
-- (SQLiteConnectionAdapter *)connection {
-	return [SQLiteConnectionAdapter defaultInstance];
-}
-
+#pragma mark Object Create / Update / Read / Destroy
 
 - (void)create
 {
@@ -226,6 +275,16 @@
 	[self setAttributeNamed: [[self class] primaryKeyName] value: [statement executeAsInsert]];
 	newRecord = NO;
    [self afterCreate];
+}
+
+- (void)destroy {
+   [self beforeDestroy];
+   NSString *destroySQL = [NSString stringWithFormat: @"delete from %@ where %@=?", [[self class] tableName], [[self class] primaryKeyName]];
+   // Now bind the column values to the SQL
+   SQLitePreparedStatement *statement = [[self connection] preparedStatement: destroySQL];
+   [statement bindInteger: [self primaryKey] toColumn: 0]; // Bind it to the last param
+   [statement execute];
+   [self afterDestroy];
 }
 
 - (void)clean
@@ -258,17 +317,6 @@
 }
 
 
-- (void)bindAttributesToStatement:(SQLitePreparedStatement *)statement
-{
-	NSEnumerator *columnEnum = [[attributes allKeys] objectEnumerator];
-	NSString *columnName;
-	int index = 0;
-	while (columnName = (NSString *)[columnEnum nextObject]) {
-      [statement bindValue: [attributes objectForKey: columnName] toColumn: index];
-		index++;
-	}	
-}
-
 - (void)refresh
 {
 	if (!newRecord) {
@@ -279,10 +327,21 @@
 	}
 }
 
+
+#pragma mark Database
+
+- (SQLiteConnectionAdapter *)connection {
+	return [SQLiteConnectionAdapter defaultInstance];
+}
+
+#pragma mark XML
+
 - (NSString *)toXML
 {
 	return nil;
 }
+
+#pragma mark Dates and Times
 
 - (NSTimeInterval)timeIntervalFromString:(NSString *)dateString
 {
@@ -312,6 +371,8 @@
 	return result;
 }
 
+#pragma mark Attribute Helpers
+
 - (void)setAttributeNamed:(NSString *)attributeName value:(id)value
 {
    if (value == nil) {
@@ -337,15 +398,6 @@
    } else {
       return result;
    }
-}
-
-- (NSString *) createdAtAttributeName
-{
-	return kCreatedAt;
-}
-- (NSString *) updatedAtAttributeName
-{
-	return kUpdatedAt;
 }
 
 
@@ -391,23 +443,8 @@
 	return [@"1" isEqualToString:[self getAttributeNamed:attributeName]] || [@"t" isEqualToString:[self getAttributeNamed:attributeName]];
 }
 
+#pragma mark Callbacks
 
-- (NSString *)concatenatedColumnNames
-{
-   return [[self class] concatenatedColumnNames];
-}
-
-- (void)destroy {
-   [self beforeDestroy];
-   NSString *destroySQL = [NSString stringWithFormat: @"delete from %@ where %@=?", [[self class] tableName], [[self class] primaryKeyName]];
-   // Now bind the column values to the SQL
-   SQLitePreparedStatement *statement = [[self connection] preparedStatement: destroySQL];
-   [statement bindInteger: [self primaryKey] toColumn: 0]; // Bind it to the last param
-   [statement execute];
-   [self afterDestroy];
-}
-
-// Callback stubs
 - (void) beforeCreate { }
 - (void) afterCreate { }
 - (void) beforeDestroy { }

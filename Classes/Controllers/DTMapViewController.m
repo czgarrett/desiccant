@@ -42,8 +42,6 @@
 }
 
 - (void) loadView {
-    
-
 	self.mapManagerView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	[self.mapManagerView setAutoresizesSubviews: YES];
 	

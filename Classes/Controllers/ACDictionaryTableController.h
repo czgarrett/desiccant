@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ACDictionaryTableControllerDelegate.h"
+#import "DTTableViewController.h"
 
-@interface ACDictionaryTableController : UITableViewController <UITextFieldDelegate> {
+@interface ACDictionaryTableController : DTTableViewController <UITextFieldDelegate> {
    NSMutableDictionary *items;
    id <ACDictionaryTableControllerDelegate> delegate;
    UITableView *tableView;

@@ -20,8 +20,8 @@
 
 #pragma mark View Delegate methods
 
-- (void) viewDidLoad {
-   [super viewDidLoad];
+- (void) afterTableViewDidLoad:(UITableView *)theTableView {
+   [super afterTableViewDidLoad:theTableView];
    NSError *error = nil;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -90,14 +90,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    NSString *cellIdentifier = [NSString stringWithFormat: @"%@CellIdentifier", self.entityName];
    
-   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-   if (cell == nil) {
-      cell = [[[UITableViewCell alloc] initWithStyle: [self defaultCellStyle] reuseIdentifier: cellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+   UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+   if (theCell == nil) {
+      theCell = [[[UITableViewCell alloc] initWithStyle: [self defaultCellStyle] reuseIdentifier: cellIdentifier] autorelease];
+		theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
    }
    [self configureCell: cell atIndexPath: indexPath];
    
-   return cell;
+   return theCell;
 }
 
 

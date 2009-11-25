@@ -22,9 +22,9 @@
     [super dealloc];
 }
 
-- (void)viewDidLoad {
+- (void)beforeTableViewDidLoad:(UITableView *)theTableView {
     self.cellIdentifier = [NSString stringWithFormat:@"cell_type_%d", [DTCustomTableViewController nextIdentifierNumber]];
-    [super viewDidLoad];
+	[super beforeTableViewDidLoad:theTableView];
 }
 
 + (NSInteger)nextIdentifierNumber {

@@ -26,15 +26,11 @@
     [super dealloc];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+- (void)beforeTableView:(UITableView *)theTableView willAppear:(BOOL)animated {
     if (query && !query.loaded) {
         [query refresh];
     }
-    [super viewWillAppear:animated];
+	[super beforeTableView:theTableView willAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,6 +101,7 @@
         if (cell == nil) {
             if (cellNibName) {
                 [[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil];
+                NSAssert ([cellNibName isEqual:cell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
                 self.cellIdentifier = cell.reuseIdentifier;
             }
             else {
@@ -133,23 +130,23 @@
     }
 }
 
-- (void)queryWillStartLoading:(DTAsyncQuery *)feed {
+- (void)queryWillStartLoading:(DTAsyncQuery *)theQuery {
     [self prepareActivityIndicator];
     [activityIndicator startAnimating];
 }
 
-- (void)queryDidFinishLoading:(DTAsyncQuery *)feed {
+- (void)queryDidFinishLoading:(DTAsyncQuery *)theQuery {
     [activityIndicator stopAnimating];
     [self.tableView reloadData];
     [self hideErrorForFailedQuery];
 }
 
-- (void)queryDidFailLoading:(DTAsyncQuery *)feed {
+- (void)queryDidFailLoading:(DTAsyncQuery *)theQuery {
     [activityIndicator stopAnimating];
-    [self showErrorForFailedQuery:feed];
+    [self showErrorForFailedQuery:theQuery];
 }
 
-- (void)showErrorForFailedQuery:(DTAsyncQuery *)feed {
+- (void)showErrorForFailedQuery:(DTAsyncQuery *)theQuery {
 }
 
 - (void)hideErrorForFailedQuery {
@@ -221,7 +218,7 @@
         return [self prototypeCell].bounds.size.height;
     }
     else {
-        return 44.0;
+        return [self.tableView rowHeight];
     }
 }
 

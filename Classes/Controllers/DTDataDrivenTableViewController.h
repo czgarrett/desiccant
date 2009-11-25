@@ -32,7 +32,7 @@
 // Subclasses can implement this to override the default data cell row height
 - (CGFloat)tableView:(UITableView *)tableView heightForDataRowAtIndexPath:(NSIndexPath *)indexPath;
 // Subclasses can implement this to display an error when the query fails.  Does nothing by default.
-- (void)showErrorForFailedQuery:(DTAsyncQuery *)feed;
+- (void)showErrorForFailedQuery:(DTAsyncQuery *)theQuery;
 // Subclasses may want to implement this to hide any visible error message once the query succeeds.  Does nothing by default.
 - (void)hideErrorForFailedQuery;
 // Subclasses can implement this to override the default UIAlertView display when media fails to load.

@@ -35,9 +35,8 @@
 }
 */
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
+- (void)afterTableViewDidLoad:(UITableView *)theTableView {
+	[super afterTableViewDidLoad:theTableView];
     self.sections = [NSMutableArray arrayWithCapacity:16];
     self.sectionTitles = [NSMutableArray arrayWithCapacity:16];
 }
@@ -103,7 +102,8 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self tableView:tableView rowAtIndexPath:indexPath].cell;
+    UITableViewCell *theCell = [self tableView:tableView rowAtIndexPath:indexPath].cell;
+	return theCell;
 }
 
 
@@ -191,6 +191,7 @@
 
 - (void)addRowWithNibNamed:(NSString *)nibName data:(NSMutableDictionary *)rowData detailViewController:(UIViewController *)detailViewController {
     [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
+    NSAssert (cell.reuseIdentifier == nil, @"Your static cell has a reuse identifier defined in IB.  You should clear the Identifier field for maximum performance.");
     [cell setData:rowData];
     [[self currentSection] addObject:[DTTableViewRow rowWithCell:cell detailViewController:detailViewController]];
 }

@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ARObject.h"
 #import "ACModelObjectController.h"
+#import "DTTableViewController.h"
 
 #define CANCEL_BUTTON 0
 #define OK_BUTTON 1
 
 
-@interface ACTableViewController : UITableViewController <ACModelObjectController> {
+@interface ACTableViewController : DTTableViewController <ACModelObjectController> {
    NSMutableArray *sections;
    NSMutableDictionary *items;
    NSMutableArray *sectionIndexTitles;
@@ -66,6 +67,10 @@
 
 // Sound
 - (void) playSoundNamed: (NSString *)soundName;
+
+// Cells
+- (UIFont *) cellDetailTextLabelFont;
+- (UIFont *) cellTextLabelFont;
 
 
 @end
