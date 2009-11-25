@@ -17,5 +17,9 @@
 - (NSString *)stringAtIndex:(NSUInteger)index;
 - (NSDictionary *) dictionaryAtIndex:(NSUInteger)index;
 - (BOOL) empty;
+// Returns a new array with the contents of this array reversed
+- (NSMutableArray *) reversed;
+- (BOOL) isEmpty;
 - (id) firstObject;
+
 @end

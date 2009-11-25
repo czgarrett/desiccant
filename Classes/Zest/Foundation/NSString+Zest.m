@@ -11,6 +11,12 @@
 
 @implementation NSString ( Zest )
 
++ (NSString *) stringWithContentsOfResource: (NSString *)resourceName ofType: (NSString *)fileExtension {
+	NSStringEncoding usedEncoding;
+	NSError *error;
+   return [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: resourceName ofType: fileExtension] usedEncoding:&usedEncoding error:&error];
+}
+
 + (NSString *) resourcePath {
     return [[NSBundle mainBundle] resourcePath];
 }
@@ -101,6 +107,10 @@
 
 - (BOOL) startsWith:(NSString *)prefix {
     return [self hasPrefix:prefix];
+}
+
+- (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set {
+	return [[self stringByTrimmingCharactersInSet:set] length] == 0;
 }
 
 @end

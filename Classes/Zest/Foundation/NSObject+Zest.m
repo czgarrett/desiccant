@@ -31,4 +31,8 @@
     return nil;
 }
 
+- (NSString *) detailDescription {
+	return @"";
+}
+
 @end

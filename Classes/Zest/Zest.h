@@ -22,12 +22,18 @@
 #import "Foundation/NSMutableDictionary+Zest.h"
 #import "Foundation/NSURL+Zest.h"
 #import "Foundation/NSSet+Zest.h"
+#import "Foundation/NSIndexPath+Zest.h"
+#import "Foundation/NSData+Zest.h"
+#import "Foundation/NSMutableData+Zest.h"
 
 #import "UIKit/UIView+Zest.h"
 #import "UIKit/UIColor+Zest.h"
 #import "UIKit/UILabel+Zest.h"
 #import "UIKit/UINavigationController+Zest.h"
 #import "UIKit/UIViewController+Zest.h"
+#import "UIKit/UITabBarItem+Zest.h"
+#import "UIKit/UITableView+Zest.h"
+#import "UIKit/UIButton+Zest.h"
 
 #import "NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"

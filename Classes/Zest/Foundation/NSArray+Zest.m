@@ -33,6 +33,17 @@
 }
 
 - (BOOL) empty {
+   return [self isEmpty];
+}
+
+- (NSMutableArray *) reversed {
+   NSMutableArray *result = [NSMutableArray array];
+   for (int i=[self count] - 1; i > -1; i--) {
+      [result addObject: [self objectAtIndex: i]];
+   }
+   return result;
+}
+- (BOOL) isEmpty {
    return [self count] == 0;
 }
 

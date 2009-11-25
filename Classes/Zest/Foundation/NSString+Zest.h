@@ -18,6 +18,7 @@
 // Returns the resource path for the main bundle
 + (NSString *) resourcePath;
 
++ (NSString *) stringWithContentsOfResource: (NSString *)resourceName ofType: (NSString *)fileExtension;
 - (NSString *) HTMLUnencode;
 
 // Truncates self to given length if its length is longer.  Adds an ellipsis character at the end if truncated.
@@ -27,5 +28,6 @@
 // Returns true if this string is the file extension of an image that can be handled by UIImage
 - (BOOL) isImageExtension;
 - (BOOL) startsWith:(NSString *)prefix;
+- (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set;
 
 @end
