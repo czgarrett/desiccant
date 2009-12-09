@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DTResultObjectParser.h"
+#import "DTHTTPQueryOperation.h"
+
+@protocol DTResultObjectParser;
+
+
 
 @interface DTHTTPStructuredResponseQueryOperation : DTHTTPQueryOperation {
 	NSObject <DTResultObjectParser> *resultObjectParser;

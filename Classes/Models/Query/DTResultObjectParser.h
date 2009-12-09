@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
 
 @protocol DTResultObjectParser
 - (BOOL)parseArraySuccessfully:(NSArray *)array;

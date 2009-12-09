@@ -6,7 +6,9 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
+#import "DTHTTPQuery.h"
 #import "DTJSONQuery.h"
+#import "DTJSONQueryOperation.h"
 
 
 @interface DTJSONQuery()

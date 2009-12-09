@@ -8,7 +8,7 @@
 
 #import "ACNavigationAppDelegate.h"
 #import "SQLiteConnectionAdapter.h"
-#import "desiccant.h"
+#import "Zest.h"
 
 @implementation ACNavigationAppDelegate 
 

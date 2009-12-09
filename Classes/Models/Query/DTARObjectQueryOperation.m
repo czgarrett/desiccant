@@ -7,7 +7,7 @@
 //
 
 #import "DTARObjectQueryOperation.h"
-
+#import "ARObject.h"
 
 @interface DTARObjectQueryOperation()
 @end

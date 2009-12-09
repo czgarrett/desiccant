@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DTAsyncQuery.h"
 #import "DTResultObjectParser.h"
+#import "DTHTTPQueryOperation.h"
+
+@protocol DTResultObjectParser;
 
 @interface DTHTTPQuery : DTAsyncQuery {
 	NSURL *url;
