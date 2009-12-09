@@ -28,4 +28,7 @@ typedef enum {
 -(UITextField *)addTextFieldWithPlaceholder:(NSString *)placeHolderText;
 -(void)addContentView;
 - (void)errorAlertTitle: (NSString *)title message:(NSString *)message;
+- (void)alertWithTitle: (NSString *)title message: (NSString *)message;
+- (void)confirmationWithTitle: (NSString *)title message: (NSString *)message;
+
 @end

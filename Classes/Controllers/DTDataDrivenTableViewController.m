@@ -49,7 +49,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([self hasHeaders] && section == 0) return headerRows;
-    else return [query rowCountForGroupWithIndex:[self adjustSectionForHeaders:section]];
+    else {
+		 NSInteger numRows = [query rowCountForGroupWithIndex:[self adjustSectionForHeaders:section]];
+		 return numRows;
+	}
 }
 
 - (BOOL)hasHeaders {
@@ -147,6 +150,7 @@
 }
 
 - (void)showErrorForFailedQuery:(DTAsyncQuery *)theQuery {
+	[self alertWithTitle:@"Query failed" message:theQuery.error];
 }
 
 - (void)hideErrorForFailedQuery {

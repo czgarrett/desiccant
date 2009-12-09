@@ -48,6 +48,8 @@
 - (NSUInteger)rowCountForGroupWithIndex:(NSUInteger)index;
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)index;
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)rowIndex inGroupWithIndex:(NSUInteger)groupIndex;
+- (void)deleteItemAtIndex:(NSUInteger)index;
+- (void)deleteItemAtIndex:(NSUInteger)index inGroupWithIndex:(NSUInteger)groupIndex;
 
 @property (retain) NSObject <DTAsyncQueryDelegate> *delegate;
 @property (nonatomic, retain) NSObject <DTGroupsUntypedData> *grouper;

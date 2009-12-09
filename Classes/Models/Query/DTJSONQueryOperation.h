@@ -7,18 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTHTTPQueryOperation.h"
-#import "DTResultObjectParser.h"
+#import "DTHTTPStructuredResponseQueryOperation.h"
 
-@interface DTJSONQueryOperation : DTHTTPQueryOperation {
-	NSObject <DTResultObjectParser> *resultObjectParser;
-	NSMutableArray *rows;
+@interface DTJSONQueryOperation : DTHTTPStructuredResponseQueryOperation {
 }
 
-@property (nonatomic, retain) NSObject <DTResultObjectParser> *resultObjectParser;
-@property (nonatomic, retain) NSMutableArray *rows;
-
-- (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)resultObjectParser;
-+ (DTJSONQueryOperation *)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)resultObjectParser;
++ (DTJSONQueryOperation *)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser;
 
 @end

@@ -279,7 +279,7 @@
 }
 
 - (void)scrollPickerViewPastTypesThatCanNotStartWithText:(NSString *)text {
-	if ([queryBuilderDelegate respondsToSelector:@selector(queryBuilder:type:canStartWithText:atIndex:)]) {
+	if ([queryBuilderDelegate respondsToSelector:@selector(queryBuilder:type:canStartWithText:atIndex:)] && [pickerView numberOfRowsInComponent:0] > 1) {
 		NSInteger startPickerIndex = [pickerView selectedRowInComponent:0];
 		NSInteger newPickerIndex = startPickerIndex;
 		BOOL wrappedAround = NO;
@@ -302,7 +302,13 @@
 }
 
 - (NSObject <DTQueryBuilderElementType> *)selectedType {
-	return [candidateTypes objectAtIndex:[pickerView selectedRowInComponent:0]];
+	NSInteger selectedRow = [pickerView selectedRowInComponent:0];
+	if (selectedRow >= 0 && selectedRow < [candidateTypes count]) {
+		return [candidateTypes objectAtIndex:[pickerView selectedRowInComponent:0]];
+	}
+	else {
+		return nil;
+	}
 }
 
 - (void)updateRowMetadata {
@@ -351,6 +357,7 @@
 		[queryBuilderDelegate queryBuilder:self willStartEditingElementAtIndex:indexOfElementBeingEdited];
 	}
 	self.candidateTypes = [queryBuilderDelegate queryBuilder:self typesForElementAtIndex:indexOfElementBeingEdited];
+	NSAssert ([candidateTypes count] >= 1, @"At least one candidate type must be defined to edit this element");
 	if (indexOfElementBeingEdited < numberOfElements) {
 		self.elementBeingEdited = [queryBuilderDelegate queryBuilder:self elementAtIndex:indexOfElementBeingEdited];
 		textEditField.text = elementBeingEdited.text;

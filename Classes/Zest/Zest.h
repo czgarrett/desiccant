@@ -34,6 +34,7 @@
 #import "UIKit/UITabBarItem+Zest.h"
 #import "UIKit/UITableView+Zest.h"
 #import "UIKit/UIButton+Zest.h"
+#import "UIKit/UIBarButtonItem+Zest.h"
 
 #import "NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"

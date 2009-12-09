@@ -31,3 +31,7 @@
 #import "DTJSONQuery.h"
 #import "DTJSONQueryOperation.h"
 #import "DTResultObjectParser.h"
+#import "DTHTTPQuery.h"
+#import "DTHTTPPlistQuery.h"
+#import "DTARObjectQuery.h"
+#import "DTARObjectQueryOperation.h"

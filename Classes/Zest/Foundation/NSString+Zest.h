@@ -19,6 +19,7 @@
 + (NSString *) resourcePath;
 
 + (NSString *) stringWithContentsOfResource: (NSString *)resourceName ofType: (NSString *)fileExtension;
++ (NSString *) stringWithInteger:(NSInteger)integer;
 - (NSString *) HTMLUnencode;
 
 // Truncates self to given length if its length is longer.  Adds an ellipsis character at the end if truncated.

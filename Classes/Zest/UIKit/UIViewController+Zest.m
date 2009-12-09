@@ -119,15 +119,31 @@
 	}
 }
 
+#pragma mark Alerts 
+
 - (void)errorAlertTitle: (NSString *)title message:(NSString *)message
 {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
-												 message: message
-												 delegate: nil 
-												 cancelButtonTitle: @"Ok" 
-												 otherButtonTitles: nil];
-	[alert show];
-	[alert release];												
+	[self alertWithTitle:title message:message];
+}
+
+- (void)alertWithTitle: (NSString *)title message: (NSString *)message {
+   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
+                                                   message: message
+                                                  delegate: nil 
+                                         cancelButtonTitle: @"Ok" 
+                                         otherButtonTitles: nil];
+   [alert show];
+   [alert autorelease];   
+}
+
+- (void)confirmationWithTitle: (NSString *)title message: (NSString *)message {
+   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
+                                                   message: message
+                                                  delegate: self 
+                                         cancelButtonTitle: @"Cancel" 
+                                         otherButtonTitles: @"Ok", nil];
+   [alert show];
+   [alert autorelease];   
 }
 
 

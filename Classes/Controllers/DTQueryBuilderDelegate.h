@@ -14,7 +14,6 @@
 @protocol DTQueryBuilderCell;
 @protocol DTQueryBuilderElement;
 @protocol DTQueryBuilderElementType;
-
 @protocol DTQueryBuilderDelegate
 
 @required

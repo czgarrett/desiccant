@@ -115,6 +115,22 @@
     return [self groupCount] == 1 ? [self itemAtIndex:rowIndex] : (NSMutableDictionary *)[(NSMutableArray *)[self.groups objectAtIndex:groupIndex] objectAtIndex:rowIndex];
 }
 
+- (void)deleteItemAtIndex:(NSUInteger)index {
+	NSMutableDictionary *item = [self itemAtIndex:index];
+	[rows removeObjectAtIndex:index];
+	for (NSMutableArray *group in groups) {
+		if ([group containsObject:item]) {
+			[group removeObject:item];
+		}
+	}
+}
+
+- (void)deleteItemAtIndex:(NSUInteger)index inGroupWithIndex:(NSUInteger)groupIndex {
+	NSMutableDictionary *item = [self itemAtIndex:index inGroupWithIndex:groupIndex];
+	[rows removeObject:item];
+	[[groups objectAtIndex:groupIndex] removeObjectAtIndex:index];
+}
+
 - (NSUInteger)count {
     return [rows count];
 }

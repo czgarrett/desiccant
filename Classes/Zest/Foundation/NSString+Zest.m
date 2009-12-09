@@ -21,6 +21,10 @@
     return [[NSBundle mainBundle] resourcePath];
 }
 
++ (NSString *) stringWithInteger:(NSInteger)integer {
+	return [NSString stringWithFormat:@"%d", integer];
+}
+
 - (NSString *) to_s {
     return self;
 }

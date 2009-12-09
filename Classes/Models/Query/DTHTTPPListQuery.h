@@ -1,15 +1,17 @@
 //
-//  DTJSONQuery.h
+//  DTHTTPPListQuery.h
 //  PortablePTO
 //
-//  Created by Curtis Duhn on 11/20/09.
+//  Created by Curtis Duhn on 12/1/09.
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "DTHTTPQuery.h"
 
-@interface DTJSONQuery : DTHTTPQuery {
+
+@interface DTHTTPPListQuery : DTHTTPQuery {
+
 }
 
 @end
