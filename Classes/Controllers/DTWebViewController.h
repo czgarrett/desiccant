@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ACWebLinkController.h"
+#import "DTViewController.h"
 
-@interface DTWebViewController : UIViewController <UIWebViewDelegate> {
+@interface DTWebViewController : DTViewController <UIWebViewDelegate> {
     UIWebView *webView;
-    NSMutableArray *linkControllerChain;
+    NSMutableArray *dtLinkControllerChain;
     NSString *javascriptOnLoad;
 }
     

@@ -10,6 +10,10 @@
 
 @implementation UIColor ( Zest )
 
++ (UIColor *)transparentColor {
+	return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+}
+
 + (UIColor *)colorWithRGBArray:(NSArray *)values {
    if (values) {
       return [UIColor colorWithRed: [[values objectAtIndex: 0] floatValue]

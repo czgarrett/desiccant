@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSMutableArray *rowTransformers;
 @property (nonatomic, retain) NSMutableArray *rowFilters;
 @property (nonatomic, retain) NSMutableArray *rows;
+@property (nonatomic, retain) DTAsyncQueryOperation *operation;
 - (void)transformRawRows;
 - (void)filterTransformedRows;
 - (void)groupRows;
@@ -30,30 +31,20 @@
 #pragma mark Class Implementation
 @implementation DTAsyncQuery
 
-@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, error;
-/*
- NSArray *rawRows;
- NSMutableArray *rows;
- NSMutableArray *groups;
- NSOperationQueue *operationQueue;    
- BOOL updating;
- BOOL loaded;
- NSObject <DTAsyncQueryDelegate> *delegate;
- NSMutableArray *rowTransformers;
- NSMutableArray *rowFilters;
- NSObject <DTGroupsUntypedData> *grouper;
- NSString *error;
- */
+@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, error, operation;
+
 - (void)dealloc {
-    [rawRows release];
-    [rows release];
-    [groups release];
-    [operationQueue release];
-    [delegate release];
-    [rowTransformers release];
-    [rowFilters release];
-    [grouper release];
-    [error release];
+	self.rawRows = nil;
+	self.rows = nil;
+	self.groups = nil;
+	self.operationQueue = nil;
+	self.delegate = nil;
+	self.rowTransformers = nil;
+	self.rowFilters = nil;
+	self.grouper = nil;
+	self.error = nil;
+	self.operation.delegate = nil;
+	self.operation = nil;
     
     [super dealloc];
 }
@@ -187,8 +178,18 @@
     }
 }
 
+- (void)cancel {
+	[self.operation cancel];
+}
+
+- (BOOL)isCancelled {
+	return [self.operation isCancelled];
+}
+
 - (void)operationWillStartLoading:(DTAsyncQueryOperation *)query {
-    [delegate queryWillStartLoading:self];
+	if ([delegate respondsToSelector:@selector(queryWillStartLoading:)]) {
+		[delegate queryWillStartLoading:self];
+	}
 }
 
 - (void)operationDidFinishLoading:(DTAsyncQueryOperation *)query {
@@ -197,6 +198,13 @@
     self.loaded = YES;
     [delegate queryDidFinishLoading:self];
     self.updating = NO;
+}
+
+- (void)operationDidCancelLoading:(DTAsyncQueryOperation *)query {
+	self.updating = NO;
+	if ([delegate respondsToSelector:@selector(queryDidCancelLoading:)]) {
+		[delegate performSelectorOnMainThread:@selector(queryDidCancelLoading:) withObject:self waitUntilDone:NO];
+	}	
 }
 
 - (void)operationDidFailLoading:(DTAsyncQueryOperation *)query {

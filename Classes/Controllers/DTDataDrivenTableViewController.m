@@ -26,12 +26,19 @@
     [super dealloc];
 }
 
-- (void)beforeTableView:(UITableView *)theTableView willAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     if (query && !query.loaded) {
         [query refresh];
     }
-	[super beforeTableView:theTableView willAppear:animated];
+	[super viewWillAppear:animated];
 }
+
+//- (void)beforeView:(UITableView *)theTableView willAppear:(BOOL)animated {
+//    if (query && !query.loaded) {
+//        [query refresh];
+//    }
+//	[super beforeView:theTableView willAppear:animated];
+//}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.

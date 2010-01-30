@@ -9,15 +9,18 @@
 #import "DTWebViewController.h"
 #import "DTSpinner.h"
 
+@interface DTWebViewController()
+@property (nonatomic, retain) NSMutableArray *dtLinkControllerChain;
+@end
 
 @implementation DTWebViewController
 
-@synthesize webView, linkControllerChain, javascriptOnLoad;
+@synthesize webView, dtLinkControllerChain, javascriptOnLoad;
 
 - (void)dealloc {
-    [webView release];
-    [linkControllerChain release];
-    [javascriptOnLoad release];
+	self.webView = nil;
+	self.dtLinkControllerChain = nil;
+	self.javascriptOnLoad = nil;
     
     [super dealloc];
 }
@@ -55,11 +58,6 @@
 - (void) reloadWebView {
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
@@ -94,5 +92,15 @@
 - (void)webView:(UIWebView *)loadingWebView didFailLoadWithError:(NSError *)error {
     [DTSpinner hide];
 }
+
+- (NSMutableArray *)linkControllerChain {
+	if (!dtLinkControllerChain) self.dtLinkControllerChain = [NSMutableArray arrayWithCapacity:2];
+	return dtLinkControllerChain;
+}
+
+- (void)setLinkControllerChain:(NSMutableArray *)theChain {
+	self.dtLinkControllerChain = theChain; 
+}
+
 
 @end

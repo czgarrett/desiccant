@@ -18,14 +18,14 @@
 	NSObject <DTResultObjectParser> *parser;
 	NSString *method;
 	NSData *body;
-	DTHTTPQueryOperation *operation;	
+//	DTHTTPQueryOperation *operation;	
 }
 
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSObject <DTResultObjectParser> *parser;
 @property (nonatomic, retain) NSString *method;
 @property (nonatomic, retain) NSData *body;
-@property (nonatomic, retain) DTHTTPQueryOperation *operation;	
+//@property (nonatomic, retain) DTHTTPQueryOperation *operation;	
 
 - (id)initWithURL:(NSURL *)newURL queryDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)parser;
 + (id)queryWithURL:(NSURL *)url queryDelegate:(NSObject <DTAsyncQueryDelegate> *)delegate resultObjectParser:(NSObject <DTResultObjectParser> *)parser;

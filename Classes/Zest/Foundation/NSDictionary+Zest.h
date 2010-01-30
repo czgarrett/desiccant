@@ -10,6 +10,8 @@
 
 
 @interface NSDictionary(Zest)
+// Returns a dictionary with a single key, "title", mapped to the specified titleValue.
++ (NSDictionary *)dictionaryWithTitle:(NSString *)titleValue;
 - (NSString *)stringForKey:(id)key;
 - (NSURL *)urlForKey:(id)key;
 - (NSInteger)integerForKey:(id)key;
@@ -21,4 +23,6 @@
 - (NSData *)dataForKey:(id)key;
 - (BOOL)hasValueForKey:(id)key;
 - (void)appendString:(NSString *)string toMutableStringWithKey:(id)key;
+- (NSDictionary *)dictionaryWithLowercaseKeys;
+
 @end

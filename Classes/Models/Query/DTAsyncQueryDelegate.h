@@ -10,8 +10,11 @@
 
 @protocol DTAsyncQueryDelegate
 
-- (void)queryWillStartLoading:(DTAsyncQuery *)query;
 - (void)queryDidFinishLoading:(DTAsyncQuery *)query;
 - (void)queryDidFailLoading:(DTAsyncQuery *)query;
+
+@optional
+- (void)queryWillStartLoading:(DTAsyncQuery *)query;
+- (void)queryDidCancelLoading:(DTAsyncQuery *)query;
 
 @end

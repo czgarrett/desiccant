@@ -21,23 +21,23 @@
 @end
 
 @implementation DTMapLinkController
-@synthesize parentController;
+@synthesize delegate;
 
 - (void)dealloc {
-    self.parentController = nil;
+    self.delegate = nil;
     
     [super dealloc];
 }
 
-- (id)initWithParentController:(UIViewController *)theParentController {
+- (id)initWithDelegate:(id <DTMapLinkControllerDelegate>)theDelegate {
     if (self = [super init]) {
-        self.parentController = theParentController;
+        self.delegate = theDelegate;
     }
     return self;
 }
 
-+ (DTMapLinkController *)controllerWithParentController:(UIViewController *)theParentController{
-    return [[[self alloc] initWithParentController:theParentController] autorelease];
++ (id)controllerWithDelegate:(id <DTMapLinkControllerDelegate>)theDelegate {
+    return [[(DTMapLinkController *)[self alloc] initWithDelegate:theDelegate] autorelease];
 }
 
 - (BOOL)canHandleRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -52,13 +52,27 @@
     NSString *annotationTitle = [self titleFromURLString:[[request URL] absoluteString]];
     NSString *annotationSubtitle = [self subtitleFromURLString:[[request URL] absoluteString]];
     
-    DTMapViewController *controller = [DTMapViewController controllerWithLatitude:latitude longitude:longitude spanHeight:spanHeight spanWidth:spanWidth];
+	DTMapViewController *controller;
+	if ([delegate respondsToSelector:@selector(mapViewControllerWithLatitude:longitude:latitudeDelta:longitudeDelta:)]) {
+		controller = [delegate mapViewControllerWithLatitude:latitude longitude:longitude latitudeDelta:spanHeight longitudeDelta:spanWidth];
+	}
+	else {
+		controller = [DTMapViewController controllerWithLatitude:latitude longitude:longitude latitudeDelta:spanHeight longitudeDelta:spanWidth];
+	}
+
     if (annotationTitle) {
-        DTMapAnnotation *annotation = [DTMapAnnotation annotationWithTitle:annotationTitle subtitle:annotationSubtitle latitude:latitude longitude:longitude];
+		DTMapAnnotation *annotation;
+		if ([delegate respondsToSelector:@selector(mapAnnotationWithTitle:subtitle:latitude:longitude:)]) {
+			annotation = [delegate mapAnnotationWithTitle:annotationTitle subtitle:annotationSubtitle latitude:latitude longitude:longitude];
+		}
+		else {
+			annotation = [DTMapAnnotation annotationWithTitle:annotationTitle subtitle:annotationSubtitle latitude:latitude longitude:longitude];
+		}
         [controller.mapView addAnnotation:annotation];
     }
-    if (parentController.navigationController) {
-        [parentController.navigationController pushViewController:controller animated:YES];
+
+    if ([delegate respondsToSelector:@selector(navigationController)] && [delegate navigationController]) {
+        [[delegate navigationController] pushViewController:controller animated:YES];
     }
     else {
         // TODO: Support usage without navigation controller by presenting modal

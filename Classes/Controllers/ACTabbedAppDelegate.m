@@ -44,10 +44,14 @@
 }
 
 - (void) setUpTabBarController {
-   tabBarController = [[UITabBarControllerRotating alloc] init];
+   tabBarController = [[self createTabBarController] retain];
    tabBarController.view.backgroundColor = [UIColor blackColor];
    tabBarController.delegate = self;
    [self createTabs];
+}
+
+- (UITabBarController *)createTabBarController {
+	return [[[UITabBarControllerRotating alloc] init] autorelease];
 }
 
 - (void) createTabs {

@@ -22,5 +22,8 @@
 - (void) setUpSplash;
 - (void) hideSplash;
 - (void) setUpTabBarController;
+// Subclasses can override this to return an alternate UITabBarController implementation.  Returns a
+// UITabBarControllerRotating by default.
+- (UITabBarController *)createTabBarController;
 - (void) createTabs;
 @end

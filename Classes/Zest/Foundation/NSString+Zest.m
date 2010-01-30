@@ -21,6 +21,30 @@
     return [[NSBundle mainBundle] resourcePath];
 }
 
++ (NSString *) resourceURL {
+	return [NSURL fileURLWithPath:[self resourcePath]];
+}
+
++ (NSString *) documentPath {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+}
+
++ (NSString *) documentURL {
+	return [NSURL fileURLWithPath:[self documentPath]];
+}
+
++ (NSString *) cachesPath {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+}
+
++ (NSString *) cachesURL {
+	return [NSURL fileURLWithPath:[self cachesPath]];
+}
+
 + (NSString *) stringWithInteger:(NSInteger)integer {
 	return [NSString stringWithFormat:@"%d", integer];
 }
@@ -60,8 +84,37 @@
     return [self withResourcePathPrepended];
 }
 
+- (NSString *)stringByAppendingNewLine:(NSString *)line {
+	if (line) {
+		return [NSString stringWithFormat:@"%@\n%@", self, line];
+	}
+	else {
+		return self;
+	}
+}
+
+- (NSString *)stringByPrependingString:(NSString *)prefix {
+	return [prefix stringByAppendingString:self];
+}
+
 - (NSString *)withResourcePathPrepended {
     return [[NSBundle mainBundle] pathForResource:self ofType:nil];
+}
+
+- (NSString *)withCachesPathPrepended {
+	return [[NSString cachesPath] stringByAppendingPathComponent:self];
+}
+
+- (NSString *)withDocumentPathPrepended {
+	return [[NSString documentPath] stringByAppendingPathComponent:self];
+}
+
+- (BOOL)fileExists {
+	return [[NSFileManager defaultManager] fileExistsAtPath:self];
+}
+
+- (NSURL *) fileURLForPath {
+	return [NSURL fileURLWithPath:self];
 }
 
 - (NSDate *) to_date {

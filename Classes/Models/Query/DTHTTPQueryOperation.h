@@ -12,11 +12,13 @@
 
 @interface DTHTTPQueryOperation : DTAsyncQueryOperation {
 	NSURL *url;
+	NSMutableData *tempData;
 	NSData *responseData;
 	NSString *error;
 	NSString *method;
 	NSData *body;
 	NSMutableURLRequest *request;
+	NSURLConnection *connection;
 }
 
 @property (nonatomic, retain) NSURL *url;

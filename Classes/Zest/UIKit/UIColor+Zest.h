@@ -11,6 +11,8 @@
 
 @interface UIColor ( Zest )
 
++ (UIColor *)transparentColor;
+
 // Creates a color from an array of NSNumber objects containing red, green, blue, and alpha values.  This MUST be a four-value array or nil.
 // Nil will return [UIColor blackColor];
 + (UIColor *)colorWithRGBArray:(NSArray *)values;

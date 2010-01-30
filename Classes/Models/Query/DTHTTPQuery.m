@@ -13,12 +13,12 @@
 @end
 
 @implementation DTHTTPQuery
-@synthesize url, parser, operation, body, method;
+@synthesize url, parser, body, method; //operation, 
 
 - (void)dealloc {
 	self.url = nil;
 	self.parser = nil;
-	self.operation = nil;
+//	self.operation = nil;
 	self.method = nil;
 	self.body = nil;
 	[super dealloc];

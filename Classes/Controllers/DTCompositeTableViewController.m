@@ -74,77 +74,50 @@
 
 #pragma mark DTTableViewController methods
 
-- (void)beforeTableViewDidLoad:(UITableView *)theTableView {
-	[super beforeTableViewDidLoad:theTableView];
+- (void)viewDidLoad {
 	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller beforeTableViewDidLoad:theTableView];
+		[mapping.controller viewDidLoad];
 	}
+	[super viewDidLoad];
 }
 
-- (void)afterTableViewDidLoad:(UITableView *)theTableView {
-	[super afterTableViewDidLoad:theTableView];
+- (void)viewDidUnload {
 	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller afterTableViewDidLoad:theTableView];
+		[mapping.controller viewDidUnload];
 	}
+	[super viewDidUnload];
 }
 
-- (void)beforeTableView:(UITableView *)theTableView willAppear:(BOOL)animated {
-	[super beforeTableView:theTableView willAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
 	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller beforeTableView:theTableView willAppear:animated];
+		[mapping.controller viewWillAppear:animated];
 	}
+	[super viewWillAppear:animated];
 }
 
-- (void)afterTableView:(UITableView *)theTableView willAppear:(BOOL)animated {
-	[super afterTableView:theTableView willAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
 	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller afterTableView:theTableView willAppear:animated];
+		[mapping.controller viewDidAppear:animated];
 	}
+	[super viewDidAppear:animated];
 }
 
-- (void)beforeTableView:(UITableView *)theTableView didAppear:(BOOL)animated {
-	[super beforeTableView:theTableView didAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
 	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller beforeTableView:theTableView didAppear:animated];
+		[mapping.controller viewWillDisappear:animated];
 	}
+	[super viewWillDisappear:animated];
 }
 
-- (void)afterTableView:(UITableView *)theTableView didAppear:(BOOL)animated {
-	[super afterTableView:theTableView didAppear:animated];
+- (void)viewDidDisappear:(BOOL)animated {
 	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller afterTableView:theTableView didAppear:animated];
+		[mapping.controller viewDidDisappear:animated];
 	}
-}
-
-- (void)beforeTableView:(UITableView *)theTableView willDisappear:(BOOL)animated {
-	[super beforeTableView:theTableView willDisappear:animated];
-	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller beforeTableView:theTableView willDisappear:animated];
-	}
-}
-
-- (void)afterTableView:(UITableView *)theTableView willDisappear:(BOOL)animated {
-	[super afterTableView:theTableView willDisappear:animated];
-	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller afterTableView:theTableView willDisappear:animated];
-	}
-}
-
-- (void)beforeTableView:(UITableView *)theTableView didDisappear:(BOOL)animated {
-	[super beforeTableView:theTableView didDisappear:animated];
-	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller beforeTableView:theTableView didDisappear:animated];
-	}
-}
-
-- (void)afterTableView:(UITableView *)theTableView didDisappear:(BOOL)animated {
-	[super afterTableView:theTableView didDisappear:animated];
-	for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
-		[mapping.controller afterTableView:theTableView didDisappear:animated];
-	}
+	[super viewDidDisappear:animated];
 }
 
 #pragma mark Public Methods
+
 - (void)addControllerMapping:(DTCompositeTableViewControllerMapping *)mapping {
 	mapping.previousMapping = [controllerMappings lastObject];
 	((DTCompositeTableViewControllerMapping *)[controllerMappings lastObject]).nextMapping = mapping;
@@ -153,7 +126,6 @@
 	mapping.controller.tableView = [DTTableViewProxy proxyWithContainerView:self.tableView mapping:mapping];
 	[self forceTableViewToRescanForDataSourceAndDelegateMethods];
 }
-
 
 #pragma mark UITableViewDataSource methods
 
@@ -484,13 +456,11 @@
 
 - (BOOL)hasAMappingThatSuppliesAValueForThisSelector:(SEL)aSelector {
 	if ([self selectorIsInfluencedByMappingsThatStartTheirOwnSections:aSelector]) {
-		BOOL hasAMappingThatStartsASection = NO;
 		BOOL hasAMappingThatProvidesAHeaderTitle = NO;
 		BOOL hasAMappingThatProvidesAFooterTitle = NO;
 		BOOL hasAMappingThatProvidesAnIndexTitle = NO;
 		for (DTCompositeTableViewControllerMapping *mapping in controllerMappings) {
 			if (mapping.startsSection) {
-				hasAMappingThatStartsASection = YES;
 				if (mapping.headerTitle) hasAMappingThatProvidesAHeaderTitle = YES;
 				if (mapping.footerTitle) hasAMappingThatProvidesAFooterTitle = YES;
 				if (mapping.indexTitle) hasAMappingThatProvidesAnIndexTitle = YES;

@@ -42,3 +42,9 @@
 #import "DTQueryBuilderDelegate.h"
 #import "DTQueryBuilderElement.h"
 #import "DTQueryBuilderElementType.h"
+#import "DTViewController.h"
+#import "DTToggleViewController.h"
+#import "DTNavigationControllerDelegate.h"
+#import "DTCompositeViewController.h"
+#import "DTGoogleCaptchaViewController.h"
+

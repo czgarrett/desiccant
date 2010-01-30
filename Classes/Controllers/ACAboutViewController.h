@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DTViewController.h"
 
-@interface ACAboutViewController : UIViewController<UIWebViewDelegate> {
+@interface ACAboutViewController : DTViewController<UIWebViewDelegate> {
    IBOutlet UIWebView *webView;
 }
 

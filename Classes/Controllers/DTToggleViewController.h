@@ -19,23 +19,32 @@
     @abstract    The DTToggleViewController implements a view controller that allows switching between a front and back view.
 */
 @interface DTToggleViewController : DTViewController {
-
-	UIViewController  <DTActsAsChildViewController> *frontViewController;
-	UIViewController  <DTActsAsChildViewController> *backViewController;
-	UIImage *navButtonImage;
+	UIViewController  <DTActsAsChildViewController> *dtFrontViewController;
+	UIViewController  <DTActsAsChildViewController> *dtBackViewController;
+	UIImage *frontToggleButtonImage;
+	UIImage *backToggleButtonImage;
 	BOOL backIsShowing;
+	UIBarButtonItem *toggleBarButtonItem;
+	BOOL dtHideToggleButton;
 }
 
-@property(retain, nonatomic) UIViewController <DTActsAsChildViewController> *frontViewController;
-@property(retain, nonatomic) UIViewController <DTActsAsChildViewController> *backViewController;
-@property(retain, nonatomic, readonly) UIViewController <DTActsAsChildViewController> *currentViewController;
-@property(retain, nonatomic, readonly) UIViewController <DTActsAsChildViewController> *hiddenViewController;
-@property(retain, nonatomic) UIImage *navButtonImage;
+@property (nonatomic, retain) IBOutlet UIViewController <DTActsAsChildViewController> *frontViewController;
+@property (nonatomic, retain) IBOutlet UIViewController <DTActsAsChildViewController> *backViewController;
+@property (nonatomic, retain, readonly) UIViewController <DTActsAsChildViewController> *currentViewController;
+@property (nonatomic, retain, readonly) UIViewController <DTActsAsChildViewController> *hiddenViewController;
+@property (retain, nonatomic) IBOutlet UIImage *frontToggleButtonImage;
+@property (nonatomic, retain) IBOutlet UIImage *backToggleButtonImage;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *toggleBarButtonItem;
+@property (nonatomic) BOOL hideToggleButton;
 
-#pragma mark -
-#pragma mark ACTIONS
-
-- (IBAction)toggleViews:(id)sender;
-+ (DTToggleViewController *)controllerWithFrontViewController:(UIViewController <DTActsAsChildViewController>*)aFrontController backViewController:(UIViewController <DTActsAsChildViewController>*)aBackController;
+- (id)initWithFrontViewController:(UIViewController <DTActsAsChildViewController>*)aFrontController 
+			   backViewController:(UIViewController <DTActsAsChildViewController>*)aBackController 
+		   frontToggleButtonImage:(UIImage *)theFrontToggleButtonImage
+			backToggleButtonImage:(UIImage *)theBackToggleButtonImage;
++ (DTToggleViewController *)controllerWithFrontViewController:(UIViewController <DTActsAsChildViewController>*)aFrontController 
+										   backViewController:(UIViewController <DTActsAsChildViewController>*)aBackController 
+									   frontToggleButtonImage:(UIImage *)theFrontToggleButtonImage
+										backToggleButtonImage:(UIImage *)theBackToggleButtonImage;
+- (IBAction)toggleButtonClicked:(id)sender;
 
 @end

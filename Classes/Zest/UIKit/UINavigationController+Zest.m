@@ -23,6 +23,12 @@
       }
    }
    return (UIViewController *)[self.viewControllers objectAtIndex: 0];
-}   
+}
+
+- (void)showOrHideToolbarForViewController:(UIViewController *)controller {
+	controller.view = controller.view; // Force viewDidLoad on the controller
+	BOOL shouldHide = (controller.toolbarItems == nil || [controller.toolbarItems count] == 0);
+	self.toolbarHidden = shouldHide;
+}
 
 @end

@@ -6,7 +6,9 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
+#import "DTGoogleCaptcha.h"
 #import "ARObject.h"
+#import "DTURLDownload.h"
 #import "DTAsyncQuery.h"
 #import "DTAsyncQueryDelegate.h"
 #import "DTAsyncQueryOperation.h"
@@ -35,3 +37,4 @@
 #import "DTARObjectQuery.h"
 #import "DTARObjectQueryOperation.h"
 #import "DTPListQuery.h"
+#import "DTAddress.h"

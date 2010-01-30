@@ -9,39 +9,25 @@
 #import "DTTableViewController.h"
 
 @interface DTTableViewController()
-@property (nonatomic, retain) UIViewController *_containerViewController;
+@property (nonatomic, assign) UIViewController *dtContainerViewController;
+@property (nonatomic, retain) UIView *dtWindowOverlay;
+@property (nonatomic, retain) UIActivityIndicatorView *dtActivityIndicator;
 @end
 
 @implementation DTTableViewController
-@synthesize cell, _containerViewController;
+@synthesize cell, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
 
+#pragma mark Memory management
 - (void)dealloc {
 	self.cell = nil;
-	self._containerViewController = nil;
+	self.dtContainerViewController = nil;
+	self.dtWindowOverlay = nil;
+	self.dtActivityIndicator = nil;
 
 	[super dealloc];
 }
 
-- (void)setContainerViewController:(UIViewController *)theController {
-	self._containerViewController = theController;
-}
-
-- (UIViewController *)containerViewController {
-	return _containerViewController;
-}
-
-- (void)setContainerTableViewController:(UITableViewController *)theController {
-	self._containerViewController = theController;
-}
-
-- (UITableViewController *)containerTableViewController {
-	if ([_containerViewController isKindOfClass:[UITableViewController class]]) {
-		return (UITableViewController *)_containerViewController;
-	}
-	else {
-		return nil;
-	}
-}
+#pragma mark Public methods
 
 // A subclass can override this if it needs to push to a navigation controller that isn't in its stack.  An example of this
 // arose in the InsuranceJournal project, where the table view is displayed as a subview of a container view, which also contains 
@@ -52,46 +38,119 @@
     return self.navigationController;
 }
 
+- (NSInteger)numberOfRowsAcrossAllSectionsInTableView:(UITableView*)theTableView  {
+	NSInteger numberOfRows = 0;
+	for (NSInteger section = 0; section < [self numberOfSectionsInTableView:theTableView]; section++) {
+		numberOfRows += [self tableView:theTableView numberOfRowsInSection:section];
+	}
+	return numberOfRows;
+}
+
+- (void)setWindowOverlay:(UIView *)theView {
+	self.dtWindowOverlay = theView;
+	theView.frame = [[UIScreen mainScreen] bounds];
+	[[[UIApplication sharedApplication] keyWindow] addSubview:theView];
+}
+
+- (UIView *)windowOverlay {
+	return self.dtWindowOverlay;
+}
+
+- (void)fadeWindowOverlay {
+	if (self.windowOverlay) {
+		[UIView beginAnimations:@"WindowOverlayFadeAnimation" context:nil];
+		[UIView setAnimationDuration:0.5];
+		[UIView setAnimationDelegate:self.windowOverlay];
+		[UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
+		self.windowOverlay.alpha = 0.0;
+		[UIView commitAnimations];
+	}
+}
+
+- (void)setAutorotationProperties {
+	self.shouldAutorotateToPortrait = YES;
+	self.shouldAutorotateToLandscape = NO;
+	self.shouldAutorotateUpsideDown = NO;
+}
+
+#pragma mark Dynamic properties
+
+- (UIActivityIndicatorView *)activityIndicator {
+	if (!dtActivityIndicator) {
+		self.dtActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+        dtActivityIndicator.hidesWhenStopped = YES;
+        dtActivityIndicator.center = self.view.center;
+        [self.view addSubview:dtActivityIndicator];
+	}
+	
+	return self.dtActivityIndicator;
+}
+
+#pragma mark DTActsAsChildViewController methods
+
+- (void)setContainerViewController:(UIViewController *)theController {
+	self.dtContainerViewController = theController;
+}
+
+- (UIViewController *)containerViewController {
+	return dtContainerViewController;
+}
+
+- (void)setContainerTableViewController:(UITableViewController *)theController {
+	self.dtContainerViewController = theController;
+}
+
+- (UITableViewController *)containerTableViewController {
+	if ([dtContainerViewController isKindOfClass:[UITableViewController class]]) {
+		return (UITableViewController *)dtContainerViewController;
+	}
+	else {
+		return nil;
+	}
+}
+
+#pragma mark UITableViewController methods
+
 - (void) viewDidLoad {
-	[self beforeTableViewDidLoad:self.tableView];
+//	[self beforeViewDidLoad:self.view];
 	[super viewDidLoad];
-	[self afterTableViewDidLoad:self.tableView];
+//	[self afterViewDidLoad:self.view];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	[self beforeTableView:self.tableView willAppear:animated];
-	[super viewWillAppear:animated];
-	[self afterTableView:self.tableView willAppear:animated];
+//	[self beforeView:self.view willAppear:animated];
+	if (!self.containerViewController) [super viewWillAppear:animated];
+//	[self afterView:self.view willAppear:animated];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	[self beforeTableView:self.tableView didAppear:animated];
-	[super viewDidAppear:animated];
-	[self afterTableView:self.tableView didAppear:animated];
+//	[self beforeView:self.view didAppear:animated];
+	if (!self.containerViewController) [super viewDidAppear:animated];
+//	[self afterView:self.view didAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-	[self beforeTableView:self.tableView willDisappear:animated];
-	[super viewWillDisappear:animated];
-	[self afterTableView:self.tableView willDisappear:animated];
+//	[self beforeView:self.view willDisappear:animated];
+	if (!self.containerViewController) [super viewWillDisappear:animated];
+//	[self afterView:self.view willDisappear:animated];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
-	[self beforeTableView:self.tableView didDisappear:animated];
-	[super viewDidDisappear:animated];
-	[self afterTableView:self.tableView didDisappear:animated];
+//	[self beforeView:self.view didDisappear:animated];
+	if (!self.containerViewController) [super viewDidDisappear:animated];
+//	[self afterView:self.view didDisappear:animated];
 }
 
-- (void) beforeTableViewDidLoad:(UITableView *)theTableView {}
-- (void) afterTableViewDidLoad:(UITableView *)theTableView {}
-- (void) beforeTableView:(UITableView *)theTableView willAppear:(BOOL)animated {}
-- (void) afterTableView:(UITableView *)theTableView willAppear:(BOOL)animated {}
-- (void) beforeTableView:(UITableView *)theTableView didAppear:(BOOL)animated {}
-- (void) afterTableView:(UITableView *)theTableView didAppear:(BOOL)animated {}
-- (void) beforeTableView:(UITableView *)theTableView willDisappear:(BOOL)animated {}
-- (void) afterTableView:(UITableView *)theTableView willDisappear:(BOOL)animated {}
-- (void) beforeTableView:(UITableView *)theTableView didDisappear:(BOOL)animated {}
-- (void) afterTableView:(UITableView *)theTableView didDisappear:(BOOL)animated {}
+//- (void) beforeViewDidLoad:(UIView *)theView {}
+//- (void) afterViewDidLoad:(UIView *)theView {}
+//- (void) beforeView:(UIView *)theView willAppear:(BOOL)animated {}
+//- (void) afterView:(UIView *)theView willAppear:(BOOL)animated {}
+//- (void) beforeView:(UIView *)theView didAppear:(BOOL)animated {}
+//- (void) afterView:(UIView *)theView didAppear:(BOOL)animated {}
+//- (void) beforeView:(UIView *)theView willDisappear:(BOOL)animated {}
+//- (void) afterView:(UIView *)theView willDisappear:(BOOL)animated {}
+//- (void) beforeView:(UIView *)theView didDisappear:(BOOL)animated {}
+//- (void) afterView:(UIView *)theView didDisappear:(BOOL)animated {}
 
 - (UINavigationController *)navigationController {
 	if (self.containerViewController) {
@@ -138,14 +197,6 @@
 	}
 }
 
-
-- (NSInteger)numberOfRowsAcrossAllSectionsInTableView:(UITableView*)theTableView  {
-	NSInteger numberOfRows = 0;
-	for (NSInteger section = 0; section < [self numberOfSectionsInTableView:theTableView]; section++) {
-		numberOfRows += [self tableView:theTableView numberOfRowsInSection:section];
-	}
-	return numberOfRows;
-}
 
 
 @end

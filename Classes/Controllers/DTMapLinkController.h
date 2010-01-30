@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "desiccant.h"
+#import "DTMapLinkControllerDelegate.h"
 
 
 @interface DTMapLinkController : NSObject <ACWebLinkController> {
-    UIViewController *parentController;
+    id <DTMapLinkControllerDelegate> delegate;
 }
 
-@property (nonatomic, retain) UIViewController *parentController;
+@property (nonatomic, assign) id <DTMapLinkControllerDelegate> delegate;
 
-- (id)initWithParentController:(UIViewController *)theParentController;
-+ (DTMapLinkController *)controllerWithParentController:(UIViewController *)theParentController;
+- (id)initWithDelegate:(id <DTMapLinkControllerDelegate>)theDelegate;
++ (id)controllerWithDelegate:(id <DTMapLinkControllerDelegate>)theDelegate;
 
 @end

@@ -22,10 +22,15 @@
     [super dealloc];
 }
 
-- (void)beforeTableViewDidLoad:(UITableView *)theTableView {
+- (void)viewDidLoad {
     self.cellIdentifier = [NSString stringWithFormat:@"cell_type_%d", [DTCustomTableViewController nextIdentifierNumber]];
-	[super beforeTableViewDidLoad:theTableView];
+	[super viewDidLoad];
 }
+
+//- (void)beforeViewDidLoad:(UITableView *)theTableView {
+//    self.cellIdentifier = [NSString stringWithFormat:@"cell_type_%d", [DTCustomTableViewController nextIdentifierNumber]];
+//	[super beforeViewDidLoad:theTableView];
+//}
 
 + (NSInteger)nextIdentifierNumber {
     static NSInteger number = 0;

@@ -21,5 +21,6 @@
 - (NSMutableArray *) reversed;
 - (BOOL) isEmpty;
 - (id) firstObject;
+- (NSArray *)inRandomOrder;
 
 @end

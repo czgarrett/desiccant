@@ -26,6 +26,7 @@
     NSMutableArray *rowFilters;
     NSObject <DTGroupsUntypedData> *grouper;
     NSString *error;
+	DTAsyncQueryOperation *operation;
 }
 
 - (id)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate;
@@ -50,6 +51,8 @@
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)rowIndex inGroupWithIndex:(NSUInteger)groupIndex;
 - (void)deleteItemAtIndex:(NSUInteger)index;
 - (void)deleteItemAtIndex:(NSUInteger)index inGroupWithIndex:(NSUInteger)groupIndex;
+- (void)cancel;
+- (BOOL)isCancelled;
 
 @property (retain) NSObject <DTAsyncQueryDelegate> *delegate;
 @property (nonatomic, retain) NSObject <DTGroupsUntypedData> *grouper;

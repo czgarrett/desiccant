@@ -11,6 +11,10 @@
 
 @implementation NSDictionary(Zest)
 
++ (NSDictionary *)dictionaryWithTitle:(NSString *)titleValue {
+	return [NSDictionary dictionaryWithObject:titleValue forKey:@"title"];
+}
+
 - (NSString *)stringForKey:(id)key {
     return ((NSObject *)[self objectForKey:key]).to_s;
 }
@@ -59,5 +63,14 @@
     [[self mutableStringForKey:key] appendString:string];
 }
 
+- (NSDictionary *)dictionaryWithLowercaseKeys {
+	NSMutableDictionary *newDictionary = [NSMutableDictionary dictionaryWithCapacity:[self count]];
+	for (id key in self) {
+		if ([key respondsToSelector:@selector(lowercaseString)]) {
+			[newDictionary setObject:[self objectForKey:key] forKey:[key lowercaseString]];
+		}
+	}
+	return newDictionary;
+}
 
 @end

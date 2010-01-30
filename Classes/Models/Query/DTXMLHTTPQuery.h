@@ -16,7 +16,7 @@
 @interface DTXMLHTTPQuery : DTAsyncQuery {
     NSURL *url;
     DTXMLParser *parser;
-    DTHTTPXMLQueryOperation *operation;
+//    DTHTTPXMLQueryOperation *operation;
     NSString *method;
     NSData *body;
 }

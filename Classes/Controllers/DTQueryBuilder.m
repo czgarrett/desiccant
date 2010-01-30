@@ -50,7 +50,7 @@
 	return [[[self alloc] initWithQueryBuilderDelegate:theDelegate] autorelease];
 }
 
-- (void)beforeTableViewDidLoad:(UITableView *)theTableView {
+- (void)viewDidLoad {
 	self.textEditFieldLeftMargin = 10.0;
 	self.textEditFieldRightMargin = 10.0;
 	self.textEditFieldHeight = 32.0;
@@ -60,16 +60,34 @@
 	self.pickerViewRowWidth = 290.0;
 	self.pickerViewLeftMargin = 30.0;
 	self.pickerViewRightMargin = 10.0;
-	[super beforeTableViewDidLoad:theTableView];
 	[self initPickerView];
 	[self initTextEditView];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
-//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
+	[super viewDidLoad];
+	self.tableView.editing = YES;
+	//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)afterTableViewDidLoad:(UITableView *)theTableView {
-	self.tableView.editing = YES;
-}
+//- (void)beforeViewDidLoad:(UITableView *)theTableView {
+//	self.textEditFieldLeftMargin = 10.0;
+//	self.textEditFieldRightMargin = 10.0;
+//	self.textEditFieldHeight = 32.0;
+//	self.cancelButtonWidth = 70.0;
+//	self.cancelButtonRightMargin = 10.0;
+//	self.pickerViewRowHeight = 40.0;
+//	self.pickerViewRowWidth = 290.0;
+//	self.pickerViewLeftMargin = 30.0;
+//	self.pickerViewRightMargin = 10.0;
+//	[super beforeViewDidLoad:theTableView];
+//	[self initPickerView];
+//	[self initTextEditView];
+//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+////	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
+//}
+
+//- (void)afterViewDidLoad:(UITableView *)theTableView {
+//	self.tableView.editing = YES;
+//}
 
 #pragma mark UITableViewDataSource methods
 

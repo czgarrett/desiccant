@@ -25,6 +25,8 @@
 #import "Foundation/NSIndexPath+Zest.h"
 #import "Foundation/NSData+Zest.h"
 #import "Foundation/NSMutableData+Zest.h"
+#import "Foundation/NSURLResponse+Zest.h"
+#import "Foundation/NSHTTPURLResponse+Zest.h"
 
 #import "UIKit/UIView+Zest.h"
 #import "UIKit/UIColor+Zest.h"
@@ -35,6 +37,8 @@
 #import "UIKit/UITableView+Zest.h"
 #import "UIKit/UIButton+Zest.h"
 #import "UIKit/UIBarButtonItem+Zest.h"
+#import "UIKit/MKMapView+Zest.h"
+#import "UIKit/UIImageView+Zest.h"
 
 #import "NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"
@@ -42,3 +46,9 @@
 #define unless(X) if(!(X))
 #define LogTimeStart double logTimeStart = [NSDate timeIntervalSinceReferenceDate];
 #define LogTime(msg) NSLog(@"%@: %f", msg, [NSDate timeIntervalSinceReferenceDate] - logTimeStart);
+// Wrap a method call in optionally() to swallow NSInvalidArgumentExpression.  Useful for optional protocol methods.
+// Note: this is slightly different than testing using respondsToSelector:, because respondsToSelector: doesn't recognize
+// methods invoked through forwardInvocation:.  This macro will call those methods.  Also, if the method called returns
+// NSInvalidArgumentException for other reasons (e.g. you passed an invalid argument), you'll never know it.
+#define optionally(expression) @try { expression; } @catch (NSException *e) { if (![[e name] isEqualToString:NSInvalidArgumentException]) @throw; }
+#define ifResponds(target, selector, expression) if ([target respondsToSelector:selector]) { expression; }

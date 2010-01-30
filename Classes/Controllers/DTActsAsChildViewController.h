@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol DTActsAsChildViewController
-	@property (nonatomic, retain) IBOutlet UIViewController *containerViewController;
+	@property (nonatomic, assign) IBOutlet UIViewController *containerViewController;
 @end

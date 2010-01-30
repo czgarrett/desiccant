@@ -12,19 +12,19 @@
 @interface DTXMLHTTPQuery ()
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) DTXMLParser *parser;
-@property (nonatomic, retain) DTHTTPXMLQueryOperation *operation;
+//@property (nonatomic, retain) DTHTTPXMLQueryOperation *operation;
 @end
 
 #pragma mark Implementation
 @implementation DTXMLHTTPQuery
 
 @synthesize 
-    url, parser, method, body, operation;
+url, parser, method, body; //, operation;
 
 - (void)dealloc {
     self.url = nil;
     self.parser = nil;
-    self.operation = nil;
+//    self.operation = nil;
     self.method = nil;
     self.body = nil;
     

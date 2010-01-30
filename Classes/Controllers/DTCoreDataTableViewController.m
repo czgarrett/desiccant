@@ -20,14 +20,23 @@
 
 #pragma mark View Delegate methods
 
-- (void) afterTableViewDidLoad:(UITableView *)theTableView {
-   [super afterTableViewDidLoad:theTableView];
-   NSError *error = nil;
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	NSError *error = nil;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
-   }  
+	}  
 }
+
+//- (void) afterViewDidLoad:(UITableView *)theTableView {
+//   [super afterViewDidLoad:theTableView];
+//   NSError *error = nil;
+//	if (![[self fetchedResultsController] performFetch:&error]) {
+//		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//		abort();
+//   }  
+//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
    // Support all orientations except upside down
