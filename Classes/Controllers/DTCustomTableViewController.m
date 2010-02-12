@@ -9,7 +9,6 @@
 #import "DTCustomTableViewController.h"
 
 @interface DTCustomTableViewController()
-+ (NSInteger)nextIdentifierNumber;
 @end
 
 @implementation DTCustomTableViewController

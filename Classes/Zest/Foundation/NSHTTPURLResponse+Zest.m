@@ -7,6 +7,7 @@
 //
 
 #import "NSHTTPURLResponse+Zest.h"
+#import "NSDictionary+Zest.h"
 
 NSString * const NSHTTPURLResponseErrorDomain = @"NSHTTPURLResponseErrorDomain";
 

@@ -7,21 +7,24 @@
 //
 
 #import "DTViewController.h"
+#import "Zest.h"
 
 @interface DTViewController()
 @property (nonatomic, assign) UIViewController *dtContainerViewController;
 @property (nonatomic, retain) UIView *dtWindowOverlay;
+@property (nonatomic, retain) DTActivityIndicatorView *dtActivityIndicator;
 @end
 
 
 @implementation DTViewController
-@synthesize dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown;
+@synthesize dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
 
 #pragma mark Memory management
 
 - (void) dealloc {
 	self.dtContainerViewController = nil;
 	self.dtWindowOverlay = nil;
+	self.dtActivityIndicator = nil;
 	[super dealloc];
 }
 
@@ -77,7 +80,21 @@
 	self.shouldAutorotateUpsideDown = NO;
 }
 
+#pragma mark Dynamic properties
 
+- (DTActivityIndicatorView *)activityIndicator {
+	unless (dtActivityIndicator) {
+		self.dtActivityIndicator = [[[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+		dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+	}
+	unless (dtActivityIndicator.superview) {
+		dtActivityIndicator.hidesWhenStopped = YES;
+		dtActivityIndicator.center = self.view.center;
+		[self.view.superview addSubview:dtActivityIndicator];
+	}
+	
+	return self.dtActivityIndicator;
+}
 
 #pragma mark DTActsAsChildViewController methods
 

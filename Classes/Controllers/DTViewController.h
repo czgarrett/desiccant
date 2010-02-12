@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "DTActsAsChildViewController.h"
+#import "DTActivityIndicatorView.h"
 
 @interface DTViewController : UIViewController <DTActsAsChildViewController> {
 	UIViewController *dtContainerViewController;
@@ -16,12 +17,14 @@
 	BOOL shouldAutorotateToPortrait;
 	BOOL shouldAutorotateToLandscape;
 	BOOL shouldAutorotateUpsideDown;
+	DTActivityIndicatorView *dtActivityIndicator;
 }
 
 @property (nonatomic, retain) UIView *windowOverlay;
 @property (nonatomic) BOOL shouldAutorotateToPortrait;
 @property (nonatomic) BOOL shouldAutorotateToLandscape;
 @property (nonatomic) BOOL shouldAutorotateUpsideDown;
+@property (nonatomic, retain, readonly) DTActivityIndicatorView *activityIndicator;
 
 - (void)fadeWindowOverlay;
 

@@ -15,7 +15,7 @@
 
 @implementation DTJSONQueryOperation
 
-+ (DTJSONQueryOperation *)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser {
++ (id)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser {
 	return [[[self alloc] initWithURL:theURL delegate:theDelegate resultObjectParser:theResultObjectParser] autorelease];
 }
 

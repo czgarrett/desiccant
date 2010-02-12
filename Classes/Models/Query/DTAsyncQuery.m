@@ -10,6 +10,7 @@
 #import "DTAsyncQuery.h"
 #import "DTTransformsUntypedData.h"
 #import "DTFiltersUntypedData.h"
+#import "Zest.h"
 
 #pragma mark Private Interface
 @interface DTAsyncQuery()
@@ -25,13 +26,15 @@
 - (void)transformRawRows;
 - (void)filterTransformedRows;
 - (void)groupRows;
+- (void)postProcessRawRows;
 @end
 
 
 #pragma mark Class Implementation
 @implementation DTAsyncQuery
+@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, error, operation, moreResultsQuery;
 
-@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, error, operation;
+#pragma mark Memory management
 
 - (void)dealloc {
 	self.rawRows = nil;
@@ -45,9 +48,12 @@
 	self.error = nil;
 	self.operation.delegate = nil;
 	self.operation = nil;
+	self.moreResultsQuery = nil;
     
     [super dealloc];
 }
+
+#pragma mark Constructors
 
 - (id)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate {
     if (self = [super init]) {
@@ -60,10 +66,7 @@
     return self;
 }
 
-// Subclasses must override this to construct and return custom query objects with retain count 0 (autoreleased)
-- (DTAsyncQueryOperation *)constructQueryOperation {
-    return [DTAsyncQueryOperation operationWithDelegate:self];
-}
+#pragma mark Public methods
 
 - (void)addRowTransformer:(NSObject <DTTransformsUntypedData> *)transformer {
     [rowTransformers addObject:transformer];
@@ -134,6 +137,47 @@
     return groups && [groups count] > 0 ? [groups count] : 1;
 }
 
+- (void)cancel {
+	if (loaded && self.moreResultsQuery) {
+		[self.moreResultsQuery cancel];
+	}
+	else {
+		[self.operation cancel];
+	}
+}
+
+- (BOOL)isCancelled {
+	return [self.operation isCancelled];
+}
+
+- (BOOL)hasMoreResults {
+	return self.moreResultsQuery != nil;
+}
+
+- (void)fetchMoreResults {
+	if (self.updating || self.moreResultsQuery == nil) {
+        return;
+    }
+    else {
+        self.updating = YES;
+    }
+	self.moreResultsQuery.delegate = self;
+	[self.moreResultsQuery refresh];
+}
+
+#pragma mark Public methods to be overridden
+
+// Subclasses must override this to construct and return custom query objects with retain count 0 (autoreleased)
+- (DTAsyncQueryOperation *)constructQueryOperation {
+	DTAbstractMethod
+    return [DTAsyncQueryOperation operationWithDelegate:self];
+}
+
+// Subclasses can override this to return detailed cursor data if there are more results available
+- (NSDictionary *)cursorData {
+	return [NSDictionary dictionary];
+}
+
 // Subclasses can implement this if they want to have indexes along the right side
 - (NSArray *)groupIndexes {
     return nil;
@@ -143,6 +187,81 @@
 - (NSString *)titleForGroupWithIndex:(NSUInteger)index {
     return nil;
 }
+
+// Subclasses may override this and set the moreResultsQuery property if another page of results can be loaded after this one.
+// If no more results can be lodaed, this method should set moreResultsQuery to nil.
+- (void)loadMoreResultsQuery {
+	self.moreResultsQuery = nil;
+}
+
+#pragma mark DTAsyncQueryOperationDelegate methods
+
+- (void)operationWillStartLoading:(DTAsyncQueryOperation *)query {
+	if ([delegate respondsToSelector:@selector(queryWillStartLoading:)]) {
+		[delegate queryWillStartLoading:self];
+	}
+}
+
+- (void)operationDidFinishLoading:(DTAsyncQueryOperation *)queryOperation {
+    self.rawRows = queryOperation.rows;
+    [self postProcessRawRows];
+    self.loaded = YES;
+	[self loadMoreResultsQuery];
+    [delegate queryDidFinishLoading:self];
+    self.updating = NO;
+}
+
+- (void)operationDidCancelLoading:(DTAsyncQueryOperation *)queryOperation {
+	self.updating = NO;
+	if ([delegate respondsToSelector:@selector(queryDidCancelLoading:)]) {
+		[delegate performSelectorOnMainThread:@selector(queryDidCancelLoading:) withObject:self waitUntilDone:NO];
+	}	
+}
+
+- (void)operationDidFailLoading:(DTAsyncQueryOperation *)queryOperation {
+    self.error = [queryOperation error];
+    [delegate queryDidFailLoading:self];
+    self.updating = NO;
+}
+
+#pragma mark DTAsyncQueryDelegate methods
+
+- (void)queryWillStartLoading:(DTAsyncQuery *)theMoreResultsQuery {
+	if ([delegate respondsToSelector:@selector(queryWillStartLoadingMoreResults:)]) {
+		[delegate queryWillStartLoadingMoreResults:self];
+	}
+}
+
+- (void)queryDidFinishLoading:(DTAsyncQuery *)theMoreResultsQuery {
+	[self.rows addObjectsFromArray:theMoreResultsQuery.rows];
+	self.moreResultsQuery = theMoreResultsQuery.moreResultsQuery;
+	self.updating = NO;
+	if ([delegate respondsToSelector:@selector(queryDidFinishLoadingMoreResults:)]) {
+		[delegate queryDidFinishLoadingMoreResults:self];
+	}
+}
+
+- (void)queryDidCancelLoading:(DTAsyncQuery *)theMoreResultsQuery {
+	self.updating = NO;
+	if ([delegate respondsToSelector:@selector(queryDidCancelLoadingMoreResults:)]) {
+		[delegate performSelectorOnMainThread:@selector(queryDidCancelLoadingMoreResults:) withObject:self waitUntilDone:NO];
+	}
+}
+
+- (void)queryDidFailLoading:(DTAsyncQuery *)theMoreResultsQuery {
+	self.error = self.moreResultsQuery.error;
+	self.updating = NO;
+	if ([delegate respondsToSelector:@selector(queryDidFailLoadingMoreResults:)]) {
+		[delegate performSelectorOnMainThread:@selector(queryDidFailLoadingMoreResults:) withObject:self waitUntilDone:NO];
+	}
+}
+
+#pragma mark NSFastEnumeration methods
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len {
+    return [rows countByEnumeratingWithState:state objects:stackbuf count:len];
+}
+
+#pragma mark Private methods
 
 - (void)postProcessRawRows {
     [self transformRawRows];
@@ -178,44 +297,5 @@
     }
 }
 
-- (void)cancel {
-	[self.operation cancel];
-}
-
-- (BOOL)isCancelled {
-	return [self.operation isCancelled];
-}
-
-- (void)operationWillStartLoading:(DTAsyncQueryOperation *)query {
-	if ([delegate respondsToSelector:@selector(queryWillStartLoading:)]) {
-		[delegate queryWillStartLoading:self];
-	}
-}
-
-- (void)operationDidFinishLoading:(DTAsyncQueryOperation *)query {
-    self.rawRows = query.rows;
-    [self postProcessRawRows];
-    self.loaded = YES;
-    [delegate queryDidFinishLoading:self];
-    self.updating = NO;
-}
-
-- (void)operationDidCancelLoading:(DTAsyncQueryOperation *)query {
-	self.updating = NO;
-	if ([delegate respondsToSelector:@selector(queryDidCancelLoading:)]) {
-		[delegate performSelectorOnMainThread:@selector(queryDidCancelLoading:) withObject:self waitUntilDone:NO];
-	}	
-}
-
-- (void)operationDidFailLoading:(DTAsyncQueryOperation *)query {
-    self.error = [query error];
-    [delegate queryDidFailLoading:self];
-    self.updating = NO;
-}
-
-#pragma mark NSFastEnumeration
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len {
-    return [rows countByEnumeratingWithState:state objects:stackbuf count:len];
-}
 
 @end

@@ -19,7 +19,8 @@
 @property (nonatomic, retain, readonly) NSObject *result;
 
 - (id)initWithKey:(NSString *)newKey element:(NSString *)newElement matchingAttributes:(NSDictionary *)newMatchingAttributes nestedParserDelegates:(NSArray *)newNestedDelegates;
-+ (DTXMLObjectParserDelegate *)delegateWithElement:(NSString *)element nestedParserDelegates:(NSArray *)nestedDelegates;
++ (id)delegateWithKey:(NSString *)newKey element:(NSString *)newElement matchingAttributes:(NSDictionary *)newMatchingAttributes nestedParserDelegates:(NSArray *)newNestedDelegates;
++ (id)delegateWithElement:(NSString *)element nestedParserDelegates:(NSArray *)nestedDelegates;
 - (void)addNestedParserDelegate:(DTXMLParserDelegate *)newDelegate;
 
 @end

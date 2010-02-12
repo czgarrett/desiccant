@@ -30,7 +30,7 @@
     return self;
 }
 
-+ (DTAsyncQueryOperation *)operationWithDelegate:(NSObject <DTAsyncQueryOperationDelegate> *)delegate {
++ (id)operationWithDelegate:(NSObject <DTAsyncQueryOperationDelegate> *)delegate {
     return [[[self alloc] initWithDelegate:delegate] autorelease];
 }
 
@@ -154,6 +154,5 @@
 - (NSString *)error {
     return [NSString string];
 }
-
 
 @end

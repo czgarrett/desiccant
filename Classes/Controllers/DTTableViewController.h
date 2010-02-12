@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DTCustomTableViewCell.h"
 #import "DTActsAsChildViewController.h"
+#import "DTActivityIndicatorView.h"
 
 @interface DTTableViewController : UITableViewController <DTActsAsChildViewController> {
     IBOutlet DTCustomTableViewCell *cell;
@@ -17,7 +18,7 @@
 	BOOL shouldAutorotateToPortrait;
 	BOOL shouldAutorotateToLandscape;
 	BOOL shouldAutorotateUpsideDown;
-	UIActivityIndicatorView *dtActivityIndicator;
+	DTActivityIndicatorView *dtActivityIndicator;
 }
 
 @property (nonatomic, retain) UITableViewController *containerTableViewController;
@@ -30,7 +31,7 @@
 @property (nonatomic) BOOL shouldAutorotateToPortrait;
 @property (nonatomic) BOOL shouldAutorotateToLandscape;
 @property (nonatomic) BOOL shouldAutorotateUpsideDown;
-@property (nonatomic, retain, readonly) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain, readonly) DTActivityIndicatorView *activityIndicator;
 
 - (void)fadeWindowOverlay;
 

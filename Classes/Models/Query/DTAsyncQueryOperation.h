@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DTAsyncQuery.h"
 
+@class DTAsyncQuery;
 @protocol DTAsyncQueryOperationDelegate;
 
 @interface DTAsyncQueryOperation : NSOperation {
@@ -21,7 +23,7 @@
 @property (nonatomic, retain) NSObject <DTAsyncQueryOperationDelegate> *delegate;
 
 - (id)initWithDelegate:(NSObject <DTAsyncQueryOperationDelegate> *)newDelegate;
-+ (DTAsyncQueryOperation *)operationWithDelegate:(NSObject <DTAsyncQueryOperationDelegate> *)delegate;
++ (id)operationWithDelegate:(NSObject <DTAsyncQueryOperationDelegate> *)delegate;
 
 // Subclasses should override this to execute a non-concurrent (blocking) query.  Return YES if successful, NO otherwise.
 - (BOOL)executeQuery;

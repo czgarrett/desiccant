@@ -26,6 +26,7 @@
 	BOOL backIsShowing;
 	UIBarButtonItem *toggleBarButtonItem;
 	BOOL dtHideToggleButton;
+	BOOL backIsLoaded;
 }
 
 @property (nonatomic, retain) IBOutlet UIViewController <DTActsAsChildViewController> *frontViewController;
@@ -45,6 +46,7 @@
 										   backViewController:(UIViewController <DTActsAsChildViewController>*)aBackController 
 									   frontToggleButtonImage:(UIImage *)theFrontToggleButtonImage
 										backToggleButtonImage:(UIImage *)theBackToggleButtonImage;
+- (void)toggle;
 - (IBAction)toggleButtonClicked:(id)sender;
 
 @end

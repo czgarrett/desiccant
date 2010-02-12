@@ -47,4 +47,5 @@
 #import "DTNavigationControllerDelegate.h"
 #import "DTCompositeViewController.h"
 #import "DTGoogleCaptchaViewController.h"
+#import "DTNavigationController.h"
 

@@ -7,17 +7,20 @@
 //
 
 #import "DTHTTPStructuredResponseQueryOperation.h"
-
+#import "Zest.h"
 
 @interface DTHTTPStructuredResponseQueryOperation()
+@property (nonatomic, retain, readonly) NSObject *parsedResultObject;
+@property (nonatomic, retain) NSObject *dtParsedResultObject;
 @end
 
 @implementation DTHTTPStructuredResponseQueryOperation
-@synthesize resultObjectParser, rows;
+@synthesize resultObjectParser, rows, dtParsedResultObject;
 
 - (void)dealloc {
 	self.resultObjectParser = nil;
 	self.rows = nil;
+	self.dtParsedResultObject = nil;
 	
 	[super dealloc];
 }
@@ -29,18 +32,17 @@
 	return self;
 }
 
-+ (DTHTTPStructuredResponseQueryOperation *)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser {
++ (id)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser {
 	return [[[self alloc] initWithURL:theURL delegate:theDelegate resultObjectParser:theResultObjectParser] autorelease];
 }
 
 - (BOOL)parseResponseData {
-	NSObject *parsedObject = [self resultObject];
-	if (!parsedObject) {
+	if (!self.parsedResultObject) {
 		self.error = @"Failed to parse response data.";
 		return NO;
 	}
-	if (([parsedObject isKindOfClass:NSArray.class] && [resultObjectParser parseArraySuccessfully:(NSArray *)parsedObject]) ||
-		 ([parsedObject isKindOfClass:NSDictionary.class] && [resultObjectParser parseDictionarySuccessfully:(NSDictionary *)parsedObject]))
+	if (([self.parsedResultObject isKindOfClass:NSArray.class] && [resultObjectParser parseArraySuccessfully:(NSArray *)self.parsedResultObject]) ||
+		 ([self.parsedResultObject isKindOfClass:NSDictionary.class] && [resultObjectParser parseDictionarySuccessfully:(NSDictionary *)self.parsedResultObject]))
 	{
 		self.rows = [NSMutableArray arrayWithArray:[resultObjectParser rows]];
 		return YES;
@@ -49,6 +51,13 @@
 		self.error = [resultObjectParser errorString];
 		return NO;
 	}	
+}
+
+- (NSObject *)parsedResultObject {
+	unless (dtParsedResultObject) {
+		self.dtParsedResultObject = [self resultObject];
+	}
+	return dtParsedResultObject;
 }
 
 // Subclasses must implement this and return an array or dictionary that can be parsed by the resultObjectParser based on the resultData

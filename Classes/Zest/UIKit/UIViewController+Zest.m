@@ -159,6 +159,18 @@
 	}
 }
 
+- (UIViewController *)previousControllerInNavigationStack {
+	NSArray* viewControllers = self.navigationController.viewControllers;
+	if (viewControllers.count > 1) {
+		NSUInteger index = [viewControllers indexOfObject:self];
+		if (index != NSNotFound && index > 0) {
+			return [viewControllers objectAtIndex:index-1];
+		}
+	}
+	
+	return nil;	
+}
+
 #pragma mark Alerts 
 
 - (void)errorAlertTitle: (NSString *)title message:(NSString *)message
@@ -186,5 +198,14 @@
    [alert autorelease];   
 }
 
+- (void)willPopOffOfNavigationStack {}
+- (void)controllerWillPopOffOfNavigationStack:(UIViewController *)topViewController {}
+- (void)didPopOffOfNavigationStack {}
+- (void)controllerDidPopOffOfNavigationStack:(UIViewController *)topViewController {}
+
+- (void)willGetPushedOntoNavigationStack {}
+- (void)controllerWillGetPushedOntoNavigationStack:(UIViewController *)topViewController {}
+- (void)didGetPushedOntoNavigationStack {}
+- (void)controllerDidGetPushedOntoNavigationStack:(UIViewController *)topViewController {}
 
 @end

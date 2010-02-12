@@ -19,5 +19,7 @@
 // Delegates may implement this to return a custom subclass of DTMapViewController.  Otherwise a generic DTMapViewController will
 // be used by default
 - (DTMapViewController *) mapViewControllerWithLatitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude latitudeDelta:(CLLocationDegrees)spanHeight longitudeDelta:(CLLocationDegrees)spanWidth;
+// Delegates may implement this if they want to do something other than, or in addition to simply adding the annotation to the map view.
+- (void)addAnnotation:(id <MKAnnotation>)annotation toController:(DTMapViewController *)controller;
 
 @end

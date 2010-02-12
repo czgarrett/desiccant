@@ -7,11 +7,12 @@
 //
 
 #import "DTTableViewController.h"
+#import "Zest.h"
 
 @interface DTTableViewController()
 @property (nonatomic, assign) UIViewController *dtContainerViewController;
 @property (nonatomic, retain) UIView *dtWindowOverlay;
-@property (nonatomic, retain) UIActivityIndicatorView *dtActivityIndicator;
+@property (nonatomic, retain) DTActivityIndicatorView *dtActivityIndicator;
 @end
 
 @implementation DTTableViewController
@@ -75,12 +76,15 @@
 
 #pragma mark Dynamic properties
 
-- (UIActivityIndicatorView *)activityIndicator {
-	if (!dtActivityIndicator) {
-		self.dtActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        dtActivityIndicator.hidesWhenStopped = YES;
-        dtActivityIndicator.center = self.view.center;
-        [self.view addSubview:dtActivityIndicator];
+- (DTActivityIndicatorView *)activityIndicator {
+	unless (dtActivityIndicator) {
+		self.dtActivityIndicator = [[[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+		dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+	}
+	unless (dtActivityIndicator.superview) {
+		dtActivityIndicator.hidesWhenStopped = YES;
+		dtActivityIndicator.center = self.view.center;
+		[self.view.superview addSubview:dtActivityIndicator];
 	}
 	
 	return self.dtActivityIndicator;

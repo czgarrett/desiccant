@@ -71,6 +71,9 @@
 	if (!cell) {
 		self.cell = [self prototypeCellForNibNamed:row.nibName];
 	}
+	if (row && row.dataDictionary) {
+		[cell setData:row.dataDictionary];
+	}
 	return cell.bounds.size.height;
 }
 

@@ -38,3 +38,4 @@
 #import "DTARObjectQueryOperation.h"
 #import "DTPListQuery.h"
 #import "DTAddress.h"
+#import "DTMarkupDocument.h"

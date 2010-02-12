@@ -10,9 +10,13 @@
 #import <UIKit/UIKit.h>
 #import "ACWebLinkController.h"
 
-@interface DTLinkAwayExternalWebLinkController : NSObject <ACWebLinkController> {
-
+@interface DTLinkAwayExternalWebLinkController : NSObject <ACWebLinkController, UIAlertViewDelegate> {
+	BOOL warnBeforeExit;
+	NSURL *requestedURL;
 }
+
+@property (nonatomic) BOOL warnBeforeExit;
+@property (nonatomic, retain) NSURL *requestedURL;
 
 - (id) init;
 + (DTLinkAwayExternalWebLinkController *)controller;

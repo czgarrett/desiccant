@@ -58,6 +58,35 @@
 								backToggleButtonImage:theBackToggleButtonImage] autorelease];
 }
 
+#pragma mark Public methods
+
+- (void)toggle {
+	unless (backIsLoaded) {
+		self.backViewController.view.frame = self.view.bounds;
+		self.backViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		backIsLoaded = YES;
+	}
+	
+	[self.currentViewController viewWillDisappear:YES];
+	[self.hiddenViewController viewWillAppear:YES];
+	[self setToolbarItems:self.hiddenViewController.toolbarItems animated:YES];
+	[self.navigationController showOrHideToolbarForViewController:self.hiddenViewController];
+	self.hiddenViewController.view.frame = self.currentViewController.view.frame;
+	
+	[UIView beginAnimations:@"toggleFlip" context:nil];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:NO];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+	
+	[self.view addSubview:self.hiddenViewController.view];
+	[self.currentViewController.view removeFromSuperview];
+	self.toggleBarButtonItem.image = backIsShowing ? frontToggleButtonImage : backToggleButtonImage;
+	backIsShowing = !backIsShowing;
+	
+	[UIView commitAnimations];	
+}
+
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad
@@ -79,8 +108,6 @@
 	
 	self.frontViewController.view.frame = self.view.bounds;
 	self.frontViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.backViewController.view.frame = self.view.bounds;
-	self.backViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view.autoresizesSubviews = YES;
 	self.toolbarItems = self.frontViewController.toolbarItems; 
 	[self.view addSubview:self.frontViewController.view];
@@ -160,24 +187,7 @@
 
 - (IBAction)toggleButtonClicked:(id)sender
 {
-	[self.currentViewController viewWillDisappear:YES];
-	[self.hiddenViewController viewWillAppear:YES];
-	[self setToolbarItems:self.hiddenViewController.toolbarItems animated:YES];
-	[self.navigationController showOrHideToolbarForViewController:self.hiddenViewController];
-	self.hiddenViewController.view.frame = self.currentViewController.view.frame;
-	
-	[UIView beginAnimations:@"toggleFlip" context:nil];
-	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:NO];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-
-	[self.view addSubview:self.hiddenViewController.view];
-	[self.currentViewController.view removeFromSuperview];
-	self.toggleBarButtonItem.image = backIsShowing ? frontToggleButtonImage : backToggleButtonImage;
-	backIsShowing = !backIsShowing;
-	
-	[UIView commitAnimations];
+	[self toggle];
 }
 
 #pragma mark Private methods

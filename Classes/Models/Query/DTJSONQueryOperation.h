@@ -12,6 +12,6 @@
 @interface DTJSONQueryOperation : DTHTTPStructuredResponseQueryOperation {
 }
 
-+ (DTJSONQueryOperation *)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser;
++ (id)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser;
 
 @end

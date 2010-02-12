@@ -6,7 +6,8 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
-#import "DTAsyncQueryOperation.h"
+
+@class DTAsyncQueryOperation;
 
 @protocol DTAsyncQueryOperationDelegate
 
@@ -16,3 +17,5 @@
 - (void)operationDidCancelLoading:(DTAsyncQueryOperation *)query;
 
 @end
+
+#import "DTAsyncQueryOperation.h"

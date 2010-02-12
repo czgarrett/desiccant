@@ -68,7 +68,13 @@
 		else {
 			annotation = [DTMapAnnotation annotationWithTitle:annotationTitle subtitle:annotationSubtitle latitude:latitude longitude:longitude];
 		}
-        [controller.mapView addAnnotation:annotation];
+		
+		if ([delegate respondsToSelector:@selector(addAnnotation:toController:)]) {
+			[delegate addAnnotation:annotation toController:controller];
+		}
+		else {
+			[controller.mapView addAnnotation:annotation];			
+		}
     }
 
     if ([delegate respondsToSelector:@selector(navigationController)] && [delegate navigationController]) {
@@ -101,11 +107,23 @@
 }
 
 - (NSString *) titleFromURLString:(NSString *)urlString {
-    return [[urlString stringByMatching:@"app://map\\?.*title=([^&]*)&?" capture:1L] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSString *titleParam = [urlString stringByMatching:@"app://map\\?.*title=([^&]*)&?" capture:1L];
+	NSString *titleParamWithPlussesReplaced = [titleParam stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    NSString *decodedString = [titleParamWithPlussesReplaced stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	unless (decodedString) { // Try Latin1
+		decodedString = [titleParamWithPlussesReplaced stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+	}
+	return decodedString;
 }
 
 - (NSString *) subtitleFromURLString:(NSString *)urlString {
-    return [[urlString stringByMatching:@"app://map\\?.*subtitle=([^&]*)&?" capture:1L] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSString *titleParam = [urlString stringByMatching:@"app://map\\?.*subtitle=([^&]*)&?" capture:1L];
+	NSString *titleParamWithPlussesReplaced = [titleParam stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    NSString *decodedString = [titleParamWithPlussesReplaced stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	unless (decodedString) { // Try Latin1
+		decodedString = [titleParamWithPlussesReplaced stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+	}
+	return decodedString;
 }
 
 @end

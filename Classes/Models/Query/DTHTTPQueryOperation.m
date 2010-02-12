@@ -51,7 +51,7 @@
 	return self;
 }
 
-+ (DTHTTPQueryOperation *)queryOperationWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate {
++ (id)queryOperationWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate {
 	return [[[self alloc] initWithURL:theURL delegate:theDelegate] autorelease];
 }
 

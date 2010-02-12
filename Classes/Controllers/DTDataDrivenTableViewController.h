@@ -15,8 +15,11 @@
     DTAsyncQuery * query;
     NSUInteger headerRows;
     UITableViewCell *prototype;
-    UIActivityIndicatorView *activityIndicator;
+	UITableViewCell *dtPrototypeMoreResultsCell;
+//    UIActivityIndicatorView *activityIndicator;
     UIWebView *mediaWebView;
+	NSString *moreResultsCellNibName;    
+    NSString *moreResultsCellIdentifier;    
 }
 
 // Subclasses can implement this to display a detail view for the associated data
@@ -38,13 +41,23 @@
 // Subclasses can implement this to override the default UIAlertView display when media fails to load.
 //- (void)displayMediaLoadError:(NSError *)error;
 - (BOOL)indexPathIsHeader:(NSIndexPath *)indexPath;
+- (BOOL)indexPathIsMoreResultsCell:(NSIndexPath *)indexPath;
+// Subclasses can override this to return a custom subclass of DTCustomTableViewCell with retain count 0 (autoreleased)
+// for displaying the "More results" cell.  This is only called if moreResultsCellNibName is not set.
+- (DTCustomTableViewCell *)constructMoreResultsCell;
+// Subclasses can implement this to change the look & feel of the "More results..." cell.  This is only called if moreResultsCellNibName is not set. 
+- (void)customizeMoreResultsCell;
+// Subclasses can implement this to return a custom cell row height for the "More results" cell.
+- (CGFloat)moreResultsCellRowHeight;
 - (BOOL)hasHeaders;
 - (NSInteger)adjustSectionForHeaders:(NSInteger)section;
 - (NSIndexPath *)adjustIndexPathForHeaders:(NSIndexPath *)indexPath;
 
 @property (nonatomic, retain)  DTAsyncQuery * query;
 @property (nonatomic) NSUInteger headerRows;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+//@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIWebView *mediaWebView;
+@property (nonatomic, retain) NSString *moreResultsCellNibName;
+@property (nonatomic, retain) NSString *moreResultsCellIdentifier;
 
 @end

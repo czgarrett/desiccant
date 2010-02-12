@@ -17,13 +17,14 @@
 @interface DTHTTPStructuredResponseQueryOperation : DTHTTPQueryOperation {
 	NSObject <DTResultObjectParser> *resultObjectParser;
 	NSMutableArray *rows;	
+	NSObject *dtParsedResultObject;
 }
 
 @property (nonatomic, retain) NSObject <DTResultObjectParser> *resultObjectParser;
 @property (nonatomic, retain) NSMutableArray *rows;
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)resultObjectParser;
-+ (DTHTTPStructuredResponseQueryOperation *)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)resultObjectParser;
++ (id)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)resultObjectParser;
 
 // Subclasses must implement this and return an array or dictionary that can be parsed by the resultObjectParser based on the resultData
 - (NSObject *)resultObject;

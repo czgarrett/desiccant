@@ -27,7 +27,7 @@
 @property (nonatomic, retain) NSData *body;
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate;
-+ (DTHTTPQueryOperation *)queryOperationWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate;
++ (id)queryOperationWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate;
 - (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
 // Subclasses may override this to prepare for the query before the HTTP request is issued.
 - (void)prepareForQuery;

@@ -23,6 +23,9 @@ typedef enum {
 // will return the UIViewController that is currently showing (i.e. selected tab and/or top of the nav stack).
 @property (nonatomic, retain, readonly) UIViewController *foregroundViewController;
 
+// Returns the controller that will be shown if this one gets popped off the navigation stack.
+@property (nonatomic, retain, readonly) UIViewController *previousControllerInNavigationStack;
+
 -(float)nextViewTop;
 
 -(UIButton *)addButton:(NSString *)title action:(SEL)selector;
@@ -35,5 +38,39 @@ typedef enum {
 - (void)alertWithTitle: (NSString *)title message: (NSString *)message;
 - (void)confirmationWithTitle: (NSString *)title message: (NSString *)message;
 - (CGRect)fullScreenViewBounds;
+
+// Subclasses can override this to get notified when this controller is about to get popped.
+// Requires use of DTNavigationController.
+- (void)willPopOffOfNavigationStack;
+
+// Subclasses can override this to get notified when they're about to appear due to the top view
+// controller getting popped off the stack to reveal this view controller.
+// Requires use of DTNavigationController.
+- (void)controllerWillPopOffOfNavigationStack:(UIViewController *)topViewController;
+
+// Subclasses can override this to get notified when this controller just got popped.
+// Requires use of DTNavigationController.
+- (void)didPopOffOfNavigationStack;
+
+// Subclasses can override this to get notified when they just appeared due to the top view
+// controller getting popped off the stack to reveal this view controller.
+// Requires use of DTNavigationController.
+- (void)controllerDidPopOffOfNavigationStack:(UIViewController *)topViewController;
+
+// Subclasses can override this to get notified when this controller is about to get pushed onto the navigation stack.
+// Requires use of DTNavigationController.
+- (void)willGetPushedOntoNavigationStack;
+
+// Subclasses can override this to get notified whenever a controller is about to get pushed on top of them.
+// Requires use of DTNavigationController.
+- (void)controllerWillGetPushedOntoNavigationStack:(UIViewController *)topViewController;
+
+// Subclasses can override this to get notified when this controller just got pushed onto the navigation stack.
+// Requires use of DTNavigationController.
+- (void)didGetPushedOntoNavigationStack;
+
+// Subclasses can override this to get notified whenever a controller just got pushed on top of them.
+// Requires use of DTNavigationController.
+- (void)controllerDidGetPushedOntoNavigationStack:(UIViewController *)topViewController;
 
 @end

@@ -22,3 +22,4 @@
 #import "DTPagedScrollViewDataSource.h"
 #import "DTTableViewProxy.h"
 #import "DTSlideshowView.h"
+#import "DTActivityIndicatorView.h"
