@@ -13,5 +13,7 @@
 
 - (id)initWithText:(NSString *)newText;
 + (UILabel *)labelWithText:(NSString *)text;
+- (CGFloat)heightToFitText;
+- (CGFloat)lineHeight;
 
 @end

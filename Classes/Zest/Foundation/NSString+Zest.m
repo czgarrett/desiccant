@@ -8,7 +8,6 @@
 
 #import "NSString+Zest.h"
 
-
 @implementation NSString ( Zest )
 
 + (NSString *) stringWithContentsOfResource: (NSString *)resourceName ofType: (NSString *)fileExtension {
@@ -80,13 +79,22 @@
     return [self doubleValue];
 }
 
+- (NSString *)trimmed {
+	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
 - (NSString *)to_resource_path {
     return [self withResourcePathPrepended];
 }
 
 - (NSString *)stringByAppendingNewLine:(NSString *)line {
 	if (line) {
-		return [NSString stringWithFormat:@"%@\n%@", self, line];
+		if ([self length] == 0) {
+			return [self stringByAppendingString:line];
+		}
+		else {
+			return [NSString stringWithFormat:@"%@\n%@", self, line];
+		}
 	}
 	else {
 		return self;
@@ -168,6 +176,26 @@
 
 - (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set {
 	return [[self stringByTrimmingCharactersInSet:set] length] == 0;
+}
+
+- (BOOL)isEmpty {
+	return [self length] == 0;
+}
+
+- (NSString *)stringByRemovingMarkupTags {
+	return [[[self stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""] stringByUnescapingFromHTML] trimmed];
+}
+
+- (NSString *)stringByEscapingForHTML {
+	return [self gtm_stringByEscapingForHTML];
+}
+
+- (NSString *)stringByEscapingForAsciiHTML {
+	return [self gtm_stringByEscapingForAsciiHTML];
+}
+
+- (NSString *)stringByUnescapingFromHTML {
+	return [self gtm_stringByUnescapingFromHTML];
 }
 
 @end

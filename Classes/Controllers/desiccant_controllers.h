@@ -48,4 +48,6 @@
 #import "DTCompositeViewController.h"
 #import "DTGoogleCaptchaViewController.h"
 #import "DTNavigationController.h"
+#import "DTNavigationLinkController.h"
+#import "DTTabBarController.h"
 

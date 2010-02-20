@@ -41,13 +41,7 @@
 - (void)setData:(NSMutableDictionary *)data {
     description.text = [data stringForKey:@"about"];
     imageView.image = [UIImage imageNamed:[data stringForKey:@"image_name"]];
-    CGFloat margin = self.bounds.size.height - description.bounds.size.height;
-    CGFloat newLabelHeight = [description.text sizeWithFont:description.font constrainedToSize:CGSizeMake(description.bounds.size.width, 9999.0) lineBreakMode:UILineBreakModeWordWrap].height;
-    CGFloat newCellHeight = newLabelHeight + margin;
-    if (newCellHeight > self.bounds.size.height) {
-        self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, newCellHeight);
-        description.frame = CGRectMake(description.frame.origin.x, description.frame.origin.y, description.bounds.size.width, newLabelHeight);
-    }
+	[self adjustHeightForLabel:description];
 }
 
 

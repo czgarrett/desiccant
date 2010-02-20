@@ -23,10 +23,20 @@
 
 // Subclasses can override this to set fields given an untyped data object
 - (void)setData:(NSDictionary *)data {
-    if (titleLabel && [data stringForKey:@"title"]) titleLabel.text = [data stringForKey:@"title"];
-    if (descriptionLabel && [data stringForKey:@"description"]) descriptionLabel.text = [data stringForKey:@"description"];
+    if (titleLabel && [data stringForKey:@"title"]) {
+		titleLabel.text = [[data stringForKey:@"title"] stringByRemovingMarkupTags];
+		[self adjustHeightForLabel:titleLabel];
+	}
+    if (descriptionLabel && [data stringForKey:@"description"]) {
+		descriptionLabel.text = [[data stringForKey:@"description"] stringByRemovingMarkupTags];
+		[self adjustHeightForLabel:descriptionLabel];
+	}
     if (shortAgeLabel && [data objectForKey:@"pubDate"]) shortAgeLabel.text = [[data dateForKey:@"pubDate"] shortAgeString];
     if (imageEnclosureView && [data stringForKey:@"image_url"]) [imageEnclosureView loadFromURL:[data stringForKey:@"image_url"].to_url];
+}
+
+- (BOOL)hasDynamicHeight {
+	return YES;
 }
 
 @end

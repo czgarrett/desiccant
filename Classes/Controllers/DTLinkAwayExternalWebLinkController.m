@@ -8,7 +8,6 @@
 
 #import "DTLinkAwayExternalWebLinkController.h"
 
-
 @implementation DTLinkAwayExternalWebLinkController
 @synthesize warnBeforeExit, requestedURL;
 
@@ -30,8 +29,10 @@
 }
 
 - (BOOL)canHandleRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    return YES;
+    return (navigationType == UIWebViewNavigationTypeLinkClicked ||
+			navigationType == UIWebViewNavigationTypeFormSubmitted);
 }
+
 // Return YES if the controller chain should continue processing the link after this runs.  Return NO to abort link processing.
 - (BOOL)handleRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	self.requestedURL = [request URL];
@@ -43,6 +44,14 @@
 									   delegate:self 
 							  cancelButtonTitle:@"Cancel" 
 							  otherButtonTitles:@"OK", nil] autorelease];
+			[alertView show];
+		}
+		else if (self.warnBeforeExit && [[requestedURL scheme] isEqual:@"mailto"]) {
+			UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"External link" 
+																 message:@"Exit the app compose an email to this address?" 
+																delegate:self 
+													   cancelButtonTitle:@"Cancel" 
+													   otherButtonTitles:@"OK", nil] autorelease];
 			[alertView show];
 		}
 		else{

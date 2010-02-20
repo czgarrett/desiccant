@@ -10,7 +10,7 @@
 #import "DTSpinner.h"
 
 @interface DTDataDrivenTableViewController()
-- (UITableViewCell *)prototypeCell;
+- (DTCustomTableViewCell *)prototypeCell;
 - (NSInteger)lastSection;
 - (NSInteger)lastRowInSection:(NSInteger)section;
 - (NSInteger)numberOfSections;
@@ -156,6 +156,9 @@
 		return [self moreResultsCellRowHeight];
 	}
     else if (self.cellNibName) {
+		if ([[self prototypeCell] hasDynamicHeight]) {
+			[[self prototypeCell] setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
+		}
         return [self prototypeCell].bounds.size.height;
     }
     else {
@@ -327,7 +330,7 @@
 
 #pragma mark Private methods
 
-- (UITableViewCell *)prototypeCell {
+- (DTCustomTableViewCell *)prototypeCell {
     if (cellNibName && !prototype) {
         [[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil];
         self.prototype = cell;

@@ -47,8 +47,16 @@
     return (NSArray *)[self objectForKey:key];
 }
 
+- (NSMutableArray *)mutableArrayForKey:(id)key {
+    return (NSMutableArray *)[self objectForKey:key];
+}
+
 - (NSDictionary *)dictionaryForKey:(id)key {
     return (NSDictionary *)[self objectForKey:key];
+}
+
+- (NSMutableDictionary *)mutableDictionaryForKey:(id)key {
+    return (NSMutableDictionary *)[self objectForKey:key];
 }
 
 - (NSData *)dataForKey:(id)key {

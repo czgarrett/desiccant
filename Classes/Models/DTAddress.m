@@ -33,6 +33,7 @@
 			  state:(NSString *)theState
 				zip:(NSString *)theZip 
 {
+	unless ([theName length] + [theAddress1 length] + [theAddress2 length] + [theCity length] + [theState length] + [theZip length]) return nil;
 	if (self = [super init]) {
 		self.name = theName;
 		self.address1 = theAddress1;
@@ -56,7 +57,7 @@
 
 - (NSString *)description {
 	return [[[[[NSString string] 
-			  stringByAppendingNewLine:name] 
+			  stringByAppendingString:name] 
 			 stringByAppendingNewLine:address1] 
 			stringByAppendingNewLine:address2] 
 			stringByAppendingNewLine:[self cityStateZipLine]];

@@ -22,7 +22,7 @@
 }
 
 - (id)initWithURL:(NSURL *)newURL delegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate parser:(DTXMLParser *)parser;
-+ (DTXMLHTTPQuery *)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryDelegate> *)delegate parser:(DTXMLParser *)parser;
++ (id)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryDelegate> *)delegate parser:(DTXMLParser *)parser;
 
 @property (nonatomic, readonly, retain) NSURL *url;
 @property (nonatomic, readonly, retain) DTXMLParser *parser;
