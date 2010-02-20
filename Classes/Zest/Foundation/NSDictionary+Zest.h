@@ -19,7 +19,9 @@
 - (double)doubleForKey:(id)key;
 - (NSDate *)dateForKey:(id)key;
 - (NSArray *)arrayForKey:(id)key;
+- (NSMutableArray *)mutableArrayForKey:(id)key;
 - (NSDictionary *)dictionaryForKey:(id)key;
+- (NSMutableDictionary *)mutableDictionaryForKey:(id)key;
 - (NSData *)dataForKey:(id)key;
 - (BOOL)hasValueForKey:(id)key;
 - (void)appendString:(NSString *)string toMutableStringWithKey:(id)key;

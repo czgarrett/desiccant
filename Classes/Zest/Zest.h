@@ -13,6 +13,7 @@
 
 #import "ISO8601DateFormatter.h"
 #import "NSData+Base64.h"
+#import "RegexKitLite.h"
 
 #import "Foundation/NSObject+Zest.h"
 #import "Foundation/NSString+Zest.h"
@@ -27,6 +28,7 @@
 #import "Foundation/NSMutableData+Zest.h"
 #import "Foundation/NSURLResponse+Zest.h"
 #import "Foundation/NSHTTPURLResponse+Zest.h"
+#import "Foundation/NSNull+Zest.h"
 
 #import "UIKit/UIView+Zest.h"
 #import "UIKit/UIColor+Zest.h"
@@ -52,3 +54,5 @@
 // NSInvalidArgumentException for other reasons (e.g. you passed an invalid argument), you'll never know it.
 #define optionally(expression) @try { expression; } @catch (NSException *e) { if (![[e name] isEqualToString:NSInvalidArgumentException]) @throw; }
 #define ifResponds(target, selector, expression) if ([target respondsToSelector:selector]) { expression; }
+// Can I get away with this?
+#define $(s) @selector(s)

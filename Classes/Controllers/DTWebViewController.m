@@ -15,10 +15,9 @@
 
 @implementation DTWebViewController
 
-@synthesize webView, dtLinkControllerChain, javascriptOnLoad;
+@synthesize dtLinkControllerChain, javascriptOnLoad;
 
 - (void)dealloc {
-	self.webView = nil;
 	self.dtLinkControllerChain = nil;
 	self.javascriptOnLoad = nil;
     
@@ -38,6 +37,14 @@
     return self;
 }
 
++ (id)controller {
+	return [[[self alloc] init] autorelease];
+}
+
++ (id)controllerWithTitle:(NSString *)title {
+	return [[[self alloc] initWithTitle:title] autorelease];
+}
+
 - (void)loadView {
     [super loadView];
     self.view = [[[UIWebView alloc] init] autorelease];
@@ -46,8 +53,7 @@
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webView = (UIWebView *)self.view;
-    self.webView.delegate = self;
+	self.webView.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated {
@@ -102,5 +108,12 @@
 	self.dtLinkControllerChain = theChain; 
 }
 
+- (UIWebView *)webView {
+	return (UIWebView *)self.view;
+}
+
+- (void)setWebView:(UIWebView *)theWebView {
+	self.view = theWebView;
+}
 
 @end

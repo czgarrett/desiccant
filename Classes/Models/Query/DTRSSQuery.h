@@ -12,6 +12,10 @@
 @interface DTRSSQuery : DTXMLHTTPQuery <DTTransformsUntypedData> {
 }
 
-+ (DTRSSQuery *)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryDelegate> *)delegate;
+- (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryDelegate> *)theDelegate;
++ (DTRSSQuery *)queryWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryDelegate> *)theDelegate;
+
+// Subclasses may override this to add additional DTXMLParserDelegate subclasses to parse any custom children added to the RSS <item> element
+- (NSArray *)extendedParserDelegatesForRSSItem;
 
 @end

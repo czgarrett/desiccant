@@ -179,6 +179,7 @@
 		label.textColor = [UIColor lightGrayColor];
 	}
 	UIView *container = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, pickerViewRowWidth, pickerViewRowHeight)] autorelease];
+	container.backgroundColor = [UIColor whiteColor];
 	[container addSubview:label];
 	return container;
 }
@@ -266,6 +267,7 @@
 	self.pickerView = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
 	CGSize pickerSize = [pickerView sizeThatFits:CGSizeZero];
 	pickerView.frame = CGRectMake(0.0, 0.0, pickerSize.width, pickerSize.height);
+	pickerView.showsSelectionIndicator = YES;
 	pickerView.delegate = self;
 }
 
