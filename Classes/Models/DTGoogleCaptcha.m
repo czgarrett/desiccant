@@ -13,7 +13,6 @@
 @interface DTGoogleCaptcha()
 - (BOOL)parseData:(NSData *)data;
 - (NSURLRequest *)captchaURLRequestWithUserResponse:(NSString *)theUserResponse;
-- (BOOL)responseWasAccepted;
 - (NSURL *)captchaResponseURL;
 - (NSString *)queryString;
 @property (nonatomic) BOOL isPostingResponse;
@@ -22,10 +21,11 @@
 @property (nonatomic, retain) NSString *userResponse;
 @property (nonatomic, retain) NSMutableData *newHTMLData;
 @property (nonatomic) BOOL isCancelled;
+@property (nonatomic, retain) DTGoogleCaptcha *replacementCaptcha;
 @end
 
 @implementation DTGoogleCaptcha
-@synthesize baseURL, formActionURLString, imageURLString, parameters, delegate, isPostingResponse, connection, response, userResponse, newHTMLData, isCancelled;
+@synthesize baseURL, formActionURLString, imageURLString, parameters, delegate, isPostingResponse, connection, response, userResponse, newHTMLData, isCancelled, replacementCaptcha;
 
 - (void)dealloc {
 	self.connection = nil;
@@ -37,6 +37,7 @@
 	self.response = nil;
 	self.userResponse = nil;
 	self.newHTMLData = nil;
+	self.replacementCaptcha = nil;
 	
     [super dealloc];
 }
@@ -71,10 +72,15 @@
 	}
 }
 
+- (NSURL *)imageURL {
+	NSAssert (imageURLString && baseURL, @"Don't have an image URL string and a base URL to build an image URL with.");
+	return [NSURL URLWithString:imageURLString relativeToURL:baseURL];
+}
+
 #pragma mark NSURLConnection delegate methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)urlResponse {
-	self.newHTMLData = [NSMutableData dataWithCapacity:[urlResponse expectedContentLength]];
+	self.newHTMLData = [NSMutableData dataWithCapacity:MAX([urlResponse expectedContentLength], 1024)];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -88,11 +94,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	self.isPostingResponse = NO;
-	if ([self responseWasAccepted]) {
-		[delegate captcha:self responseWasAccepted:userResponse];
+	BOOL replaced = [self parseData:newHTMLData];
+	unless (replaced) {
+		[delegate captcha:self response:userResponse wasAcceptedReturningData:newHTMLData];
 	}
 	else {
-		[delegate captcha:self response:userResponse wasRejectedWithReplacementCaptcha:[self parseData:newHTMLData]];
+		[delegate captcha:self response:userResponse wasRejectedWithReplacementCaptcha:replaced];
 	}
 }
 
@@ -103,25 +110,21 @@
 	
 	NSString *documentString = [NSString stringWithUTF8String:[[data nullTerminated] bytes]];
 	unless (documentString) {
-		NSAssert (0, @"Couldn't convert data to string by treating it as UTF8");
 		return NO;
 	}
 	
 	NSString *fragment = [documentString stringByMatching:@"(<td +id=\"viewport_td\">.*?</td>)" capture:1L];
 	unless (fragment) {
-		NSAssert (0, @"Didn't find <td id=\"viewport_td\"> in captcha challenge");
 		return NO;
 	}
 	
 	self.formActionURLString = [fragment stringByMatching:@"action.*?=.*?[\"'](.+?)[\"']" capture:1L];
 	unless (formActionURLString) {
-		NSAssert1 (0, @"Couldn't find the form action in %@", fragment);
 		return NO;
 	}
 	
 	self.imageURLString = [fragment stringByMatching:@"<img .*?src.*?=.*?[\"'](.+?)[\"']" capture:1L];
 	unless (imageURLString) {
-		NSAssert1 (0, @"Couldn't find the image URL in %@", fragment);
 		return NO;
 	}
 	
@@ -132,7 +135,6 @@
 			NSString *name = [inputTag stringByMatching:@"name *?= *?[\"']([^ \"']+?)[\"']" capture:1L];
 			NSString *value = [inputTag stringByMatching:@"value *?= *?[\"']([^ \"']+?)[\"']" capture:1L];
 			unless (name && value) {
-				NSAssert1 (0, @"Hidden input tag didn't have name and value: %@", inputTag);
 				return NO;
 			}
 			[parameters setObject:value forKey:name];
@@ -148,7 +150,7 @@
 }
 
 - (NSURL *)captchaResponseURL {
-	NSURL *postURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", formActionURLString, [self queryString]]];
+	NSURL *postURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", formActionURLString, [self queryString]]];
 	return postURL;
 }
 
@@ -159,10 +161,6 @@
 	}
 	[myQueryString appendFormat:@"captcha=%@", userResponse];
 	return myQueryString;
-}
-
-- (BOOL)responseWasAccepted {
-	return NO;
 }
 
 @end

@@ -30,12 +30,12 @@
 @property (nonatomic, retain, readonly) NSURLResponse *response;
 @property (nonatomic, retain, readonly) NSString *destination;
 @property (nonatomic, readonly) NSInteger bytesReceived;
-@property (nonatomic, retain, readonly) NSError *error;
+@property (nonatomic, retain) NSError *error;
 @property (nonatomic, readonly) BOOL isStarted;
 @property (nonatomic, readonly) BOOL isCancelled;
 @property (nonatomic, readonly) BOOL isFinished;
 
-+ (id)downloadWithRequest:(NSURLRequest *)theRequest destination:(NSString *)theDestination delegate:(id <DTURLDownloadDelegate>)theDelegate;
++ (id)urlDownloadWithRequest:(NSURLRequest *)theRequest destination:(NSString *)theDestination delegate:(id <DTURLDownloadDelegate>)theDelegate;
 - (id)initWithRequest:(NSURLRequest *)theRequest destination:(NSString *)theDestination delegate:(id <DTURLDownloadDelegate>)theDelegate;
 - (void)start;
 - (void)cancel;
@@ -44,16 +44,16 @@
 
 @protocol DTURLDownloadDelegate <NSObject>
 @optional
-- (void)downloadDidBegin:(DTURLDownload *)theDownload;
-- (NSURLRequest *)download:(DTURLDownload *)theDownload willSendRequest:(NSURLRequest *)theRequest redirectResponse:(NSURLResponse *)redirectResponse;
-- (BOOL)download:(DTURLDownload *)theDownload canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace;
-- (BOOL)downloadShouldUseCredentialStorage:(DTURLDownload *)theDownload;
-- (void)download:(DTURLDownload *)theDownload didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
-- (void)download:(DTURLDownload *)theDownload didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
-- (void)download:(DTURLDownload *)theDownload didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
-- (void)download:(DTURLDownload *)theDownload didReceiveResponse:(NSURLResponse *)response;
-- (void)download:(DTURLDownload *)theDownload didReceiveDataOfLength:(NSUInteger)length;
-- (void)download:(DTURLDownload *)theDownload didCreateDestination:(NSString *)path;
-- (void)downloadDidFinish:(DTURLDownload *)theDownload;
-- (void)download:(DTURLDownload *)theDownload didFailWithError:(NSError *)error;
+- (void)urlDownloadDidBegin:(DTURLDownload *)theDownload;
+- (NSURLRequest *)urlDownload:(DTURLDownload *)theDownload willSendRequest:(NSURLRequest *)theRequest redirectResponse:(NSURLResponse *)redirectResponse;
+- (BOOL)urlDownload:(DTURLDownload *)theDownload canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace;
+- (BOOL)urlDownloadShouldUseCredentialStorage:(DTURLDownload *)theDownload;
+- (void)urlDownload:(DTURLDownload *)theDownload didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+- (void)urlDownload:(DTURLDownload *)theDownload didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+- (void)urlDownload:(DTURLDownload *)theDownload didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite;
+- (void)urlDownload:(DTURLDownload *)theDownload didReceiveResponse:(NSURLResponse *)response;
+- (void)urlDownload:(DTURLDownload *)theDownload didReceiveDataOfLength:(NSUInteger)length;
+- (void)urlDownload:(DTURLDownload *)theDownload didCreateDestination:(NSString *)path;
+- (void)urlDownloadDidFinish:(DTURLDownload *)theDownload;
+- (void)urlDownload:(DTURLDownload *)theDownload didFailWithError:(NSError *)error;
 @end

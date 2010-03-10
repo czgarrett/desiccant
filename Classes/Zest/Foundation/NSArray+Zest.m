@@ -76,7 +76,7 @@
 		[copy removeObjectIdenticalTo:object];
 		[copy addObject:object];
 	}
-	return copy;
+	return [copy autorelease];
 }
 
 - (NSArray *) unionWithArray: (NSArray *) anArray
@@ -91,7 +91,9 @@
 	for (id object in self)
 		if (![anArray containsObject:object])
 			[copy removeObjectIdenticalTo:object];
-	return [copy uniqueMembers];
+	NSArray *intersection = [copy uniqueMembers];
+	[copy release];
+	return intersection;
 }
 
 // A la LISP, will return an array populated with values

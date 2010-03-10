@@ -84,7 +84,7 @@
 
 - (void) hideSplash {
 	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:2.0];
+	[UIView setAnimationDuration:0.5];
 	self.splashView.alpha = 0;
    self.tabBarController.view.alpha = 1.0;
 	[UIView commitAnimations];			

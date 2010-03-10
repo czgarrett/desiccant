@@ -198,4 +198,12 @@
 	return [self gtm_stringByUnescapingFromHTML];
 }
 
+- (NSString *)withWhitespaceCollapsed {
+	return [self stringByReplacingOccurrencesOfRegex:@"[ \\t]+" withString:@" "];
+}
+
+- (NSString *)withNewlinesRemoved {
+	return [self stringByReplacingOccurrencesOfRegex:@"\\n" withString:@" "];
+}
+
 @end

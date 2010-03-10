@@ -35,20 +35,28 @@
 
 #pragma mark Constructors
 
-- (id)initWithCaptcha:(DTGoogleCaptcha *)theCaptcha {
+- (id)initWithCaptcha:(DTGoogleCaptcha *)theCaptcha delegate:(id <DTGoogleCaptchaViewControllerDelegate>)theDelegate {
 	if (self = [super initWithNibName:[self captchaViewControllerNibName] bundle:nil]) {
 		self.captcha = theCaptcha;
+		captcha.delegate = self;
+		self.delegate = theDelegate;
 	}
 	return self;
 }
 
-+ (id)controllerWithCaptcha:(DTGoogleCaptcha *)theCaptcha {
-	return [[[self alloc] initWithCaptcha:theCaptcha] autorelease];
++ (id)controllerWithCaptcha:(DTGoogleCaptcha *)theCaptcha delegate:(id <DTGoogleCaptchaViewControllerDelegate>)theDelegate {
+	return [[[self alloc] initWithCaptcha:theCaptcha delegate:theDelegate] autorelease];
 }
 
 #pragma mark UIViewController methods
 - (void)viewDidLoad {
+	[super viewDidLoad];
 	[self refreshCaptcha];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self.textField becomeFirstResponder];
 }
 
 #pragma mark Public methods to be overridden
@@ -60,6 +68,7 @@
 #pragma mark IBActions
 
 - (void)cancelClicked {
+	[self.textField resignFirstResponder];
 	if (self.captcha.isPostingResponse) {
 		[self.captcha cancel];
 		[self.activityIndicator stopAnimating];
@@ -70,6 +79,7 @@
 #pragma mark UITextFieldDelegate methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
+	[self.textField resignFirstResponder];
 	[self.captcha postUserResponse:theTextField.text];
 	return YES;
 }
@@ -78,12 +88,21 @@
 
 - (void)captcha:(DTGoogleCaptcha *)theCaptcha willPostResponse:(NSString *)response {
 	[self.activityIndicator startAnimating];
+//	self.imageView.hidden = YES;
+	self.textField.hidden = YES;
+}
+
+- (void)captcha:(DTGoogleCaptcha *)theCaptcha response:(NSString *)response wasAcceptedReturningData:(NSData *)theData {
+	[self.activityIndicator stopAnimating];
+	[self.delegate captchaViewController:self didValidateSuccessfullyReturningData:theData];
 }
 
 - (void)captcha:(DTGoogleCaptcha *)theCaptcha response:(NSString *)response wasRejectedWithReplacementCaptcha:(BOOL)hasReplacement {
 	[self.activityIndicator stopAnimating];
 	if (hasReplacement) {
 		[self refreshCaptcha];
+		self.textField.hidden = NO;
+		[self.textField becomeFirstResponder];
 	}
 	else {
 		[self.delegate captchaViewController:self 
@@ -111,7 +130,7 @@
 #pragma mark Private methods
 
 - (void)refreshCaptcha {
-	[self.imageView loadFromURL:captcha.imageURLString.to_url];
+	[self.imageView loadFromURL:captcha.imageURL];
 	self.textField.text = @"";
 }
 

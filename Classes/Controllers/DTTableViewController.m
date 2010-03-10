@@ -115,46 +115,25 @@
 
 #pragma mark UITableViewController methods
 
-- (void) viewDidLoad {
-//	[self beforeViewDidLoad:self.view];
-	[super viewDidLoad];
-//	[self afterViewDidLoad:self.view];
-}
-
 - (void) viewWillAppear:(BOOL)animated {
-//	[self beforeView:self.view willAppear:animated];
 	if (!self.containerViewController) [super viewWillAppear:animated];
-//	[self afterView:self.view willAppear:animated];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-//	[self beforeView:self.view didAppear:animated];
-	if (!self.containerViewController) [super viewDidAppear:animated];
-//	[self afterView:self.view didAppear:animated];
+	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+	if (indexPath) {
+		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	}
+	if (!self.containerViewController) [super viewDidAppear:animated];	
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-//	[self beforeView:self.view willDisappear:animated];
 	if (!self.containerViewController) [super viewWillDisappear:animated];
-//	[self afterView:self.view willDisappear:animated];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
-//	[self beforeView:self.view didDisappear:animated];
 	if (!self.containerViewController) [super viewDidDisappear:animated];
-//	[self afterView:self.view didDisappear:animated];
 }
-
-//- (void) beforeViewDidLoad:(UIView *)theView {}
-//- (void) afterViewDidLoad:(UIView *)theView {}
-//- (void) beforeView:(UIView *)theView willAppear:(BOOL)animated {}
-//- (void) afterView:(UIView *)theView willAppear:(BOOL)animated {}
-//- (void) beforeView:(UIView *)theView didAppear:(BOOL)animated {}
-//- (void) afterView:(UIView *)theView didAppear:(BOOL)animated {}
-//- (void) beforeView:(UIView *)theView willDisappear:(BOOL)animated {}
-//- (void) afterView:(UIView *)theView willDisappear:(BOOL)animated {}
-//- (void) beforeView:(UIView *)theView didDisappear:(BOOL)animated {}
-//- (void) afterView:(UIView *)theView didDisappear:(BOOL)animated {}
 
 - (UINavigationController *)navigationController {
 	if (self.containerViewController) {

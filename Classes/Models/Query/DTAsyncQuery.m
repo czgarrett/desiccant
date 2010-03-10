@@ -8,8 +8,6 @@
 
 
 #import "DTAsyncQuery.h"
-#import "DTTransformsUntypedData.h"
-#import "DTFiltersUntypedData.h"
 #import "Zest.h"
 
 #pragma mark Private Interface
@@ -26,13 +24,14 @@
 - (void)transformRawRows;
 - (void)filterTransformedRows;
 - (void)groupRows;
+- (void)sortRows;
 - (void)postProcessRawRows;
 @end
 
 
 #pragma mark Class Implementation
 @implementation DTAsyncQuery
-@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, error, operation, moreResultsQuery;
+@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, rowSorter, error, operation, moreResultsQuery;
 
 #pragma mark Memory management
 
@@ -45,6 +44,7 @@
 	self.rowTransformers = nil;
 	self.rowFilters = nil;
 	self.grouper = nil;
+	self.rowSorter = nil;
 	self.error = nil;
 	self.operation.delegate = nil;
 	self.operation = nil;
@@ -266,6 +266,7 @@
 - (void)postProcessRawRows {
     [self transformRawRows];
     [self filterTransformedRows];
+	[self sortRows];
     [self groupRows];
 }
 
@@ -292,10 +293,15 @@
 
 - (void)groupRows {
     self.groups = [NSMutableArray arrayWithCapacity:[rows count]];
-    if (grouper) {
-        [grouper groupRows:rows into:groups];
+    if (self.grouper) {
+        [self.grouper groupRows:rows into:groups];
     }
 }
 
+- (void)sortRows {
+	if (self.rowSorter) {
+		self.rows = [self.rowSorter sortRows:self.rows];
+	}
+}
 
 @end

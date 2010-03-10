@@ -269,7 +269,6 @@
 		else {
 			[query fetchMoreResults];
 		}
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
