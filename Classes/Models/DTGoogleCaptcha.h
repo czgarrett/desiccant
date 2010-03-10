@@ -14,7 +14,7 @@
 - (void)captcha:(DTGoogleCaptcha *)theCaptcha willPostResponse:(NSString *)response;
 - (void)captcha:(DTGoogleCaptcha *)theCaptcha response:(NSString *)response wasRejectedWithReplacementCaptcha:(BOOL)hasReplacement;
 - (void)captcha:(DTGoogleCaptcha *)theCaptcha response:(NSString *)response didFailWithError:(NSError *)error;
-- (void)captcha:(DTGoogleCaptcha *)theCaptcha responseWasAccepted:(NSString *)response;
+- (void)captcha:(DTGoogleCaptcha *)theCaptcha response:(NSString *)response wasAcceptedReturningData:(NSData *)data;
 @end
 
 @interface DTGoogleCaptcha : NSObject {
@@ -29,11 +29,13 @@
 	NSURLResponse *response;
 	NSString *userResponse;
 	NSMutableData *newHTMLData;
+	DTGoogleCaptcha *replacementCaptcha;
 }
 
 @property (nonatomic, retain) NSURL *baseURL;
 @property (nonatomic, retain) NSString *formActionURLString;
 @property (nonatomic, retain) NSString *imageURLString;
+@property (nonatomic, retain, readonly) NSURL *imageURL;
 @property (nonatomic, retain) NSMutableDictionary *parameters;
 @property (nonatomic, assign) id <DTGoogleCaptchaDelegate> delegate;
 @property (nonatomic, readonly) BOOL isPostingResponse;

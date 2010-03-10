@@ -21,10 +21,10 @@ enum DTGoogleCaptchaViewControllerError {
 @protocol DTGoogleCaptchaViewControllerDelegate <NSObject>
 - (void) captchaViewControllerWasCancelled:(DTGoogleCaptchaViewController *)controller;
 - (void) captchaViewController:(DTGoogleCaptchaViewController *)controller didFailWithError:(NSError *)error;
-- (void) captchaViewControllerDidValidateSuccessfully:(DTGoogleCaptchaViewController *)controller;
+- (void) captchaViewController:(DTGoogleCaptchaViewController *)controller didValidateSuccessfullyReturningData:(NSData *)data;
 @end
 
-@interface DTGoogleCaptchaViewController : DTViewController <UITextFieldDelegate, DTImageViewDelegate> {
+@interface DTGoogleCaptchaViewController : DTViewController <UITextFieldDelegate, DTImageViewDelegate, DTGoogleCaptchaDelegate> {
 	DTGoogleCaptcha *captcha;
 	IBOutlet UITextField *textField;
 	IBOutlet UILabel *promptLabel;
@@ -40,8 +40,8 @@ enum DTGoogleCaptchaViewControllerError {
 @property (nonatomic, retain) IBOutlet UIButton *cancelButton;
 @property (nonatomic, assign) id <DTGoogleCaptchaViewControllerDelegate> delegate;
 
-- (id)initWithCaptcha:(DTGoogleCaptcha *)theCaptcha;
-+ (id)controllerWithCaptcha:(DTGoogleCaptcha *)theCaptcha;
+- (id)initWithCaptcha:(DTGoogleCaptcha *)theCaptcha delegate:(id <DTGoogleCaptchaViewControllerDelegate>)theDelegate;
++ (id)controllerWithCaptcha:(DTGoogleCaptcha *)theCaptcha delegate:(id <DTGoogleCaptchaViewControllerDelegate>)theDelegate;
 
 // Subclasses may override this and return a custom Nib name if they don't want to use the default
 // Nib from desiccant's resources.  The default is DTGoogleCaptchaViewController.xib.

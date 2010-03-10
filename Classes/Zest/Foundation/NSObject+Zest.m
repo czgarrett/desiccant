@@ -274,7 +274,7 @@
 	if (strcmp(returnType, @encode (char*)) == 0)
 	{
 		char *s;
-		[inv getReturnValue:s];
+		[inv getReturnValue:&s];
 		return [NSString stringWithCString:s encoding:NSUTF8StringEncoding];
 	}
 	

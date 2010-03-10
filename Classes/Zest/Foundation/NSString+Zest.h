@@ -18,6 +18,11 @@
 @property (nonatomic, retain, readonly) NSString *to_resource_path;
 @property(readonly) BOOL empty;
 @property (nonatomic, retain, readonly) NSString *trimmed;
+@property (nonatomic, retain, readonly) NSString *withResourcePathPrepended;
+@property (nonatomic, retain, readonly) NSString *withCachesPathPrepended;
+@property (nonatomic, retain, readonly) NSString *withDocumentPathPrepended;
+@property (nonatomic, retain, readonly) NSString *withWhitespaceCollapsed;
+@property (nonatomic, retain, readonly) NSString *withNewlinesRemoved;
 
 // Returns the resource path for the main bundle
 + (NSString *) resourcePath;
@@ -39,13 +44,10 @@
 
 - (NSString *) stringByPrependingString:(NSString *)prefix;
 - (NSString *) stringByAppendingNewLine:(NSString *)line;
-- (NSString *) withResourcePathPrepended;
-- (NSString *) withCachesPathPrepended;
-- (NSString *) withDocumentPathPrepended;
 - (BOOL)fileExists;
 - (NSURL *) fileURLForPath;
 
-- (NSString *) HTMLUnencode;
+@property (nonatomic, retain, readonly) NSString *HTMLUnencode;
 
 // Truncates self to given length if its length is longer.  Adds an ellipsis character at the end if truncated.
 // Returns a copy of self if its length length is shorter than the given length. 

@@ -176,10 +176,10 @@
 		label.textColor = [UIColor blackColor];
 	}
 	else {
-		label.textColor = [UIColor lightGrayColor];
+		label.textColor = [UIColor grayColor];
 	}
+	label.backgroundColor = [UIColor transparentColor];
 	UIView *container = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, pickerViewRowWidth, pickerViewRowHeight)] autorelease];
-	container.backgroundColor = [UIColor whiteColor];
 	[container addSubview:label];
 	return container;
 }

@@ -19,6 +19,7 @@
 	self.mapping = nil;
 	self.containerTableView = nil;
 	
+	
 	[super dealloc];
 }
 
@@ -32,7 +33,7 @@
 	return self;
 }
 
-+ (DTTableViewProxy *)proxyWithContainerView:(UITableView *)theContainer mapping:(DTCompositeTableViewControllerMapping *)theMapping {
++ (id)proxyWithContainerView:(UITableView *)theContainer mapping:(DTCompositeTableViewControllerMapping *)theMapping {
 	return [[[self alloc] initWithContainerView:theContainer mapping:theMapping] autorelease];
 }
 

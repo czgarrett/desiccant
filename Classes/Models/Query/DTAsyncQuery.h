@@ -12,6 +12,7 @@
 #import "DTFiltersUntypedData.h"
 #import "DTGroupsUntypedData.h"
 #import "DTAsyncQueryDelegate.h"
+#import "DTSortsUntypedData.h"
 
 @protocol DTAsyncQueryDelegate;
 @protocol DTAsyncQueryOperationDelegate;
@@ -27,6 +28,7 @@
     NSMutableArray *rowTransformers;
     NSMutableArray *rowFilters;
     NSObject <DTGroupsUntypedData> *grouper;
+	NSObject <DTSortsUntypedData> *rowSorter;
     NSString *error;
 	DTAsyncQueryOperation *operation;
 	DTAsyncQuery *moreResultsQuery;
@@ -45,9 +47,14 @@
 // Subclasses may override this and set the moreResultsQuery property if another page of results can be loaded after this one.
 // If no more results can be lodaed, this method should set moreResultsQuery to nil.
 - (void)loadMoreResultsQuery;
-	// Use this to append to a chain of objects that will post-process queried rows, adding or changing fields as necessary
+// Use this to append to a chain of objects that will post-process queried rows, 
+// adding or changing fields as necessary.
+// Retains the added object, so release it to prevent circular references if necessary.
 - (void)addRowTransformer:(NSObject <DTTransformsUntypedData> *)transformer;
 - (void)clearRowTransformers;
+// Use this to append to a chain of objects that will filter queried rows, 
+// deciding whether or not each row should be included in the results.
+// Retains the added object, so release it to prevent circular references if necessary.
 - (void)addRowFilter:(NSObject <DTFiltersUntypedData> *)filter;
 - (void)clearRowFilters;
 - (void)clear;
@@ -65,7 +72,12 @@
 - (void)fetchMoreResults;
 
 @property (retain) NSObject <DTAsyncQueryDelegate> *delegate;
-@property (nonatomic, retain) NSObject <DTGroupsUntypedData> *grouper;
+// If not nil, rowSorter will be called to sort transformed/filtered rows
+// Retains.  Release manually to prevent circular references if necessaqry.
+@property (nonatomic, retain) NSObject <DTSortsUntypedData> *rowSorter;
+// If not nil, grouper will be called to group transformed/filtered/sorted rows
+// Retains.  Release manually to prevent circular references if necessaqry.
+@property (nonatomic, retain) NSObject <DTGroupsUntypedData> *grouper;  
 @property (nonatomic, readonly) BOOL updating;
 @property (nonatomic, readonly) BOOL loaded;
 @property (nonatomic, copy)  NSString *error;

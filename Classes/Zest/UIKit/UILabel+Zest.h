@@ -15,5 +15,8 @@
 + (UILabel *)labelWithText:(NSString *)text;
 - (CGFloat)heightToFitText;
 - (CGFloat)lineHeight;
+- (NSInteger)numberOfLinesToFitText;
+- (CGFloat)maxHeight;
+
 
 @end

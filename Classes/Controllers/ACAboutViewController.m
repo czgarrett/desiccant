@@ -37,7 +37,7 @@
    NSStringEncoding encoding;
    NSError *error;
    NSString *fileContents = [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"About" ofType: @"html"] usedEncoding:&encoding error:&error];
-   [webView loadHTMLString: fileContents baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath]]];   
+	[webView loadHTMLString: fileContents baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource: @"About" ofType: @"html"]]];   
 }
 
 - (void)dealloc {
@@ -49,7 +49,7 @@
 #pragma mark UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	if (navigationType == 5)
+	if (navigationType == 5 || [[request URL] isFileURL])
 		return YES;
 	
 	[[UIApplication sharedApplication] openURL:[request URL]]; 

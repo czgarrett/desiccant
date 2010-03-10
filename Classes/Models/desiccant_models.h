@@ -15,6 +15,7 @@
 #import "DTAsyncQueryOperationDelegate.h"
 #import "DTFiltersUntypedData.h"
 #import "DTGroupsUntypedData.h"
+#import "DTSortsUntypedData.h"
 #import "DTHTTPXMLQueryOperation.h"
 #import "DTRSSQuery.h"
 #import "DTSQLiteQuery.h"

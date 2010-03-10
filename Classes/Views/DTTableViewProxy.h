@@ -19,6 +19,6 @@
 @property (nonatomic, retain) DTCompositeTableViewControllerMapping *mapping;
 
 - (id)initWithContainerView:(UITableView *)theContainer mapping:(DTCompositeTableViewControllerMapping *)theMapping;
-+ (DTTableViewProxy *)proxyWithContainerView:(UITableView *)theContainer mapping:(DTCompositeTableViewControllerMapping *)theMapping;
++ (id)proxyWithContainerView:(UITableView *)theContainer mapping:(DTCompositeTableViewControllerMapping *)theMapping;
 
 @end
