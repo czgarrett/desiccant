@@ -17,5 +17,4 @@
 - (void)setString:(NSString *)string forMutableStringWithKey:(id)key;
 - (void)clearMutableStringForKey:(id)key;
 
-
 @end

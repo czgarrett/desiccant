@@ -11,7 +11,7 @@
 
 @implementation DTSingleTextFieldEditorViewController
 
-@synthesize placeholder, initialText, textField, delegate, tag;
+@synthesize placeholder, initialText, textField, delegate, tag, autocapitalizationType;
 
 - (void) configureCell: (DTCustomTableViewCell *)unconfiguredCell atIndexPath: (NSIndexPath *) indexPath {
    DTTextEditorCell *textCell = (DTTextEditorCell *) unconfiguredCell;
@@ -60,6 +60,11 @@
 
 #pragma mark lifecycle
 
+- (void) viewWillAppear:(BOOL)animated {
+   [super viewWillAppear: animated];
+   self.textField.autocapitalizationType = self.autocapitalizationType;   
+}
+
 - (void) viewDidLoad {
    [super viewDidLoad];
    self.cellNibName = @"DTTextEditorCell";
@@ -67,6 +72,15 @@
    [self.navigationItem setLeftBarButtonItem: cancelButton animated: NO];
    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemSave target: self action: @selector(savePressed:)];
    [self.navigationItem setRightBarButtonItem: saveButton animated: NO];
+   [cancelButton release];
+   [saveButton release];
+}
+
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+   if (self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil]) {
+      self.autocapitalizationType = UITextAutocapitalizationTypeNone;
+   }
+   return self;
 }
 
 @end

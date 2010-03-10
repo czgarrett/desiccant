@@ -10,10 +10,11 @@
 
 
 @implementation DTTableViewController
-@synthesize tempCell, headerView, footerView;
+@synthesize tempCell, headerView, footerView, activityIndicator;
 
 - (void)dealloc {
    self.tempCell = nil;
+   self.activityIndicator = nil;
    [super dealloc];
 }
 
@@ -31,5 +32,26 @@
 - (UINavigationController *) navigationControllerToReceivePush {
     return self.navigationController;
 }
+
+- (void) showBusy: (BOOL) busy {
+   [self prepareActivityIndicator];
+   if (activityIndicator) {
+      if (busy) {
+         [activityIndicator startAnimating];
+      } else {
+         [activityIndicator stopAnimating];
+      }
+   }
+}
+
+- (void)prepareActivityIndicator {
+   if (!activityIndicator) {
+      self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+      activityIndicator.hidesWhenStopped = YES;
+      activityIndicator.center = self.view.center;
+      [self.view addSubview:activityIndicator];
+   }
+}
+
 
 @end

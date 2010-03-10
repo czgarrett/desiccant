@@ -17,6 +17,7 @@
    NSString *initialText;
    id <DTSingleTextFieldEditorViewControllerDelegate> delegate;
    NSInteger tag;
+   UITextAutocapitalizationType autocapitalizationType;
 }
 
 @property (nonatomic, assign) id <DTSingleTextFieldEditorViewControllerDelegate> delegate;
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) NSString *placeholder;
 @property (nonatomic, retain) NSString *initialText;
 @property (nonatomic, assign) NSInteger tag;
+@property (nonatomic, assign) UITextAutocapitalizationType autocapitalizationType;
 
 - (void) savePressed: (id) source;
 - (void) cancelPressed: (id) source;

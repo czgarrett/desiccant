@@ -21,7 +21,16 @@
 
    BOOL editable;
    NSInteger tag;
+   
+   BOOL needsFiltering;
+   BOOL currentlyFiltering;
+   
+   NSString *currentSearchText;
+   NSInteger currentSearchScope;
 }
+
+@property (nonatomic, retain) NSString *currentSearchText;
+@property (nonatomic, assign) NSInteger currentSearchScope;
 
 @property (nonatomic, assign) id <DTCoreDataListSelectionViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSManagedObject *selectedObject;
@@ -35,5 +44,6 @@
 - (IBAction) editButtonPressed: (id) button;
 - (IBAction) saveButtonPressed: (id) button;
 
+- (void) updateFooterView;
 
 @end

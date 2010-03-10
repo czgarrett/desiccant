@@ -15,12 +15,11 @@
 @end
 
 @implementation DTDataDrivenTableViewController
-@synthesize query, prototype, activityIndicator, mediaWebView;
+@synthesize query, prototype, mediaWebView;
 
 - (void)dealloc {
     self.query = nil;
     self.prototype = nil;
-    self.activityIndicator = nil;
     self.mediaWebView = nil;
     
     [super dealloc];
@@ -118,16 +117,6 @@
 
         return tempCell;
     }    
-}
-
-
-- (void)prepareActivityIndicator {
-    if (!activityIndicator) {
-        self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        activityIndicator.hidesWhenStopped = YES;
-        activityIndicator.center = self.view.center;
-        [self.view addSubview:activityIndicator];
-    }
 }
 
 - (void)queryWillStartLoading:(DTAsyncQuery *)feed {

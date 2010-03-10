@@ -27,5 +27,13 @@ typedef enum {
 -(UIImageView *)addImageNamed:(NSString *)imageName;
 -(UITextField *)addTextFieldWithPlaceholder:(NSString *)placeHolderText;
 -(void)addContentView;
-- (void)errorAlertTitle: (NSString *)title message:(NSString *)message;
+- (void)showAlertWithTitle: (NSString *)title message:(NSString *)message;
+- (void)handleUnexpectedError: (NSError *) error;
+
+// Provides an actionsheet-like mechanism for sliding simple views up over the 
+// main view
+- (void) slideViewUp: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background;
+- (void) slideViewDown: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background;
+
+
 @end

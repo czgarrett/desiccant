@@ -23,7 +23,6 @@
    return result;
 }
 
-
 - (NSString *)stringAtIndex:(NSUInteger)index {
     return (NSString *)[self objectAtIndex:index];
 }
@@ -39,6 +38,15 @@
    }
    return result;
 }
+
+- (NSMutableArray *) collectWithSelector: (SEL) selector {
+   NSMutableArray *result = [NSMutableArray array];
+   for (NSObject *object in self) {
+      [result addObject: [object performSelector: selector]];
+   }
+   return result;
+}
+
 
 
 - (BOOL) empty {

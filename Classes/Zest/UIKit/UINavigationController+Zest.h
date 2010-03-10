@@ -14,4 +14,6 @@
 - (void) popToViewControllerWithClass: (Class) newClass animated: (BOOL)animated;
 - (UIViewController *) firstViewControllerWithClass: (Class) searchClass;
 
+@property (readonly) UIViewController *rootViewController;
+
 @end

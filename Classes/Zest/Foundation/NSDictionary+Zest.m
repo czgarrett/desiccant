@@ -11,6 +11,11 @@
 
 @implementation NSDictionary(Zest)
 
++ (NSDictionary *) dictionaryWithResourceNamed: (NSString *) resourceName {
+   return [NSDictionary dictionaryWithContentsOfFile: [[NSBundle mainBundle] pathForResource: resourceName ofType: @"plist"]];
+}
+
+
 - (NSString *)stringForKey:(id)key {
     return ((NSObject *)[self objectForKey:key]).to_s;
 }

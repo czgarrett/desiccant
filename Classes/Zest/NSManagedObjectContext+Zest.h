@@ -15,6 +15,7 @@
 - (void) deleteAll: (NSString *) entityName;
 - (NSArray *) all: (NSString *) entityName;
 
+- (NSArray *) findEntities: (NSString *) entityName predicate: (NSPredicate *) predicate sortDescriptors: (NSArray *) sortDescriptors;
 - (NSManagedObject *) findFirstEntity: (NSString *) entityName predicate: (NSPredicate *) predicate;
 - (NSArray *) findEntities: (NSString *) entityName predicate: (NSPredicate *) predicate;
 

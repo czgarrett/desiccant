@@ -56,7 +56,7 @@
 
 - (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
     [request setValue:value forHTTPHeaderField:field];
-}
+} 
 
 - (BOOL)executeQuery {
     [parser reset];

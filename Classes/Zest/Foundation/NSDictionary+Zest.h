@@ -10,6 +10,9 @@
 
 
 @interface NSDictionary(Zest)
+
++ (NSDictionary *) dictionaryWithResourceNamed: (NSString *) resourceName;
+
 - (NSString *)stringForKey:(id)key;
 - (NSURL *)urlForKey:(id)key;
 - (NSInteger)integerForKey:(id)key;

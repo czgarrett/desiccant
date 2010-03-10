@@ -63,7 +63,7 @@
    }
    NSError *error;
    if (![self.fetchedResultsController performFetch: &error]) {
-      NSLog(@"Fetch error: %@", error);
+      [self handleUnexpectedError: error];
    }
    NSArray *results = [self.fetchedResultsController fetchedObjects];
    [self.selectedObjects intersectSet: [NSSet setWithArray: results]];

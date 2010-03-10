@@ -17,6 +17,9 @@
 
 - (void) setUpSplash;
 - (void) hideSplash;
+- (NSString *) defaultDocumentPath;
+- (NSString *) defaultFileName;
+- (void) copyDatabaseFromResourceIfPresent;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;

@@ -1,6 +1,7 @@
 #ifdef __IPHONE_3_0
 #import "desiccant_controllers.h"
 
+#define DEFAULT_FETCH_LIMIT 100
 
 @interface DTCoreDataTableViewController : DTCustomTableViewController <NSFetchedResultsControllerDelegate > {
 
@@ -10,7 +11,11 @@
    NSString *entityName;
    NSString *sortAttribute;
    BOOL ascending;   
+   NSInteger fetchLimit;
+   BOOL firstFetchComplete;
    
+   // Replaces the table footer when the number of results is equal to the fetch limit.
+   IBOutlet UIView *tooManyResultsFooterView;
    IBOutlet UISearchBar *searchBar;
    BOOL searchable;
    
@@ -33,10 +38,13 @@
 @property (nonatomic, retain) NSPredicate *defaultPredicate;
 @property (nonatomic, assign) BOOL ascending;
 @property (nonatomic, assign) BOOL searchable;
+@property (nonatomic, assign) NSInteger fetchLimit;
 @property (nonatomic, readonly) UISearchBar *searchBar;
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+- (void) performFetch;
 
 - (id) initWithEntityName: (NSString *) myEntityName sortAttribute: (NSString *) mySortAttribute;
 

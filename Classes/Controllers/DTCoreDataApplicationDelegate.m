@@ -22,6 +22,7 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
    [self setUpSplash];
+   [self copyDatabaseFromResourceIfPresent];
 }
 
 - (void) dealloc {
@@ -70,6 +71,7 @@
 }
 
 
+
 /**
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
@@ -80,12 +82,20 @@
       return persistentStoreCoordinator;
    }
 	
-   NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"app.sqlite"]];
+	NSString *docPath = [self defaultDocumentPath];
+   NSLog(@"Opening file at %@", docPath);
+   NSURL *storeUrl = [NSURL fileURLWithPath: docPath];
 	
 	NSError *error;
+
    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-   if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
-      NSLog(@"Persistent store creation error: %@", error);
+   
+   NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                            [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+   
+   if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options: options error:&error]) {
+      [self.navigationController handleUnexpectedError: error];
    }    
 	
    return persistentStoreCoordinator;
@@ -94,6 +104,14 @@
 
 #pragma mark -
 #pragma mark Application's documents directory
+
+- (NSString *) defaultFileName {
+   return @"app.sqlite";
+}
+                        
+- (NSString *) defaultDocumentPath {
+   return [[[DTCoreDataApplicationDelegate sharedDelegate] applicationDocumentsDirectory] stringByAppendingPathComponent: [self defaultFileName]];
+}
 
 /**
  Returns the path to the application's documents directory.
@@ -105,10 +123,33 @@
    return basePath;
 }
 
+- (void) copyDatabaseFromResourceIfPresent {
+   // First, test for existence of a writable db file.
+   NSFileManager *fileManager = [NSFileManager defaultManager];
+   NSError *error = nil;
+   NSString *documentsDirectory = [self applicationDocumentsDirectory];
+   if (![fileManager fileExistsAtPath: documentsDirectory]) {
+      [fileManager createDirectoryAtPath: documentsDirectory withIntermediateDirectories: YES attributes: nil error: &error];
+      if (error) {
+         [self.navigationController handleUnexpectedError: error];
+      }
+   }
+   NSString *writableDBPath = [self defaultDocumentPath];
+   if (![fileManager fileExistsAtPath:writableDBPath]) {
+      // The writable database does not exist, so copy the default to the appropriate location.
+      NSString *defaultDBPath = [[NSBundle mainBundle] pathForResource: [self defaultFileName] ofType: nil];
+      if (defaultDBPath) {
+         if (![fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error]) {
+            [self.navigationController handleUnexpectedError: error];
+         }         
+      }
+   } 
+}
+
 #pragma mark Splash screen
 
 - (void) setUpSplash {
-   UIImage *splashImage = [UIImage imageNamed: @"Default.png"];
+   UIImage *splashImage = [UIImage imageNamed: @"menu_bg.png"];
    if (splashImage) {
       self.splashView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)] autorelease];
       UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
@@ -119,7 +160,7 @@
       [self.navigationController.view bringSubviewToFront:self.splashView];
       [logoView release];
       [logo release];
-      [NSTimer scheduledTimerWithTimeInterval: 0.5 
+      [NSTimer scheduledTimerWithTimeInterval: 0.1 
                                        target:self 
                                      selector:@selector(hideSplash) 
                                      userInfo:nil 
@@ -129,7 +170,7 @@
 
 - (void) hideSplash {
 	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:2.0];
+	[UIView setAnimationDuration:1.0];
 	self.splashView.alpha = 0;
 	[UIView commitAnimations];			
 }

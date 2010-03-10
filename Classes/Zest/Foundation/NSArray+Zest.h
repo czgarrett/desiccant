@@ -17,6 +17,9 @@
 - (NSString *)stringAtIndex:(NSUInteger)index;
 - (NSDictionary *) dictionaryAtIndex:(NSUInteger)index;
 - (NSArray *) arrayByRemovingObject: (id) object;
+
+- (NSMutableArray *) collectWithSelector: (SEL) selector;
+
 - (BOOL) empty;
 - (id) firstObject;
 @end

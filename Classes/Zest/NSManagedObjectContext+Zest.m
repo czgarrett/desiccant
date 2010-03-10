@@ -48,7 +48,7 @@
    }
 }
 
-- (NSArray *) findEntities: (NSString *) entityName predicate: (NSPredicate *) predicate {
+- (NSArray *) findEntities: (NSString *) entityName predicate: (NSPredicate *) predicate sortDescriptors: (NSArray *) sortDescriptors {
    NSEntityDescription *entityDescription = [NSEntityDescription
                                              entityForName: entityName inManagedObjectContext: self];
    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
@@ -56,13 +56,21 @@
    if (predicate) {
       [request setPredicate:predicate];      
    }
+   if (sortDescriptors) {
+      [request setSortDescriptors: sortDescriptors];      
+   }
    NSError *error;
    NSArray *result = [self executeFetchRequest:request error:&error];
    if (result == nil) {
-      //TODO deal with error
-      NSAssert(0, @"Error retrieving objects");
+      NSLog(@"Find error");
+      //[self handleUnexpectedError: error];
    }
-   return result;
+   return result;   
+}
+
+
+- (NSArray *) findEntities: (NSString *) entityName predicate: (NSPredicate *) predicate {
+   return [self findEntities: entityName predicate: predicate sortDescriptors: nil];
 }
 
 

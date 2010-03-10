@@ -47,6 +47,9 @@
    if (execResult == SQLITE_ERROR) {
 		[[SQLiteConnectionAdapter defaultInstance] handleSQLiteError];
    }
+   if (execResult == SQLITE_READONLY) {
+      NSLog(@"Attempted to write to a read-only database!");
+   }
    if(operation && [operation isCancelled]) {
       [rows removeAllObjects];
    }

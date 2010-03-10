@@ -37,6 +37,8 @@
    [self.navigationItem setLeftBarButtonItem: cancelButton animated: NO];
    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemSave target: self action: @selector(savePressed:)];
    [self.navigationItem setRightBarButtonItem: saveButton animated: NO];
+   [cancelButton release];
+   [saveButton release];
    
 }
 

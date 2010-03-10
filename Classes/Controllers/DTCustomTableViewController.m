@@ -49,25 +49,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+   UITableViewCell *cell = nil;
    if ([self indexPathIsHeader:indexPath]) {
-      return [self headerRowForIndexPath:indexPath];
-   }
-   else {
+      cell = [self headerRowForIndexPath:indexPath];
+   } else {
+      NSAssert(cellIdentifier != nil, @"Cell identifier has not been set.  Check yer code!");
       tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
       if (tempCell == nil) {
          if (self.cellNibName) {
             [[NSBundle mainBundle] loadNibNamed:self.cellNibName owner:self options:nil];
             self.cellIdentifier = tempCell.reuseIdentifier;
+            NSAssert(cellIdentifier != nil, @"Cell identifier must be set in Interface Builder when using cells this way.");
             [tempCell retain];
          } else {
             self.tempCell = [self constructCell];
             [self customizeCell];
          }
-      }
+      } 
       indexPath = [self adjustIndexPathForHeaders:indexPath];
       [self configureCell: tempCell atIndexPath: indexPath];
-      return tempCell;
+      cell = tempCell;
    }    
+   return cell;
 }
 
 

@@ -25,4 +25,9 @@
    return (UIViewController *)[self.viewControllers objectAtIndex: 0];
 }   
 
+- (UIViewController *) rootViewController {
+   return [self.viewControllers objectAtIndex: 0];
+}
+
+
 @end

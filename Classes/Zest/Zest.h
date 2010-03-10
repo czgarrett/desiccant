@@ -18,6 +18,7 @@
 #import "Foundation/NSString+Zest.h"
 #import "Foundation/NSDate+Zest.h"
 #import "Foundation/NSArray+Zest.h"
+#import "Foundation/NSMutableArray+Zest.h"
 #import "Foundation/NSDictionary+Zest.h"
 #import "Foundation/NSMutableDictionary+Zest.h"
 #import "Foundation/NSURL+Zest.h"
@@ -29,9 +30,12 @@
 #import "UIKit/UILabel+Zest.h"
 #import "UIKit/UINavigationController+Zest.h"
 #import "UIKit/UIViewController+Zest.h"
+#import "UIKit/UIWebView+Zest.h"
 
 #import "NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"
+#import "NSSortDescriptor+Zest.h"
+#import "NSFetchRequest+Zest.h"
 
 #define unless(X) if(!(X))
 #define LogTimeStart double logTimeStart = [NSDate timeIntervalSinceReferenceDate];

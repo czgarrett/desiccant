@@ -14,7 +14,6 @@
 @interface DTDataDrivenTableViewController : DTCustomTableViewController <DTAsyncQueryDelegate, UIWebViewDelegate> {
     DTAsyncQuery * query;
     UITableViewCell *prototype;
-    UIActivityIndicatorView *activityIndicator;
     UIWebView *mediaWebView;
 }
 
@@ -34,7 +33,6 @@
 - (NSIndexPath *)adjustIndexPathForHeaders:(NSIndexPath *)indexPath;
 
 @property (nonatomic, retain)  DTAsyncQuery * query;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIWebView *mediaWebView;
 
 @end

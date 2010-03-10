@@ -67,7 +67,7 @@ static AudioManager *audioManager;
    AudioPlayer *result;
    result = [[AudioPlayer alloc] initWithFileName: soundFileName];
    [players setObject: result forKey: soundFileName];
-   [result release];
+   [result autorelease];
    return result;
 }
 - (void) playSound: (NSString *)soundFileName {

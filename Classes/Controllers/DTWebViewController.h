@@ -19,6 +19,9 @@
 @property (nonatomic, retain) NSMutableArray *linkControllerChain;
 @property (nonatomic, retain) NSString *javascriptOnLoad;
 
++ (DTWebViewController *) webViewController;
++ (DTWebViewController *) webViewControllerWithTitle: (NSString *) title;
+
 - (id)init;
 - (id)initWithTitle:(NSString *)title;
 // Subclasses should implement this to show/load HTML content as appropriate

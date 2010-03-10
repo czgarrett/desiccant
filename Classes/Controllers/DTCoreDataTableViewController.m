@@ -12,7 +12,7 @@
 
 @implementation DTCoreDataTableViewController
 
-@synthesize managedObjectContext, fetchedResultsController, entityName, sortAttribute, ascending, defaultPredicate, searchable, searchBar;
+@synthesize managedObjectContext, fetchedResultsController, entityName, sortAttribute, ascending, defaultPredicate, searchable, searchBar, fetchLimit;
 
 #pragma mark Editing
 
@@ -50,10 +50,37 @@
    }
 }
 
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
+   NSLog(@"Loaded search results table");
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
+
+   NSLog(@"Showed search results table");
+}
 
 
 
 #pragma mark View Delegate methods
+
+- (void) performFetch  {
+   NSError *error = nil;
+   if (![[self fetchedResultsController] performFetch:&error]) {
+      [self handleUnexpectedError: error];
+   }
+   [[self tableView] reloadData];   
+}
+
+- (void) viewWillAppear: (BOOL) animated {
+   [super viewWillAppear: animated];
+   [self showBusy: YES];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+   [super viewDidAppear: animated];
+   [self performFetch];
+   [self showBusy: NO];
+}
 
 - (void) viewDidLoad {
    [super viewDidLoad];
@@ -61,15 +88,10 @@
       [[self tableView] setTableHeaderView: searchBar];
       searchBar.barStyle = UIBarStyleBlack;
    }   
-   NSError *error = nil;
    
    if (self.managedObjectContext == nil) {
       self.managedObjectContext = [[DTCoreDataApplicationDelegate sharedDelegate] managedObjectContext];
    }
-	if (![[self fetchedResultsController] performFetch:&error]) {
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		abort();
-   }  
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -111,10 +133,9 @@
       NSManagedObject *mob = [fetchedResultsController objectAtIndexPath:indexPath];
 		[context deleteObject: mob];
 		// Save the context.
-		NSError *error;
-		if (![context save:&error]) {
-			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-			abort();
+		NSError *saveError;
+		if (![context save:&saveError]) {
+         [self handleUnexpectedError: saveError];
 		}
 	}   
 }
@@ -129,20 +150,17 @@
       // Edit the entity name as appropriate.
       NSEntityDescription *entity = [NSEntityDescription entityForName: self.entityName inManagedObjectContext:managedObjectContext];
       [fetchRequest setEntity:entity];
+      [fetchRequest setFetchLimit: self.fetchLimit];
       
       [fetchRequest setPredicate: self.defaultPredicate];
       
       // Edit the sort key as appropriate.
-      NSAttributeDescription *sortAttrDesc = [[entity attributesByName] objectForKey: self.sortAttribute];
       NSSortDescriptor *sortDescriptor = nil;
-      if ([sortAttrDesc attributeType] == NSStringAttributeType) {
-         sortDescriptor = [[NSSortDescriptor alloc] initWithKey: self.sortAttribute ascending: self.ascending selector: @selector(caseInsensitiveCompare:)];
-      } else {
-         sortDescriptor = [[NSSortDescriptor alloc] initWithKey: self.sortAttribute ascending: self.ascending];         
-      }
+      sortDescriptor = [[NSSortDescriptor alloc] initWithKey: self.sortAttribute ascending: self.ascending];         
       NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-      
-      [fetchRequest setSortDescriptors:sortDescriptors];
+      [sortDescriptor release];
+      [fetchRequest setSortDescriptors:sortDescriptors];         
+      [sortDescriptors release];
       
       // Edit the section name key path and cache name if appropriate.
       // nil for section name key path means "no sections".
@@ -155,8 +173,6 @@
       
       [aFetchedResultsController release];
       [fetchRequest release];
-      [sortDescriptor release];
-      [sortDescriptors release];
    }
 	
 	return fetchedResultsController;
@@ -221,6 +237,7 @@
    if (self = [super init]) {
       self.ascending = YES;
       self.searchable = YES;
+      self.fetchLimit = DEFAULT_FETCH_LIMIT;
    }
    return self;
 }
@@ -229,6 +246,7 @@
    if (self = [super initWithNibName:nibNameOrNil bundle: nibBundleOrNil]) {
       self.ascending = YES;
       self.searchable = YES;
+      self.fetchLimit = DEFAULT_FETCH_LIMIT;
    }
    return self;
 }
@@ -239,6 +257,7 @@
       self.sortAttribute = mySortAttribute;
       self.searchable = YES;
       self.ascending = YES;
+      self.fetchLimit = DEFAULT_FETCH_LIMIT;
    }
    return self;
 }
@@ -248,7 +267,6 @@
    self.managedObjectContext = nil;
    self.entityName = nil;
    self.sortAttribute = nil;
-   NSLog(@"Dealloc in DTCoreTableViewController");
    [super dealloc];
 }
 

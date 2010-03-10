@@ -14,6 +14,15 @@
 
 @synthesize webView, linkControllerChain, javascriptOnLoad;
 
++ (DTWebViewController *) webViewController {
+   return [[[DTWebViewController alloc] init] autorelease];
+}
+
++ (DTWebViewController *) webViewControllerWithTitle: (NSString *) title {
+   return [[[DTWebViewController alloc] initWithTitle: title] autorelease];   
+}
+
+
 - (void)dealloc {
     [webView release];
     [linkControllerChain release];
@@ -44,6 +53,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.webView = (UIWebView *)self.view;
+   
     self.webView.delegate = self;
 }
 

@@ -119,15 +119,44 @@
 	}
 }
 
-- (void)errorAlertTitle: (NSString *)title message:(NSString *)message
+#pragma mark Custom actionsheet-like support
+
+- (void) slideViewUp: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background {
+   if (viewToSlide.superview != nil) {
+      [viewToSlide removeFromSuperview];
+   }
+   UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+   [window addSubview: viewToSlide];
+   viewToSlide.center = CGPointMake(160.0, 480.0 + viewToSlide.frame.size.height/2);
+   [UIView beginAnimations: @"slideViewUp" context: nil];
+   viewToSlide.center = CGPointMake(viewToSlide.center.x, viewToSlide.center.y - viewToSlide.frame.size.height + background);
+   self.view.center = CGPointMake(self.view.center.x, self.view.center.y - background);      
+   [UIView commitAnimations];
+	viewToSlide.hidden = NO;
+}
+
+- (void) slideViewDown: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background {
+   viewToSlide.hidden = YES;
+   [viewToSlide removeFromSuperview];
+}
+
+
+#pragma mark Error Handling
+
+- (void)handleUnexpectedError: (NSError *) error {
+   NSString *description = [[error localizedDescription] stringByAppendingString: @"  The app may not function properly as a result."];
+   [self showAlertWithTitle: @"Error" message: description];
+}
+
+- (void)showAlertWithTitle: (NSString *)title message:(NSString *)message
 {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
 												 message: message
 												 delegate: nil 
 												 cancelButtonTitle: @"Ok" 
 												 otherButtonTitles: nil];
-	[alert show];
-	[alert release];												
+	[alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
+	[alert autorelease];												
 }
 
 
