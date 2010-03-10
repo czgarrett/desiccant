@@ -10,4 +10,6 @@
 #import "desiccant_models.h"
 #import "desiccant_controllers.h"
 #import "desiccant_views.h"
+#import "DTSingleton.h"
 
+#define DTAbstractMethod NSAssert(0, @"Subclass must implement this abstract method"); [self doesNotRecognizeSelector:_cmd];

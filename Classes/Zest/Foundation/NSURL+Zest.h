@@ -13,9 +13,16 @@
 
 @property (nonatomic, retain, readonly) NSURLRequest *to_request;
 
+// Returns the file URL for the main bundle's resource path
++ (NSURL *)resourceURL;
+
 // Tests for network reachability for this URL's host
 - (BOOL)hostIsReachable;
 - (NSData *) cachedData;
 - (BOOL) isCached;
+// Returns the URL path's file extension, if any, or an empty string if it doesn't have one.
+- (NSString *)pathExtension;
+// Returns a dictionary containing the URL's decoded query parameters, if any
+- (NSDictionary *)queryParameters;
 
 @end

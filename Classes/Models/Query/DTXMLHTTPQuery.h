@@ -10,16 +10,19 @@
 #import "DTAsyncQuery.h"
 #import "DTHTTPXMLQueryOperation.h"
 
+@class DTHTTPXMLQueryOperation;
+
+// TODO: Refactor this to subclass DTHTTPQuery
 @interface DTXMLHTTPQuery : DTAsyncQuery {
     NSURL *url;
     DTXMLParser *parser;
-    DTHTTPXMLQueryOperation *operation;
+//    DTHTTPXMLQueryOperation *operation;
     NSString *method;
     NSData *body;
 }
 
 - (id)initWithURL:(NSURL *)newURL delegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate parser:(DTXMLParser *)parser;
-+ (DTXMLHTTPQuery *)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryDelegate> *)delegate parser:(DTXMLParser *)parser;
++ (id)queryWithURL:(NSURL *)url delegate:(NSObject <DTAsyncQueryDelegate> *)delegate parser:(DTXMLParser *)parser;
 
 @property (nonatomic, readonly, retain) NSURL *url;
 @property (nonatomic, readonly, retain) DTXMLParser *parser;

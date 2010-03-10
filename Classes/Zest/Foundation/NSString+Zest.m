@@ -8,8 +8,45 @@
 
 #import "NSString+Zest.h"
 
-
 @implementation NSString ( Zest )
+
++ (NSString *) stringWithContentsOfResource: (NSString *)resourceName ofType: (NSString *)fileExtension {
+	NSStringEncoding usedEncoding;
+	NSError *error;
+   return [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: resourceName ofType: fileExtension] usedEncoding:&usedEncoding error:&error];
+}
+
++ (NSString *) resourcePath {
+    return [[NSBundle mainBundle] resourcePath];
+}
+
++ (NSString *) resourceURL {
+	return [NSURL fileURLWithPath:[self resourcePath]];
+}
+
++ (NSString *) documentPath {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+}
+
++ (NSString *) documentURL {
+	return [NSURL fileURLWithPath:[self documentPath]];
+}
+
++ (NSString *) cachesPath {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+}
+
++ (NSString *) cachesURL {
+	return [NSURL fileURLWithPath:[self cachesPath]];
+}
+
++ (NSString *) stringWithInteger:(NSInteger)integer {
+	return [NSString stringWithFormat:@"%d", integer];
+}
 
 - (NSString *) to_s {
     return self;
@@ -23,8 +60,69 @@
     return [NSURL URLWithString:self];
 }
 
+- (NSNumber *) to_n {
+    NSScanner *scanner = [NSScanner scannerWithString:self];
+    double doubleValue;
+    NSInteger integerValue;
+    if ([scanner scanDouble:&doubleValue]) {
+        return [NSNumber numberWithDouble:doubleValue];
+    }
+    else if ([scanner scanInteger:&integerValue]) {
+        return [NSNumber numberWithInteger:integerValue];
+    }
+    else {
+        return nil;
+    }
+}
+
+- (double) to_double {
+    return [self doubleValue];
+}
+
+- (NSString *)trimmed {
+	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
 - (NSString *)to_resource_path {
+    return [self withResourcePathPrepended];
+}
+
+- (NSString *)stringByAppendingNewLine:(NSString *)line {
+	if (line) {
+		if ([self length] == 0) {
+			return [self stringByAppendingString:line];
+		}
+		else {
+			return [NSString stringWithFormat:@"%@\n%@", self, line];
+		}
+	}
+	else {
+		return self;
+	}
+}
+
+- (NSString *)stringByPrependingString:(NSString *)prefix {
+	return [prefix stringByAppendingString:self];
+}
+
+- (NSString *)withResourcePathPrepended {
     return [[NSBundle mainBundle] pathForResource:self ofType:nil];
+}
+
+- (NSString *)withCachesPathPrepended {
+	return [[NSString cachesPath] stringByAppendingPathComponent:self];
+}
+
+- (NSString *)withDocumentPathPrepended {
+	return [[NSString documentPath] stringByAppendingPathComponent:self];
+}
+
+- (BOOL)fileExists {
+	return [[NSFileManager defaultManager] fileExistsAtPath:self];
+}
+
+- (NSURL *) fileURLForPath {
+	return [NSURL fileURLWithPath:self];
 }
 
 - (NSDate *) to_date {
@@ -64,6 +162,49 @@
 
 - (BOOL) consonant {
    return !self.vowel;
+}
+
+- (BOOL) isImageExtension {
+    return 
+    [self isEqual:@"jpg"] ||
+    [self isEqual:@"jpeg"] ||
+    [self isEqual:@"png"] ||
+    [self isEqual:@"gif"] ||
+    [self isEqual:@"tif"] ||
+    [self isEqual:@"tiff"] ||
+    [self isEqual:@"bmp"] ||
+    [self isEqual:@"BMPf"] ||
+    [self isEqual:@"ico"] ||
+    [self isEqual:@"cur"] ||
+    [self isEqual:@"xbm"];
+}
+
+- (BOOL) startsWith:(NSString *)prefix {
+    return [self hasPrefix:prefix];
+}
+
+- (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set {
+	return [[self stringByTrimmingCharactersInSet:set] length] == 0;
+}
+
+- (BOOL)isEmpty {
+	return [self length] == 0;
+}
+
+- (NSString *)stringByRemovingMarkupTags {
+	return [[[self stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""] stringByUnescapingFromHTML] trimmed];
+}
+
+- (NSString *)stringByEscapingForHTML {
+	return [self gtm_stringByEscapingForHTML];
+}
+
+- (NSString *)stringByEscapingForAsciiHTML {
+	return [self gtm_stringByEscapingForAsciiHTML];
+}
+
+- (NSString *)stringByUnescapingFromHTML {
+	return [self gtm_stringByUnescapingFromHTML];
 }
 
 @end

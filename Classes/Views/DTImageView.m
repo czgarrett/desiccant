@@ -34,12 +34,16 @@
     return self;
 }
 
-
 - (void)loadFromURL:(NSURL *)url {
     [connection cancel];
-    if ([url isCached]) {
+    if ([url isFileURL]) {
+        self.data = nil;
+        self.image = [UIImage imageWithContentsOfFile:[url path]];
+        [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
+    }
+    else if ([url isCached]) {
         self.data = [[[url cachedData] mutableCopy] autorelease];
-        [self connectionDidFinishLoading:nil];
+        [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
     }
     else {
         self.image = defaultImage;
@@ -56,7 +60,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
     [theConnection cancel];
     self.connection = nil;
-    self.image = [UIImage imageWithData:data];
+    if (data) self.image = [UIImage imageWithData:data];
     if (!self.image) self.image = defaultImage;
     self.data = nil;
     [delegate imageViewDidFinishLoading:self];

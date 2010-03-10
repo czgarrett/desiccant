@@ -8,6 +8,7 @@
 
 #import "ACNavigationAppDelegate.h"
 #import "SQLiteConnectionAdapter.h"
+#import "Zest.h"
 
 @implementation ACNavigationAppDelegate 
 
@@ -56,8 +57,9 @@
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {	
-      
-   [self createStartViewController];
+   unless(self.startViewController) {
+      [self createStartViewController];      
+   }
 	self.navigationController = [[UINavigationController alloc] initWithRootViewController: self.startViewController];
 	[self.navigationController release]; // retained when property is set
 	navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;

@@ -6,7 +6,9 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
+#import "DTGoogleCaptcha.h"
 #import "ARObject.h"
+#import "DTURLDownload.h"
 #import "DTAsyncQuery.h"
 #import "DTAsyncQueryDelegate.h"
 #import "DTAsyncQueryOperation.h"
@@ -25,5 +27,15 @@
 #import "DTXMLParserDelegate.h"
 #import "DTXMLValueParserDelegate.h"
 #import "DTXMLRPCQuery.h"
-#import "DTPListQuery.h"
 #import "DTPListQueryOperation.h"
+#import "DTMapAnnotation.h"
+#import "DTHTTPQuery.h"
+#import "DTJSONQuery.h"
+#import "DTJSONQueryOperation.h"
+#import "DTResultObjectParser.h"
+#import "DTHTTPPlistQuery.h"
+#import "DTARObjectQuery.h"
+#import "DTARObjectQueryOperation.h"
+#import "DTPListQuery.h"
+#import "DTAddress.h"
+#import "DTMarkupDocument.h"

@@ -8,6 +8,8 @@
 
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import "NSURL+Zest.h"
+#import "NSString+Zest.h"
+#import "NSArray+Zest.h"
 
 @interface NSURL ( Zest_private )
 - (BOOL)isReachableWithoutRequiringConnection:(SCNetworkReachabilityFlags)flags;
@@ -37,6 +39,10 @@
 
 
 @implementation NSURL ( Zest )
+
++ (NSURL *)resourceURL {
+    return [NSURL fileURLWithPath:[NSString resourcePath]];
+}
 
 - (NSString *) to_s {
     return [self absoluteString];
@@ -74,6 +80,27 @@
 
 - (NSData *) cachedData {
     return [[[NSURLCache sharedURLCache] cachedResponseForRequest:self.to_request] data];
+}
+
+- (NSString *)pathExtension {
+    return [[self path] pathExtension];
+}
+
+- (NSDictionary *)queryParameters {
+	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:16];
+	if ([self query]) {
+		NSArray *pairs = [[self query] componentsSeparatedByString:@"&"];
+		for (NSString *pairString in pairs) {
+			NSArray *pair = [pairString componentsSeparatedByString:@"="];
+			if ([pair count] != 2) NSAssert (0, @"Found more than one equals sign in a parameter assignment");
+			else {
+				NSString *key = [[pair stringAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+				NSString *value = [[pair stringAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+				[params setObject:value forKey:key];
+			}
+		}
+	}
+	return params;
 }
 
 @end

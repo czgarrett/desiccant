@@ -9,30 +9,48 @@
 #import "DTTableViewRow.h"
 
 @interface DTTableViewRow()
-@property (nonatomic, retain) UITableViewCell *cell;
 @end
 
 
 @implementation DTTableViewRow
-@synthesize cell, detailViewController;
+@synthesize cell, detailViewController, dataDictionary, dataInjector, reuseIdentifier, nibName;
 
 - (void)dealloc {
-    [cell release];
-    [detailViewController release];
+	self.cell = nil;
+	self.detailViewController = nil;
+	self.dataDictionary = nil;
+	self.reuseIdentifier = nil;
+	self.nibName = nil;
     
     [super dealloc];
 }
 
-- (id)initWithCell:(UITableViewCell *)newCell detailViewController:(UIViewController *)newDetailViewController {
-    if (self = [super init]) {
-        self.cell = newCell;
-        self.detailViewController = newDetailViewController;
-    }
-    return self;
+- (id)initWithCell:(DTCustomTableViewCell *)theCell nibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier {
+	if (self = [super init]) {
+		self.cell = theCell;
+		self.nibName = theNibName;
+		self.dataDictionary = theRowData;
+		self.detailViewController = theDetailViewController;
+		self.dataInjector = theDataInjector;
+		self.reuseIdentifier = theReuseIdentifier;
+	}
+	return self;
 }
 
-+ (DTTableViewRow *)rowWithCell:(UITableViewCell *)cell detailViewController:(UIViewController *)detailViewController {
-    return [[[self alloc] initWithCell:cell detailViewController:detailViewController] autorelease];
+- (id)initWithCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)theData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector {
+	return [self initWithCell:theCell nibNamed:nil data:theData detailViewController:theDetailViewController dataInjector:theDataInjector reuseIdentifier:theCell.reuseIdentifier];
+}
+
+- (id)initWithNibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier {
+	return [self initWithCell:nil nibNamed:theNibName data:theRowData detailViewController:theDetailViewController dataInjector:theDataInjector reuseIdentifier:theReuseIdentifier];
+}
+
++ (id)rowWithCell:(DTCustomTableViewCell *)cell data:(NSDictionary *)theData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector {
+    return [[[self alloc] initWithCell:cell data:theData detailViewController:detailViewController dataInjector:theDataInjector] autorelease];
+}
+
++ (id)rowWithNibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier {
+	return [[[self alloc] initWithNibNamed:theNibName data:theRowData detailViewController:theDetailViewController dataInjector:theDataInjector reuseIdentifier:theReuseIdentifier] autorelease];
 }
 
 @end

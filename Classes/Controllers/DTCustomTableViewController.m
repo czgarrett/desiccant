@@ -9,7 +9,6 @@
 #import "DTCustomTableViewController.h"
 
 @interface DTCustomTableViewController()
-+ (NSInteger)nextIdentifierNumber;
 @end
 
 @implementation DTCustomTableViewController
@@ -27,6 +26,11 @@
    headerRows = 0;
     [super viewDidLoad];
 }
+
+//- (void)beforeViewDidLoad:(UITableView *)theTableView {
+//    self.cellIdentifier = [NSString stringWithFormat:@"cell_type_%d", [DTCustomTableViewController nextIdentifierNumber]];
+//	[super beforeViewDidLoad:theTableView];
+//}
 
 + (NSInteger)nextIdentifierNumber {
     static NSInteger number = 0;

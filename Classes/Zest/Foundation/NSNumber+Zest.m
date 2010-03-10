@@ -23,4 +23,9 @@
     return [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
 }
 
+- (NSNumber *)to_n {
+    return self;
+}
+
+
 @end

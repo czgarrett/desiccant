@@ -20,6 +20,9 @@
 @property (nonatomic, retain) NSString *cellIdentifier;
 
 #pragma mark Cell methods
+// Returns the next unique identifier number, which can be used to construct unique reuseIdentifiers
++ (NSInteger)nextIdentifierNumber;
+
 // Subclasses can override this to return a custom subclass of DTCustomTableViewCell.  This is only called if
 // cellNibName is not set
 - (DTCustomTableViewCell *)constructCell;

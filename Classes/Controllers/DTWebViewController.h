@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "ACWebLinkController.h"
+#import "DTViewController.h"
 
-@interface DTWebViewController : UIViewController <UIWebViewDelegate> {
-    UIWebView *webView;
-    NSMutableArray *linkControllerChain;
+@interface DTWebViewController : DTViewController <UIWebViewDelegate> {
+    NSMutableArray *dtLinkControllerChain;
     NSString *javascriptOnLoad;
 }
     
@@ -24,6 +24,8 @@
 
 - (id)init;
 - (id)initWithTitle:(NSString *)title;
++ (id)controller;
++ (id)controllerWithTitle:(NSString *)title;
 // Subclasses should implement this to show/load HTML content as appropriate
 - (void)reloadWebView;
 - (void)addLinkController:(id <ACWebLinkController>)controller;

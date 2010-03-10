@@ -31,7 +31,14 @@
     return self;
 }
 
-+ (DTXMLCollectionParserDelegate *)delegateWithElement:(NSString *)element 
++ (id)delegateWithKey:(NSString *)newKey 
+			  element:(NSString *)newElement 
+   matchingAttributes:(NSDictionary *)newMatchingAttributes
+ nestedParserDelegate:(DTXMLParserDelegate *)newNestedParserDelegate {
+    return [[[self alloc] initWithKey:newKey element:newElement matchingAttributes:newMatchingAttributes nestedParserDelegate:newNestedParserDelegate] autorelease];
+}
+
++ (id)delegateWithElement:(NSString *)element 
                                   nestedParserDelegate:(DTXMLParserDelegate *)nestedParserDelegate {
     return [[[self alloc] initWithKey:element element:element matchingAttributes:nil nestedParserDelegate:nestedParserDelegate] autorelease];
 }

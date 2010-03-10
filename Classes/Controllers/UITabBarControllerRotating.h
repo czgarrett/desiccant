@@ -1,0 +1,6 @@
+
+@interface UITabBarControllerRotating : UITabBarController {
+
+}
+
+@end

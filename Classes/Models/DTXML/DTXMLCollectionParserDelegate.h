@@ -19,6 +19,10 @@
 
 - (id)initWithKey:(NSString *)newKey element:(NSString *)newElement matchingAttributes:(NSDictionary *)newMatchingAttributes
 nestedParserDelegate:(DTXMLParserDelegate *)newNestedParserDelegate;
-+ (DTXMLCollectionParserDelegate *)delegateWithElement:(NSString *)element nestedParserDelegate:(DTXMLParserDelegate *)nestedParserDelegate;
++ (id)delegateWithKey:(NSString *)newKey 
+			  element:(NSString *)newElement 
+   matchingAttributes:(NSDictionary *)newMatchingAttributes
+ nestedParserDelegate:(DTXMLParserDelegate *)newNestedParserDelegate;
++ (id)delegateWithElement:(NSString *)element nestedParserDelegate:(DTXMLParserDelegate *)nestedParserDelegate;
 
 @end

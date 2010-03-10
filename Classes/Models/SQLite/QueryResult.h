@@ -22,6 +22,6 @@
 -(QueryRow *)rowAtIndex:(NSInteger)index;
 -(NSInteger)rowCount;
 -(NSEnumerator *)rowEnumerator;
--(NSArray *)valuesForColumn:(NSString *)column;
+-(NSMutableArray *)valuesForColumn:(NSString *)column;
 
 @end

@@ -94,6 +94,15 @@
    }
 }
 
+//- (void) afterViewDidLoad:(UITableView *)theTableView {
+//   [super afterViewDidLoad:theTableView];
+//   NSError *error = nil;
+//	if (![[self fetchedResultsController] performFetch:&error]) {
+//		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//		abort();
+//   }  
+//}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
    // Support all orientations except upside down
    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
@@ -139,6 +148,31 @@
 		}
 	}   
 }
+
+#pragma mark Table Cell Stuff
+
+- (void)configureCell:(UITableViewCell *)myCell atIndexPath:(NSIndexPath *)indexPath {
+   myCell.textLabel.text = @"Override configureCell:";
+}
+
+- (UITableViewCellStyle) defaultCellStyle {
+   return UITableViewCellStyleDefault;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+   NSString *cellIdentifier = [NSString stringWithFormat: @"%@CellIdentifier", self.entityName];
+   
+   UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+   if (theCell == nil) {
+      theCell = [[[UITableViewCell alloc] initWithStyle: [self defaultCellStyle] reuseIdentifier: cellIdentifier] autorelease];
+		theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+   }
+   [self configureCell: cell atIndexPath: indexPath];
+   
+   return theCell;
+}
+
 
 #pragma mark Fetched results controller
 

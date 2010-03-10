@@ -1,13 +1,5 @@
-//
-//  ACTabbedAppDelegate.h
-//  ZWorkbench
-//
-//  Created by Christopher Garrett on 10/2/08.
-//  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
-
 
 @interface ACTabbedAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UITabBarDelegate> {
    IBOutlet UIWindow *window;
@@ -30,5 +22,8 @@
 - (void) setUpSplash;
 - (void) hideSplash;
 - (void) setUpTabBarController;
-
+// Subclasses can override this to return an alternate UITabBarController implementation.  Returns a
+// UITabBarControllerRotating by default.
+- (UITabBarController *)createTabBarController;
+- (void) createTabs;
 @end

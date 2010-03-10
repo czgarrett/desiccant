@@ -34,6 +34,7 @@
 	BOOL newRecord;
 }
 
+@property(nonatomic, retain) NSMutableDictionary *attributes;
 @property(nonatomic) BOOL newRecord;
 @property(readonly) NSInteger primaryKey;
 
@@ -41,7 +42,7 @@
 + (NSString *)tableName;
 + (SQLiteTable *)table;
 + (SQLiteConnectionAdapter *)connection;
-+ (NSArray *)buildObjectsFromQueryResult: (QueryResult *)queryResult;
++ (NSMutableArray *)buildObjectsFromQueryResult: (QueryResult *)queryResult;
 + (NSString *) primaryKeyName;
 
 + (NSString *) concatenatedColumnNames;
@@ -50,21 +51,22 @@
 // Finders
 // First parameter is the SQL for a WHERE clause, and subsequent params are bindings to that clause
 + (NSString *) sqlForFindByCondition: (NSString *)condition;
-+ (NSArray *) usingOperation: (NSOperation *) operation 
++ (NSMutableArray *) usingOperation: (NSOperation *) operation 
              findByCondition: (NSString *)condition, ...;
-+ (NSArray *) findByCondition: (NSString *)condition, ...;
++ (NSMutableArray *) findByCondition: (NSString *)condition, ...;
 + (ARObject *) findFirstByCondition: (NSString *)condition, ...;
 + (ARObject *)findByPrimaryKey:(NSInteger)key;
 // First parameter is the SQL for a WHERE clause, and subsequent params are bindings to that clause
-+ (NSArray *) findBySQL: (NSString *)sql, ...;
-+ (NSArray *) findBySQL: (NSString *)sql 
++ (NSMutableArray *) findBySQL: (NSString *)sql, ...;
++ (NSMutableArray *) findBySQL: (NSString *)sql 
               variables: (va_list) bindings
               operation: (NSOperation *)operation;
-+ (NSArray *) findAll;
++ (NSMutableArray *) findAll;
 + (void) deleteAllWithCondition: (NSString *)condition, ...;
++ (ARObject *) findByAttributeNamed: (NSString *)attributeName value: (NSString *) value;
 
 // Column-focused
-+ (NSArray *) usingOperation: (NSOperation *) operation findValuesForColumn: (NSString *)column withCondition: (NSString *)condition, ...;
++ (NSMutableArray *) usingOperation: (NSOperation *) operation findValuesForColumn: (NSString *)column withCondition: (NSString *)condition, ...;
 
 // Counters
 + (NSInteger) count;

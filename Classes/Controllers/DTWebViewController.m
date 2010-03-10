@@ -9,10 +9,13 @@
 #import "DTWebViewController.h"
 #import "DTSpinner.h"
 
+@interface DTWebViewController()
+@property (nonatomic, retain) NSMutableArray *dtLinkControllerChain;
+@end
 
 @implementation DTWebViewController
 
-@synthesize webView, linkControllerChain, javascriptOnLoad;
+@synthesize dtLinkControllerChain, javascriptOnLoad;
 
 + (DTWebViewController *) webViewController {
    return [[[DTWebViewController alloc] init] autorelease];
@@ -24,9 +27,8 @@
 
 
 - (void)dealloc {
-    [webView release];
-    [linkControllerChain release];
-    [javascriptOnLoad release];
+	self.dtLinkControllerChain = nil;
+	self.javascriptOnLoad = nil;
     
     [super dealloc];
 }
@@ -42,6 +44,14 @@
         self.javascriptOnLoad = nil;
     }
     return self;
+}
+
++ (id)controller {
+	return [[[self alloc] init] autorelease];
+}
+
++ (id)controllerWithTitle:(NSString *)title {
+	return [[[self alloc] initWithTitle:title] autorelease];
 }
 
 - (void)loadView {
@@ -63,11 +73,6 @@
 
 // Subclasses should implement this to show/load HTML content as appropriate
 - (void) reloadWebView {
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,6 +108,23 @@
 
 - (void)webView:(UIWebView *)loadingWebView didFailLoadWithError:(NSError *)error {
     [DTSpinner hide];
+}
+
+- (NSMutableArray *)linkControllerChain {
+	if (!dtLinkControllerChain) self.dtLinkControllerChain = [NSMutableArray arrayWithCapacity:2];
+	return dtLinkControllerChain;
+}
+
+- (void)setLinkControllerChain:(NSMutableArray *)theChain {
+	self.dtLinkControllerChain = theChain; 
+}
+
+- (UIWebView *)webView {
+	return (UIWebView *)self.view;
+}
+
+- (void)setWebView:(UIWebView *)theWebView {
+	self.view = theWebView;
 }
 
 @end

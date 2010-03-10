@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DTViewController.h"
 
-
-@interface ACAboutViewController : UIViewController {
+@interface ACAboutViewController : DTViewController<UIWebViewDelegate> {
    IBOutlet UIWebView *webView;
 }
 
-@property (nonatomic, readonly) IBOutlet UIWebView *webView;
+@property (nonatomic, retain) UIWebView *webView;
 
 - (void) reloadWebView;
 

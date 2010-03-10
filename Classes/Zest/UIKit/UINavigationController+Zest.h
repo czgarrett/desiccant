@@ -13,6 +13,7 @@
 
 - (void) popToViewControllerWithClass: (Class) newClass animated: (BOOL)animated;
 - (UIViewController *) firstViewControllerWithClass: (Class) searchClass;
+- (void)showOrHideToolbarForViewController:(UIViewController *)controller;
 
 @property (readonly) UIViewController *rootViewController;
 

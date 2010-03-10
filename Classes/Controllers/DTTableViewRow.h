@@ -7,17 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DTCustomTableViewCell.h"
 
 @interface DTTableViewRow : NSObject {
-    UITableViewCell *cell;
+    DTCustomTableViewCell *cell;
     UIViewController *detailViewController;
+	NSDictionary *dataDictionary;
+	SEL dataInjector;
+	NSString *reuseIdentifier;
+	NSString *nibName;
 }
 
-@property (nonatomic, retain, readonly) UITableViewCell *cell;
+@property (nonatomic, retain) DTCustomTableViewCell *cell;
 @property (nonatomic, retain) UIViewController *detailViewController;
+@property (nonatomic, retain) NSDictionary *dataDictionary;
+@property (nonatomic) SEL dataInjector;
+@property (nonatomic, retain) NSString *reuseIdentifier;
+@property (nonatomic, retain) NSString *nibName;
 
-- (id)initWithCell:(UITableViewCell *)newCell detailViewController:(UIViewController *)newDetailViewController;
-+ (DTTableViewRow *)rowWithCell:(UITableViewCell *)cell detailViewController:(UIViewController *)detailViewController;
+- (id)initWithCell:(DTCustomTableViewCell *)theCell nibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier;
+- (id)initWithCell:(UITableViewCell *)theCell data:(NSDictionary *)theData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector;
+- (id)initWithNibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier;
++ (id)rowWithCell:(DTCustomTableViewCell *)cell data:(NSDictionary *)theData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector;
++ (id)rowWithNibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier;
 
 @end

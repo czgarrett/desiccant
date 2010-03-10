@@ -3,7 +3,7 @@
 
 #define DEFAULT_FETCH_LIMIT 100
 
-@interface DTCoreDataTableViewController : DTCustomTableViewController <NSFetchedResultsControllerDelegate > {
+@interface DTCoreDataTableViewController : DTTableViewController <NSFetchedResultsControllerDelegate> {
 
    NSFetchedResultsController *fetchedResultsController;
    NSManagedObjectContext *managedObjectContext;

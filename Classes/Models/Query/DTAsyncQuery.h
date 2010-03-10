@@ -1,5 +1,5 @@
 //
-//  ACAsyncQuery.h
+//  DTAsyncQuery.h
 //  ZWorkbench
 //
 //  Created by Curtis Duhn on 6/18/09.
@@ -11,10 +11,12 @@
 #import "DTTransformsUntypedData.h"
 #import "DTFiltersUntypedData.h"
 #import "DTGroupsUntypedData.h"
+#import "DTAsyncQueryDelegate.h"
 
 @protocol DTAsyncQueryDelegate;
+@protocol DTAsyncQueryOperationDelegate;
 
-@interface DTAsyncQuery : NSObject <DTAsyncQueryOperationDelegate> {
+@interface DTAsyncQuery : NSObject <DTAsyncQueryOperationDelegate, NSFastEnumeration, DTAsyncQueryDelegate> {
     NSArray *rawRows;
     NSMutableArray *rows;
     NSMutableArray *groups;
@@ -26,6 +28,8 @@
     NSMutableArray *rowFilters;
     NSObject <DTGroupsUntypedData> *grouper;
     NSString *error;
+	DTAsyncQueryOperation *operation;
+	DTAsyncQuery *moreResultsQuery;
 }
 
 - (id)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate;
@@ -36,7 +40,12 @@
 - (NSArray *)groupIndexes;
 // Subclasses can implement this if they want to have headers above each section
 - (NSString *)titleForGroupWithIndex:(NSUInteger)index;
-// Use this to append to a chain of objects that will post-process queried rows, adding or changing fields as necessary
+// Subclasses can implement this to return detailed cursor data if there are more results available
+- (NSDictionary *)cursorData;
+// Subclasses may override this and set the moreResultsQuery property if another page of results can be loaded after this one.
+// If no more results can be lodaed, this method should set moreResultsQuery to nil.
+- (void)loadMoreResultsQuery;
+	// Use this to append to a chain of objects that will post-process queried rows, adding or changing fields as necessary
 - (void)addRowTransformer:(NSObject <DTTransformsUntypedData> *)transformer;
 - (void)clearRowTransformers;
 - (void)addRowFilter:(NSObject <DTFiltersUntypedData> *)filter;
@@ -48,12 +57,19 @@
 - (NSUInteger)rowCountForGroupWithIndex:(NSUInteger)index;
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)index;
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)rowIndex inGroupWithIndex:(NSUInteger)groupIndex;
+- (void)deleteItemAtIndex:(NSUInteger)index;
+- (void)deleteItemAtIndex:(NSUInteger)index inGroupWithIndex:(NSUInteger)groupIndex;
+- (void)cancel;
+- (BOOL)isCancelled;
+- (BOOL)hasMoreResults;
+- (void)fetchMoreResults;
 
 @property (retain) NSObject <DTAsyncQueryDelegate> *delegate;
 @property (nonatomic, retain) NSObject <DTGroupsUntypedData> *grouper;
 @property (nonatomic, readonly) BOOL updating;
 @property (nonatomic, readonly) BOOL loaded;
 @property (nonatomic, copy)  NSString *error;
+@property (nonatomic, retain) DTAsyncQuery *moreResultsQuery;
 
 @end
 

@@ -8,10 +8,19 @@
 
 #import "DTAsyncQuery.h"
 
+@class DTAsyncQuery;
+
 @protocol DTAsyncQueryDelegate
 
-- (void)queryWillStartLoading:(DTAsyncQuery *)query;
 - (void)queryDidFinishLoading:(DTAsyncQuery *)query;
 - (void)queryDidFailLoading:(DTAsyncQuery *)query;
+
+@optional
+- (void)queryWillStartLoading:(DTAsyncQuery *)query;
+- (void)queryDidCancelLoading:(DTAsyncQuery *)query;
+- (void)queryWillStartLoadingMoreResults:(DTAsyncQuery *)query;
+- (void)queryDidFinishLoadingMoreResults:(DTAsyncQuery *)query;
+- (void)queryDidCancelLoadingMoreResults:(DTAsyncQuery *)query;
+- (void)queryDidFailLoadingMoreResults:(DTAsyncQuery *)query;
 
 @end

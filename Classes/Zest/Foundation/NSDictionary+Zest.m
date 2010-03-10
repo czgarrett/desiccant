@@ -16,6 +16,10 @@
 }
 
 
++ (NSDictionary *)dictionaryWithTitle:(NSString *)titleValue {
+	return [NSDictionary dictionaryWithObject:titleValue forKey:@"title"];
+}
+
 - (NSString *)stringForKey:(id)key {
     return ((NSObject *)[self objectForKey:key]).to_s;
 }
@@ -29,7 +33,11 @@
 }
 
 - (NSNumber *)numberForKey:(id)key {
-    return (NSNumber *)[self objectForKey:key];
+    return ((NSObject *)[self objectForKey:key]).to_n;
+}
+
+- (double)doubleForKey:(id)key {
+    return [[self numberForKey:key] doubleValue];
 }
 
 - (NSDate *)dateForKey:(id)key {
@@ -44,8 +52,16 @@
     return (NSArray *)[self objectForKey:key];
 }
 
+- (NSMutableArray *)mutableArrayForKey:(id)key {
+    return (NSMutableArray *)[self objectForKey:key];
+}
+
 - (NSDictionary *)dictionaryForKey:(id)key {
     return (NSDictionary *)[self objectForKey:key];
+}
+
+- (NSMutableDictionary *)mutableDictionaryForKey:(id)key {
+    return (NSMutableDictionary *)[self objectForKey:key];
 }
 
 - (NSData *)dataForKey:(id)key {
@@ -60,5 +76,14 @@
     [[self mutableStringForKey:key] appendString:string];
 }
 
+- (NSDictionary *)dictionaryWithLowercaseKeys {
+	NSMutableDictionary *newDictionary = [NSMutableDictionary dictionaryWithCapacity:[self count]];
+	for (id key in self) {
+		if ([key respondsToSelector:@selector(lowercaseString)]) {
+			[newDictionary setObject:[self objectForKey:key] forKey:[key lowercaseString]];
+		}
+	}
+	return newDictionary;
+}
 
 @end

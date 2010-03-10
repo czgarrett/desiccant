@@ -149,6 +149,61 @@
 }
 
 - (void)showAlertWithTitle: (NSString *)title message:(NSString *)message
+- (CGRect)fullScreenViewBounds {
+	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+	CGFloat width = appFrame.size.height;
+	CGFloat height = appFrame.size.width;
+	if (self.navigationController.navigationBar && !self.navigationController.isNavigationBarHidden) {
+		height -= self.navigationController.navigationBar.bounds.size.height;
+	}
+	if (self.navigationController.toolbar && !self.navigationController.toolbarHidden) {
+		height -= self.navigationController.toolbar.bounds.size.height;
+	}
+	if (self.tabBarController) {
+		height -= self.tabBarController.tabBar.bounds.size.height;
+	}
+		
+	return CGRectMake(0.0, 0.0, width, height);
+}
+
+- (UIViewController *)foregroundViewController {
+	if ([self isKindOfClass:UITabBarController.class]) {
+		if ([[(UITabBarController *)self selectedViewController] isKindOfClass:UINavigationController.class]) {
+			return [(UINavigationController *)[(UITabBarController *)self selectedViewController] topViewController];
+		}
+		else {
+			return [(UITabBarController *)self selectedViewController];
+		}
+	}
+	else if (self.tabBarController) {
+		return self.tabBarController.foregroundViewController;
+	}
+	else if ([self isKindOfClass:UINavigationController.class]) {
+		return [(UINavigationController *)self topViewController];
+	}
+	else if (self.navigationController) {
+		return self.navigationController.foregroundViewController;
+	}
+	else {
+		return self;
+	}
+}
+
+- (UIViewController *)previousControllerInNavigationStack {
+	NSArray* viewControllers = self.navigationController.viewControllers;
+	if (viewControllers.count > 1) {
+		NSUInteger index = [viewControllers indexOfObject:self];
+		if (index != NSNotFound && index > 0) {
+			return [viewControllers objectAtIndex:index-1];
+		}
+	}
+	
+	return nil;	
+}
+
+#pragma mark Alerts 
+
+- (void)errorAlertTitle: (NSString *)title message:(NSString *)message
 {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
 												 message: message
@@ -157,7 +212,37 @@
 												 otherButtonTitles: nil];
 	[alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
 	[alert autorelease];												
+	[self alertWithTitle:title message:message];
 }
 
+- (void)alertWithTitle: (NSString *)title message: (NSString *)message {
+   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
+                                                   message: message
+                                                  delegate: nil 
+                                         cancelButtonTitle: @"Ok" 
+                                         otherButtonTitles: nil];
+   [alert show];
+   [alert autorelease];   
+}
+
+- (void)confirmationWithTitle: (NSString *)title message: (NSString *)message {
+   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
+                                                   message: message
+                                                  delegate: self 
+                                         cancelButtonTitle: @"Cancel" 
+                                         otherButtonTitles: @"Ok", nil];
+   [alert show];
+   [alert autorelease];   
+}
+
+- (void)willPopOffOfNavigationStack {}
+- (void)controllerWillPopOffOfNavigationStack:(UIViewController *)topViewController {}
+- (void)didPopOffOfNavigationStack {}
+- (void)controllerDidPopOffOfNavigationStack:(UIViewController *)topViewController {}
+
+- (void)willGetPushedOntoNavigationStack {}
+- (void)controllerWillGetPushedOntoNavigationStack:(UIViewController *)topViewController {}
+- (void)didGetPushedOntoNavigationStack {}
+- (void)controllerDidGetPushedOntoNavigationStack:(UIViewController *)topViewController {}
 
 @end

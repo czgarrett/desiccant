@@ -1,17 +1,12 @@
-//
-//  ACListTableViewController.m
-//  ZWorkbench
-//
-//  Created by Christopher Garrett on 8/30/08.
-//  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
-//
 
 #import "ACTableViewController.h"
 #import "SelectableTableItem.h"
 #import "Constants.h"
 #import "UINavigationController+Zest.h"
-#include <AudioToolbox/AudioToolbox.h>
-#include <CoreFoundation/CoreFoundation.h>
+#import "UITableViewCellFixed.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <CoreFoundation/CoreFoundation.h>
+#import "Zest.h"
 
 @implementation ACTableViewController
 
@@ -94,7 +89,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {
    [super setEditing:editing animated:animated];
    // Calculate the index paths for all of the placeholder rows based on the number of items in each section.
-   NSMutableArray *indexPaths = [[NSMutableArray alloc] init] ;
+   NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
    NSInteger sectionIndex;
    NSInteger newRow;
    for (sectionIndex=0; sectionIndex < [items count]; sectionIndex++) {
@@ -114,6 +109,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
       [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
    }
    [self.tableView endUpdates];
+   [indexPaths release];
 }
 
 // Returns text to be placed in an add item cell.  
@@ -206,44 +202,34 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
    return nil;
 }
 
+- (UIFont *) cellDetailTextLabelFont {
+   return [UIFont fontWithName: @"Helvetica" size: 14.0];
+}
+
+- (UIFont *) cellTextLabelFont {
+   return [UIFont boldSystemFontOfSize: 18.0];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *MyIdentifier = @"MyIdentifier";
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
-#ifndef __IPHONE_3_0
-        cell.hidesAccessoryWhenEditing = NO;
-#endif
-		[self configureCell:cell];
-	}
-   NSArray *content = [self itemsInSection: indexPath.section];
-   if (content && indexPath.row < [content count]) {
-      // Configure the cell
-      NSObject *cellItem = [self itemForIndexPath: indexPath];
-      if ([cellItem isKindOfClass: [SelectableTableItem class]]) {
+	UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+	if (theCell == nil) {
 #ifdef __IPHONE_3_0
-         cell.imageView.image = [UIImage imageNamed: [(SelectableTableItem *)cellItem iconName]];
+		theCell = [[[UITableViewCellFixed alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier] autorelease];
+		theCell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+		theCell.detailTextLabel.numberOfLines = 0;
+		theCell.detailTextLabel.font = [self cellDetailTextLabelFont];
+		theCell.textLabel.font = [self cellTextLabelFont];
+		theCell.textLabel.numberOfLines = 1;
+		theCell.textLabel.adjustsFontSizeToFitWidth = YES;
 #else
-          cell.image = [UIImage imageNamed: [(SelectableTableItem *)cellItem iconName]];
+		theCell = [[[UITableViewCellFixed alloc] initWithFrame:CGRectNull reuseIdentifier:MyIdentifier] autorelease];
 #endif
-      }
-
-#ifdef __IPHONE_3_0  
-      cell.textLabel.text = [cellItem description];
-#else
-      cell.text = [cellItem description];
-#endif
-      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		[self populateCell:cell forRowAtIndexPath:indexPath];
-   } else {
-#ifdef __IPHONE_3_0  
-      cell.textLabel.text = [self addTextForSection: indexPath.section];
-#else
-      cell.text = [self addTextForSection: indexPath.section];
-#endif
-   }
-   return cell;
+		[self configureCell:theCell];
+	}
+   [self populateCell: theCell forRowAtIndexPath: indexPath];
+   return theCell;
 }
 
 #pragma mark Table Cell Methods
@@ -254,14 +240,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 // Subclasses can implement this method to perform row-specific customization of the cell
-- (void)populateCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)populateCell:(UITableViewCell *)theCell forRowAtIndexPath:(NSIndexPath *)indexPath {
+   NSArray *content = [self itemsInSection: indexPath.section];
+   if (content && indexPath.row < [content count]) {
+      // Configure the cell
+#ifdef __IPHONE_3_0
+      NSObject *cellItem = [self itemForIndexPath: indexPath];
+      if ([cellItem isKindOfClass: [SelectableTableItem class]]) {
+         theCell.imageView.image = [UIImage imageNamed: [(SelectableTableItem *)cellItem iconName]];
+      }
+      theCell.textLabel.text = [cellItem description];
+      theCell.detailTextLabel.text = [cellItem detailDescription];
+      theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+   } else {
+      theCell.textLabel.text = [self addTextForSection: indexPath.section];
+      theCell.detailTextLabel.text = nil;
+#endif
+   }
 }
 
 // The accessory view is on the right side of each cell. We'll use a "disclosure" indicator in editing mode,
 // to indicate to the user that selecting the row will navigate to a new view where details can be edited.
+/*
 - (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath {
    return (self.editing) ? UITableViewCellAccessoryDetailDisclosureButton : UITableViewCellAccessoryDisclosureIndicator;
-}
+}*/
 
 // The editing style for a row is the kind of button displayed to the left of the cell when in editing mode.
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -320,17 +324,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
    [self.tableView reloadData];
 	[super viewWillAppear:animated];
 }
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-}
-
 
 #pragma mark Memory Management
 

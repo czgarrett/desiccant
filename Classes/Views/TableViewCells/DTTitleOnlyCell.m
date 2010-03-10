@@ -20,6 +20,9 @@
 // Subclasses can override this to set fields given an untyped data object
 - (void)setData:(NSDictionary *)data {
     self.title.text = [data stringForKey:@"title"];
+	if ([self hasDynamicHeight]) {
+		[self adjustHeightForLabel:self.title];
+	}
 }
 
 

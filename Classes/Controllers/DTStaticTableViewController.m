@@ -14,111 +14,101 @@
 @property (nonatomic, retain) NSMutableArray *sectionTitles;
 - (NSMutableArray *)currentSection;
 - (DTTableViewRow *)tableView:(UITableView *)tableView rowAtIndexPath:(NSIndexPath *)indexPath;
+- (DTCustomTableViewCell *)prototypeCellForNibNamed:(NSString *)nibName;
+- (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)reuseIdentifier;
+- (void)addRowWithCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *) rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector;
 @end
 
 @implementation DTStaticTableViewController
-@synthesize sections, sectionTitles;
+@synthesize sections, sectionTitles, prototypeCells;
 
 - (void)dealloc {
     self.sections = nil;
     self.sectionTitles = nil;
+	self.prototypeCells = nil;
     
     [super dealloc];
 }
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
+#pragma mark DTTableViewController methods
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
+	[super viewDidLoad];
     self.sections = [NSMutableArray arrayWithCapacity:16];
     self.sectionTitles = [NSMutableArray arrayWithCapacity:16];
+	self.prototypeCells = [NSMutableDictionary dictionaryWithCapacity:2];
 }
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-}
+//- (void)afterViewDidLoad:(UITableView *)theTableView {
+//	[super afterViewDidLoad:theTableView];
+//    self.sections = [NSMutableArray arrayWithCapacity:16];
+//    self.sectionTitles = [NSMutableArray arrayWithCapacity:16];
+//	self.prototypeCells = [NSMutableDictionary dictionaryWithCapacity:2];
+//}
 
 
-#pragma mark Table view methods
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	DTTableViewRow *row = [self tableView:tableView rowAtIndexPath:indexPath];
+    if (row.detailViewController) {
+		if (row.dataInjector) {
+			NSAssert ([row.detailViewController respondsToSelector:row.dataInjector], 
+					  @"Detail view controller doesn't respond to the selector provided as the data injector .");
+			NSAssert (row.dataDictionary, @"Selector provided for data injector, but no data provided.");
+			[row.detailViewController performSelector:row.dataInjector withObject:row.dataDictionary];
+		}
+        [[self navigationControllerToReceivePush] pushViewController:row.detailViewController animated:YES];
+    }
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	// TODO: Someday optimize this for tables without variable row height, and add support for tables with 
+	// variable height rows.
+	DTTableViewRow *row = [self tableView:tableView rowAtIndexPath:indexPath];
+	self.cell = row.cell;
+	if (!cell) {
+		self.cell = [self prototypeCellForNibNamed:row.nibName];
+	}
+	if (row && row.dataDictionary) {
+		[cell setData:row.dataDictionary];
+	}
+	return cell.bounds.size.height;
+}
+
+#pragma mark UITableViewDataSource methods
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	DTTableViewRow *row = [self tableView:tableView rowAtIndexPath:indexPath];
+	if (row.cell) {
+		return row.cell;
+	}
+	else {
+		NSAssert (row.nibName, @"A row must have a nib name if it doesn't have a dedicated cell.");
+		if (row.reuseIdentifier) {
+			self.cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
+			if (!cell) {
+				[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
+			}
+			[cell setData:row.dataDictionary];
+		}
+		else {
+			[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
+			[cell setData:row.dataDictionary];
+			row.cell = cell;
+		}
+		return cell;
+	}
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     NSAssert([self.sections count] > 0, @"No sections found for static table.  Make sure you're calling [super viewDidLoad] before adding rows in viewDidLoad.");
     return [self.sections count];
 }
 
-
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [(NSArray *)[self.sections objectAtIndex:section] count];
-}
-
-
-- (DTTableViewRow *)tableView:(UITableView *)tableView rowAtIndexPath:(NSIndexPath *)indexPath {
-    return (DTTableViewRow *)[(NSArray *)[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self tableView:tableView rowAtIndexPath:indexPath].cell;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self tableView:tableView cellForRowAtIndexPath:indexPath].bounds.size.height;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self tableView:tableView rowAtIndexPath:indexPath].detailViewController) {
-        [[self navigationControllerToReceivePush] pushViewController:[self tableView:tableView rowAtIndexPath:indexPath].detailViewController animated:YES];
-    }
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -129,6 +119,8 @@
         return nil;
     }
 }
+
+#pragma mark Public methods
 
 - (void)startSection {
     [self startSectionWithTitle:nil];
@@ -144,7 +136,29 @@
     }
 }
 
-- (void)addRowWithNibNamed:(NSString *)nibName data:(NSMutableDictionary *)rowData {
+- (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell {
+	[self addRowWithDedicatedCell:theCell data:nil];
+}
+
+- (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData {
+	[self addRowWithDedicatedCell:theCell data:rowData detailViewController:nil];
+}
+
+- (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController {
+	[self addRowWithDedicatedCell:theCell data:rowData detailViewController:detailViewController dataInjector:nil];
+}
+
+- (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector {
+	NSAssert (theCell.reuseIdentifier == nil, @"Dedicated cell must not have a reuse identifier");
+	if (rowData) [theCell setData:rowData];
+	[self addRowWithCell:theCell data:rowData detailViewController:detailViewController dataInjector:dataInjector];
+}
+
+- (void)addRowWithNibNamed:(NSString *)nibName {
+	[self addRowWithNibNamed:nibName data:nil];
+}
+
+- (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData {
     [self addRowWithNibNamed:nibName data:rowData detailViewController:nil];
 }
 
@@ -154,11 +168,54 @@
     [[self currentSection] addObject:[DTTableViewRow rowWithCell:tempCell detailViewController:detailViewController]];
 }
 
+- (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector {
+	DTCustomTableViewCell *prototype = [self prototypeCellForNibNamed:nibName];
+	[self addRowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:dataInjector reuseIdentifier:prototype.reuseIdentifier];
+}
+
+- (void)addRowsWithNibNamed:(NSString *)nibName dataArray:(NSArray *)rowDataArray {
+	[self addRowsWithNibNamed:nibName dataArray:rowDataArray detailViewController:nil dataInjector:nil];
+}
+
+- (void)addRowsWithNibNamed:(NSString *)nibName dataArray:(NSArray *)rowDataArray detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector {
+	DTCustomTableViewCell *prototype = [self prototypeCellForNibNamed:nibName];
+	for (NSDictionary *rowData in rowDataArray) {
+		[self addRowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:dataInjector reuseIdentifier:prototype.reuseIdentifier];
+	}	
+}
+
+
+
+#pragma mark Private methods
+
+- (DTTableViewRow *)tableView:(UITableView *)tableView rowAtIndexPath:(NSIndexPath *)indexPath {
+    return (DTTableViewRow *)[(NSArray *)[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+}
+
 - (NSMutableArray *)currentSection {
     if ([sections count] == 0) {
         [self startSectionWithTitle:@""];
     }
     return (NSMutableArray *)[sections lastObject];
+}
+
+- (void)addRowWithCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *) rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector {	
+    [[self currentSection] addObject:[DTTableViewRow rowWithCell:theCell data:rowData detailViewController:detailViewController dataInjector:theDataInjector]];
+}
+
+- (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)reuseIdentifier {
+	[[self currentSection] addObject:[DTTableViewRow rowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:theDataInjector reuseIdentifier:reuseIdentifier]];
+}
+
+- (DTCustomTableViewCell *)prototypeCellForNibNamed:(NSString *)nibName {
+	DTCustomTableViewCell *prototype = [prototypeCells valueForKey:nibName];
+	if (!prototype) {
+		[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
+		prototype = self.cell;
+		NSAssert (prototype, @"Nib didn't set the cell property.");
+		[prototypeCells setObject:prototype forKey:nibName];
+	}
+	return prototype;
 }
 
 @end

@@ -6,12 +6,16 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
-#import "DTAsyncQueryOperation.h"
+
+@class DTAsyncQueryOperation;
 
 @protocol DTAsyncQueryOperationDelegate
 
 - (void)operationWillStartLoading:(DTAsyncQueryOperation *)query;
 - (void)operationDidFinishLoading:(DTAsyncQueryOperation *)query;
 - (void)operationDidFailLoading:(DTAsyncQueryOperation *)query;
+- (void)operationDidCancelLoading:(DTAsyncQueryOperation *)query;
 
 @end
+
+#import "DTAsyncQueryOperation.h"
