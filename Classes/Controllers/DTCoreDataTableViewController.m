@@ -151,7 +151,7 @@
 
 #pragma mark Table Cell Stuff
 
-- (void)configureCell:(UITableViewCell *)myCell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(DTCustomTableViewCell *)myCell atIndexPath:(NSIndexPath *)indexPath {
    myCell.textLabel.text = @"Override configureCell:";
 }
 
@@ -159,19 +159,19 @@
    return UITableViewCellStyleDefault;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   NSString *cellIdentifier = [NSString stringWithFormat: @"%@CellIdentifier", self.entityName];
+   NSString *identifier = [NSString stringWithFormat: @"%@CellIdentifier", self.entityName];
    
-   UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+   UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:identifier];
    if (theCell == nil) {
-      theCell = [[[UITableViewCell alloc] initWithStyle: [self defaultCellStyle] reuseIdentifier: cellIdentifier] autorelease];
+      theCell = [[[UITableViewCell alloc] initWithStyle: [self defaultCellStyle] reuseIdentifier: identifier] autorelease];
 		theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
    }
-   [self configureCell: cell atIndexPath: indexPath];
+   [self configureCell: tempCell atIndexPath: indexPath];
    
    return theCell;
-}
+}*/
 
 
 #pragma mark Fetched results controller

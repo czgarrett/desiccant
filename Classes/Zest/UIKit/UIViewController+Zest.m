@@ -148,7 +148,6 @@
    [self showAlertWithTitle: @"Error" message: description];
 }
 
-- (void)showAlertWithTitle: (NSString *)title message:(NSString *)message
 - (CGRect)fullScreenViewBounds {
 	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
 	CGFloat width = appFrame.size.height;
@@ -233,6 +232,16 @@
                                          otherButtonTitles: @"Ok", nil];
    [alert show];
    [alert autorelease];   
+}
+
+- (void) showAlertWithTitle: (NSString *) title message: (NSString *) message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
+                                                 message: message
+                                                 delegate: nil 
+                                                 cancelButtonTitle: @"Ok" 
+                                                 otherButtonTitles: nil];
+    [alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
+    [alert autorelease];                                                
 }
 
 - (void)willPopOffOfNavigationStack {}

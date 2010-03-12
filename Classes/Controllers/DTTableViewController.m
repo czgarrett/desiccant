@@ -188,21 +188,21 @@
 
 - (void) showBusy: (BOOL) busy {
    [self prepareActivityIndicator];
-   if (activityIndicator) {
+   if (self.activityIndicator) {
       if (busy) {
-         [activityIndicator startAnimating];
+         [self.activityIndicator startAnimating];
       } else {
-         [activityIndicator stopAnimating];
+         [self.activityIndicator stopAnimating];
       }
    }
 }
 
 - (void)prepareActivityIndicator {
-   if (!activityIndicator) {
-      self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-      activityIndicator.hidesWhenStopped = YES;
-      activityIndicator.center = self.view.center;
-      [self.view addSubview:activityIndicator];
+   if (!dtActivityIndicator) {
+      dtActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+      dtActivityIndicator.hidesWhenStopped = YES;
+      dtActivityIndicator.center = self.view.center;
+      [self.view addSubview:dtActivityIndicator];
    }
 }
 

@@ -30,7 +30,6 @@
 @property (nonatomic, retain) IBOutlet DTCustomTableViewCell *tempCell;    
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UIView *footerView;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
 @property (nonatomic, retain) UIView *windowOverlay;
 @property (nonatomic) BOOL shouldAutorotateToPortrait;

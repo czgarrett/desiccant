@@ -102,7 +102,7 @@
 - (UITableViewCell *)prototypeMoreResultsCell {
 	if (moreResultsCellNibName && !dtPrototypeMoreResultsCell) {
 		[[NSBundle mainBundle] loadNibNamed:moreResultsCellNibName owner:self options:nil];
-		self.dtPrototypeMoreResultsCell = cell;
+		self.dtPrototypeMoreResultsCell = tempCell;
 	}
 	return dtPrototypeMoreResultsCell;
 }
@@ -133,11 +133,6 @@
 	newCell.textLabel.font = [UIFont boldSystemFontOfSize:17.0];
 	newCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	return newCell;
-}
-
-// Subclasses can implement this to display a detail view for the associated data
-- (UIViewController *)detailViewControllerFor:(NSMutableDictionary *)data {
-    return nil;
 }
 
 // Subclasses can implement this to stream audio or video from a URL for the associated data
@@ -209,28 +204,28 @@
         return [self headerRowForIndexPath:indexPath];
     }
 	else if ([self indexPathIsMoreResultsCell:indexPath]) {
-		cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:moreResultsCellIdentifier];
-		if (cell == nil) {
+		tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:moreResultsCellIdentifier];
+		if (tempCell == nil) {
 			if (moreResultsCellNibName) {
                 [[NSBundle mainBundle] loadNibNamed:moreResultsCellNibName owner:self options:nil];
-				NSAssert ([moreResultsCellNibName isEqual:cell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
-				self.moreResultsCellIdentifier = cell.reuseIdentifier;
+				NSAssert ([moreResultsCellNibName isEqual:tempCell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
+				self.moreResultsCellIdentifier = tempCell.reuseIdentifier;
 			}
 			else {
-				cell = [self constructMoreResultsCell];
+				tempCell = [self constructMoreResultsCell];
 				[self customizeMoreResultsCell];
 			}
-			[cell setData:[self.query cursorData]];
+			[tempCell setData:[self.query cursorData]];
 		}
-		return cell;
+		return tempCell;
 	}
     else {
         tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (tempCell == nil) {
             if (cellNibName) {
                 [[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil];
-                NSAssert ([cellNibName isEqual:cell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
-                self.cellIdentifier = cell.reuseIdentifier;
+                NSAssert ([cellNibName isEqual:tempCell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
+                self.cellIdentifier = tempCell.reuseIdentifier;
             }
             else {
                 tempCell = [self constructCell];
@@ -245,9 +240,7 @@
     }    
 }
 
-- (void)queryWillStartLoading:(DTAsyncQuery *)feed {
-    [self prepareActivityIndicator];
-    [activityIndicator startAnimating];
+
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -296,10 +289,11 @@
 
 #pragma mark DTAsyncQueryDelegate methods
 
-- (void)queryWillStartLoading:(DTAsyncQuery *)theQuery {
-//    [self prepareActivityIndicator];
-    [self.activityIndicator startAnimating];
+- (void)queryWillStartLoading:(DTAsyncQuery *)feed {
+   [self prepareActivityIndicator];
+   [self.activityIndicator startAnimating];
 }
+
 
 - (void)queryDidFinishLoading:(DTAsyncQuery *)theQuery {
     [self.activityIndicator stopAnimating];
@@ -343,6 +337,8 @@
 // Subclasses can implement this to display a detail view for the associated data
 - (UIViewController *)detailViewControllerFor:(NSMutableDictionary *)data {
     return nil;
+}
+
 - (NSInteger)lastSection {
 	return [self numberOfSections] - 1;
 }

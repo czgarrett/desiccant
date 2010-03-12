@@ -53,8 +53,6 @@
 // Returns a copy of self if its length length is shorter than the given length. 
 - (NSString *) stringTruncatedToLength: (NSInteger)length;
 
-@property (nonatomic, retain, readonly) NSString *to_resource_path;
-@property(readonly) BOOL empty;
 @property(readonly) BOOL vowel;
 @property(readonly) BOOL consonant;
 // Returns true if this string is the file extension of an image that can be handled by UIImage

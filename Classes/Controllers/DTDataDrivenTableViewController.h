@@ -13,7 +13,6 @@
 
 @interface DTDataDrivenTableViewController : DTCustomTableViewController <DTAsyncQueryDelegate, UIWebViewDelegate> {
     DTAsyncQuery * query;
-    NSUInteger headerRows;
     DTCustomTableViewCell *prototype;
 	UITableViewCell *dtPrototypeMoreResultsCell;
 //    UIActivityIndicatorView *activityIndicator;

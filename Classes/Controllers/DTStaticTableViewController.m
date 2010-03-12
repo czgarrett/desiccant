@@ -66,14 +66,14 @@
 	// TODO: Someday optimize this for tables without variable row height, and add support for tables with 
 	// variable height rows.
 	DTTableViewRow *row = [self tableView:tableView rowAtIndexPath:indexPath];
-	self.cell = row.cell;
-	if (!cell) {
-		self.cell = [self prototypeCellForNibNamed:row.nibName];
+	self.tempCell = row.cell;
+	if (!tempCell) {
+		self.tempCell = [self prototypeCellForNibNamed:row.nibName];
 	}
 	if (row && row.dataDictionary) {
-		[cell setData:row.dataDictionary];
+		[tempCell setData:row.dataDictionary];
 	}
-	return cell.bounds.size.height;
+	return tempCell.bounds.size.height;
 }
 
 #pragma mark UITableViewDataSource methods
@@ -86,18 +86,18 @@
 	else {
 		NSAssert (row.nibName, @"A row must have a nib name if it doesn't have a dedicated cell.");
 		if (row.reuseIdentifier) {
-			self.cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
-			if (!cell) {
+			self.tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
+			if (!tempCell) {
 				[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
 			}
-			[cell setData:row.dataDictionary];
+			[tempCell setData:row.dataDictionary];
 		}
 		else {
 			[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
-			[cell setData:row.dataDictionary];
-			row.cell = cell;
+			[tempCell setData:row.dataDictionary];
+			row.cell = tempCell;
 		}
-		return cell;
+		return tempCell;
 	}
 }
 
@@ -210,7 +210,7 @@
 	DTCustomTableViewCell *prototype = [prototypeCells valueForKey:nibName];
 	if (!prototype) {
 		[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
-		prototype = self.cell;
+		prototype = self.tempCell;
 		NSAssert (prototype, @"Nib didn't set the cell property.");
 		[prototypeCells setObject:prototype forKey:nibName];
 	}

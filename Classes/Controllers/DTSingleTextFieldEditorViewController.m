@@ -7,7 +7,7 @@
 //
 
 #import "DTSingleTextFieldEditorViewController.h"
-
+#import "DTTextEditorCell.h"
 
 @implementation DTSingleTextFieldEditorViewController
 
