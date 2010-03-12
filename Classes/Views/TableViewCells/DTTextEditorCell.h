@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DTCustomTableViewCell.h"
 
 @interface DTTextEditorCell : DTCustomTableViewCell {
    IBOutlet UITextField *textField;

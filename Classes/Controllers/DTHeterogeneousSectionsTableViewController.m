@@ -73,18 +73,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    NSString *cellIdentifier = [self cellIdentifierForIndexPath: indexPath];
-      self.tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-      if (self.tempCell == nil) {
+      self.cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+      if (self.cell == nil) {
          NSString *nibName = [self cellNibNameForIndexPath: indexPath];
          if (nibName) {
             [[NSBundle mainBundle] loadNibNamed: nibName owner:self options:nil];
-            [self setCellIdentifier: self.tempCell.reuseIdentifier forIndexPath: indexPath];
+            [self setCellIdentifier: self.cell.reuseIdentifier forIndexPath: indexPath];
          } else {
-            self.tempCell = [self constructCellForIndexPath: indexPath];
+            self.cell = [self constructCellForIndexPath: indexPath];
          }
       }
-      [self configureCell: self.tempCell atIndexPath: indexPath];
-      return self.tempCell;
+      [self configureCell: self.cell atIndexPath: indexPath];
+      return self.cell;
 }
 
 

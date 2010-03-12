@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
 #import "DTCompositeTableViewControllerMapping.h"
 
 @interface DTCompositeTableViewController : DTTableViewController {

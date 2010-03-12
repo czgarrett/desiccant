@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
+#import "DTAsyncQueryOperation.h"
 
 @interface DTPListQueryOperation : DTAsyncQueryOperation {
     NSString *fileName;

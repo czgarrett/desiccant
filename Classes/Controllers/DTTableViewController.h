@@ -14,7 +14,7 @@
 @interface DTTableViewController : UITableViewController <DTActsAsChildViewController> {
    IBOutlet UIView *headerView;
    IBOutlet UIView *footerView;
-   IBOutlet DTCustomTableViewCell *tempCell;
+   IBOutlet DTCustomTableViewCell *cell;
 	UIViewController *dtContainerViewController;
 	UIView *dtWindowOverlay;
 	BOOL shouldAutorotateToPortrait;
@@ -27,7 +27,7 @@
 
 // The .xib should set its File's Owner to DTTableViewController, and connect this cell outlet to its
 // custom UITableViewCell.
-@property (nonatomic, retain) IBOutlet DTCustomTableViewCell *tempCell;    
+@property (nonatomic, retain) IBOutlet DTCustomTableViewCell *cell;    
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UIView *footerView;
 

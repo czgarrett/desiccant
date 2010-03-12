@@ -7,7 +7,7 @@
 //
 
 #import "DTImageViewerLinkController.h"
-
+#import "Zest.h"
 
 @interface DTImageViewerLinkController()
 @end

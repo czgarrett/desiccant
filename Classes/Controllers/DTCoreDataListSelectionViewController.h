@@ -1,3 +1,5 @@
+#import <CoreData/CoreData.h>
+#import "DTCoreDataTableViewController.h"
 
 @class DTCoreDataListSelectionViewController;
 

@@ -8,7 +8,7 @@
 
 #ifdef __IPHONE_3_0
 #import "DTCoreDataApplicationDelegate.h"
-
+#import "Zest.h"
 
 @implementation DTCoreDataApplicationDelegate
 

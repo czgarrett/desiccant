@@ -11,10 +11,24 @@
 #import "DTTransformsUntypedData.h"
 #import "DTFiltersUntypedData.h"
 #import "DTGroupsUntypedData.h"
-#import "DTAsyncQueryDelegate.h"
 #import "DTSortsUntypedData.h"
 
-@protocol DTAsyncQueryDelegate;
+@class DTAsyncQuery;
+@protocol DTAsyncQueryDelegate
+
+- (void)queryDidFinishLoading:(DTAsyncQuery *)query;
+- (void)queryDidFailLoading:(DTAsyncQuery *)query;
+
+@optional
+- (void)queryWillStartLoading:(DTAsyncQuery *)query;
+- (void)queryDidCancelLoading:(DTAsyncQuery *)query;
+- (void)queryWillStartLoadingMoreResults:(DTAsyncQuery *)query;
+- (void)queryDidFinishLoadingMoreResults:(DTAsyncQuery *)query;
+- (void)queryDidCancelLoadingMoreResults:(DTAsyncQuery *)query;
+- (void)queryDidFailLoadingMoreResults:(DTAsyncQuery *)query;
+
+@end
+
 @protocol DTAsyncQueryOperationDelegate;
 
 @interface DTAsyncQuery : NSObject <DTAsyncQueryOperationDelegate, NSFastEnumeration, DTAsyncQueryDelegate> {
@@ -84,5 +98,3 @@
 @property (nonatomic, retain) DTAsyncQuery *moreResultsQuery;
 
 @end
-
-#import "DTAsyncQueryDelegate.h"

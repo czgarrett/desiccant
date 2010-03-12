@@ -16,11 +16,11 @@
 @end
 
 @implementation DTTableViewController
-@synthesize tempCell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
+@synthesize cell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
 
 #pragma mark Memory management
 - (void)dealloc {
-	self.tempCell = nil;
+	self.cell = nil;
 	self.dtContainerViewController = nil;
 	self.dtWindowOverlay = nil;
 	self.dtActivityIndicator = nil;

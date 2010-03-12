@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
 
 @protocol DTQueryBuilderCell
 @property (nonatomic, retain) IBOutlet UILabel *fieldLabel;

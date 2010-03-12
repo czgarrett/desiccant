@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
-
+#import "DTJSONQueryOperation.h"
 
 @interface DTGoogleAJAXSearchAPIQueryOperation : DTJSONQueryOperation {
 

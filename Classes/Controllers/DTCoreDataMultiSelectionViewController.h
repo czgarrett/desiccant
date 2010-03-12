@@ -1,3 +1,6 @@
+#import "DTCoreDataTableViewController.h"
+#import <CoreData/CoreData.h>
+
 @class DTCoreDataMultiSelectionViewController;
 
 @protocol DTCoreDataMultiSelectionViewControllerDelegate

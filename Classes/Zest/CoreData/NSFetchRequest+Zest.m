@@ -7,7 +7,7 @@
 //
 
 #import "NSFetchRequest+Zest.h"
-
+#import "Zest.h"
 
 @implementation NSFetchRequest (Zest)
 

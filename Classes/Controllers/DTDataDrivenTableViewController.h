@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "desiccant.h"
 #import "DTCustomTableViewController.h"
-#import "DTAsyncQueryDelegate.h"
+#import "DTAsyncQuery.h"
 
 @interface DTDataDrivenTableViewController : DTCustomTableViewController <DTAsyncQueryDelegate, UIWebViewDelegate> {
     DTAsyncQuery * query;

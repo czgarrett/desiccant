@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DTCustomTableViewCell.h"
+#import "DTTableViewController.h"
 
 @interface DTHeterogeneousSectionsTableViewController : DTTableViewController {
    NSArray *sectionNames;

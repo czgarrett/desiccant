@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
 #import "DTQueryBuilderDelegate.h"
+#import "DTTableViewController.h"
 
 @interface DTQueryBuilder : DTTableViewController <UITextFieldDelegate, UIPickerViewDelegate> {
 	NSObject <DTQueryBuilderDelegate> *queryBuilderDelegate;

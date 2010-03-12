@@ -8,6 +8,7 @@
 
 #import "DTMapViewController.h"
 #import "DTMapAnnotation.h"
+#import "Zest.h"
 
 static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 

@@ -7,7 +7,7 @@
 //
 
 #import "DTQueryBuilder.h"
-
+#import "Zest.h"
 
 @interface DTQueryBuilder()
 - (BOOL)presentsNewInputCellAtIndexPath:(NSIndexPath *)indexPath;

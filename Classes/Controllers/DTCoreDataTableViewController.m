@@ -1,14 +1,13 @@
 //
-//  DCManagedObjectListController.m
-//  WordTower
+//  DTCoreDataTableViewController.m
+//  ZWorkbench
 //
 //  Created by Christopher Garrett on 8/30/09.
 //  Copyright 2009 ZWorkbench, Inc.. All rights reserved.
 //
 
-#ifdef __IPHONE_3_0
 #import "DTCoreDataTableViewController.h"
-
+#import "Zest.h"
 
 @implementation DTCoreDataTableViewController
 
@@ -306,4 +305,3 @@
 
 
 @end
-#endif

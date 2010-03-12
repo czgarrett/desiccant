@@ -1,5 +1,5 @@
-#ifdef __IPHONE_3_0
-#import "desiccant_controllers.h"
+#import <CoreData/CoreData.h>
+#import "DTCustomTableViewController.h"
 
 #define DEFAULT_FETCH_LIMIT 100
 
@@ -10,7 +10,7 @@
    NSPredicate *defaultPredicate;
    NSString *entityName;
    NSString *sortAttribute;
-   BOOL ascending;   
+   BOOL ascending;
    NSInteger fetchLimit;
    BOOL firstFetchComplete;
    
@@ -49,4 +49,3 @@
 - (id) initWithEntityName: (NSString *) myEntityName sortAttribute: (NSString *) mySortAttribute;
 
 @end
-#endif

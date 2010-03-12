@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
 #import "DTPagedScrollViewDataSource.h"
 
 @protocol DTPagedScrollViewDataSource;

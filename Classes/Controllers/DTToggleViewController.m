@@ -7,6 +7,7 @@
 //
 
 #import "DTToggleViewController.h"
+#import "Zest.h"
 
 @interface DTToggleViewController()
 - (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;

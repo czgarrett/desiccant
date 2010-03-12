@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
-
+#import "ACWebLinkController.h"
 
 @interface DTImageViewerLinkController : NSObject <ACWebLinkController> {
     NSString *title;

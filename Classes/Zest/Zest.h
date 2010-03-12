@@ -61,3 +61,5 @@
 #define ifResponds(target, selector, expression) if ([target respondsToSelector:selector]) { expression; }
 // Can I get away with this?
 #define $(s) @selector(s)
+#define DTAbstractMethod NSAssert(0, @"Subclass must implement this abstract method"); [self doesNotRecognizeSelector:_cmd];
+

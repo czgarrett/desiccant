@@ -7,7 +7,7 @@
 //
 
 #import "DTURLDownload.h"
-
+#import "Zest.h"
 
 @interface DTURLDownload()
 @property (nonatomic, retain) NSURLConnection *connection;

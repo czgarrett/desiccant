@@ -9,7 +9,6 @@
 #ifdef __IPHONE_3_0
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "desiccant.h"
 
 
 @interface DTMapAnnotation : NSObject <MKAnnotation> {

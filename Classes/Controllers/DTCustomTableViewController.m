@@ -53,28 +53,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   UITableViewCell *cell = nil;
+   UITableViewCell *theCell = nil;
    if ([self indexPathIsHeader:indexPath]) {
-      cell = [self headerRowForIndexPath:indexPath];
+      theCell = [self headerRowForIndexPath:indexPath];
    } else {
       NSAssert(cellIdentifier != nil, @"Cell identifier has not been set.  Check yer code!");
-      tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-      if (tempCell == nil) {
+      cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+      if (cell == nil) {
          if (self.cellNibName) {
             [[NSBundle mainBundle] loadNibNamed:self.cellNibName owner:self options:nil];
-            self.cellIdentifier = tempCell.reuseIdentifier;
+            self.cellIdentifier = cell.reuseIdentifier;
             NSAssert(cellIdentifier != nil, @"Cell identifier must be set in Interface Builder when using cells this way.");
-            [tempCell retain];
+            [cell retain];
          } else {
-            self.tempCell = [self constructCell];
+            self.cell = [self constructCell];
             [self customizeCell];
          }
       } 
       indexPath = [self adjustIndexPathForHeaders:indexPath];
-      [self configureCell: tempCell atIndexPath: indexPath];
-      cell = tempCell;
+      [self configureCell: cell atIndexPath: indexPath];
+      theCell = cell;
    }    
-   return cell;
+   return theCell;
 }
 
 

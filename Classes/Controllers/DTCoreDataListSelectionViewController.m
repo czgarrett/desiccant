@@ -7,7 +7,7 @@
 //
 
 #import "DTCoreDataListSelectionViewController.h"
-
+#import "Zest.h"
 
 @implementation DTCoreDataListSelectionViewController
 
@@ -56,7 +56,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   UITableViewCell *cell = nil;
+   UITableViewCell *theCell = nil;
 
    NSArray *sections = [self.fetchedResultsController sections];
    NSInteger rowCount = 0;
@@ -66,19 +66,19 @@
    }
 		
       if (indexPath.row < rowCount) {
-         cell = [super tableView: tableView cellForRowAtIndexPath: indexPath];
+         theCell = [super tableView: tableView cellForRowAtIndexPath: indexPath];
       } else {
          // If the row is outside the range, it's the row that was added to allow insertion (see tableView:numberOfRowsInSection:) so give it an appropriate label.
 			static NSString *AddCellIdentifier = @"AddItemCell";
 			
-			cell = [tableView dequeueReusableCellWithIdentifier:AddCellIdentifier];
-			if (cell == nil) {
-				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AddCellIdentifier] autorelease];
-				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			theCell = [tableView dequeueReusableCellWithIdentifier:AddCellIdentifier];
+			if (theCell == nil) {
+				theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:AddCellIdentifier] autorelease];
+				theCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			}
-         cell.textLabel.text = [NSString stringWithFormat: @"Add %@", self.entityName];
+         theCell.textLabel.text = [NSString stringWithFormat: @"Add %@", self.entityName];
       }
-   return cell;
+   return theCell;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {

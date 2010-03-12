@@ -33,10 +33,10 @@
 #pragma mark DTTableViewController methods
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
     self.sections = [NSMutableArray arrayWithCapacity:16];
     self.sectionTitles = [NSMutableArray arrayWithCapacity:16];
 	self.prototypeCells = [NSMutableDictionary dictionaryWithCapacity:2];
+	[super viewDidLoad];
 }
 
 //- (void)afterViewDidLoad:(UITableView *)theTableView {
@@ -66,14 +66,14 @@
 	// TODO: Someday optimize this for tables without variable row height, and add support for tables with 
 	// variable height rows.
 	DTTableViewRow *row = [self tableView:tableView rowAtIndexPath:indexPath];
-	self.tempCell = row.cell;
-	if (!tempCell) {
-		self.tempCell = [self prototypeCellForNibNamed:row.nibName];
+	self.cell = row.cell;
+	if (!cell) {
+		self.cell = [self prototypeCellForNibNamed:row.nibName];
 	}
 	if (row && row.dataDictionary) {
-		[tempCell setData:row.dataDictionary];
+		[cell setData:row.dataDictionary];
 	}
-	return tempCell.bounds.size.height;
+	return cell.bounds.size.height;
 }
 
 #pragma mark UITableViewDataSource methods
@@ -86,23 +86,22 @@
 	else {
 		NSAssert (row.nibName, @"A row must have a nib name if it doesn't have a dedicated cell.");
 		if (row.reuseIdentifier) {
-			self.tempCell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
-			if (!tempCell) {
+			self.cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:row.reuseIdentifier];
+			if (!cell) {
 				[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
 			}
-			[tempCell setData:row.dataDictionary];
+			[cell setData:row.dataDictionary];
 		}
 		else {
 			[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
-			[tempCell setData:row.dataDictionary];
-			row.cell = tempCell;
+			[cell setData:row.dataDictionary];
+			row.cell = cell;
 		}
-		return tempCell;
+		return cell;
 	}
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSAssert([self.sections count] > 0, @"No sections found for static table.  Make sure you're calling [super viewDidLoad] before adding rows in viewDidLoad.");
     return [self.sections count];
 }
 
@@ -163,8 +162,9 @@
 
 - (void)addRowWithNibNamed:(NSString *)nibName data:(NSMutableDictionary *)rowData detailViewController:(UIViewController *)detailViewController {
     [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
-    [tempCell setData:rowData];
-    [[self currentSection] addObject:[DTTableViewRow rowWithCell:tempCell detailViewController:detailViewController]];
+    [cell setData:rowData];
+
+    [[self currentSection] addObject:[DTTableViewRow rowWithCell:cell data:nil detailViewController:detailViewController dataInjector:nil]];
 }
 
 - (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector {
@@ -210,7 +210,7 @@
 	DTCustomTableViewCell *prototype = [prototypeCells valueForKey:nibName];
 	if (!prototype) {
 		[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
-		prototype = self.tempCell;
+		prototype = self.cell;
 		NSAssert (prototype, @"Nib didn't set the cell property.");
 		[prototypeCells setObject:prototype forKey:nibName];
 	}

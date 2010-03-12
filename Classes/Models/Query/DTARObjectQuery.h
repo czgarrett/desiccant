@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
-
+#import "DTAsyncQuery.h"
 
 @interface DTARObjectQuery : DTAsyncQuery {
 	Class arObjectClass;

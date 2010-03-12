@@ -9,6 +9,7 @@
 #import "DTGoogleAJAXSearchAPIQuery.h"
 #import "DTGoogleAJAXSearchAPIQueryOperation.h"
 #import "DTGoogleAJAXSearchAPIParser.h"
+#import "Zest.h"
 
 @interface DTGoogleAJAXSearchAPIQuery()
 - (NSURL *)urlWithType:(NSString *)theType paramString:(NSString *)theParamString fragment:(NSString *)theQueryFragment startIndex:(NSInteger)theStartIndex;
