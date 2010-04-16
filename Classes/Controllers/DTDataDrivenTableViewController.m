@@ -21,7 +21,7 @@
 @end
 
 @implementation DTDataDrivenTableViewController
-@synthesize query, headerRows, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier;
+@synthesize query, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier;
 
 #pragma mark Memory management
 

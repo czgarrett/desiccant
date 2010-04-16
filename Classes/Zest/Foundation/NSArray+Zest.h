@@ -25,6 +25,8 @@
 - (NSArray *)inRandomOrder;
 
 - (NSArray *) arrayBySortingStrings;
+- (NSMutableArray *) shuffledArray;
+
 @property (readonly, getter=arrayBySortingStrings) NSArray *sortedStrings;
 @property (readonly) NSString *stringValue;
 
