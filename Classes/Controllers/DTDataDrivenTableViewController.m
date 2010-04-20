@@ -257,7 +257,6 @@
 				if (mediaURL) {
 					self.mediaWebView = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
 					mediaWebView.delegate = self;
-//					[self prepareActivityIndicator];
 					[self.activityIndicator startAnimating];
 					[mediaWebView loadRequest:mediaURL.to_request];
 				}
