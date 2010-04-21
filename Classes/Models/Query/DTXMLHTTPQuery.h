@@ -18,7 +18,11 @@
     DTXMLParser *parser;
 //    DTHTTPXMLQueryOperation *operation;
     NSString *method;
-    NSData *body;
+    NSMutableData *body;
+	NSDictionary *postParameters;
+	NSString *postFileKey;
+	NSData *postFileData;
+	NSString *postFilePath;	
 }
 
 - (id)initWithURL:(NSURL *)newURL delegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate parser:(DTXMLParser *)parser;
@@ -27,6 +31,10 @@
 @property (nonatomic, readonly, retain) NSURL *url;
 @property (nonatomic, readonly, retain) DTXMLParser *parser;
 @property (nonatomic, retain) NSString *method;
-@property (nonatomic, retain) NSData *body;
+@property (nonatomic, retain) NSMutableData *body;
+@property (nonatomic, retain) NSDictionary *postParameters;
+@property (nonatomic, retain) NSString *postFileKey;
+@property (nonatomic, retain) NSData *postFileData;
+@property (nonatomic, retain) NSString *postFilePath;
 
 @end

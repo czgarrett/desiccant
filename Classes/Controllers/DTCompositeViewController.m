@@ -7,7 +7,7 @@
 //
 
 #import "DTCompositeViewController.h"
-
+#import "Zest.h"
 
 @interface DTCompositeViewController()
 @property (nonatomic, retain) NSMutableSet *subviewControllers;
@@ -51,16 +51,19 @@
 	[super viewDidDisappear:animated];
 }
 
-
 #pragma mark Public methods
 
-- (void)addSubviewController:(DTViewController *)subviewController {
-	[self.subviewControllers addObject:subviewController];
-	subviewController.containerViewController = self;
+- (void)addSubviewController:(id <DTActsAsChildViewController>)subviewController {
+	unless ([self.subviewControllers containsObject:subviewController]) {
+		[self.subviewControllers addObject:subviewController];
+		[subviewController setContainerViewController:self];
+	}
 }
 
-- (void)removeSubviewController:(DTViewController *)subviewController {
-	subviewController.containerViewController = nil;
+- (void)removeSubviewController:(id <DTActsAsChildViewController>)subviewController {
+	if ([subviewController containerViewController] == self) {
+		[subviewController setContainerViewController:nil];
+	}
 	[self.subviewControllers removeObject:subviewController];
 }
 

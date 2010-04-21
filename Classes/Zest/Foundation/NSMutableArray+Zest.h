@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define $MA(...) [NSMutableArray arrayWithObjects: __VA_ARGS__, nil]
 
 @interface NSMutableArray ( Zest )
 

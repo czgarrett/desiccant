@@ -7,7 +7,7 @@
 //
 
 #import "UIView+Zest.h"
-
+#import "UIColor+Zest.h"
 
 @implementation UIView (Zest)
 
@@ -33,6 +33,71 @@
 	if (self.superview == nil) return nil;
 	else if ([self.superview isKindOfClass:ancestorClass]) return self.superview;
 	else return [self.superview ancestorWithClass:ancestorClass];
+}
+
+- (CGFloat)height {
+	return self.frame.size.height;
+}
+
+- (void)setHeight:(CGFloat)theHeight {
+	CGRect myFrame = self.frame;
+	myFrame.size.height = theHeight;
+	self.frame = myFrame;
+}
+
+- (CGFloat)width {
+	return self.frame.size.width;
+}
+
+- (void)setWidth:(CGFloat)theWidth {
+	CGRect myFrame = self.frame;
+	myFrame.size.width = theWidth;
+	self.frame = myFrame;
+}
+
+- (CGFloat)x {
+	return self.frame.origin.x;
+}
+
+- (void)setX:(CGFloat)theX {
+	CGRect myFrame = self.frame;
+	myFrame.origin.x = theX;
+	self.frame = myFrame;
+}
+
+- (CGFloat)y {
+	return self.frame.origin.y;
+}
+
+- (void)setY:(CGFloat)theY {
+	CGRect myFrame = self.frame;
+	myFrame.origin.y = theY;
+	self.frame = myFrame;
+}
+
+- (CGFloat)cornerRadius {
+	return self.layer.cornerRadius;
+}
+
+- (void)setCornerRadius:(CGFloat)radius {
+    self.layer.cornerRadius = radius;
+	if (radius > 0) self.layer.masksToBounds = YES;
+}
+
+- (CGFloat)borderWidth {
+	return self.layer.borderWidth;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth {
+	self.layer.borderWidth = borderWidth;
+}
+
+- (UIColor *)borderColor {
+	return [UIColor colorWithCGColor:self.layer.borderColor];
+}
+
+- (void)setBorderColor:(UIColor *)borderColor {
+	self.layer.borderColor = borderColor.CGColor;
 }
 
 @end

@@ -11,19 +11,26 @@
 
 @implementation ACAboutViewController
 
-@synthesize webView;
+@synthesize webView, warnBeforeExit, requestedURL;
+
+- (void)dealloc {
+	self.webView.delegate = nil;
+	self.webView = nil;
+	self.requestedURL = nil;
+	[super dealloc];
+}
 
 - (id) init {
-   if (self = [super init]) {
-      self.tabBarItem = [UITabBarItem itemNamed: @"About"];      
-   }
-   return self;
+	if (self = [super init]) {
+		self.tabBarItem = [UITabBarItem itemNamed: @"About"];
+		self.warnBeforeExit = NO;
+	}
+	return self;
 }
 
 - (void) viewWillAppear: (BOOL) animated {
-   
-   [super viewWillAppear: animated];
-   [self reloadWebView];
+	[super viewWillAppear: animated];
+	[self reloadWebView];
 }
 
 - (void) loadView {
@@ -34,26 +41,53 @@
 }
 
 - (void) reloadWebView {
-   NSStringEncoding encoding;
-   NSError *error;
-   NSString *fileContents = [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"About" ofType: @"html"] usedEncoding:&encoding error:&error];
+	NSStringEncoding encoding;
+	NSError *error;
+	NSString *fileContents = [NSString stringWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"About" ofType: @"html"] usedEncoding:&encoding error:&error];
 	[webView loadHTMLString: fileContents baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource: @"About" ofType: @"html"]]];   
-}
-
-- (void)dealloc {
-   self.webView.delegate = nil;
-   self.webView = nil;
-   [super dealloc];
 }
 
 #pragma mark UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	if (navigationType == 5 || [[request URL] isFileURL])
+	self.requestedURL = [request URL];
+    if (![requestedURL isFileURL] &&
+		(navigationType == UIWebViewNavigationTypeLinkClicked ||
+        navigationType == UIWebViewNavigationTypeFormSubmitted)) {
+		if (self.warnBeforeExit && [[requestedURL scheme] isEqual:@"http"]) {
+			UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"External link" 
+																 message:@"Exit the app and open this link in Safari?" 
+																delegate:self 
+													   cancelButtonTitle:@"Cancel" 
+													   otherButtonTitles:@"OK", nil] autorelease];
+			[alertView show];
+		}
+		else if (self.warnBeforeExit && [[requestedURL scheme] isEqual:@"mailto"]) {
+			UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"External link" 
+																 message:@"Exit the app compose an email to this address?" 
+																delegate:self 
+													   cancelButtonTitle:@"Cancel" 
+													   otherButtonTitles:@"OK", nil] autorelease];
+			[alertView show];
+		}
+		else{
+			[[UIApplication sharedApplication] openURL:[request URL]];
+		}
+        return NO;
+    }
+	else {
 		return YES;
-	
-	[[UIApplication sharedApplication] openURL:[request URL]]; 
-	return NO;
+	}
+
 }
+
+#pragma mark UIAlertViewDelegate methods
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 1) { // "OK"
+		[[UIApplication sharedApplication] openURL:requestedURL];
+	}
+}
+
 
 @end

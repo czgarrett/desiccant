@@ -17,9 +17,9 @@
 
 // Call this in viewDidLoad or before to add view controllers for any subviews so that they will receive
 // viewDid/WillAppear/Disappear messages.
-- (void)addSubviewController:(DTViewController *)subviewController;
+- (void)addSubviewController:(id <DTActsAsChildViewController>)subviewController;
 
 // Call this to remove the subviewController when you remove its view from its superview
-- (void)removeSubviewController:(DTViewController *)subviewController;
+- (void)removeSubviewController:(id <DTActsAsChildViewController>)subviewController;
 
 @end

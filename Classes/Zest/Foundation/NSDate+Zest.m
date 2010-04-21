@@ -32,6 +32,14 @@
     return self;
 }
 
+- (NSString *)stringWithDateFormat:(NSString *)format {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.dateFormat = format;
+	NSString *formattedDate = [formatter stringFromDate:self];
+	[formatter release];
+	return formattedDate;
+}
+
 - (NSString *)shortAgeString {
     NSTimeInterval age = -[self timeIntervalSinceNow];
     

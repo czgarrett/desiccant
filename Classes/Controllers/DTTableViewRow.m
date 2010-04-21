@@ -33,6 +33,7 @@
 		self.detailViewController = theDetailViewController;
 		self.dataInjector = theDataInjector;
 		self.reuseIdentifier = theReuseIdentifier;
+		if (cell && dataDictionary) [cell setData:dataDictionary];
 	}
 	return self;
 }

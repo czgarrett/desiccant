@@ -17,14 +17,23 @@
 	NSURL *url;
 	NSObject <DTResultObjectParser> *parser;
 	NSString *method;
-	NSData *body;
+	NSMutableData *body;
+	NSDictionary *postParameters;
+	NSString *postFileKey;
+	NSData *postFileData;
+	NSString *postFilePath;
 //	DTHTTPQueryOperation *operation;	
 }
 
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSObject <DTResultObjectParser> *parser;
 @property (nonatomic, retain) NSString *method;
-@property (nonatomic, retain) NSData *body;
+@property (nonatomic, retain) NSMutableData *body;
+@property (nonatomic, retain) NSDictionary *postParameters;
+@property (nonatomic, retain) NSString *postFileKey;
+@property (nonatomic, retain) NSData *postFileData;
+@property (nonatomic, retain) NSString *postFilePath;
+
 //@property (nonatomic, retain) DTHTTPQueryOperation *operation;	
 
 - (id)initWithURL:(NSURL *)newURL queryDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)parser;

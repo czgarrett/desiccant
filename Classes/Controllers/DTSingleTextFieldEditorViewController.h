@@ -1,6 +1,4 @@
-
-#import "desiccant_controllers.h"
-#import "desiccant_views.h"
+#import "DTCustomTableViewController.h"
 
 @class DTSingleTextFieldEditorViewController;
 
@@ -9,7 +7,6 @@
 - (void) editsWereSavedInSingleTextFieldEditor: (DTSingleTextFieldEditorViewController *) editor;
 
 @end
-
 
 @interface DTSingleTextFieldEditorViewController : DTCustomTableViewController <UITextFieldDelegate> {
    IBOutlet UITextField *textField;

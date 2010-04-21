@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#define $A(...) [NSArray arrayWithObjects: __VA_ARGS__, nil]
 
 @interface NSArray ( Zest )
 
 - (NSString *)stringAtIndex:(NSUInteger)index;
 - (NSDictionary *) dictionaryAtIndex:(NSUInteger)index;
+- (NSArray *) arrayAtIndex:(NSUInteger)index;
+- (NSMutableArray *)mutableArrayAtIndex:(NSUInteger)index;
+
 - (NSArray *) arrayByRemovingObject: (id) object;
 
 - (NSMutableArray *) collectWithSelector: (SEL) selector;
@@ -44,6 +48,10 @@
 - (NSArray *) reject: (SEL) selector withObject: (id) object1 withObject: (id) object2;
 - (NSArray *) reject: (SEL) selector withObject: (id) object1;
 - (NSArray *) reject: (SEL) selector;
+
+- (void)perform:(SEL)selector;
+- (void)perform:(SEL)selector withObject:(id)p1;
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2;
 
 @end
 

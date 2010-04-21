@@ -82,6 +82,9 @@
 
 - (BOOL)webView:(UIWebView *)specifiedWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     BOOL continueProcessing = YES;
+	if ([request.URL.absoluteString isEqual:@"app://loaded"]) {
+		[self webViewIsReadyForJavascript:specifiedWebView];
+	}
     for (int i=0; i < [self.linkControllerChain count]; i++) {
         if ([(id <ACWebLinkController>)[self.linkControllerChain objectAtIndex:i] canHandleRequest:request navigationType:navigationType]) {
             continueProcessing = continueProcessing && [(id <ACWebLinkController>)[self.linkControllerChain objectAtIndex:i] handleRequest:request navigationType:navigationType];
@@ -95,19 +98,31 @@
     [self.linkControllerChain addObject:controller];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)loadingWebView {
-    [DTSpinner show];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)loadingWebView {
-    [DTSpinner hide];
+- (void)webViewIsReadyForJavascript:(UIWebView *)loadedWebView {
     if (javascriptOnLoad) {
         [self.webView stringByEvaluatingJavaScriptFromString:javascriptOnLoad];
     }
 }
 
+- (void)webViewDidStartLoad:(UIWebView *)loadingWebView {
+	if (loadingWebView.request && ![loadingWebView.request.URL isFileURL]) {
+		[DTSpinner show];
+		spinning = YES;
+	}
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)loadingWebView {
+	if (spinning) {
+		[DTSpinner hide];
+		spinning = NO;
+	}
+}
+
 - (void)webView:(UIWebView *)loadingWebView didFailLoadWithError:(NSError *)error {
-    [DTSpinner hide];
+	if (spinning) {
+		[DTSpinner hide];
+		spinning = NO;
+	}
 }
 
 - (NSMutableArray *)linkControllerChain {

@@ -21,7 +21,7 @@
 }
 
 // Subclasses can implement this to display a detail view for the associated data
-- (UIViewController *)detailViewControllerFor:(NSMutableDictionary *)data;
+- (UIViewController *)detailViewControllerFor:(NSDictionary *)data;
 // Subclasses can implement this to stream audio or video from a URL for the associated data
 - (NSURL *)mediaURLFor:(NSMutableDictionary *)data;
 // Subclasses can implement this to change the look & feel of any cell.  This is only called if cellNibName is not set. 
@@ -53,7 +53,7 @@
 - (NSIndexPath *)adjustIndexPathForHeaders:(NSIndexPath *)indexPath;
 
 @property (nonatomic, retain)  DTAsyncQuery * query;
-@property (nonatomic) NSUInteger headerRows;
+//@property (nonatomic) NSUInteger headerRows;
 //@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIWebView *mediaWebView;
 @property (nonatomic, retain) NSString *moreResultsCellNibName;

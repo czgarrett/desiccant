@@ -26,6 +26,7 @@
 																				   nestedParserDelegates:[[NSArray arrayWithObjects:
 																										  [DTXMLValueParserDelegate delegateWithElement:@"title"],
 																										  [DTXMLValueParserDelegate delegateWithElement:@"description"],
+																										   [DTXMLValueParserDelegate delegateWithKey:@"isoDate" element:@"dc:date"], // TODO: Figure out how to use the full namespace URL
 																										  [DTXMLValueParserDelegate delegateWithElement:@"link"],
 																										  [DTXMLValueParserDelegate delegateWithKey:@"pubDateString" element:@"pubDate"],
 																										  [DTXMLAttributeParserDelegate delegateWithKey:@"video_url" element:@"enclosure" attribute:@"url" matchingAttributes:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:@"video/mp4", @"video/x-flv", @"video/x-mp4", @"video/quicktime", @"video/3gpp", @"video/mpeg", nil] forKey:@"type"]],

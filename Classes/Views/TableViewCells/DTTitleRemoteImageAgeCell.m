@@ -10,12 +10,12 @@
 #import "Zest.h"
 
 @implementation DTTitleRemoteImageAgeCell
-@synthesize title, age, imageView;
+@synthesize title, age;//, imageView;
 
 - (void)dealloc {
     self.title = nil;
     self.age = nil;
-    self.imageView = nil;
+//    self.imageView = nil;
     
     [super dealloc];
 }
@@ -24,7 +24,8 @@
 - (void)setData:(NSDictionary *)data {
     self.title.text = [data stringForKey:@"title"];
     self.age.text = [[data dateForKey:@"pubDate"] shortAgeString];
-    [self.imageView loadFromURL:[data stringForKey:@"image_url"].to_url];
+	NSAssert ([self.imageView isKindOfClass:DTImageView.class], @"imageView must be a DTImageView when used with DTTitleRemoteImageAgeCell");
+    [(DTImageView *)self.imageView loadFromURL:[data stringForKey:@"image_url"].to_url];
 }
 
 @end

@@ -7,13 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DTActivityIndicatorView.h"
 
 @interface DTTabBarController : UITabBarController <UITabBarControllerDelegate> {
 	id <UITabBarControllerDelegate> secondaryDelegate;
 	BOOL persistSelectedIndex;
+	BOOL shouldFadeDefaultPNG;
+	UIView *dtWindowOverlay;
+	DTActivityIndicatorView *dtActivityIndicator;
 }
 
 @property (nonatomic) BOOL persistSelectedIndex;
+@property (nonatomic) BOOL shouldFadeDefaultPNG;
+@property (nonatomic, retain) UIView *windowOverlay;
+@property (nonatomic, retain, readonly) DTActivityIndicatorView *activityIndicator;
+
+- (void)fadeWindowOverlay;
 
 @end

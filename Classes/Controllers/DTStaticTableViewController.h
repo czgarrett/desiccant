@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTTableViewController.h"
+#import "DTCustomTableViewController.h"
 
-@interface DTStaticTableViewController : DTTableViewController {
+@interface DTStaticTableViewController : DTSetDataBasedTableViewController {
     NSMutableArray *sections;
     NSMutableArray *sectionTitles;
 	NSMutableDictionary *prototypeCells;
@@ -26,6 +26,16 @@
 // title.
 - (void)startSectionWithTitle:(NSString *)title;
 
+// Call this before one or more insertRow* calls if you want to inject a new section of rows.
+- (void)insertSectionAtIndex:(NSUInteger)index;
+
+// Call this before one or more insertRow* calls if you want to inject a new section of rows.
+// The section header will have the specified title.
+- (void)insertSectionAtIndex:(NSUInteger)index withTitle:(NSString *)title;
+
+// Removes the section with the specfied index, and all associated rows
+- (void)removeSectionWithIndex:(NSUInteger)index;
+
 // Adds a row with the specified dedicated cell.  theCell must NOT have a reuse identifier.
 - (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell;
 
@@ -40,6 +50,22 @@
 // Will inject data into detailViewController using dataInjector and then push it onto the nav stack when row is selected.
 // theCell must NOT have a reuse identifier.
 - (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector;
+
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell atIndexPath:(NSIndexPath *)indexPath;
+
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData atIndexPath:(NSIndexPath *)indexPath;
+
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController atIndexPath:(NSIndexPath *)indexPath;
+
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector atIndexPath:(NSIndexPath *)indexPath;
 
 // Adds a row with that will be constructed from the specified nib.  If the cell returned by the nib has a reuse identifier, 
 // reusable cells will be dequed from the tableView or constructed from the nib when requested.  If the cell has no reuse 
@@ -65,6 +91,22 @@
 // and then push it onto the nav stack when the row is selected. 
 - (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector;
 
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithNibNamed:(NSString *)nibName atIndexPath:(NSIndexPath *)indexPath;
+
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData atIndexPath:(NSIndexPath *)indexPath;
+
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController atIndexPath:(NSIndexPath *)indexPath;
+
+// Like its add... variant, except inserts the row at the given index path.
+// Doesn't update the view.  Use reloadTable or insertRowsAtIndexPaths on the tableView after this.
+- (void)insertRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector atIndexPath:(NSIndexPath *)indexPath;
+
 // Adds multiple rows that will be constructed from the specified nib, one for each element in rowDataArray.  If the cell 
 // returned by the nib has a reuse identifier, reusable cells will be dequed from the tableView or constructed from the nib 
 // and populated via setData: when these rows are requested.  If the cell has no reuse identifier, dedicated cells will be 
@@ -79,5 +121,11 @@
 // is selected.
 - (void)addRowsWithNibNamed:(NSString *)nibName dataArray:(NSArray *)rowDataArray detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector;
 
+// Removes the specfied row.
+- (void)removeRowWithIndexPath:(NSIndexPath *)indexPath;
+
+// Returns a cell from the specified nib.  Useful for getting a cell, customizing it, 
+// then passing it to addRowWithDedicatedCell:...
+- (id)cellWithNibNamed:(NSString *)nibName;
 
 @end

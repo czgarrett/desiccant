@@ -12,6 +12,7 @@
 
 #define nss(s) ((NSString *)(s))
 #define nssWithFormat(...) ((NSString *)[NSString stringWithFormat:__VA_ARGS__])
+#define $S(...) ((NSString *)[NSString stringWithFormat: __VA_ARGS__])
 
 @interface NSString ( Zest )
 
@@ -58,6 +59,8 @@
 // Returns true if this string is the file extension of an image that can be handled by UIImage
 - (BOOL) isImageExtension;
 - (BOOL) startsWith:(NSString *)prefix;
+- (BOOL)contains:(NSString *)substring;
+- (BOOL)containsRegex:(NSString *)regex;
 - (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set;
 - (BOOL)isEmpty;
 - (NSString *)stringByRemovingMarkupTags;
@@ -102,5 +105,9 @@
 //    Autoreleased NSString
 //
 - (NSString *)stringByUnescapingFromHTML;
+
+// Escapes the usual characters, plus legal URL characters.  Useful when
+// passing a URL as a GET parameter.
+- (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
 
 @end

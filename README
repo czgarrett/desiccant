@@ -1,0 +1,28 @@
+Desiccant
+Code Library for DRY iPhone Development
+Copyright 2010 ZWorkbench, Inc.
+
+See CHANGES for a list of recent changes
+
+Usage: 
+
+1. Add Classes to your project. 
+
+2. Add the following frameworks:
+
+	AudioToolbox.framework
+	CFNetwork.framework
+    CoreData.framework
+	CoreGraphics.framework
+	CoreLocation.framework
+	Foundation.framework
+	libicucore.dylib
+	libsqlite3.0.dylib 
+	libxml2.dylib
+	libz.1.2.3.dylib
+	MapKit.framework
+	MobileCoreServices.framework
+	QuartzCore.framework
+	Security.framework
+	SystemConfiguration.framework
+	UIKit.framework

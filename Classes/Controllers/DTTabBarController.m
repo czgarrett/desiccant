@@ -11,16 +11,20 @@
 
 @interface DTTabBarController()
 @property (nonatomic, assign) id <UITabBarControllerDelegate> secondaryDelegate;
+@property (nonatomic, retain) UIView *dtWindowOverlay;
+@property (nonatomic, retain) DTActivityIndicatorView *dtActivityIndicator;
 - (void)restorePersistedIndex;
 - (void)persistIndex:(NSInteger)theIndex;
 @end
 
 @implementation DTTabBarController
-@synthesize persistSelectedIndex, secondaryDelegate;
+@synthesize persistSelectedIndex, secondaryDelegate, shouldFadeDefaultPNG, dtWindowOverlay, dtActivityIndicator;
 
 - (void)dealloc {
 	self.secondaryDelegate = nil;
 	super.delegate = nil;
+	self.dtWindowOverlay = nil;
+	self.dtActivityIndicator = nil;
     [super dealloc];
 }
 
@@ -47,6 +51,44 @@
 	return self;
 }
 
+#pragma mark Public methods
+
+- (void)fadeWindowOverlay {
+	if (self.windowOverlay) {
+		[UIView beginAnimations:@"WindowOverlayFadeAnimation" context:nil];
+		[UIView setAnimationDuration:0.5];
+		[UIView setAnimationDelegate:self.windowOverlay];
+		[UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
+		self.windowOverlay.alpha = 0.0;
+		[UIView commitAnimations];
+	}
+}
+
+#pragma mark Dynamic properties
+
+- (void)setWindowOverlay:(UIView *)theView {
+	self.dtWindowOverlay = theView;
+	theView.center = [[UIScreen mainScreen] center];
+	[[[UIApplication sharedApplication] keyWindow] addSubview:theView];
+}
+
+- (UIView *)windowOverlay {
+	return self.dtWindowOverlay;
+}
+
+- (DTActivityIndicatorView *)activityIndicator {
+	unless (dtActivityIndicator) {
+		self.dtActivityIndicator = [[[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+		dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+	}
+	unless (dtActivityIndicator.superview) {
+		dtActivityIndicator.hidesWhenStopped = YES;
+		dtActivityIndicator.center = self.view.center;
+		[self.view.superview addSubview:dtActivityIndicator];
+	}
+	
+	return self.dtActivityIndicator;
+}
 
 #pragma mark UIViewController methods
 - (void)viewDidLoad {
@@ -54,6 +96,13 @@
 	super.delegate = self;
 	[super viewDidLoad];
 	if (persistSelectedIndex) [self restorePersistedIndex];
+	if (self.shouldFadeDefaultPNG) self.windowOverlay = [UIImageView defaultPNGView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	if (self.windowOverlay) [self.windowOverlay.superview bringSubviewToFront:self.windowOverlay];
+	[super viewDidAppear:animated];
+	if (self.shouldFadeDefaultPNG) [self fadeWindowOverlay];
 }
 
 #pragma mark UITabBarController methods

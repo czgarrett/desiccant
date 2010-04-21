@@ -19,7 +19,7 @@
 @implementation DTXMLHTTPQuery
 
 @synthesize 
-url, parser, method, body; //, operation;
+url, parser, method, body, postParameters, postFileKey, postFileData, postFilePath; //, operation;
 
 - (void)dealloc {
     self.url = nil;
@@ -27,6 +27,10 @@ url, parser, method, body; //, operation;
 //    self.operation = nil;
     self.method = nil;
     self.body = nil;
+	self.postParameters = nil;
+	self.postFileKey = nil;
+	self.postFileData = nil;
+	self.postFilePath = nil;
     
     [super dealloc];
 }
@@ -37,6 +41,9 @@ url, parser, method, body; //, operation;
         self.parser = newParser;
         self.method = @"GET";
         self.body = nil;
+		self.postFileKey = nil;
+		self.postFileData = nil;
+		self.postFilePath = nil;
     }
     return self;
 }
@@ -49,6 +56,10 @@ url, parser, method, body; //, operation;
     DTHTTPXMLQueryOperation *newOperation = [DTHTTPXMLQueryOperation queryWithURL:url delegate:self parser:parser];
     newOperation.method = method;
     newOperation.body = body;
+	newOperation.postParameters = postParameters;
+	newOperation.postFileKey = postFileKey;
+	newOperation.postFileData = postFileData;
+	newOperation.postFilePath = postFilePath;	
     return newOperation;
 }
 

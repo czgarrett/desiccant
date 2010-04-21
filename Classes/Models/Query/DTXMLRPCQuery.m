@@ -80,7 +80,7 @@
 @end
 @implementation NSData(xmlrpc)
 - (NSString *)to_xmlrpc_value {
-    return [NSString stringWithFormat:@"<value><base64>%@</base64></value>", [self base64EncodedString]];
+    return [NSString stringWithFormat:@"<value><base64>%@</base64></value>", [self base64EncodingWithLineLength:0]];
 }
 @end
 
@@ -95,7 +95,7 @@
 
 
 @interface DTXMLRPCQuery()
-- (NSData *)methodCallForName:(NSString *)methodName params:(NSArray *)params;
+- (NSMutableData *)methodCallForName:(NSString *)methodName params:(NSArray *)params;
 @property (nonatomic) NSInteger faultCode;
 @property (nonatomic, retain) NSString *faultString;
 @property (nonatomic, retain) NSString *valueType;
@@ -189,14 +189,14 @@
     return self;
 }
 
-- (NSData *)methodCallForName:(NSString *)methodName params:(NSArray *)params {
+- (NSMutableData *)methodCallForName:(NSString *)methodName params:(NSArray *)params {
     NSMutableString *bodyString = [NSMutableString stringWithFormat:@"<?xml version=\"1.0\"?>\n<methodCall><methodName>%@</methodName><params>", methodName];
     for (NSObject *param in params) {
         [bodyString appendFormat:@"  <param>%@</param>\n", param.to_xmlrpc_value];
     }
     [bodyString appendFormat:@"</params></methodCall>"];
     const char *bytes = [bodyString UTF8String];
-    return [NSData dataWithBytes:bytes length:strlen(bytes)];
+    return [NSMutableData dataWithBytes:bytes length:strlen(bytes)];
 }
 
 - (void)clearResponseFields {
@@ -256,7 +256,7 @@
 
 - (NSData *)dataValue:(NSDictionary *)value {
     if ([[self valueTypeFor:value] isEqual:@"base64"]) {
-        return [NSData dataFromBase64String:[self stringValue:value]];
+        return [NSData dataWithBase64EncodedString:[self stringValue:value]];
     }
     else {
         return nil;

@@ -94,6 +94,7 @@
    self.searchResultsContent = nil;
 }
 
+
 #pragma mark init/destroy
 
 - (id) initWithSearchBar: (UISearchBar *)mySearchBar contentsController: (UIViewController *)contentsController webView: (UIWebView *)myWebView {

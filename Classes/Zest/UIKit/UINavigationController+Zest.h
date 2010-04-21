@@ -11,7 +11,7 @@
 
 @interface UINavigationController (Zest)
 
-- (void) popToViewControllerWithClass: (Class) newClass animated: (BOOL)animated;
+- (NSArray *)popToViewControllerWithClass:(Class)searchClass animated:(BOOL)animated;
 - (UIViewController *) firstViewControllerWithClass: (Class) searchClass;
 - (void)showOrHideToolbarForViewController:(UIViewController *)controller;
 

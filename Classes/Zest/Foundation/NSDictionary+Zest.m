@@ -8,6 +8,7 @@
 
 #import "NSDictionary+Zest.h"
 #import "Zest.h"
+#import "NSString+Zest.h"
 
 @implementation NSDictionary(Zest)
 
@@ -18,6 +19,13 @@
 
 + (NSDictionary *)dictionaryWithTitle:(NSString *)titleValue {
 	return [NSDictionary dictionaryWithObject:titleValue forKey:@"title"];
+}
+
++ (NSDictionary *)dictionaryWithTitle:(NSString *)titleValue subtitle:(NSString *)subtitleValue {
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			titleValue, @"title",
+			subtitleValue, @"subtitle",
+			nil];
 }
 
 - (NSString *)stringForKey:(id)key {
@@ -38,6 +46,10 @@
 
 - (double)doubleForKey:(id)key {
     return [[self numberForKey:key] doubleValue];
+}
+
+- (BOOL)boolForKey:(id)key {
+	return [self integerForKey:key] == 1;
 }
 
 - (NSDate *)dateForKey:(id)key {
@@ -84,6 +96,38 @@
 		}
 	}
 	return newDictionary;
+}
+
+- (NSString *)toQueryString {
+	NSMutableString *queryString = [NSMutableString stringWithCapacity:128];
+	NSString *separator = @"";
+	for (NSString *key in self) {
+		[queryString appendString:separator];
+		[queryString appendFormat:@"%@=%@", key, [[self stringForKey:key] stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:NSUTF8StringEncoding]];
+		separator = @"&";
+	}
+	return queryString;
+}
+
++ (NSDictionary *)dictionaryWithKeysAndObjects:(id)firstKey, ... {
+	NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:4];
+	id key;
+	id value;
+	va_list argumentList;
+	if (firstKey)
+	{
+		key = firstKey;
+		va_start(argumentList, firstKey);
+		value = va_arg(argumentList, id);
+		if (value) {
+			[dictionary setObject:value forKey:key];
+		}
+		while ((key = va_arg(argumentList, id)) && (value = va_arg(argumentList, id))) {
+			[dictionary setObject:value forKey:key];
+		}
+		va_end(argumentList);
+	}
+	return dictionary;
 }
 
 @end

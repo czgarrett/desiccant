@@ -18,6 +18,10 @@
 	DTHTTPStructuredResponseQueryOperation *newOperation = [DTHTTPPListQueryOperation queryWithURL:url delegate:self resultObjectParser:parser];
 	newOperation.method = method;
 	newOperation.body = body;
+	newOperation.postParameters = postParameters;
+	newOperation.postFileKey = postFileKey;
+	newOperation.postFileData = postFileData;
+	newOperation.postFilePath = postFilePath;
 	return newOperation;
 }
 

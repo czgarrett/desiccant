@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "DTTableViewController.h"
+#import "DTSetDataBasedTableViewController.h"
 
-@interface DTCustomTableViewController : DTTableViewController {
+@interface DTCustomTableViewController : DTSetDataBasedTableViewController {
    NSString *cellNibName;    
    NSString *cellIdentifier;    
    NSUInteger headerRows;

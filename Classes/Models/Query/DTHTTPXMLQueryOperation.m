@@ -41,7 +41,7 @@
 	[parser reset];
 }
 - (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
-    [request setValue:value forHTTPHeaderField:field];
+    [request addRequestHeader:field value:value];
 } 
 
 - (BOOL)parseResponseData {

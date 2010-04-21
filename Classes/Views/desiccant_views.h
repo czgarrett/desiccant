@@ -8,6 +8,7 @@
 
 #import "DTCustomTableViewCell.h"
 #import "DTDatedEventCell.h"
+#import "DTTextEditorCell.h"
 #import "DTDescriptionCellWithImageView.h"
 #import "DTSpinner.h"
 #import "DTTitleOnlyCell.h"
@@ -23,3 +24,4 @@
 #import "DTTableViewProxy.h"
 #import "DTSlideshowView.h"
 #import "DTActivityIndicatorView.h"
+#import "DTButton.h"

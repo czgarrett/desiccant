@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
-
 
 @interface UITableView (Zest)
 - (NSInteger) numberOfRowsAcrossAllSections;

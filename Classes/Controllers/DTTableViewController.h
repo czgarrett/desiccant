@@ -20,9 +20,11 @@
 	BOOL shouldAutorotateToPortrait;
 	BOOL shouldAutorotateToLandscape;
 	BOOL shouldAutorotateUpsideDown;
+	BOOL hasAppeared;
 	DTActivityIndicatorView *dtActivityIndicator;
 }
 
+@property (nonatomic, assign) UIViewController *containerViewController;
 @property (nonatomic, retain) UITableViewController *containerTableViewController;
 
 // The .xib should set its File's Owner to DTTableViewController, and connect this cell outlet to its
@@ -35,7 +37,14 @@
 @property (nonatomic) BOOL shouldAutorotateToPortrait;
 @property (nonatomic) BOOL shouldAutorotateToLandscape;
 @property (nonatomic) BOOL shouldAutorotateUpsideDown;
+@property (nonatomic) BOOL hasAppeared;
 @property (nonatomic, retain, readonly) DTActivityIndicatorView *activityIndicator;
+
+// Called before the first viewWillAppear:
+- (void)viewWillFirstAppear:(BOOL)animated;
+
+// Called before the first viewDidAppear:
+- (void)viewDidFirstAppear:(BOOL)animated;
 
 - (void)fadeWindowOverlay;
 

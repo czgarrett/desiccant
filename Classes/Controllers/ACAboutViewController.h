@@ -10,11 +10,14 @@
 #import "DTViewController.h"
 
 @interface ACAboutViewController : DTViewController<UIWebViewDelegate> {
-   IBOutlet UIWebView *webView;
+	IBOutlet UIWebView *webView;
+	BOOL warnBeforeExit;
+	NSURL *requestedURL;
 }
 
 @property (nonatomic, retain) UIWebView *webView;
-
+@property (nonatomic) BOOL warnBeforeExit;
+@property (nonatomic, retain) NSURL *requestedURL;
 - (void) reloadWebView;
 
 @end

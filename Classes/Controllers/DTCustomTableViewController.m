@@ -7,6 +7,7 @@
 //
 
 #import "DTCustomTableViewController.h"
+#import "Zest.h"
 
 @interface DTCustomTableViewController()
 @end

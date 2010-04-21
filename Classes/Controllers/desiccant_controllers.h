@@ -8,9 +8,11 @@
 
 #import "DTWebViewController.h"
 #import "DTTableViewRow.h"
+#import "DTSetDataBasedTableViewController.h"
 #import "DTStaticTableViewController.h"
 #import "DTRemoteWebViewController.h"
 #import "DTLinkAwayExternalWebLinkController.h"
+#import "DTPlayMediaLinkController.h"
 #import "DTDataDrivenTableViewController.h"
 #import "DTCustomTableViewController.h"
 #import "DTHeterogeneousSectionsTableViewController.h"
@@ -59,4 +61,6 @@
 #import "DTNavigationController.h"
 #import "DTNavigationLinkController.h"
 #import "DTTabBarController.h"
+#import "DTAdViewController.h"
+#import "DTOpenXAdLoader.h"
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DTAsyncQueryOperation.h"
-
+#import "ASIFormDataRequest.h"
 
 @interface DTHTTPQueryOperation : DTAsyncQueryOperation {
 	NSURL *url;
@@ -16,15 +16,23 @@
 	NSData *responseData;
 	NSString *error;
 	NSString *method;
-	NSData *body;
-	NSMutableURLRequest *request;
+	NSMutableData *body;
+	NSDictionary *postParameters;
+	ASIFormDataRequest *request;
 	NSURLConnection *connection;
+	NSString *postFileKey;
+	NSData *postFileData;
+	NSString *postFilePath;
 }
 
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSString *error;
 @property (nonatomic, retain) NSString *method;
-@property (nonatomic, retain) NSData *body;
+@property (nonatomic, retain) NSMutableData *body;
+@property (nonatomic, retain) NSDictionary *postParameters;
+@property (nonatomic, retain) NSString *postFileKey;
+@property (nonatomic, retain) NSData *postFileData;
+@property (nonatomic, retain) NSString *postFilePath;
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate;
 + (id)queryOperationWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate;

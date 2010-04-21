@@ -8,6 +8,7 @@
 
 #import "DTStaticTableViewController.h"
 #import "DTTableViewRow.h"
+#import "Zest.h"
 
 @interface DTStaticTableViewController()
 @property (nonatomic, retain) NSMutableArray *sections;
@@ -15,8 +16,6 @@
 - (NSMutableArray *)currentSection;
 - (DTTableViewRow *)tableView:(UITableView *)tableView rowAtIndexPath:(NSIndexPath *)indexPath;
 - (DTCustomTableViewCell *)prototypeCellForNibNamed:(NSString *)nibName;
-- (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)reuseIdentifier;
-- (void)addRowWithCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *) rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector;
 @end
 
 @implementation DTStaticTableViewController
@@ -134,12 +133,31 @@
     }
 }
 
+- (void)insertSectionAtIndex:(NSUInteger)index {
+	[self insertSectionAtIndex:index withTitle:nil];
+}
+
+- (void)insertSectionAtIndex:(NSUInteger)index withTitle:(NSString *)title {
+    [sections insertObject:[NSMutableArray array] atIndex:index];
+    if (title) {
+        [sectionTitles insertObject:title atIndex:index];
+    }
+    else {
+        [sectionTitles insertObject:@"" atIndex:index];
+    }
+}
+
+- (void)removeSectionWithIndex:(NSUInteger)index {
+	[sections removeObjectAtIndex:index];
+	[sectionTitles removeObjectAtIndex:index];
+}
+
 - (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell {
-	[self addRowWithDedicatedCell:theCell data:nil];
+	[self addRowWithDedicatedCell:theCell data:nil detailViewController:nil dataInjector:nil];
 }
 
 - (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData {
-	[self addRowWithDedicatedCell:theCell data:rowData detailViewController:nil];
+	[self addRowWithDedicatedCell:theCell data:rowData detailViewController:nil dataInjector:nil];
 }
 
 - (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController {
@@ -148,28 +166,58 @@
 
 - (void)addRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector {
 	NSAssert (theCell.reuseIdentifier == nil, @"Dedicated cell must not have a reuse identifier");
-	if (rowData) [theCell setData:rowData];
-	[self addRowWithCell:theCell data:rowData detailViewController:detailViewController dataInjector:dataInjector];
+    [[self currentSection] addObject:[DTTableViewRow rowWithCell:theCell data:rowData detailViewController:detailViewController dataInjector:dataInjector]];
+}
+
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell atIndexPath:(NSIndexPath *)indexPath {
+	[self insertRowWithDedicatedCell:theCell data:nil detailViewController:nil dataInjector:nil atIndexPath:indexPath];
+}
+
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData  atIndexPath:(NSIndexPath *)indexPath {
+	[self insertRowWithDedicatedCell:theCell data:rowData detailViewController:nil dataInjector:nil atIndexPath:indexPath];
+}
+
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController atIndexPath:(NSIndexPath *)indexPath {
+	[self insertRowWithDedicatedCell:theCell data:rowData detailViewController:detailViewController dataInjector:nil atIndexPath:indexPath];
+}
+
+- (void)insertRowWithDedicatedCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector atIndexPath:(NSIndexPath *)indexPath {
+	NSAssert (theCell.reuseIdentifier == nil, @"Dedicated cell must not have a reuse identifier");
+    [[sections mutableArrayAtIndex:indexPath.section] insertObject:[DTTableViewRow rowWithCell:theCell data:rowData detailViewController:detailViewController dataInjector:dataInjector] atIndex:indexPath.row];
 }
 
 - (void)addRowWithNibNamed:(NSString *)nibName {
-	[self addRowWithNibNamed:nibName data:nil];
+	[self addRowWithNibNamed:nibName data:nil detailViewController:nil dataInjector:nil]; 
 }
 
 - (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData {
-    [self addRowWithNibNamed:nibName data:rowData detailViewController:nil];
+	[self addRowWithNibNamed:nibName data:rowData detailViewController:nil dataInjector:nil]; 
 }
 
-- (void)addRowWithNibNamed:(NSString *)nibName data:(NSMutableDictionary *)rowData detailViewController:(UIViewController *)detailViewController {
-    [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
-    [cell setData:rowData];
-
-    [[self currentSection] addObject:[DTTableViewRow rowWithCell:cell data:nil detailViewController:detailViewController dataInjector:nil]];
+- (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController {
+	[self addRowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:nil]; 
 }
 
 - (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector {
 	DTCustomTableViewCell *prototype = [self prototypeCellForNibNamed:nibName];
-	[self addRowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:dataInjector reuseIdentifier:prototype.reuseIdentifier];
+	[[self currentSection] addObject:[DTTableViewRow rowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:dataInjector reuseIdentifier:prototype.reuseIdentifier]];
+}
+
+- (void)insertRowWithNibNamed:(NSString *)nibName atIndexPath:(NSIndexPath *)indexPath {
+	[self insertRowWithNibNamed:nibName data:nil detailViewController:nil dataInjector:nil atIndexPath:indexPath];
+}
+
+- (void)insertRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData atIndexPath:(NSIndexPath *)indexPath {
+	[self insertRowWithNibNamed:nibName data:rowData detailViewController:nil dataInjector:nil atIndexPath:indexPath];
+}
+
+- (void)insertRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController atIndexPath:(NSIndexPath *)indexPath {
+	[self insertRowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:nil atIndexPath:indexPath];
+}
+
+- (void)insertRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector atIndexPath:(NSIndexPath *)indexPath {
+	DTCustomTableViewCell *prototype = [self prototypeCellForNibNamed:nibName];
+	[[sections mutableArrayAtIndex:indexPath.section] insertObject:[DTTableViewRow rowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:dataInjector reuseIdentifier:prototype.reuseIdentifier] atIndex:indexPath.row];
 }
 
 - (void)addRowsWithNibNamed:(NSString *)nibName dataArray:(NSArray *)rowDataArray {
@@ -179,11 +227,21 @@
 - (void)addRowsWithNibNamed:(NSString *)nibName dataArray:(NSArray *)rowDataArray detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)dataInjector {
 	DTCustomTableViewCell *prototype = [self prototypeCellForNibNamed:nibName];
 	for (NSDictionary *rowData in rowDataArray) {
-		[self addRowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:dataInjector reuseIdentifier:prototype.reuseIdentifier];
+		[[self currentSection] addObject:[DTTableViewRow rowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:dataInjector reuseIdentifier:prototype.reuseIdentifier]];
 	}	
 }
 
+- (void)removeRowWithIndexPath:(NSIndexPath *)indexPath {
+	NSAssert (indexPath.section < [sections count], @"Section index out of range");
+	NSMutableArray *section = [sections mutableArrayAtIndex:indexPath.section];
+	NSAssert (indexPath.row < [section count], @"Row index out of range");
+	[section removeObjectAtIndex:indexPath.row];
+}
 
+- (id)cellWithNibNamed:(NSString *)nibName {
+	[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
+	return cell;
+}
 
 #pragma mark Private methods
 
@@ -196,14 +254,6 @@
         [self startSectionWithTitle:@""];
     }
     return (NSMutableArray *)[sections lastObject];
-}
-
-- (void)addRowWithCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *) rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector {	
-    [[self currentSection] addObject:[DTTableViewRow rowWithCell:theCell data:rowData detailViewController:detailViewController dataInjector:theDataInjector]];
-}
-
-- (void)addRowWithNibNamed:(NSString *)nibName data:(NSDictionary *)rowData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)reuseIdentifier {
-	[[self currentSection] addObject:[DTTableViewRow rowWithNibNamed:nibName data:rowData detailViewController:detailViewController dataInjector:theDataInjector reuseIdentifier:reuseIdentifier]];
 }
 
 - (DTCustomTableViewCell *)prototypeCellForNibNamed:(NSString *)nibName {

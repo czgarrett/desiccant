@@ -31,6 +31,7 @@
 #import "Foundation/NSURLResponse+Zest.h"
 #import "Foundation/NSHTTPURLResponse+Zest.h"
 #import "Foundation/NSNull+Zest.h"
+#import "Foundation/NSMutableURLRequest+Zest.h"
 
 #import "UIKit/UIView+Zest.h"
 #import "UIKit/UIColor+Zest.h"
@@ -44,6 +45,7 @@
 #import "UIKit/UIBarButtonItem+Zest.h"
 #import "UIKit/MKMapView+Zest.h"
 #import "UIKit/UIImageView+Zest.h"
+#import "UIKit/UIScreen+Zest.h"
 
 #import "NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"
@@ -62,4 +64,3 @@
 // Can I get away with this?
 #define $(s) @selector(s)
 #define DTAbstractMethod NSAssert(0, @"Subclass must implement this abstract method"); [self doesNotRecognizeSelector:_cmd];
-

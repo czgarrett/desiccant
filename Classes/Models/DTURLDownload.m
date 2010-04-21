@@ -146,8 +146,8 @@
 	}
 }
 
-
 #pragma mark Public methods
+
 - (void)start {
 	unless (self.isStarted) {
 		self.isStarted = YES;

@@ -17,6 +17,9 @@
 @interface NSDate ( Zest ) 
 + (NSDate *)dateWithISO8601String:(NSString *)dateString;
 - (NSString *)iso8601FormattedString;
+// Returns a string formatted using a unicode date pattern
+// http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns
+- (NSString *)stringWithDateFormat:(NSString *)format;
 - (NSString *)shortAgeString;
 
 // Relative dates from the current date

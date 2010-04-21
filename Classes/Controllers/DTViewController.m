@@ -17,7 +17,7 @@
 
 
 @implementation DTViewController
-@synthesize dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
+@synthesize hasAppeared, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
 
 #pragma mark Memory management
 
@@ -53,9 +53,15 @@
 
 #pragma mark Public methods
 
+- (void)viewWillFirstAppear:(BOOL)animated {
+}
+
+- (void)viewDidFirstAppear:(BOOL)animated {
+}
+
 - (void)setWindowOverlay:(UIView *)theView {
 	self.dtWindowOverlay = theView;
-	theView.frame = [[UIScreen mainScreen] bounds];
+	theView.center = [[UIScreen mainScreen] center];
 	[[[UIApplication sharedApplication] keyWindow] addSubview:theView];
 }
 
@@ -99,6 +105,12 @@
 #pragma mark DTActsAsChildViewController methods
 
 - (void)setContainerViewController:(UIViewController *)theController {
+	if (theController) {
+		[(DTCompositeViewController *)theController addSubviewController:self];
+	}
+	else {
+		[(DTCompositeViewController *)dtContainerViewController removeSubviewController:self];
+	}
 	self.dtContainerViewController = theController;
 }
 
@@ -109,9 +121,14 @@
 #pragma mark UIViewController methods
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	if (self.navigationController && self.navigationController.topViewController != self) {
-		// When self is the root view controller, this allows the top view controller to autorotate to orientations 
-		// that self doesn't support.
+	// When self is the root view controller, this allows the top view controller to autorotate to orientations 
+	// that self doesn't support.
+	if (self.tabBarController && 
+		self.tabBarController.selectedViewController  != self && 
+		self.tabBarController.selectedViewController != self.navigationController) {
+		return [self.tabBarController.selectedViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+	}
+	else if (self.navigationController && self.navigationController.topViewController != self) {
 		return [self.navigationController.topViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 	}
 	else {
@@ -135,12 +152,17 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 //	[self beforeView:self.view willAppear:animated];
+	unless (self.hasAppeared) [self viewWillFirstAppear:animated];
 	if (!self.containerViewController) [super viewWillAppear:animated];
 //	[self afterView:self.view willAppear:animated];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
 //	[self beforeView:self.view didAppear:animated];
+	unless (self.hasAppeared) {
+		self.hasAppeared = YES;
+		[self viewDidFirstAppear:animated];
+	}
 	if (!self.containerViewController) [super viewDidAppear:animated];
 //	[self afterView:self.view didAppear:animated];
 }

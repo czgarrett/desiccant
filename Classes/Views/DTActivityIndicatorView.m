@@ -44,10 +44,10 @@
 - (void)stopAnimating {
 	if (activityCount > 0) {
 		activityCount--;
-		if (activityCount == 0) {
-			[childIndicator stopAnimating];
-			if (hidesWhenStopped) [self removeFromSuperview];
-		}
+	}
+	if (activityCount == 0) {
+		[childIndicator stopAnimating];
+		if (hidesWhenStopped && self.superview) [self removeFromSuperview];
 	}
 }
 

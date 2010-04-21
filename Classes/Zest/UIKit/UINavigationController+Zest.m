@@ -11,8 +11,8 @@
 
 @implementation UINavigationController (Zest)
 
-- (void) popToViewControllerWithClass: (Class) searchClass animated: (BOOL)animated{
-   [self popToViewController: [self firstViewControllerWithClass: searchClass] animated: animated];
+- (NSArray *) popToViewControllerWithClass: (Class) searchClass animated: (BOOL)animated{
+   return [self popToViewController: [self firstViewControllerWithClass: searchClass] animated: animated];
 }
 
 - (UIViewController *) firstViewControllerWithClass: (Class) searchClass {

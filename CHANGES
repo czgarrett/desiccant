@@ -1,0 +1,185 @@
+
+Changes committed Apr. 21, 2010 by Curtis Duhn:
+
+-	Added basic getting started instructions to README.
+
+-	Created CHANGES file for tracking changes.
+
+-	New Class: Controllers/DTAdViewController is a wrapper controller
+	(i.e. a DTCompositeViewController) that loads and presents an ad underneath
+	another sub-controller's view.  Works with or without a NIB.
+	
+-	New Class: Controllers/DTOpenXAdLoader works in concert with DTAdViewController
+	to show ads served via the OpenX XML-RPC API.
+	
+-	New Class: DTButton generates glossy buttons programmatically.
+
+-	-[DTImageView loadFromURL:] now tries to load the image from the local
+	cache before issuing a remote request.
+	
+-	Added BOOL warnBeforeExit property to ACAboutViewController.  Prompts user
+	before exiting the app if YES.
+
+-	Fixed DTCompositeViewController so that it accepts DTTableViewControllers as 
+	children in addition to DTViewControllers.  It now takes anything that implements
+	<DTActsAsChildViewController>.
+
+-	New Property: -DTTableViewController.containerViewController.
+
+-	New: -[DT(Table)ViewController viewWillFirstAppear]
+
+-	New: -[DT(Table)ViewController viewDidFirstAppear]
+
+-	New Property: -DT(Table)ViewController.hasAppeared
+
+-	Added a check to make sure a controller can't be added twice using
+ 	-[DTCompositeViewController addSubviewController:].
+
+-	-[DTCompositeViewController removeSubviewController:] now sets the 
+	subviewController's containerViewController to nil.
+	
+-	DTDataDrivenTableViewController now supports hasDynamicHeight for tables with
+	programmatically created cells in cases where cellNibName isn't set.
+	
+- 	Bug: DTDataDrivenTableViewController wasn't setting the height when cellNibName
+	was defined, and hasDynamicHeight returned NO.
+
+-	New: -[DTNavigationController popToRootViewControllerAnimated:]
+
+-	New: -[DTNavigationController popToViewController:animated:]
+
+-	New: -[DTNavigationController popToViewControllerWithClass:animated:]
+
+-	New: -[DTStaticTableViewController insertSectionAtIndex:]
+
+-	New: -[DTStaticTableViewController insertSectionAtIndex:withTitle:]
+
+-	New: -[DTStaticTableViewController removeSectionWithIndex:]
+
+-	New: -[DTStaticTableViewController insertRowWithDedicatedCell:atIndexPath:]
+
+-	New: -[DTStaticTableViewController insertRowWithDedicatedCell:data:atIndexPath:]
+
+-	New: -[DTStaticTableViewController insertRowWithDedicatedCell:data:detailViewController:atIndexPath:]
+
+-	New: -[DTStaticTableViewController insertRowWithDedicatedCell:data:detailViewController:dataInjector:atIndexPath:]
+
+-	New: -[DTStaticTableViewController insertRowWithNibNamed:atIndexPath:]
+
+-	New: -[DTStaticTableViewController insertRowWithNibNamed:data:atIndexPath:]
+
+-	New: -[DTStaticTableViewController insertRowWithNibNamed:data:detailViewController:atIndexPath:]
+
+-	New: -[DTStaticTableViewController insertRowWithNibNamed:data:detailViewController:dataInjector:atIndexPath:]
+
+-	New: -[DTStaticTableViewController removeRowWithIndexPath:]
+
+-	New: -[DTStaticTableViewController cellWithNibNamed:]
+
+-	New Property: -DTTabBarController.shouldFadeDefaultPNG
+
+-	New Property: -DTTabBarController.windowOverlay
+
+-	New Property: -DTTabBarController.activityIndicator
+
+-	New: -[DTStaticTableViewController fadeWindowOverlay]
+
+-	New: -[DTWebViewController webViewIsReadyForJavascript:] will get called if the
+	webView tries to load app://loaded.  This is intended to be used in
+	the document's onload to signal that the browser is ready to receive javascript.
+	By default, it evaluates the contents of javascriptOnLoad if the property is
+	defined. 
+	
+-	Added External/ASIHTTPRequest so that I could reuse its file posting
+	implementation.
+
+-	New class: DTKeychain, with simple wrapper methods for setting and getting 
+	values for keys in the keychain.
+
+-	Added External/SFHFKeychainUtils, used by DTKeychain.
+
+-	DTHTTPQuery and its subclasses now support these properties for POST method 
+	requests: postParameters, postFileKey, postFileData, postFilePath.
+
+-	DTCustomTableViewCell now overrides the read-only textLabel, detailTextLabel,
+	and imageView properties and makes them read-write IBOutlets.  This gives us
+	the ability to customize the layout and presentation of these fields via a NIB.
+
+-	DTCustomTableViewCell now supports a <DTCustomTableViewCellDelegate>, which 
+	includes methods for deriving a cell's title, subtitle, and image from the data    
+	property.
+	
+-	New Class: DTSetDataBasedTableViewController is now the superclass of 
+	DTCustomTableViewController and DTStaticTableViewController.  It implements 
+	default <DTCustomTableViewCellDelegate> methods for deriving a cell's title, 
+	subtitle, and image based on specific data fields.  These methods can be 
+	overridden by subclasses.
+                                
+-	<DTCustomTableViewCellDelegate> classes can implement -cellShouldResizeTitle: or   
+	cellShouldResizeSubtitle: and return YES to give cells variable height based on 
+	those fields.
+	
+-	DTCustomTableViewCell subclasses can manually adjust the height of their cells 
+	in setData: if they also implement -hasDynamicHeight and return YES.
+
+-	New Class: DTTitleAndImageCell
+
+-	Zest: $A(obj1, obj2, ...) shorthand for -[NSArray arrayWithObjects:]
+
+-	Zest: $MA(obj1, obj2, ...) shorthand for -[NSMutableArray arrayWithObjects:]
+
+-	Zest: $D(key1, value1, key2, value2, ...) shorthand for -[NSDictionary dictionaryWithKeysAndObjects].  (Note the key -> value ordering.)
+
+-	Zest: $MD(key1, value1, key2, value2, ...) shorthand for -[NSMutableDictionary dictionaryWithKeysAndObjects].  (Note the key -> value ordering.)
+
+-	Zest: $S(formatString, param1, param2, ...) shorthand for -[NSString stringWithFormat:]
+
+-	Zest: -[NSArray (mutable)arrayAtIndex]
+
+-	Zest: -[NSArray perform:withObject:withObject]
+
+-	Zest: -[NSDate stringWithDateFormat:]
+
+-	Zest: +[NSDictionary dictionaryWithTitle:subtitle:] shortcut factory method.
+
+-	Zest: -[NSDictionary boolForKey]
+
+-	Zest: -[NSDictionary toQueryString] generates a query string for an HTTP URL.
+
+-	Zest: -[NSDictionary dictionaryWithKeysAndObjects:...] supports the more 
+	familiar key -> value ordering as an alternative to Obj C's silly value <- key
+	ordering.
+
+-	Zest: -[NSMutableURLRequest setPostParameters:] takes an NSDictionary
+
+-	Zest: -[NSString contains:]
+
+-	Zest: -[NSString containsRegex:]
+
+-	Zest: -[NSString stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:] 
+	escapes ALL characters necessary to pass a URL as a parameter within another 
+	URL.  The normal stringByAddingPercentEscapesUsingEncoding doesn't escape some 
+	characters that are legal in URLs like + for example.
+	
+-	Zest: -[UINavigationController popToViewControllerWithClass:animated:] now 
+	returns an array of popped controllers.
+	
+-	Zest: -[UIScreen center] returns the center point of the screen.  (Not tested in 
+	landscape mode.)
+	
+-	Zest: UIView now supports read-write width, height, x, and y properties for 
+	inspecting and modifying the frame.
+	
+-	Zest: -UIView.cornerRadius
+
+-	Zest: -UIView.borderWidth
+
+-	Zest: -UIView.borderColor
+
+-	Prefab cells can be copied and modified for quick cell design:
+	-	Resources/Cells/DTCenteredTitleOnlyCell.xib
+	-	Resources/Cells/DTTextEditorCell.xib implements a label and an editable 
+		UITextField.
+	-	Resources/Cells/DTTitleAndImageCell.xib
+	-	Resources/Cells/DTTitleAndSubtitleCell.xib
+	-	Resources/Cells/DTTitleOnlyCell.xib

@@ -31,6 +31,14 @@
     return (NSDictionary *)[self objectAtIndex:index];
 }
 
+- (NSArray *) arrayAtIndex:(NSUInteger)index {
+    return (NSArray *)[self objectAtIndex:index];
+}
+
+- (NSMutableArray *)mutableArrayAtIndex:(NSUInteger)index {
+    return (NSMutableArray *)[self objectAtIndex:index];
+}
+
 - (NSArray *) arrayByRemovingObject: (id) objectToRemove {
    NSMutableArray *result = [NSMutableArray array];
    for (id object in self) {
@@ -211,6 +219,45 @@
 {
 	return [self reject:selector withObject:nil withObject:nil];
 }
+
+- (void)perform:(SEL)selector {
+	NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+	for (id delegate; delegate = [e nextObject]; ) {
+		if ([delegate respondsToSelector:selector]) {
+			[delegate performSelector:selector];
+		}
+	}
+}
+
+- (void)perform:(SEL)selector withObject:(id)p1 {
+	NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+	for (id delegate; delegate = [e nextObject]; ) {
+		if ([delegate respondsToSelector:selector]) {
+			NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
+			NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+			[invo setTarget:delegate];
+			[invo setSelector:selector];
+			[invo setArgument:&p1 atIndex:2];
+			[invo invoke];
+		}
+	}
+}
+
+- (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
+	NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+	for (id delegate; delegate = [e nextObject]; ) {
+		if ([delegate respondsToSelector:selector]) {
+			NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
+			NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+			[invo setTarget:delegate];
+			[invo setSelector:selector];
+			[invo setArgument:&p1 atIndex:2];
+			[invo setArgument:&p2 atIndex:3];
+			[invo invoke];
+		}
+	}
+}
+
 @end
 
 #pragma mark Mutable UtilityExtensions

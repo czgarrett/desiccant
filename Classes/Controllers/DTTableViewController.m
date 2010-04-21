@@ -16,7 +16,7 @@
 @end
 
 @implementation DTTableViewController
-@synthesize cell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
+@synthesize hasAppeared, cell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
 
 #pragma mark Memory management
 - (void)dealloc {
@@ -24,9 +24,43 @@
 	self.dtContainerViewController = nil;
 	self.dtWindowOverlay = nil;
 	self.dtActivityIndicator = nil;
+	self.headerView = nil;
+	self.footerView = nil;
 
 	[super dealloc];
 }
+
+#pragma mark Constructors
+
+- (id)init {
+	if (self = [super init]) {
+		[self setAutorotationProperties];
+	}
+	return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	if (self = [super initWithCoder:aDecoder]) {
+		[self setAutorotationProperties];
+	}
+	return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+		[self setAutorotationProperties];
+	}
+	return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style {
+	if (self = [super initWithStyle:style]) {
+		[self setAutorotationProperties];
+	}
+	return self;
+}
+
+#pragma mark UIViewController methods
 
 - (void) viewDidLoad {
    [super viewDidLoad];
@@ -53,7 +87,7 @@
 
 - (void)setWindowOverlay:(UIView *)theView {
 	self.dtWindowOverlay = theView;
-	theView.frame = [[UIScreen mainScreen] bounds];
+	theView.center = [[UIScreen mainScreen] center];
 	[[[UIApplication sharedApplication] keyWindow] addSubview:theView];
 }
 
@@ -78,6 +112,14 @@
 	self.shouldAutorotateUpsideDown = NO;
 }
 
+#pragma mark Public methods
+
+- (void)viewWillFirstAppear:(BOOL)animated {
+}
+
+- (void)viewDidFirstAppear:(BOOL)animated {
+}
+
 #pragma mark Dynamic properties
 
 - (DTActivityIndicatorView *)activityIndicator {
@@ -97,6 +139,12 @@
 #pragma mark DTActsAsChildViewController methods
 
 - (void)setContainerViewController:(UIViewController *)theController {
+	if (theController) {
+		[(id)theController addSubviewController:self];
+	}
+	else {
+		[(id)dtContainerViewController removeSubviewController:self];
+	}
 	self.dtContainerViewController = theController;
 }
 
@@ -119,7 +167,27 @@
 
 #pragma mark UITableViewController methods
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	// When self is the root view controller, this allows the top view controller to autorotate to orientations 
+	// that self doesn't support.
+	if (self.tabBarController && 
+		self.tabBarController.selectedViewController  != self && 
+		self.tabBarController.selectedViewController != self.navigationController) {
+		return [self.tabBarController.selectedViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+	}
+//	else if (self.navigationController && self.navigationController.topViewController != self) {
+//		return [self.navigationController.topViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+//	}
+	else {
+		return ((self.shouldAutorotateToPortrait && interfaceOrientation == UIInterfaceOrientationPortrait) ||
+				(self.shouldAutorotateToLandscape && (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
+													  interfaceOrientation == UIInterfaceOrientationLandscapeRight)) ||
+				(self.shouldAutorotateUpsideDown && interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown));
+	}
+}
+
 - (void) viewWillAppear:(BOOL)animated {
+	unless (self.hasAppeared) [self viewWillFirstAppear:animated];
 	if (!self.containerViewController) [super viewWillAppear:animated];
 }
 
@@ -128,7 +196,11 @@
 	if (indexPath) {
 		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
-	if (!self.containerViewController) [super viewDidAppear:animated];	
+	unless (self.hasAppeared) {
+		self.hasAppeared = YES;
+		[self viewDidFirstAppear:animated];
+	}
+	if (!self.containerViewController) [super viewDidAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -198,13 +270,19 @@
 }
 
 - (void)prepareActivityIndicator {
-   if (!dtActivityIndicator) {
-      dtActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-      dtActivityIndicator.hidesWhenStopped = YES;
-      dtActivityIndicator.center = self.view.center;
-      [self.view addSubview:dtActivityIndicator];
-   }
+//   if (!dtActivityIndicator) {
+//      dtActivityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+//      dtActivityIndicator.hidesWhenStopped = YES;
+//      dtActivityIndicator.center = self.view.center;
+//      [self.view addSubview:dtActivityIndicator];
+//   }
 }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	[self.tableView reloadData];
+}
+
 
 
 @end

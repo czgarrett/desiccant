@@ -183,6 +183,14 @@
     return [self hasPrefix:prefix];
 }
 
+- (BOOL)contains:(NSString *)substring {
+	return [self rangeOfString:substring].location != NSNotFound;
+}
+
+- (BOOL)containsRegex:(NSString *)regex {
+	return [self rangeOfRegex:regex].location != NSNotFound;
+}
+
 - (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set {
 	return [[self stringByTrimmingCharactersInSet:set] length] == 0;
 }
@@ -213,6 +221,15 @@
 
 - (NSString *)withNewlinesRemoved {
 	return [self stringByReplacingOccurrencesOfRegex:@"\\n" withString:@" "];
+}
+
+- (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding {
+	return (NSString *)CFURLCreateStringByAddingPercentEscapes(
+															   NULL,
+															   (CFStringRef)self,
+															   NULL,
+															   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+															   CFStringConvertNSStringEncodingToEncoding(encoding));	
 }
 
 @end

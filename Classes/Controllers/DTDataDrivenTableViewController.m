@@ -21,7 +21,7 @@
 @end
 
 @implementation DTDataDrivenTableViewController
-@synthesize query, headerRows, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier;
+@synthesize query, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier;
 
 #pragma mark Memory management
 
@@ -151,10 +151,11 @@
 	if ([self indexPathIsMoreResultsCell:indexPath]) {
 		return [self moreResultsCellRowHeight];
 	}
-    else if (self.cellNibName) {
-		if ([[self prototypeCell] hasDynamicHeight]) {
-			[[self prototypeCell] setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
-		}
+	else if ([[self prototypeCell] hasDynamicHeight]) {
+		[[self prototypeCell] setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
+        return [self prototypeCell].bounds.size.height;
+	}
+    else if (self.cellNibName) {		
         return [self prototypeCell].bounds.size.height;
     }
     else {
@@ -230,7 +231,9 @@
             }
             else {
                 cell = [self constructCell];
+				self.cellIdentifier = cell.reuseIdentifier;
                 [self customizeCell];
+				unless (cell.delegate) cell.delegate = self;
             }
         }
         
@@ -261,6 +264,7 @@
 					[self.activityIndicator startAnimating];
 					[mediaWebView loadRequest:mediaURL.to_request];
 				}
+				[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 			}
 		}
 		else {
@@ -291,7 +295,7 @@
 #pragma mark DTAsyncQueryDelegate methods
 
 - (void)queryWillStartLoading:(DTAsyncQuery *)feed {
-   [self prepareActivityIndicator];
+//   [self prepareActivityIndicator];
    [self.activityIndicator startAnimating];
 }
 
@@ -336,7 +340,7 @@
 }
 
 // Subclasses can implement this to display a detail view for the associated data
-- (UIViewController *)detailViewControllerFor:(NSMutableDictionary *)data {
+- (UIViewController *)detailViewControllerFor:(NSDictionary *)data {
     return nil;
 }
 

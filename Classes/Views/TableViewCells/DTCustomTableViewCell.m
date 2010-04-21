@@ -9,50 +9,77 @@
 #import "DTCustomTableViewCell.h"
 #import "Zest.h"
 
+@interface DTCustomTableViewCell()
+@property (nonatomic, retain) UILabel *dtTextLabel;
+@property (nonatomic, retain) UILabel *dtDetailTextLabel;
+@property(nonatomic, retain) UIImageView *dtImageView;
+@property (nonatomic, retain) NSDictionary *dtData;
+@end
+
 @implementation DTCustomTableViewCell
-@synthesize minHeight;
+@synthesize minHeight, dtTextLabel, dtDetailTextLabel, dtImageView, delegate, dtData;
 
-#ifndef __IPHONE_3_0
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-#else
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-#endif
-                
-    }
-    return self;
-}
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-// Subclasses can override this to set fields given an untyped data object
-- (void)setData:(NSDictionary *)data {
-    if ([data stringForKey:@"title"]) {
-#ifdef __IPHONE_3_0
-        self.textLabel.text = [data stringForKey:@"title"];
-#else
-        self.text = [data stringForKey:@"title"];
-#endif
-    }
-    if ([data stringForKey:@"image_name"]) {
-#ifdef __IPHONE_3_0
-        self.imageView.image = [UIImage imageNamed:[data stringForKey:@"image_name"]];
-#else
-        self.image = [UIImage imageNamed:[data stringForKey:@"image_name"]];        
-#endif
-    }
-}
+#pragma mark Memory management
 
 - (void)dealloc {
-    [super dealloc];
+	self.dtTextLabel = nil;
+	self.dtDetailTextLabel = nil;
+	self.dtImageView = nil;
+	self.delegate = nil;
+	self.dtData = nil;
+	
+	[super dealloc];
 }
 
+#pragma mark Public methods
+
+// Default implementation sets the title using titleFromData:, the subtitle
+// using subtitleFromData:
+// Subclasses can override this to set fields given an untyped data object.
+- (void)setData:(NSDictionary *)theData {
+	self.dtData = theData;
+	if (delegate) {
+		if (self.textLabel) {
+			self.textLabel.text = @"";
+			NSString *title = [delegate cell:self titleFromData:theData];
+			if (title) self.textLabel.text = title;
+		}
+		
+		if (self.detailTextLabel) {
+			self.detailTextLabel.text = @"";
+			NSString *subtitle = [delegate cell:self subtitleFromData:theData];
+			if (subtitle) self.detailTextLabel.text = subtitle;
+		}
+		
+		if (self.imageView) {
+			UIImage *theImage = [delegate cell:self imageFromData:theData];
+			if (theImage) self.imageView.image = theImage;
+			
+			UIImage *theHighlightedImage = [delegate cell:self highlightedImageFromData:theData];
+			self.imageView.highlightedImage = theHighlightedImage;
+			
+			NSURL *imageURL = [delegate cell:self imageURLFromData:theData];
+			if (imageURL) {
+				NSAssert ([self.imageView respondsToSelector:@selector(loadFromURL:)],
+						  @"Can't load image URL asynchronously unless imageView is a DTImageView");
+				[(DTImageView *)self.imageView setDefaultImage:self.imageView.image];
+				[(DTImageView *)self.imageView loadFromURL:imageURL];
+			}
+		}
+		
+		if ([delegate cellShouldResizeTitle:self]) [self adjustHeightForLabel:self.textLabel];
+		if ([delegate cellShouldResizeSubtitle:self]) [self adjustHeightForLabel:self.detailTextLabel];
+	}
+}
+
+- (NSDictionary *)data {
+	return self.dtData;
+}
+
+// Subclasses can call this in setData after setting the contents of a label.  
+// It will adjust the height of the label and the cell to fit the text.  If 
+// you're going to use this, make sure you override hasDynamicHeight and return 
+// YES.
 - (void)adjustHeightForLabel:(UILabel *)label {
 	NSAssert ([self hasDynamicHeight], @"If you're going to call adjustHeightForLabel:, you must override hasDynamicHeight and return YES.");
 	if (minHeight == 0.0 || self.bounds.size.height < minHeight) minHeight = self.bounds.size.height;
@@ -78,9 +105,55 @@
 	label.frame = CGRectMake(label.frame.origin.x, newLabelY, label.frame.size.width, newLabelHeight);
 }
 
-// Subclasses should override this method and return YES if they modify the height of the cell in setData
+// Subclasses should override this method and return YES if they manually modify 
+// the height of the cell in setData.  The default implementation returns YES if
+// a delegate is set and cellShouldResizeTitle: or cellShouldResizeSubitle:
+// return YES, or NO otherwise.
 - (BOOL)hasDynamicHeight {
-	return NO;
+	return (delegate && ([delegate cellShouldResizeTitle:self] || 
+						 [delegate cellShouldResizeSubtitle:self]));
 }
+
+#pragma mark Dynamic properties
+
+- (void)setTextLabel:(UILabel *)theLabel {
+	self.dtTextLabel = theLabel;
+}
+
+- (UILabel *)textLabel {
+	if (!dtTextLabel) {
+		return [super textLabel];
+	}
+	else {
+		return dtTextLabel;
+	}
+}
+
+- (void)setDetailTextLabel:(UILabel *)theLabel {
+	self.dtDetailTextLabel = theLabel;
+}
+
+- (UILabel *)detailTextLabel {
+	if (!dtDetailTextLabel) {
+		return [super detailTextLabel];
+	}
+	else {
+		return dtDetailTextLabel;
+	}
+}
+
+- (void)setImageView:(UIImageView *)theImageView {
+	self.dtImageView = theImageView;
+}
+
+- (UIImageView *)imageView {
+	if (!dtImageView) {
+		return [super imageView];
+	}
+	else {
+		return dtImageView;
+	}
+}
+
 
 @end

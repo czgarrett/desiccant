@@ -17,14 +17,23 @@
 	BOOL shouldAutorotateToPortrait;
 	BOOL shouldAutorotateToLandscape;
 	BOOL shouldAutorotateUpsideDown;
+	BOOL hasAppeared;
 	DTActivityIndicatorView *dtActivityIndicator;
 }
 
+@property (nonatomic, assign) UIViewController *containerViewController;
 @property (nonatomic, retain) UIView *windowOverlay;
 @property (nonatomic) BOOL shouldAutorotateToPortrait;
 @property (nonatomic) BOOL shouldAutorotateToLandscape;
 @property (nonatomic) BOOL shouldAutorotateUpsideDown;
+@property (nonatomic) BOOL hasAppeared;
 @property (nonatomic, retain, readonly) DTActivityIndicatorView *activityIndicator;
+
+// Called before the first viewWillAppear:
+- (void)viewWillFirstAppear:(BOOL)animated;
+
+// Called before the first viewDidAppear:
+- (void)viewDidFirstAppear:(BOOL)animated;
 
 - (void)fadeWindowOverlay;
 
