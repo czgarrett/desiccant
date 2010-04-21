@@ -53,7 +53,6 @@
 - (NSIndexPath *)adjustIndexPathForHeaders:(NSIndexPath *)indexPath;
 
 @property (nonatomic, retain)  DTAsyncQuery * query;
-//@property (nonatomic) NSUInteger headerRows;
 //@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIWebView *mediaWebView;
 @property (nonatomic, retain) NSString *moreResultsCellNibName;

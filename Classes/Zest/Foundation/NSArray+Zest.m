@@ -269,7 +269,7 @@
 	return self;
 }
 
-- (NSMutableArray *) removeFirstObject
+- (NSMutableArray *) removeFirstObject 
 {
 	[self removeObjectAtIndex:0];
 	return self;
