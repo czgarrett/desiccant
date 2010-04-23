@@ -19,7 +19,7 @@
 
 @interface DTHTTPQueryOperation()
 @property (nonatomic, retain) NSData *responseData;
-@property (nonatomic, retain) ASIFormDataRequest *request;
+@property (nonatomic, retain) ASIHTTPRequest *request;
 @property (nonatomic, retain) NSMutableData *tempData;
 @property (nonatomic, retain) NSURLConnection *connection;
 - (void)startLoadingResponseData;
@@ -49,7 +49,6 @@
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate {
 	if (self = [super initWithDelegate:theDelegate]) {
 		self.url = theURL;
-		self.request = [ASIFormDataRequest requestWithURL:self.url];
 		request.timeOutSeconds = 30;
 		self.method = @"GET";
 	}
@@ -73,24 +72,33 @@
 	ABORT_IF_CANCELLED
 	self.responseData = nil;
 	self.error = nil;
-	[request setRequestMethod:self.method];
-	if (self.body) [request setPostBody:self.body];
-	if (self.postParameters) {
-		for (NSString *key in postParameters) {
-			[request setPostValue:[postParameters stringForKey:key] forKey:key];
+	if ([self.method isEqual:@"POST"]) {
+		ASIFormDataRequest *postRequest =  [ASIFormDataRequest requestWithURL:self.url];
+		[postRequest setRequestMethod:@"POST"];
+		if (self.body) [postRequest setPostBody:self.body];
+		if (self.postParameters) {
+			for (NSString *key in postParameters) {
+				[postRequest setPostValue:[postParameters stringForKey:key] forKey:key];
+			}
 		}
+		if (self.postFileKey) {
+			if (self.postFileData) {
+				[postRequest setData:self.postFileData forKey:self.postFileKey];
+			}
+			else if (self.postFilePath) {
+				[postRequest setFile:self.postFilePath forKey:self.postFileKey];
+			}
+			else {
+				NSAssert (0, @"Set postFileKey withou postFileData or postFilePath");
+			}
+		}
+		self.request = postRequest;
 	}
-	if (self.postFileKey) {
-		if (self.postFileData) {
-			[request setData:self.postFileData forKey:self.postFileKey];
-		}
-		else if (self.postFilePath) {
-			[request setFile:self.postFilePath forKey:self.postFileKey];
-		}
-		else {
-			NSAssert (0, @"Set postFileKey withou postFileData or postFilePath");
-		}
+	else {
+		self.request = [ASIHTTPRequest requestWithURL:self.url];
+		[self.request setRequestMethod:self.method];
 	}
+	
 	NSLog(@"%@: %@", self.method, request.url.absoluteString);
 	request.delegate = self;
 	[request startAsynchronous];
@@ -99,7 +107,6 @@
 - (void)requestFinished:(ASIHTTPRequest *)theRequest {
 	ABORT_IF_CANCELLED
 	self.responseData = theRequest.responseData;
-	NSLog(@"\n--- BEGIN RESPONSE ---\n%@\n--- END RESPONSE ---", [NSString stringWithUTF8String:[[responseData nullTerminated] bytes]]);
 	[self completeOperationWithError:![self parseResponseData]];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "DTXMLParser.h"
+#import "Zest.h"
 
 @interface DTXMLParser()
 @property (nonatomic, retain) DTXMLParserDelegate *parserDelegate;
@@ -14,10 +15,11 @@
 
 
 @implementation DTXMLParser
-@synthesize parserDelegate;
+@synthesize parserDelegate, parserError;
 
 - (void) dealloc {
-    [parserDelegate release];
+	self.parserDelegate = nil;
+	self.parserError = nil;
     [super dealloc];
 }
 
@@ -35,6 +37,7 @@
 
 - (void)reset {
     [parserDelegate initContextWithParent:nil];
+	self.parserError = nil;
 }
 
 - (BOOL) parseXMLDataSuccessfully:(NSData *)xmlData {
@@ -43,7 +46,9 @@
 	[xmlParser setShouldProcessNamespaces:NO];
 	[xmlParser setShouldReportNamespacePrefixes:NO];
 	[xmlParser setShouldResolveExternalEntities:NO];
-    return [xmlParser parse];
+    BOOL success = [xmlParser parse];
+	unless (success) self.parserError = [xmlParser parserError];
+	return success;
 }
 
 - (NSMutableArray *)rows {

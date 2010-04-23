@@ -1,3 +1,9 @@
+Changes committed Apr. 23, 2010 by Curtis Duhn:
+
+-	Exposed parserError via DTXMLParser.
+
+-	Fixed regression bug in DTHTTPQueryOperation where all queries were being  
+	submitted as POST requests, regardless of the method specified.
 
 Changes committed Apr. 21, 2010 by Curtis Duhn:
 
