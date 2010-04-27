@@ -18,7 +18,7 @@
 	NSString *method;
 	NSMutableData *body;
 	NSDictionary *postParameters;
-	ASIFormDataRequest *request;
+	ASIHTTPRequest *request;
 	NSURLConnection *connection;
 	NSString *postFileKey;
 	NSData *postFileData;

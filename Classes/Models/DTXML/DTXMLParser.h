@@ -11,9 +11,11 @@
 
 @interface DTXMLParser : NSObject {
     DTXMLParserDelegate *parserDelegate;
+	NSError *parserError;
 }
 
 @property (retain, readonly) NSMutableArray *rows;
+@property (nonatomic, retain) NSError *parserError;
 
 - (id) initWithParserDelegate:(DTXMLParserDelegate *)newParserDelegate;
 + (DTXMLParser *) parserWithParserDelegate:(DTXMLParserDelegate *)parserDelegate;
