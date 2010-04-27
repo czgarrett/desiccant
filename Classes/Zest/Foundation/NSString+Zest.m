@@ -48,6 +48,11 @@
 	return [NSString stringWithFormat:@"%d", integer];
 }
 
++ (NSString *) stringWithData: (NSData *) data encoding: (NSStringEncoding) encoding {
+   return [[[NSString alloc] initWithData: data encoding: encoding] autorelease];
+}
+
+
 - (NSString *) to_s {
     return self;
 }
