@@ -1,6 +1,5 @@
 //
 //  DTQueryBuilderElementType.h
-//  PortablePTO
 //
 //  Created by Curtis Duhn on 11/13/09.
 //  Copyright 2009 ZWorkbench. All rights reserved.

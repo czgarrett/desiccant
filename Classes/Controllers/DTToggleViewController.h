@@ -1,6 +1,5 @@
 //
 //  DTToggleViewController.h
-//  iRevealMaui
 //
 //  Created by Ilan Volow on 10/27/09.
 //  Copyright 2009 ZWorkBench. All rights reserved.

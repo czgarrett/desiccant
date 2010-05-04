@@ -1,6 +1,5 @@
 //
 //  DTOpenXAdLoader.h
-//  InsuranceJournal
 //
 //  Created by Curtis Duhn on 4/21/10.
 //  Copyright 2010 ZWorkbench. All rights reserved.

@@ -1,3 +1,14 @@
+Changes committed May 4, 2010 by Curtis Duhn
+
+-	[DTAdViewController shouldAutoRotateToInterfaceOrientation] now delegates to its 
+	child viewController by default.
+
+-	Removed the code in -[DTCustomTableViewCell adjustHeightForLabel] that enforced
+	the cell's initial height as a minimum height.  Once the minimum height is 
+	enforced on a cell once, its margins become corrupted, causing indeterminate 
+	layout issues upon cell reuse.  For now, just be aware that short and/or missing 
+	text text may lead to short cells.
+	
 Changes committed Apr. 23, 2010 by Curtis Duhn:
 
 -	Exposed parserError via DTXMLParser.

@@ -3,7 +3,7 @@
 //  FuelFinder
 //
 //  Created by Matt Gallagher on 4/08/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 ZWorkbench. All rights reserved.
 //
 //  Permission is given to use this source code file, free of charge, in any
 //  project, commercial or otherwise, entirely at your risk, with the condition

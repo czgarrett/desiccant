@@ -1,6 +1,5 @@
 //
 //  DTURLDownload.m
-//  PortablePTO
 //
 //  Created by Curtis Duhn on 1/20/10.
 //  Copyright 2010 ZWorkbench. All rights reserved.

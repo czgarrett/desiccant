@@ -1,6 +1,5 @@
 //
 //  ACWebSearchHandler.m
-//  PortablePTO
 //
 //  Created by Christopher Garrett on 8/15/09.
 //  Copyright 2009 ZWorkbench, Inc.. All rights reserved.

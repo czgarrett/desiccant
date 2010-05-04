@@ -1,6 +1,5 @@
 //
 //  ACDocumentViewController.m
-//  PortablePTO
 //
 //  Created by Christopher Garrett on 7/3/09.
 //  Copyright 2009 ZWorkbench, Inc.. All rights reserved.

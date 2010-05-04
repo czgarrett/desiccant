@@ -1,6 +1,5 @@
 //
 //  DTARObjectQueryOperation.m
-//  PortablePTO
 //
 //  Created by Curtis Duhn on 12/4/09.
 //  Copyright 2009 ZWorkbench. All rights reserved.
