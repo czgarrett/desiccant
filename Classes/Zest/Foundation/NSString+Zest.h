@@ -42,6 +42,7 @@
 
 + (NSString *) stringWithContentsOfResource: (NSString *)resourceName ofType: (NSString *)fileExtension;
 + (NSString *) stringWithInteger:(NSInteger)integer;
++ (NSString *) stringWithData: (NSData *) data encoding: (NSStringEncoding) encoding;
 
 - (NSString *) stringByPrependingString:(NSString *)prefix;
 - (NSString *) stringByAppendingNewLine:(NSString *)line;
