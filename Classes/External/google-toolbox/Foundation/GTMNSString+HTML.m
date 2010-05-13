@@ -215,7 +215,8 @@ static HTMLEscapeMap gAsciiHTMLEscapeMap[] = {
   { @"&rsquo;", 8217 },
   { @"&sbquo;", 8218 },
   { @"&ldquo;", 8220 },
-  { @"&rdquo;", 8221 },
+  { @"&rdquo;", 8221 }
+	,
   { @"&bdquo;", 8222 },
   { @"&dagger;", 8224 },
   { @"&Dagger;", 8225 },

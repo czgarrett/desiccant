@@ -1,6 +1,5 @@
 //
 //  DTImageViewerController.h
-//  iRevealMaui
 //
 //  Created by Curtis Duhn on 10/13/09.
 //  Copyright 2009 ZWorkbench. All rights reserved.

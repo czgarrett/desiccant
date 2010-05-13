@@ -1,6 +1,5 @@
 //
 //  DTAdViewController.h
-//  InsuranceJournal
 //
 //  Created by Curtis Duhn on 4/17/10.
 //  Copyright 2010 ZWorkbench. All rights reserved.

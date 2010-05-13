@@ -1,6 +1,5 @@
 //
 //  DTCaptcha.h
-//  PortablePTO
 //
 //  Created by Curtis Duhn on 1/27/10.
 //  Copyright 2010 ZWorkbench. All rights reserved.

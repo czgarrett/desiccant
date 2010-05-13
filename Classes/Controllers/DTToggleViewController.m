@@ -1,9 +1,8 @@
 //
 //  DTToggleViewController.m
-//  iRevealMaui
 //
 //  Created by Ilan Volow on 10/27/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
 #import "DTToggleViewController.h"

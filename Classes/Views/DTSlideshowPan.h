@@ -1,6 +1,5 @@
 //
 //  DTSlideshowPan.h
-//  iRevealMaui
 //
 //  Created by Curtis Duhn on 12/24/09.
 //  Copyright 2009 ZWorkbench. All rights reserved.

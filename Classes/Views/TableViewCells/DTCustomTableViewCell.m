@@ -82,17 +82,18 @@
 // YES.
 - (void)adjustHeightForLabel:(UILabel *)label {
 	NSAssert ([self hasDynamicHeight], @"If you're going to call adjustHeightForLabel:, you must override hasDynamicHeight and return YES.");
-	if (minHeight == 0.0 || self.bounds.size.height < minHeight) minHeight = self.bounds.size.height;
+//	if (minHeight == 0.0 || self.bounds.size.height < minHeight) minHeight = self.bounds.size.height;
 	CGFloat margin = self.bounds.size.height - label.frame.size.height;
 	CGFloat newLabelHeight = [label heightToFitText];
 	CGFloat newCellHeight = newLabelHeight + margin;
-	if (newCellHeight < minHeight) {
-		newCellHeight = minHeight;
-		newLabelHeight = minHeight - margin;
-	}
+//	if (newCellHeight < minHeight) {
+//		newCellHeight = minHeight;
+//		newLabelHeight = minHeight - margin;
+//	}
 	CGFloat newLabelY;
 	if (([label autoresizingMask] & UIViewAutoresizingFlexibleTopMargin) && !([label autoresizingMask] & UIViewAutoresizingFlexibleBottomMargin)) {
-		newLabelY = label.frame.origin.y - (newLabelHeight - label.frame.size.height);
+//		newLabelY = label.frame.origin.y - (newLabelHeight - label.frame.size.height);
+		newLabelY = label.frame.origin.y;
 	}
 	else if (!([label autoresizingMask] & UIViewAutoresizingFlexibleTopMargin) && ([label autoresizingMask] & UIViewAutoresizingFlexibleBottomMargin)) {
 		newLabelY = label.frame.origin.y;
@@ -101,7 +102,8 @@
 		NSAssert (0, @"To adjust the height of a label, it must have one flexible top or bottom margin, and one fixed.");
 	}
 	
-	self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, newCellHeight);
+//	self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, newCellHeight);
+	self.height = newCellHeight;
 	label.frame = CGRectMake(label.frame.origin.x, newLabelY, label.frame.size.width, newLabelHeight);
 }
 
