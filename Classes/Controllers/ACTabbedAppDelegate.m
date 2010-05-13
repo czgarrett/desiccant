@@ -35,6 +35,21 @@
    [[self sharedOperationQueue] addOperation: operation];
 }
 
+- (BOOL) hasSeenContinueButton {
+   CFNumberRef hasLaunched = (CFNumberRef)CFPreferencesCopyAppValue(CFSTR("hasLaunched"), kCFPreferencesCurrentApplication);
+   BOOL result = NO;
+   if (hasLaunched != nil) {
+      result = [(NSNumber *)hasLaunched boolValue];
+      CFRelease(hasLaunched);
+   }
+   return result;
+}
+
+- (void) setHasSeenContinueButton: (BOOL) hasLaunched {
+   CFPreferencesSetAppValue(CFSTR("hasLaunched"), (CFNumberRef)[NSNumber numberWithBool: hasLaunched], kCFPreferencesCurrentApplication);
+   CFPreferencesAppSynchronize(kCFPreferencesCurrentApplication);
+}
+
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {	
    [self setUpTabBarController];
@@ -66,19 +81,21 @@
    if (splashImage) {
       tabBarController.view.alpha = 0.0;
       self.splashView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)] autorelease];
-      UIView *logoView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
       UIImageView *logo = [[UIImageView alloc] initWithImage: splashImage];
-      [logoView addSubview:logo];
-      [self.splashView addSubview:logoView];
+      [self.splashView addSubview:logo];
+      [logo release];
+      UIButton *okButton = [self firstTimeContinueButton];
+      if (!self.hasSeenContinueButton && okButton) {
+         [self.splashView addSubview: okButton];
+      } else {
+         [NSTimer scheduledTimerWithTimeInterval: 0.5 
+                                          target:self 
+                                        selector:@selector(hideSplash) 
+                                        userInfo:nil 
+                                         repeats:NO];		               
+      }
       [window addSubview:self.splashView];	
       [window bringSubviewToFront:self.splashView];
-      [logoView release];
-      [logo release];
-      [NSTimer scheduledTimerWithTimeInterval: 0.5 
-                                       target:self 
-                                     selector:@selector(hideSplash) 
-                                     userInfo:nil 
-                                      repeats:NO];		      
    }   
 }
 
@@ -88,6 +105,7 @@
 	self.splashView.alpha = 0;
    self.tabBarController.view.alpha = 1.0;
 	[UIView commitAnimations];			
+   self.hasSeenContinueButton = YES;
 }
 
 
@@ -120,6 +138,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
    [SQLiteConnectionAdapter releaseDefaultInstance];
 }
+
+// Subclasses can override this to provide a button to click the first time they see the app
+- (UIButton *) firstTimeContinueButton {
+   return nil;
+}
+
 
 #pragma mark UITabBarDelegate methods
 
