@@ -12,6 +12,7 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UITabBarController *tabBarController;
 @property (nonatomic, retain) UIView *splashView;
+@property (nonatomic, assign) BOOL hasSeenContinueButton;
 
 + (NSOperationQueue *) sharedOperationQueue;
 + (void) addOperationToSharedQueue: (NSOperation *) operation;
@@ -26,4 +27,7 @@
 // UITabBarControllerRotating by default.
 - (UITabBarController *)createTabBarController;
 - (void) createTabs;
+// Subclasses can override this to provide a button to click the first time they see the app
+- (UIButton *) firstTimeContinueButton;
+
 @end
