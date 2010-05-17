@@ -32,6 +32,7 @@
 #import "Foundation/NSHTTPURLResponse+Zest.h"
 #import "Foundation/NSNull+Zest.h"
 #import "Foundation/NSMutableURLRequest+Zest.h"
+#import "Foundation/NSUserDefaults+Zest.h"
 
 #import "UIKit/UIView+Zest.h"
 #import "UIKit/UIColor+Zest.h"
@@ -53,8 +54,17 @@
 #import "NSFetchRequest+Zest.h"
 
 #define unless(X) if(!(X))
+
+#ifndef __OPTIMIZE__
+#define DTLog(fmt, ...) NSLog((@"%s [Line %d] \n" fmt @"\n--"), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #define LogTimeStart double logTimeStart = [NSDate timeIntervalSinceReferenceDate];
-#define LogTime(msg) NSLog(@"%@: %f", msg, [NSDate timeIntervalSinceReferenceDate] - logTimeStart);
+#define LogTime(msg) DTLog(@"%@: %f", msg, [NSDate timeIntervalSinceReferenceDate] - logTimeStart);
+#else
+#define DTLog(...)
+#define LogTimeStart
+#define LogTime(msg)
+#endif
+
 // Wrap a method call in optionally() to swallow NSInvalidArgumentExpression.  Useful for optional protocol methods.
 // Note: this is slightly different than testing using respondsToSelector:, because respondsToSelector: doesn't recognize
 // methods invoked through forwardInvocation:.  This macro will call those methods.  Also, if the method called returns

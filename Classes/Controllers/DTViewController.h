@@ -20,7 +20,11 @@
 	DTActivityIndicatorView *dtActivityIndicator;
 }
 
+// Returns this controller's container controller or nil if it doesn't have one.
 @property (nonatomic, assign) UIViewController *containerViewController;
+// Returns the top of this nested controller hierarchy, or self if controller has
+// no container.
+@property (nonatomic, assign, readonly) UIViewController *topContainerViewController;
 @property (nonatomic, retain) UIView *windowOverlay;
 @property (nonatomic) BOOL shouldAutorotateToPortrait;
 @property (nonatomic) BOOL shouldAutorotateToLandscape;

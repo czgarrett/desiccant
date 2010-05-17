@@ -44,6 +44,37 @@
     return [NSURL fileURLWithPath:[NSString resourcePath]];
 }
 
++ (NSURL *)urlForDrivingDirectionsFrom:(CLLocation *)from forceTitle:(NSString *)forcedFromTitle to:(CLLocation *)to forceTitle:(NSString *)forcedToTitle {
+	if (!to) return nil;
+	NSMutableString *urlString = [NSMutableString stringWithString:@"http://maps.google.com/maps"];
+	NSString *nextDelimiter = @"?";
+	
+	if (from) {
+		[urlString appendFormat:@"%@saddr=%1.6f,%1.6f",
+		 nextDelimiter,
+		 from.coordinate.latitude, 
+		 from.coordinate.longitude];
+		if (forcedFromTitle) {
+			[urlString appendFormat:@"+(%@)", 
+			 [forcedFromTitle stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		}
+		nextDelimiter = @"&";
+	}
+	
+	if (to) {
+		[urlString appendFormat:@"%@daddr=%1.6f,%1.6f",
+		 nextDelimiter,
+		 to.coordinate.latitude, 
+		 to.coordinate.longitude];
+		if (forcedToTitle) {
+			[urlString appendFormat:@"+(%@)", 
+			 [forcedToTitle stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		}
+	}
+	
+	return [NSURL URLWithString:urlString];
+}
+
 - (NSString *) to_s {
     return [self absoluteString];
 }

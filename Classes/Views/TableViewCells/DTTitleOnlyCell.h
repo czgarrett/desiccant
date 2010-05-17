@@ -11,8 +11,10 @@
 
 @interface DTTitleOnlyCell : DTCustomTableViewCell {
     IBOutlet UILabel *title;
+	NSDictionary *dataDictionary;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *title;
+@property (nonatomic, retain) NSDictionary *dataDictionary;
 
 @end

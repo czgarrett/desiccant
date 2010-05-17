@@ -40,4 +40,6 @@
 				 state:(NSString *)theState
 				   zip:(NSString *)theZip;
 
+- (NSString *)mapAnnotationTitle;
+
 @end

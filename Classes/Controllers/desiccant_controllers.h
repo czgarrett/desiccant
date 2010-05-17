@@ -16,6 +16,7 @@
 #import "DTDataDrivenTableViewController.h"
 #import "DTCustomTableViewController.h"
 #import "DTHeterogeneousSectionsTableViewController.h"
+#import "DTDrivingDirectionsViewController.h"
 
 #import "DTSingleTextFieldEditorViewController.h"
 #import "DTSingleTextViewEditorViewController.h"

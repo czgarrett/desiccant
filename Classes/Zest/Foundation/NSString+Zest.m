@@ -228,6 +228,10 @@
 	return [self stringByReplacingOccurrencesOfRegex:@"\\n" withString:@" "];
 }
 
+- (NSString *)unlessEmpty {
+	return [self length] ? self : nil;
+}
+
 - (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding {
 	return (NSString *)CFURLCreateStringByAddingPercentEscapes(
 															   NULL,

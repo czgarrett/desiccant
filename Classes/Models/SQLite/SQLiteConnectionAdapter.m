@@ -8,6 +8,7 @@
 
 #import "SQLiteConnectionAdapter.h"
 #import "SQLiteDatabaseException.h"
+#import "Zest.h"
 
 #define kDefaultDBFile @"app.db"
 
@@ -98,7 +99,7 @@ static BOOL readOnly;
 	[preparedStatements release];
 	[tables release];
     if (sqlite3_close(connection) != SQLITE_OK) {
-		NSLog(@"Failed to close database connection with message %s", sqlite3_errmsg(connection));
+		DTLog(@"Failed to close database connection with message %s", sqlite3_errmsg(connection));
     }
 	connection = NULL;
 	if (self == defaultInstance) {

@@ -7,7 +7,7 @@
 //
 
 #import "DTRestfulService.h"
-
+#import "Zest.h"
 
 @implementation DTRestfulService
 
@@ -34,9 +34,9 @@
                                               format: nil
                                               errorDescription: &errorMessage];
    if (errorMessage) {
-      NSLog(@"Error decoding dictionary: %@", errorMessage);
-      NSLog(@"XML content:");
-      NSLog(@"%@", [[[NSString alloc] initWithData: self.currentConnectionData encoding: NSUTF8StringEncoding] autorelease]);
+      DTLog(@"Error decoding dictionary: %@", errorMessage);
+      DTLog(@"XML content:");
+      DTLog(@"%@", [[[NSString alloc] initWithData: self.currentConnectionData encoding: NSUTF8StringEncoding] autorelease]);
       [errorMessage release]; // nonstandard release, per docs for NSPropertyListSerialization
       [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];
    } else {
@@ -92,12 +92,12 @@
 }
 
 - (void) postObject: (id <DTRestfulObject>) restfulObject {
-   NSLog(@"Posting!");
+   DTLog(@"Posting!");
    [self createRequestForObject: restfulObject withMethod: @"POST"];
 }
 
 - (void) putObject: (id <DTRestfulObject>) restfulObject {
-   NSLog(@"Putting!");
+   DTLog(@"Putting!");
    [self createRequestForObject: restfulObject withMethod: @"PUT"];   
 }
 

@@ -66,7 +66,7 @@
    self.searchResultsContent = [self.searchableContent stringByReplacingOccurrencesOfString: foundString 
                                 withString: anchor options: NSLiteralSearch range: itemRange];
    [self.webView loadHTMLString: self.searchResultsContent baseURL: self.baseURL];
-   //NSLog(@"%@", self.searchResultsContent);
+   //DTLog(@"%@", self.searchResultsContent);
    [self.searchDisplayController setActive: NO animated: YES];
 }
 

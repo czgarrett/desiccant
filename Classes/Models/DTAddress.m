@@ -58,9 +58,9 @@
 - (NSString *)description {
 	return [[[[[NSString string] 
 			  stringByAppendingString:name] 
-			 stringByAppendingNewLine:address1] 
-			stringByAppendingNewLine:address2] 
-			stringByAppendingNewLine:[self cityStateZipLine]];
+			 stringByAppendingNewLine:address1.unlessEmpty] 
+			stringByAppendingNewLine:address2.unlessEmpty] 
+			stringByAppendingNewLine:[self cityStateZipLine].unlessEmpty];
 }
 
 - (NSString *)cityStateZipLine {
@@ -82,5 +82,17 @@
 	}
 	return line;
 }
+
+- (NSString *)mapAnnotationTitle {
+	NSString *title;
+	
+	if (name) title = name;
+	else if (address1) title = address1;
+	else if ([self cityStateZipLine]) title = [self cityStateZipLine];
+	else title = @"Destination";
+	
+	return title;
+}
+
 
 @end

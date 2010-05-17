@@ -81,16 +81,23 @@
 // you're going to use this, make sure you override hasDynamicHeight and return 
 // YES.
 - (void)adjustHeightForLabel:(UILabel *)label {
+//	if ([label.text isEqual:@"DC-eye: 2COOLVK"]) {
+//		DTLog(@"==== '%@' ====", label.text);
+//	}
 	NSAssert ([self hasDynamicHeight], @"If you're going to call adjustHeightForLabel:, you must override hasDynamicHeight and return YES.");
 //	if (minHeight == 0.0 || self.bounds.size.height < minHeight) minHeight = self.bounds.size.height;
 	CGFloat margin = self.bounds.size.height - label.frame.size.height;
+//	if ([label.text isEqual:@"DC-eye: 2COOLVK"]) {
+//		DTLog(@"before: %f - %f = %f", self.bounds.size.height, label.frame.size.height, self.bounds.size.height - label.frame.size.height);
+//	}
 	CGFloat newLabelHeight = [label heightToFitText];
 	CGFloat newCellHeight = newLabelHeight + margin;
-//	if (newCellHeight < minHeight) {
-//		newCellHeight = minHeight;
-//		newLabelHeight = minHeight - margin;
-//	}
-	CGFloat newLabelY;
+	if (newCellHeight < minHeight && newLabelHeight > 0) {
+		newCellHeight = minHeight;
+		newLabelHeight = minHeight - margin;
+	}
+	
+	CGFloat newLabelY = label.frame.origin.y;;
 	if (([label autoresizingMask] & UIViewAutoresizingFlexibleTopMargin) && !([label autoresizingMask] & UIViewAutoresizingFlexibleBottomMargin)) {
 //		newLabelY = label.frame.origin.y - (newLabelHeight - label.frame.size.height);
 		newLabelY = label.frame.origin.y;
@@ -102,9 +109,17 @@
 		NSAssert (0, @"To adjust the height of a label, it must have one flexible top or bottom margin, and one fixed.");
 	}
 	
-//	self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, newCellHeight);
-	self.height = newCellHeight;
+	CGRect newBounds = self.bounds;
+	newBounds.size.height = newCellHeight;
+	newBounds.origin.y = 0;
+	UIViewAutoresizing oldContentViewAutoresizing = self.contentView.autoresizingMask;
+	self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.bounds = newBounds;
+	self.contentView.autoresizingMask = oldContentViewAutoresizing;
 	label.frame = CGRectMake(label.frame.origin.x, newLabelY, label.frame.size.width, newLabelHeight);
+//	if ([label.text isEqual:@"DC-eye: 2COOLVK"]) {
+//		DTLog(@"after: %f - %f = %f", self.bounds.size.height, label.frame.size.height, self.bounds.size.height - label.frame.size.height);
+//	}
 }
 
 // Subclasses should override this method and return YES if they manually modify 

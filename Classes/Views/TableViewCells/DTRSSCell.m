@@ -23,7 +23,6 @@
 
 // Subclasses can override this to set fields given an untyped data object
 - (void)setData:(NSDictionary *)data {
-//	NSLog(@"Adjusting cell for data:\n  title: '%@'\n  subtitle: '%@'", [data stringForKey:@"title"], [data stringForKey:@"description"]);
     if (titleLabel) {
 		titleLabel.text = @"";
 		NSString *title = [[data stringForKey:@"title"] stringByRemovingMarkupTags];
@@ -42,19 +41,14 @@
     if (imageEnclosureView && [data stringForKey:@"image_url"]) [imageEnclosureView loadFromURL:[data stringForKey:@"image_url"].to_url];
 	
 	if (descriptionLabel) {
-		//		NSLog(@"    BEFORE adjust description: cell.height = %f, cell.minHeight = %f, title.height = %f, title.y = %f, description.height = %f, description.y = %f",
-		//			  self.height, self.minHeight, titleLabel.height, titleLabel.y, descriptionLabel.height, descriptionLabel.y);
 		[self adjustHeightForLabel:descriptionLabel];
-		//		NSLog(@"    AFTER  adjust description: cell.height = %f, cell.minHeight = %f, title.height = %f, title.y = %f, description.height = %f, description.y = %f",
-		//			  self.height, self.minHeight, titleLabel.height, titleLabel.y, descriptionLabel.height, descriptionLabel.y);
+		descriptionLabel.hidden = ([descriptionLabel.text length] == 0);
 	}
 	if (titleLabel) {
-//		NSLog(@"    BEFORE adjust title: cell.height = %f, cell.minHeight = %f, title.height = %f, title.y = %f, description.height = %f, description.y = %f",
-//			  self.height, self.minHeight, titleLabel.height, titleLabel.y, descriptionLabel.height, descriptionLabel.y);
 		[self adjustHeightForLabel:titleLabel];
-//		NSLog(@"    AFTER  adjust title: cell.height = %f, cell.minHeight = %f, title.height = %f, title.y = %f, description.height = %f, description.y = %f",
-//			  self.height, self.minHeight, titleLabel.height, titleLabel.y, descriptionLabel.height, descriptionLabel.y);
+		titleLabel.hidden = ([titleLabel.text length] == 0);
 	}
+	NSLog(@"Title Margin: %f - %f = %f for '%@'", self.bounds.size.height, titleLabel.bounds.size.height, self.bounds.size.height - titleLabel.bounds.size.height, titleLabel.text);
 }
 
 - (BOOL)hasDynamicHeight {

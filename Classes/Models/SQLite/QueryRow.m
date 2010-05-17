@@ -33,7 +33,7 @@
 				break;
 			case SQLITE_TEXT:
 				value = [[NSString alloc] initWithUTF8String: (char *)sqlite3_column_text(statement, column)];
-//               NSLog([NSString stringWithFormat:@"+ Column %d: %s", column, sqlite3_column_text(statement, column)]);
+//               DTLog([NSString stringWithFormat:@"+ Column %d: %s", column, sqlite3_column_text(statement, column)]);
 				break;
 			case SQLITE_BLOB:
 				value =nil;

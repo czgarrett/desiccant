@@ -25,4 +25,11 @@
 	return [self activeUserLocation] != nil;
 }
 
+- (NSArray *)nonUserLocationAnnotations {
+	NSMutableArray *filteredAnnotations = [NSMutableArray arrayWithArray:self.annotations];
+	MKUserLocation *annotationToFilter = [self activeUserLocation];
+	if (annotationToFilter) [filteredAnnotations removeObject:annotationToFilter];
+	return filteredAnnotations;
+}
+
 @end

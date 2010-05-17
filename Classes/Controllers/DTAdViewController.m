@@ -20,7 +20,7 @@
 @property (nonatomic, retain) UIView *adSeparatorView;
 @property (nonatomic, retain) UIButton *adButton;
 - (void)setup;
-- (void)showAdView:(UIView *)theAdView;
+- (void)showAdView;
 - (void)adShowAnimationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
 - (void)hideAdView;
 - (CGRect)frameForViewControllerViewWithAdShowing;
@@ -34,11 +34,12 @@
 - (CGPoint)centerPointForAdView;
 - (UIViewAutoresizing)autoresizingMaskForWrapperViews;
 - (UIViewAutoresizing)autoresizingMaskForSeparatorViews;
+- (NSTimeInterval)timeRemainingUntilDisplay;
 @end
 
 
 @implementation DTAdViewController
-@synthesize viewController, dtAdLoader, adData, adAnimationDuration, placeholderView, placeholderWrapperView, marginColor, separatorColor, placeholderSeparatorView, placeholderButton, adView, adWrapperView, adSeparatorView, adButton;
+@synthesize viewController, dtAdLoader, adData, adAnimationDuration, placeholderView, placeholderWrapperView, marginColor, separatorColor, loadStartTime, placeholderSeparatorView, placeholderButton, adView, adWrapperView, adSeparatorView, adButton;
 
 #pragma mark Memory management
 
@@ -57,6 +58,7 @@
 	self.adButton = nil;
 	self.marginColor = nil;
 	self.separatorColor = nil;
+	self.loadStartTime = nil;
 	[super dealloc];
 }
 
@@ -122,6 +124,7 @@
 	}
 	self.adData = nil;
 	self.adWrapperView = nil;
+	self.loadStartTime = [NSDate date];
 	[self.adLoader performSelectorOnMainThread:@selector(loadAdForViewController:) withObject:self waitUntilDone:NO];
 	[super viewDidAppear:animated];
 }
@@ -136,11 +139,27 @@
 	else return [self.viewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
+#pragma mark Public methods
+
+// Subclasses may override this to define a delay before the ad should be shown.
+// Defaults to 0.0.
+- (NSTimeInterval) adDisplayDelayInterval {
+	return 0.0f;
+}
+
 #pragma mark DTAdLoaderDelegate methods
 
 - (void)adLoader:(NSObject <DTAdLoader> *)loader didFinishLoadingView:(UIView *)theAdView withAdData:(NSObject *)theAdData {
 	self.adData = theAdData;
-	[self showAdView:theAdView];
+	self.adView = theAdView;
+	NSTimeInterval timeRemainingUntilDisplay = [self timeRemainingUntilDisplay];
+	if (timeRemainingUntilDisplay > 0) {
+		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showAdView) object:nil];
+		[self performSelector:@selector(showAdView) afterDelay:timeRemainingUntilDisplay];
+	}
+	else {
+		[self showAdView];
+	}
 }
 
 #pragma mark Actions
@@ -174,8 +193,7 @@
 	self.separatorColor = [UIColor grayColor];
 }
 
-- (void)showAdView:(UIView *)theAdView {
-	self.adView = theAdView;
+- (void)showAdView {
 	if (self.adView) {
 		self.adWrapperView = [[[UIView alloc] initWithFrame:[self offscreenFrameForAdWrapperView]] autorelease];
 		adWrapperView.autoresizingMask = [self autoresizingMaskForWrapperViews];
@@ -277,6 +295,15 @@
 
 - (UIViewAutoresizing)autoresizingMaskForSeparatorViews {
 	return UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+}
+
+- (NSTimeInterval)timeRemainingUntilDisplay {
+	NSLog(@"LoadStartTime: %@", loadStartTime);
+	NSLog(@"Now: %@", [NSDate date]);
+	NSLog(@"timeIntervalSinceDate:loadStartTime = %f", [[NSDate date] timeIntervalSinceDate:loadStartTime]);
+	NSLog(@"adDisplayDelayInterval = %f", [self adDisplayDelayInterval]);
+	NSLog(@"[self adDisplayDelayInterval] - [[NSDate date] timeIntervalSinceDate:loadStartTime] = %f", [self adDisplayDelayInterval] - [[NSDate date] timeIntervalSinceDate:loadStartTime]);
+	return [self adDisplayDelayInterval] - [[NSDate date] timeIntervalSinceDate:loadStartTime];
 }
 
 @end

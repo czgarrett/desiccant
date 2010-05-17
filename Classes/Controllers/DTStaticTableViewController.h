@@ -128,4 +128,5 @@
 // then passing it to addRowWithDedicatedCell:...
 - (id)cellWithNibNamed:(NSString *)nibName;
 
+- (NSDictionary *)dataDictionaryForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end

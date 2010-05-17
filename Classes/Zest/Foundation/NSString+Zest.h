@@ -25,6 +25,10 @@
 @property (nonatomic, retain, readonly) NSString *withWhitespaceCollapsed;
 @property (nonatomic, retain, readonly) NSString *withNewlinesRemoved;
 
+// Returns the unmodified string unless its length is zero, in which case it
+// returns nil.
+@property (nonatomic, retain, readonly) NSString *unlessEmpty;
+
 // Returns the resource path for the main bundle
 + (NSString *) resourcePath;
 // Returns a file URL pointing to the resource directory.
@@ -110,5 +114,6 @@
 // Escapes the usual characters, plus legal URL characters.  Useful when
 // passing a URL as a GET parameter.
 - (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
+
 
 @end

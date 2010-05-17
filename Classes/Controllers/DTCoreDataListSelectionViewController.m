@@ -108,7 +108,7 @@
    if (needsFiltering && !currentlyFiltering) {
       [self.activityIndicator startAnimating];
       currentlyFiltering = YES;
-      NSLog(@"Filtering with text: %@", self.currentSearchText);
+      DTLog(@"Filtering with text: %@", self.currentSearchText);
       needsFiltering = NO;
       NSPredicate *predicate = [self predicateForSearchText: self.currentSearchText scope: self.currentSearchScope];
       if (predicate) {
@@ -141,7 +141,7 @@
    needsFiltering = YES;
    self.currentSearchText = searchText;
    self.currentSearchScope = scopeIndex;
-   NSLog(@"Filter content for search text: %@", searchText);
+   DTLog(@"Filter content for search text: %@", searchText);
    [self performSelectorInBackground: @selector(filter) withObject: nil];
    //[self filter];
 }

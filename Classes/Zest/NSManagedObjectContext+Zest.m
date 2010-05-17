@@ -8,7 +8,7 @@
 
 #ifdef __IPHONE_3_0
 #import "NSManagedObjectContext+Zest.h"
-
+#import "Zest.h"
 
 @implementation NSManagedObjectContext ( Zest )
 
@@ -36,15 +36,15 @@
 }
 
 - (void) logDetailedError: (NSError *) error {
-   NSLog(@"Overall error: %@", [error localizedDescription]);
+   DTLog(@"Overall error: %@", [error localizedDescription]);
    NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
    if(detailedErrors != nil && [detailedErrors count] > 0) {
       for(NSError* detailedError in detailedErrors) {
-         NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+         DTLog(@"  DetailedError: %@", [detailedError userInfo]);
       }
    }
    else {
-      NSLog(@"  %@", [error userInfo]);
+      DTLog(@"  %@", [error userInfo]);
    }
 }
 
@@ -62,7 +62,7 @@
    NSError *error;
    NSArray *result = [self executeFetchRequest:request error:&error];
    if (result == nil) {
-      NSLog(@"Find error");
+      DTLog(@"Find error");
       //[self handleUnexpectedError: error];
    }
    return result;   

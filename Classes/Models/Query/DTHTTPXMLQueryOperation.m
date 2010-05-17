@@ -8,6 +8,7 @@
 
 #import "DTHTTPXMLQueryOperation.h"
 #import "NSString+Zest.h"
+#import "Zest.h"
 
 #pragma mark Private Interface
 @interface DTHTTPXMLQueryOperation()
@@ -51,8 +52,8 @@
 		return YES;
 	}
 	else {
-      NSLog(@"Invalid feed response");
-      NSLog(@"%@", [NSString stringWithData: responseData encoding: NSUTF8StringEncoding]);
+      DTLog(@"Invalid feed response");
+      DTLog(@"%@", [NSString stringWithData: responseData encoding: NSUTF8StringEncoding]);
 		self.error = @"Error parsing feed";
 		return NO;
 	}

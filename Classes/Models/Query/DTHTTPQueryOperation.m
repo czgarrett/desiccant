@@ -82,7 +82,7 @@
 		}
 		if (self.postFileKey) {
 			if (self.postFileData) {
-				[postRequest setData:self.postFileData forKey:self.postFileKey];
+				[postRequest setData:self.postFileData withFileName:@"image.jpg" andContentType:@"image/jpeg" forKey:self.postFileKey];
 			}
 			else if (self.postFilePath) {
 				[postRequest setFile:self.postFilePath forKey:self.postFileKey];
@@ -98,7 +98,7 @@
 		[self.request setRequestMethod:self.method];
 	}
 	
-	NSLog(@"%@: %@", self.method, request.url.absoluteString);
+	DTLog(@"%@: %@", self.method, request.url.absoluteString);
 	request.delegate = self;
 	[request startAsynchronous];
 }
@@ -135,7 +135,7 @@
 //- (void)connectionDidFinishLoading:(NSURLConnection *)theConnection {
 //	ABORT_IF_CANCELLED
 //	self.responseData = tempData;
-//	NSLog(@"\n--- BEGIN RESPONSE ---\n%@\n--- END RESPONSE ---", [NSString stringWithUTF8String:[[responseData nullTerminated] bytes]]);
+//	DTLog(@"\n--- BEGIN RESPONSE ---\n%@\n--- END RESPONSE ---", [NSString stringWithUTF8String:[[responseData nullTerminated] bytes]]);
 //	[self completeOperationWithError:![self parseResponseData]];
 //}
 
@@ -160,8 +160,8 @@
 //	if (!responseData) {
 //		self.error = @"Unable to connect to the server at this time.  Please try again later.  (error dthqo1)";
 //	}
-//	//    NSLog(@"%@", [err localizedDescription]);
-//	//    NSLog([NSString stringWithUTF8String:[xmlData bytes]]);
+//	//    DTLog(@"%@", [err localizedDescription]);
+//	//    DTLog([NSString stringWithUTF8String:[xmlData bytes]]);
 //}
 
 - (void)prepareForQuery {

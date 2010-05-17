@@ -63,7 +63,7 @@
                namespaceURI:(NSString *)namespaceURI 
               qualifiedName:(NSString *)qName {
     self.result = self.valueContext.tempValue;
-//    NSLog(@"Found Value: %@ for %@", tempValue, elementName);
+//    DTLog(@"Found Value: %@ for %@", tempValue, elementName);
 }
 
 - (DTXMLValueParserContext *)valueContext {

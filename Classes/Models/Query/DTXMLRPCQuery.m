@@ -328,7 +328,7 @@
         [self setResponseFields:data];
     }
     else if ([data objectForKey:@"fault"]) {
-        NSLog(@"*** Fault returned for query:\n\n%s", self.body);
+        DTLog(@"*** Fault returned for query:\n\n%s", self.body);
         for (NSDictionary *member in [[data dictionaryForKey:@"fault"] arrayForKey:@"struct"]) {
             if ([[member stringForKey:@"name"] isEqual:@"faultCode"]) {
                 [data setValue:[[member dictionaryForKey:@"value"] stringForKey:@"int"] forKey:@"faultCode"];

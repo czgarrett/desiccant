@@ -25,6 +25,9 @@
 }
 
 @property (nonatomic, assign) UIViewController *containerViewController;
+// Returns the top of this nested controller hierarchy, or self if controller has
+// no container.
+@property (nonatomic, assign, readonly) UIViewController *topContainerViewController;
 @property (nonatomic, retain) UITableViewController *containerTableViewController;
 
 // The .xib should set its File's Owner to DTTableViewController, and connect this cell outlet to its

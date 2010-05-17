@@ -117,17 +117,28 @@
 	return dtContainerViewController;
 }
 
+- (UIViewController *)topContainerViewController {
+	if ([[self containerViewController] respondsToSelector:@selector(topContainerViewController)]) {
+		return [(UIViewController <DTActsAsChildViewController> *)[self containerViewController] topContainerViewController];
+	}
+	else {
+		return self;
+	}
+}
+
 #pragma mark UIViewController methods
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// When self is the root view controller, this allows the top view controller to autorotate to orientations 
-	// that self doesn't support.
+	// When self is the root view controller (or one of its nested controllers), but isn't currently visible, 
+	// this allows the controller that is visible to autorotate to orientations that this controller may not support.
+	// Necessary because UITabBarController returns the logical AND of its viewControllers' responses, and
+	// UINavigationController returns the response of its root viewController.
 	if (self.tabBarController && 
-		self.tabBarController.selectedViewController  != self && 
+		self.tabBarController.selectedViewController != [self topContainerViewController] && 
 		self.tabBarController.selectedViewController != self.navigationController) {
 		return [self.tabBarController.selectedViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 	}
-	else if (self.navigationController && self.navigationController.topViewController != self) {
+	else if (self.navigationController && self.navigationController.topViewController != [self topContainerViewController]) {
 		return [self.navigationController.topViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 	}
 	else {

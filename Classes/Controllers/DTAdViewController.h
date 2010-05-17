@@ -75,6 +75,7 @@
 	
 	UIColor *marginColor;
 	UIColor *separatorColor;
+	NSDate *loadStartTime;
 }
 
 @property (nonatomic, retain) IBOutlet UIViewController <DTActsAsChildViewController> *viewController;
@@ -82,8 +83,12 @@
 @property (nonatomic, assign) NSTimeInterval adAnimationDuration;
 @property (nonatomic, retain) UIColor *marginColor;
 @property (nonatomic, retain) UIColor *separatorColor;
+@property (nonatomic, retain) NSDate *loadStartTime;
 
 - (id)initWithViewController:(UIViewController <DTActsAsChildViewController> *)theController adLoader:(NSObject <DTAdLoader> *)theAdLoader;
 + (id)controllerWithViewController:(UIViewController <DTActsAsChildViewController> *)theController adLoader:(NSObject <DTAdLoader> *)theAdLoader;
-
+// Subclasses may override this to define a delay before the ad should be shown.
+// Defaults to 0.0.
+- (NSTimeInterval) adDisplayDelayInterval;
+	
 @end

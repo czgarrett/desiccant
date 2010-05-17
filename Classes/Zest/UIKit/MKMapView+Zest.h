@@ -12,4 +12,5 @@
 @interface MKMapView (Zest)
 @property (nonatomic, readonly) BOOL hasActiveUserLocation;
 @property (nonatomic, readonly, retain) MKUserLocation *activeUserLocation;
+@property (nonatomic, readonly, retain) NSArray *nonUserLocationAnnotations;
 @end

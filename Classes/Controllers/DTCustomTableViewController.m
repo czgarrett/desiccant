@@ -18,7 +18,7 @@
 - (void)dealloc {
    self.cellNibName = nil;
    self.cellIdentifier = nil;
-   NSLog(@"DTCustomTableViewController dealloc");
+   DTLog(@"DTCustomTableViewController dealloc");
    [super dealloc];
 }
 

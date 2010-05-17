@@ -1,3 +1,39 @@
+Changes committed May 17, 2010 by Curtis Duhn
+
+- Zest: -[NSUserDefaults persistKeyPath:ofObject:defaultValue:] automatically persists specified object properties across executions, with a few limitations.  It uses KVO to monitor changes to the specified keyPath and persist them.  Loads the keyPath with the persisted value if one exists, or else the specified defaultValue.  Warning: The value is persisted using a key constructed by concatenating the object's class name with the specified keyPath.  So if you pass two instances of the same class to this method with the same keyPath, the last setter called will dictate the persisted value for all instances.  Also note that NSUserDefaults has certain restrictions about which objects it can persist.  Those restrictions apply to this method as well.
+
+- Zest: -[NSString unlessEmpty] returns nil if the string's length is zero, self otherwise.
+
+- Zest: -[NSURL urlForDrivingDirectionsFrom:forceTitle:to:forceTitle:] returns a Google driving directions URL.
+
+- Zest: -[MKMapView nonUserLocationAnnotations] returns all of the map's annotations except the MKUserLocation.
+
+- Implemented DTLog() function, which has the same signature os NSLog, but gets automatically disabled for production builds.  The output's also a bit different at the moment.  It outputs a timestamp with the target and selector on one line, and then the log output on the next line.  I'm not wedded to that format though.
+
+- Replaced all NSLog calls in Desiccant with DTLog calls.
+
+- Added -topContainerViewController property to DTViewController and DTTableViewController.  For controllers that participate in a nested viewController hierarchy (via DTCompositeViewController, for example) this returns the top controller in the controller's view hierarchy.  Returns self if the controller doesn't have a container.
+
+- Fixed a bug in DTViewController/DTTableViewController that led to an infinite mutual recursion loop with DTAdViewController on shouldAutorotateToInterfaceOrientation:
+
+- DTAdViewController subclasses can now optionally override -adDisplayDelayInterval and return some number of seconds that the controller should wait before displaying the ad.  Defaults to 0.
+
+- Added DTDrivingDirectionsViewController, which presents "Directions To Here" and "Directions From Here" options for a map annotation.
+
+- Changed DTMapViewController to present a DTDrivingDirectionsViewController by default on mapView:annotationView:calloutAccessoryControlTapped:
+
+- Added -[DTStaticTableViewController dataDictionaryForRowAtIndexPath:]
+
+- Added -[DTAddress mapAnnotationTitle], which presents the best one-liner description for an address.
+
+- Changed DTHTTPQueryOperation to pass a filename and content type on upload.  Just realized I accidentally hard coded this to @"image.jpg" and @"image/jpeg", which is app specific.  I'll fix that to make it configurable as soon as I have a chance.
+
+- DTSpinner now stops spinning and stays stopped even if you call -hide more times than you call -show.
+
+- Fixed another weird layout bug in DTCustomTableViewCell for cells that contain multiple variable height labels.  I *think* it should enforce a minimum cell height again as a result, but need to do more testing on this.
+
+- DTRSSCell now hides labels of zero length.
+
 Changes committed May 4, 2010 by Curtis Duhn
 
 -	[DTAdViewController shouldAutoRotateToInterfaceOrientation] now delegates to its 

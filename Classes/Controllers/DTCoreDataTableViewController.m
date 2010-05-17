@@ -50,12 +50,12 @@
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
-   NSLog(@"Loaded search results table");
+   DTLog(@"Loaded search results table");
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
 
-   NSLog(@"Showed search results table");
+   DTLog(@"Showed search results table");
 }
 
 
@@ -97,7 +97,7 @@
 //   [super afterViewDidLoad:theTableView];
 //   NSError *error = nil;
 //	if (![[self fetchedResultsController] performFetch:&error]) {
-//		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//		DTLog(@"Unresolved error %@, %@", error, [error userInfo]);
 //		abort();
 //   }  
 //}

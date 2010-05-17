@@ -21,6 +21,7 @@
 // Subclasses must implement this and return an array or dictionary that can be parsed by the resultObjectParser based on the resultData
 - (NSObject *)resultObject {
 	NSString *json = [NSString stringWithCString:[[responseData nullTerminated] bytes] encoding:NSUTF8StringEncoding];
+	DTLog(@"%@", json);
 	return (NSObject *)[json JSONValue];
 }
 

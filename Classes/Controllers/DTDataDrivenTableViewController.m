@@ -239,7 +239,6 @@
         
         indexPath = [self adjustIndexPathForHeaders:indexPath];
         [cell setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
-
         return cell;
     }    
 }
@@ -277,7 +276,8 @@
         return [self tableView:tableView heightForHeaderRowAtIndexPath:indexPath];
     }
     else {
-        return [self tableView:tableView heightForDataRowAtIndexPath:indexPath];
+		CGFloat height = [self tableView:tableView heightForDataRowAtIndexPath:indexPath];
+        return height;
     }
 }
 

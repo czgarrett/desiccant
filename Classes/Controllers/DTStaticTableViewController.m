@@ -243,6 +243,10 @@
 	return cell;
 }
 
+- (NSDictionary *)dataDictionaryForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return [[self tableView:nil rowAtIndexPath:indexPath] dataDictionary];
+}
+
 #pragma mark Private methods
 
 - (DTTableViewRow *)tableView:(UITableView *)tableView rowAtIndexPath:(NSIndexPath *)indexPath {

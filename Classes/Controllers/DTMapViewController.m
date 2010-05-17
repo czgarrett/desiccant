@@ -8,6 +8,7 @@
 #import "DTMapViewController.h"
 #import "DTMapAnnotation.h"
 #import "Zest.h"
+#import "DTDrivingDirectionsViewController.h"
 
 static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 
@@ -68,6 +69,7 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.navigationItem.backBarButtonItem = [UIBarButtonItem itemWithTitle:@"Map"];
     [self.mapView setRegion:self.defaultRegion animated:NO];
 	[self setToolbarItems:[NSArray arrayWithObject:self.currentLocationButton]];
 }
@@ -80,6 +82,10 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	NSArray *nonUserLocationAnnotations = [self.mapView nonUserLocationAnnotations];
+	if ([nonUserLocationAnnotations count] == 1) {
+		[self.mapView selectAnnotation:[nonUserLocationAnnotations objectAtIndex:0] animated:YES];
+	}
 	self.mapView.showsUserLocation = YES;
 }
 
@@ -199,5 +205,8 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
     return annotationView;
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+	[self.navigationController pushViewController:[DTDrivingDirectionsViewController controllerWithAnnotation:view.annotation userLocation:self.mapView.userLocation] animated:YES];
+}
 
 @end

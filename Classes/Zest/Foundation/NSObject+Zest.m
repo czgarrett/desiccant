@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "NSObject+Zest.h"
+#import "Zest.h"
 
 @implementation NSObject (Zest)
 
@@ -150,7 +151,7 @@
 			else
 			{
 				// assume its a pointer and punt
-				NSLog(@"%@", type);
+				DTLog(@"%@", type);
 				void *ptr = va_arg(arguments, void *);
 				[inv setArgument:ptr atIndex:argcount++];
 			}
@@ -541,4 +542,5 @@
 {
 	return [self tryPerformSelector:aSelector withObject:nil withObject:nil];
 }
+
 @end

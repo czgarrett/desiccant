@@ -8,7 +8,7 @@
 
 #import "QueryResult.h"
 #import "SQLiteConnectionAdapter.h"
-
+#import "Zest.h"
 
 @implementation QueryResult
 
@@ -48,7 +48,7 @@
 		[[SQLiteConnectionAdapter defaultInstance] handleSQLiteError];
    }
    if (execResult == SQLITE_READONLY) {
-      NSLog(@"Attempted to write to a read-only database!");
+      DTLog(@"Attempted to write to a read-only database!");
    }
    if(operation && [operation isCancelled]) {
       [rows removeAllObjects];

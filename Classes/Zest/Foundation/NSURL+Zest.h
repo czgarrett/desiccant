@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <MapKit/MapKit.h>
 
 @interface NSURL ( Zest )
 
@@ -15,6 +15,7 @@
 
 // Returns the file URL for the main bundle's resource path
 + (NSURL *)resourceURL;
++ (NSURL *)urlForDrivingDirectionsFrom:(CLLocation *)from forceTitle:(NSString *)forcedFromTitle to:(CLLocation *)to forceTitle:(NSString *)forcedToTitle;
 
 // Tests for network reachability for this URL's host
 - (BOOL)hostIsReachable;

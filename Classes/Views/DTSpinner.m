@@ -19,7 +19,9 @@
 
 + (void)hide {
 	@synchronized ([UIApplication sharedApplication]) {
-		[UIApplication sharedApplication].networkActivityIndicatorVisible--;
+		if ([UIApplication sharedApplication].networkActivityIndicatorVisible) {
+			[UIApplication sharedApplication].networkActivityIndicatorVisible--;
+		}
 	}
 }
 
