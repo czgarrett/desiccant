@@ -85,11 +85,8 @@
 //		DTLog(@"==== '%@' ====", label.text);
 //	}
 	NSAssert ([self hasDynamicHeight], @"If you're going to call adjustHeightForLabel:, you must override hasDynamicHeight and return YES.");
-//	if (minHeight == 0.0 || self.bounds.size.height < minHeight) minHeight = self.bounds.size.height;
+	if (minHeight == 0.0 || self.bounds.size.height < minHeight) minHeight = self.bounds.size.height;
 	CGFloat margin = self.bounds.size.height - label.frame.size.height;
-//	if ([label.text isEqual:@"DC-eye: 2COOLVK"]) {
-//		DTLog(@"before: %f - %f = %f", self.bounds.size.height, label.frame.size.height, self.bounds.size.height - label.frame.size.height);
-//	}
 	CGFloat newLabelHeight = [label heightToFitText];
 	CGFloat newCellHeight = newLabelHeight + margin;
 	if (newCellHeight < minHeight && newLabelHeight > 0) {

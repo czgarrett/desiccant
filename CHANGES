@@ -1,3 +1,9 @@
+Changes committed May 19, 2010 by Curtis Duhn
+
+- DTCustomTableViewCell now really does enforce the initial height of a cell when as the minimum height that the cell can ever assume as a result of resizing via adjustHeightForLabel:.
+
+- Removed some extraneous diagnostic NSLogs.
+
 Changes committed May 17, 2010 by Curtis Duhn
 
 - Zest: -[NSUserDefaults persistKeyPath:ofObject:defaultValue:] automatically persists specified object properties across executions, with a few limitations.  It uses KVO to monitor changes to the specified keyPath and persist them.  Loads the keyPath with the persisted value if one exists, or else the specified defaultValue.  Warning: The value is persisted using a key constructed by concatenating the object's class name with the specified keyPath.  So if you pass two instances of the same class to this method with the same keyPath, the last setter called will dictate the persisted value for all instances.  Also note that NSUserDefaults has certain restrictions about which objects it can persist.  Those restrictions apply to this method as well.

@@ -48,7 +48,6 @@
 		[self adjustHeightForLabel:titleLabel];
 		titleLabel.hidden = ([titleLabel.text length] == 0);
 	}
-	NSLog(@"Title Margin: %f - %f = %f for '%@'", self.bounds.size.height, titleLabel.bounds.size.height, self.bounds.size.height - titleLabel.bounds.size.height, titleLabel.text);
 }
 
 - (BOOL)hasDynamicHeight {

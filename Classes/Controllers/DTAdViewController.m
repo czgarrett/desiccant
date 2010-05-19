@@ -298,11 +298,6 @@
 }
 
 - (NSTimeInterval)timeRemainingUntilDisplay {
-	NSLog(@"LoadStartTime: %@", loadStartTime);
-	NSLog(@"Now: %@", [NSDate date]);
-	NSLog(@"timeIntervalSinceDate:loadStartTime = %f", [[NSDate date] timeIntervalSinceDate:loadStartTime]);
-	NSLog(@"adDisplayDelayInterval = %f", [self adDisplayDelayInterval]);
-	NSLog(@"[self adDisplayDelayInterval] - [[NSDate date] timeIntervalSinceDate:loadStartTime] = %f", [self adDisplayDelayInterval] - [[NSDate date] timeIntervalSinceDate:loadStartTime]);
 	return [self adDisplayDelayInterval] - [[NSDate date] timeIntervalSinceDate:loadStartTime];
 }
 
