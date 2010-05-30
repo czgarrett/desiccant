@@ -30,6 +30,7 @@
 // Subclasses should implement this to show/load HTML content as appropriate
 - (void)reloadWebView;
 - (void)addLinkController:(id <ACWebLinkController>)controller;
+- (void)removeAllLinkControllers;
 // This will get called if the webView attempts to load app://loaded.
 // Set <body onload="window.location.href = 'app://loaded'"> to trigger it.
 // Necessary because webViewDidFinishLoad: doesn't guarantee that the page

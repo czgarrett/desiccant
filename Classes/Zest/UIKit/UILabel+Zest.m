@@ -23,6 +23,7 @@
 }
 
 - (CGFloat)heightToFitText {
+	NSAssert (self.bounds.size.width > 0, @"Warning: This method depends on the label having a nonzero width when called.");
 	return [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(self.bounds.size.width, [self maxHeight]) lineBreakMode:self.lineBreakMode].height;
 }
 

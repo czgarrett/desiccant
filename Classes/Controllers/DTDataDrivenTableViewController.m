@@ -18,10 +18,11 @@
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 @property (nonatomic, retain) UITableViewCell * prototype;
 @property (nonatomic, retain) UITableViewCell *dtPrototypeMoreResultsCell;
+@property (nonatomic, retain) UITableViewCell *dtNoResultsCell;
 @end
 
 @implementation DTDataDrivenTableViewController
-@synthesize query, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier;
+@synthesize query, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier, dtNoResultsCell;
 
 #pragma mark Memory management
 
@@ -29,10 +30,12 @@
     self.query = nil;
     self.prototype = nil;
 //    self.activityIndicator = nil;
+	self.mediaWebView.delegate = nil;
     self.mediaWebView = nil;
 	self.moreResultsCellNibName = nil;
 	self.moreResultsCellIdentifier = nil;
 	self.dtPrototypeMoreResultsCell = nil;
+	self.dtNoResultsCell = nil;
     
     [super dealloc];
 }
@@ -44,11 +47,19 @@
 	[super viewDidLoad];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     if (query && !query.loaded) {
         [query refresh];
     }
-	[super viewWillAppear:animated];
+	[super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	if (query && query.updating) {
+		[query cancel];
+	}
+	
+	[super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,6 +126,31 @@
 	else {
 		return 44.0;
 	}
+}
+
+- (void)setNoResultsCellWithMessage:(NSString *)message {
+	DTCustomTableViewCell *newCell = [[[DTCustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+	newCell.frame = CGRectMake(0, 0, [[UIScreen mainScreen] applicationFrame].size.width, 44.0f);
+	newCell.textLabel.numberOfLines = 0;
+	newCell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+	newCell.textLabel.adjustsFontSizeToFitWidth = YES;
+	newCell.textLabel.font = [UIFont boldSystemFontOfSize:17.0];
+	newCell.textLabel.text = message;
+	newCell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+	newCell.userInteractionEnabled = NO;
+	[newCell layoutSubviews];
+	newCell.textLabel.height = [newCell.textLabel heightToFitText];
+	newCell.textLabel.y = 10.0f;
+	newCell.height = newCell.textLabel.height + 20.0f;
+	self.noResultsCell = newCell;
+}
+
+- (BOOL)hasNoResultsCell {
+	return (self.noResultsCell != nil);
+}
+
+- (CGFloat)heightForNoResultsCell {
+	return self.noResultsCell.height;
 }
 
 #pragma mark Public methods to be overridden
@@ -221,7 +257,7 @@
 		}
 		return cell;
 	}
-    else {
+    else if ([query count] > 0) {
         cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
             if (cellNibName) {
@@ -240,7 +276,15 @@
         indexPath = [self adjustIndexPathForHeaders:indexPath];
         [cell setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
         return cell;
-    }    
+    }
+	else {
+		if ([self hasNoResultsCell]  && query.loaded) {
+			return self.noResultsCell;
+		}
+		else {
+			return nil;
+		}
+	}
 }
 
 
@@ -275,10 +319,18 @@
     if ([self indexPathIsHeader:indexPath]) {
         return [self tableView:tableView heightForHeaderRowAtIndexPath:indexPath];
     }
-    else {
+    else if ([query count] > 0) {
 		CGFloat height = [self tableView:tableView heightForDataRowAtIndexPath:indexPath];
         return height;
     }
+	else {
+		if ([self hasNoResultsCell] && query.loaded) {
+			return [self heightForNoResultsCell];
+		}
+		else {
+			return 0.0f;
+		}
+	}
 }
 
 #pragma mark UIWebViewDelegate methods
@@ -328,6 +380,17 @@
 	[self showErrorForFailedQuery:theQuery];
 }
 
+#pragma mark Dynamic properties
+
+- (UITableViewCell *)noResultsCell {
+	return self.dtNoResultsCell;
+}
+
+- (void)setNoResultsCell:(UITableViewCell *)theNoResultsCell {
+	self.dtNoResultsCell = theNoResultsCell;
+}
+
+
 #pragma mark Private methods
 
 - (DTCustomTableViewCell *)prototypeCell {
@@ -358,12 +421,20 @@
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section {
     if ([self hasHeaders] && section == 0) return headerRows;
-    else {
+    else if ([query count] > 0) {
 		NSInteger numRows = [query rowCountForGroupWithIndex:[self adjustSectionForHeaders:section]];
 		if ([query hasMoreResults] && [self adjustSectionForHeaders:section] == ([query groupCount] - 1)) {
 			numRows += 1;
 		}
 		return numRows;
+	}
+	else {
+		if ([self hasNoResultsCell] && query.loaded) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 }
 

@@ -35,6 +35,7 @@
 	self.error = nil;
 	self.method = nil;
 	self.body = nil;
+	self.request.delegate = nil;
 	self.request = nil;
 	self.connection = nil;
 	self.postParameters = nil;

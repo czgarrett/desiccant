@@ -296,6 +296,7 @@
 }
 
 - (void)dealloc {
+   self.fetchedResultsController.delegate = nil;
    self.fetchedResultsController = nil;
    self.managedObjectContext = nil;
    self.entityName = nil;

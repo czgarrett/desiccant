@@ -59,6 +59,10 @@
     [self.data appendData:incrementalData];
 }
 
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
+	return cachedResponse;
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
     [theConnection cancel];
     self.connection = nil;

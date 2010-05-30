@@ -77,14 +77,10 @@
 }
 
 // Subclasses can call this in setData after setting the contents of a label.  
-// It will adjust the height of the label and the cell to fit the text.  If 
-// you're going to use this, make sure you override hasDynamicHeight and return 
-// YES.
+// It will adjust the height of the label and the cell to fit the text based on
+// the current width of the label.  If you're going to use this in setData, make 
+// sure you also override hasDynamicHeight and return YES.
 - (void)adjustHeightForLabel:(UILabel *)label {
-//	if ([label.text isEqual:@"DC-eye: 2COOLVK"]) {
-//		DTLog(@"==== '%@' ====", label.text);
-//	}
-	NSAssert ([self hasDynamicHeight], @"If you're going to call adjustHeightForLabel:, you must override hasDynamicHeight and return YES.");
 	if (minHeight == 0.0 || self.bounds.size.height < minHeight) minHeight = self.bounds.size.height;
 	CGFloat margin = self.bounds.size.height - label.frame.size.height;
 	CGFloat newLabelHeight = [label heightToFitText];

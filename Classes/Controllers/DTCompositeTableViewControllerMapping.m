@@ -65,7 +65,7 @@
 }
 
 + (DTCompositeTableViewControllerMapping *)mappingWithController:(DTTableViewController *)aController {
-	return [[[self alloc] initWithController:aController] autorelease];
+	return [[(DTCompositeTableViewControllerMapping *)[self alloc] initWithController:aController] autorelease];
 }
 + (DTCompositeTableViewControllerMapping *)mappingWithController:(DTTableViewController *)aController proxiesSections:(BOOL)itProxiesSections {
 	return [[[self alloc] initWithController:aController proxiesSections:itProxiesSections] autorelease];

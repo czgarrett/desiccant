@@ -48,6 +48,7 @@
 	self.error = nil;
 	self.operation.delegate = nil;
 	self.operation = nil;
+	self.moreResultsQuery.delegate = nil;
 	self.moreResultsQuery = nil;
     
     [super dealloc];

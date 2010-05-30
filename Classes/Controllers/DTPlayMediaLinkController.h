@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "ACWebLinkController.h"
+#import "DTWebViewController.h"
 
-@interface DTPlayMediaLinkController : NSObject <ACWebLinkController> {
+@interface DTPlayMediaLinkController : NSObject <ACWebLinkController, UIWebViewDelegate> {
 	UIWebView *hiddenWebView;
+	DTWebViewController *controller;
 }
 
 @property (nonatomic, retain) UIWebView *hiddenWebView;
+@property (nonatomic, retain) DTWebViewController *controller;
+
+// Designated initializer
+- (id)initWithController:(DTWebViewController *)theController;
+- (id)init;
++ (id)controllerWithController:(DTWebViewController *)theController;
 + (id)controller;
 
 @end

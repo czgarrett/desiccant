@@ -89,6 +89,14 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 	self.mapView.showsUserLocation = YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	// This works around an Apple bug.
+	// See: http://omegadelta.net/2009/11/02/mkdotbounceanimation-animationdidstop-bug/
+	[self.mapView.layer removeAllAnimations]; 
+}
+
+
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];

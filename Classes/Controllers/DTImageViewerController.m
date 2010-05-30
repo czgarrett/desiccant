@@ -19,7 +19,9 @@
 @synthesize imageView, scrollView, _url;
 
 - (void)dealloc {
+	self.imageView.delegate = nil;
     self.imageView = nil;
+	self.scrollView.delegate = nil;
     self.scrollView = nil;
     self._url = nil;
     

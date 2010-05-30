@@ -29,6 +29,8 @@
 - (void)dealloc {
 	self.dtLinkControllerChain = nil;
 	self.javascriptOnLoad = nil;
+	self.webView.delegate = nil;
+	self.view = nil;
     
     [super dealloc];
 }
@@ -71,6 +73,14 @@
     [self reloadWebView];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	if (spinning) {
+		spinning = NO;
+		[DTSpinner hide];
+	}
+}
+
 // Subclasses should implement this to show/load HTML content as appropriate
 - (void) reloadWebView {
 }
@@ -96,6 +106,10 @@
 
 - (void)addLinkController:(id <ACWebLinkController>)controller {
     [self.linkControllerChain addObject:controller];
+}
+
+- (void)removeAllLinkControllers {
+	[self.linkControllerChain removeAllObjects];
 }
 
 - (void)webViewIsReadyForJavascript:(UIWebView *)loadedWebView {

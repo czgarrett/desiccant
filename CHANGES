@@ -1,3 +1,23 @@
+Changes committed May 30, 2010 by Curtis Duhn
+
+- DTDataDrivenTableViewController new methods: hasNoResultsCell, heightForNoResultsCell, and new property: noResultsCell.  If the query returns no results, and hasNoResultsCell returns YES, it displays the noResultsCell with the height returned by heightForNoResultsCell.  If you use the setter to set noResultsCell to something non-nil, hasNoResultsCell will return YES by default, and heightForNoResultsCell will return the height of the cell object you passed.
+
+- -[DTDataDrivenTableViewController setNoResultsCellWithMessage:] is a convenient way to define a noResultsCell for a DTDDTVC by passing just a string.
+
+- Cleared up some possible EXC_BAD_ACCESS bugs by setting some delegates to nil in some deallocs.d
+
+- -[DTDataDrivenTableViewController viewDidDisappear] now cancels an executing query if you navigate away.  This makes the UI more responsive.
+
+- DTMapViewController now works around an Apple bug in MapKit that causes an EXC_BAD_ACCESS if the view gets dealloced before an annotation animation completes.  See http://omegadelta.net/2009/11/02/mkdotbounceanimation-animationdidstop-bug/.
+
+- DTPlayMediaLinkController now displays an activity indicator during the delay between the time when a user clicks on a media item and the time when the media player gets displayed.
+
+- -[DTWebViewController removeAllLinkControllers]
+
+- Fixed a bug in DTWebViewController that could result in an infinite spinner in the status bar if you backed out of DTWebViewController while the page is loading.
+
+- New External SDURLCache behaves like NSURLCache, except it actually caches to disk, which NSURLCache doesn't on iPhone.
+
 Changes committed May 19, 2010 by Curtis Duhn
 
 - DTCustomTableViewCell now really does enforce the initial height of a cell when as the minimum height that the cell can ever assume as a result of resizing via adjustHeightForLabel:.

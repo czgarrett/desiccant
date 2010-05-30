@@ -18,6 +18,7 @@
     UIWebView *mediaWebView;
 	NSString *moreResultsCellNibName;    
     NSString *moreResultsCellIdentifier;    
+	UITableViewCell *dtNoResultsCell;
 }
 
 // Subclasses can implement this to display a detail view for the associated data
@@ -52,10 +53,36 @@
 - (NSInteger)adjustSectionForHeaders:(NSInteger)section;
 - (NSIndexPath *)adjustIndexPathForHeaders:(NSIndexPath *)indexPath;
 
+// Sets the noResultsCell property to a cell containing the specified message.
+- (void)setNoResultsCellWithMessage:(NSString *)message;
+
+// If this is set to YES, and the query returns no results, the controller
+// will call noResultsCell and display the cell it returns.  By default, 
+// this method returns YES if noResultsCell is non-nil, and NO otherwise.
+- (BOOL)hasNoResultsCell;
+
+// If hasNoResultsCell returns YES, and the query returns no results, the 
+// controller will call this method to get the height for the noResultsCell.
+// By default, this method calls noResultsCell and returns the height of the
+// cell it returns.  Subclasses may want to override this method if they've
+// overridden noResultsCell to return a dynamic cell.
+- (CGFloat)heightForNoResultsCell;
+
+// If hasNoResultsCell returns YES, and the query returns no results, the controller
+// will check this property and display the cell if it is non-nil.  You may set
+// this property via code or a NIB, or you may override it in a subclass and return
+// something dynamic.  Bear in mind, however, that the default implementations of
+// hasNoResultsCell and heightForNoResultsCell also look at this property, so if you
+// override this to make it dynamic, you may want to override those methods to prevent
+// this method from getting called multiple times.  If you don't need a custom
+// visual design for this cell, consider using setNoResultsCellWithMessage:.
+@property (nonatomic, retain) IBOutlet UITableViewCell *noResultsCell;
+
 @property (nonatomic, retain)  DTAsyncQuery * query;
 //@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIWebView *mediaWebView;
 @property (nonatomic, retain) NSString *moreResultsCellNibName;
 @property (nonatomic, retain) NSString *moreResultsCellIdentifier;
+
 
 @end
