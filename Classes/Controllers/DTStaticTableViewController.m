@@ -69,6 +69,7 @@
 	if (!cell) {
 		self.cell = [self prototypeCellForNibNamed:row.nibName];
 	}
+	self.cell.width = self.tableView.cellWidth;
 	if (row && row.dataDictionary) {
 		[cell setData:row.dataDictionary];
 	}
@@ -266,6 +267,7 @@
 		[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
 		prototype = self.cell;
 		NSAssert (prototype, @"Nib didn't set the cell property.");
+//		prototype.width = self.tableView.width;
 		[prototypeCells setObject:prototype forKey:nibName];
 	}
 	return prototype;

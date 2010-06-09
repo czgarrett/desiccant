@@ -9,4 +9,5 @@
 
 @interface UITableView (Zest)
 - (NSInteger) numberOfRowsAcrossAllSections;
+- (CGFloat) cellWidth;
 @end

@@ -17,4 +17,8 @@
 	return numberOfRows;
 }
 
+- (CGFloat) cellWidth {
+	return (self.style == UITableViewStyleGrouped) ? self.frame.size.width - 20.0 : self.frame.size.width;
+}
+
 @end
