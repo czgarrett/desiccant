@@ -8,6 +8,7 @@
 
 #import "DTTableViewController.h"
 #import "Zest.h"
+#import "DTCompositeViewController.h"
 
 @interface DTTableViewController()
 @property (nonatomic, assign) UIViewController *dtContainerViewController;
@@ -223,7 +224,7 @@
 }
 
 - (UINavigationController *)navigationController {
-	if (self.containerViewController) {
+	if ([self.containerViewController respondsToSelector:@selector(navigationController)]) {
 		return self.containerViewController.navigationController;
 	}
 	else {
@@ -232,7 +233,7 @@
 }
 
 - (UINavigationItem *)navigationItem {
-	if (self.containerViewController) {
+	if ([self.containerViewController respondsToSelector:@selector(navigationItem)]) {
 		return self.containerViewController.navigationItem;
 	}
 	else {
@@ -241,7 +242,7 @@
 }
 
 - (UIViewController *)parentViewController {
-	if (self.containerViewController) {
+	if ([self.containerViewController respondsToSelector:@selector(parentViewController)]) {
 		return self.containerViewController.parentViewController;
 	}
 	else {
@@ -250,7 +251,7 @@
 }
 
 - (UITableView *)tableView {
-	if (self.containerTableViewController) {
+	if ([self.containerTableViewController respondsToSelector:@selector(tableView)]) {
 		return self.containerTableViewController.tableView;
 	}
 	else {
@@ -259,7 +260,7 @@
 }
 
 - (UIView *)view {
-	if (self.containerTableViewController) {
+	if ([self.containerTableViewController respondsToSelector:@selector(view)]) {
 		return self.containerTableViewController.view;
 	}
 	else {

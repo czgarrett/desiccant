@@ -8,7 +8,7 @@
 
 #import "DTTitleRemoteImageAgeCell.h"
 #import "Zest.h"
-
+#import "DTImageView.h"
 @implementation DTTitleRemoteImageAgeCell
 @synthesize title, age;//, imageView;
 

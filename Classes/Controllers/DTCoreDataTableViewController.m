@@ -8,6 +8,7 @@
 
 #import "DTCoreDataTableViewController.h"
 #import "Zest.h"
+#import "DTCoreDataApplicationDelegate.h"
 
 @implementation DTCoreDataTableViewController
 

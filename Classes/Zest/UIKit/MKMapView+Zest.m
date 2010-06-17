@@ -6,7 +6,7 @@
 //
 
 #import "MKMapView+Zest.h"
-
+#import "desiccant.h"
 
 @implementation MKMapView(Zest)
 
@@ -15,8 +15,10 @@
 //}
 
 - (MKUserLocation *)activeUserLocation {
-	for (id<MKAnnotation>annotation in self.annotations) {
-		if ([annotation isKindOfClass:MKUserLocation.class]) return annotation;
+	for (id <MKAnnotation> annotation in self.annotations) {
+		if ([(NSObject *)annotation isKindOfClass:MKUserLocation.class]) {
+			return annotation;
+		}
 	}
 	return nil;
 }

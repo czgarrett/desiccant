@@ -8,6 +8,7 @@
 
 #import "DTCustomTableViewCell.h"
 #import "Zest.h"
+#import "DTImageView.h"
 
 @interface DTCustomTableViewCell()
 @property (nonatomic, retain) UILabel *dtTextLabel;
@@ -90,7 +91,7 @@
 		newLabelHeight = minHeight - margin;
 	}
 	
-	CGFloat newLabelY = label.frame.origin.y;;
+	CGFloat newLabelY = label.frame.origin.y;
 	if (([label autoresizingMask] & UIViewAutoresizingFlexibleTopMargin) && !([label autoresizingMask] & UIViewAutoresizingFlexibleBottomMargin)) {
 //		newLabelY = label.frame.origin.y - (newLabelHeight - label.frame.size.height);
 		newLabelY = label.frame.origin.y;

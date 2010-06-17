@@ -7,6 +7,7 @@
 
 #import "DTViewController.h"
 #import "Zest.h"
+#import "DTCompositeViewController.h"
 
 @interface DTViewController()
 @property (nonatomic, assign) UIViewController *dtContainerViewController;

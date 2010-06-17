@@ -71,7 +71,7 @@
 	UIView *adView;
 	UIView *adWrapperView;
 	UIView *adSeparatorView;
-	UIButton *adButton;
+	UIButton *adButton;	
 	
 	UIColor *marginColor;
 	UIColor *separatorColor;

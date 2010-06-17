@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
 #import "MapKit/MKMapView.h"
 
 @interface MKMapView (Zest)
