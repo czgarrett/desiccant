@@ -19,6 +19,7 @@
 	NSString *moreResultsCellNibName;    
     NSString *moreResultsCellIdentifier;    
 	UITableViewCell *dtNoResultsCell;
+	BOOL statusBarHiddenBeforeMedia;
 }
 
 // Subclasses can implement this to display a detail view for the associated data

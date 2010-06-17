@@ -25,7 +25,7 @@
 - (id)initWithController:(DTWebViewController *)theController {
 	if (self = [super init]) {
 		self.controller = theController;
-		self.hiddenWebView = [[[UIWebView alloc] init] autorelease];
+		self.hiddenWebView = [[[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
 	}
 	return self;
 }

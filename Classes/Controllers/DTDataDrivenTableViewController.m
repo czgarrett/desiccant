@@ -27,6 +27,7 @@
 #pragma mark Memory management
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     self.query = nil;
     self.prototype = nil;
 //    self.activityIndicator = nil;
@@ -42,9 +43,55 @@
 
 #pragma mark UIViewController methods
 
+//- (id)init {
+//	if (self = [super init]) {
+//		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
+//	}
+//	return self;
+//}
+//
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+//	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+//		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
+//	}
+//	return self;
+//}
+//
+//- (id)initWithStyle:(UITableViewStyle)style {
+//	if (self = [super initWithStyle:style]) {
+//		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
+//	}
+//	return self;
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder {
+//	if (self = [super initWithCoder:aDecoder]) {
+//		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
+//	}
+//	return self;
+//}
+
 - (void)viewDidLoad {
 	self.moreResultsCellIdentifier = [NSString stringWithFormat:@"cell_type_%d", [DTCustomTableViewController nextIdentifierNumber]];
 	[super viewDidLoad];
+//	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
+}
+
+- (void)viewDidFirstAppear:(BOOL)animated {
+	[super viewDidFirstAppear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeVisible:) name:UIWindowDidBecomeVisibleNotification object:self.view.window];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeHidden:) name:UIWindowDidBecomeHiddenNotification object:self.view.window];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+//	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+//	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -72,6 +119,26 @@
 }
 
 #pragma mark Public methods
+
+- (void)windowDidBecomeVisible:(NSNotification *)notification {
+//	[[UIApplication sharedApplication] setStatusBarOrientation:[self interfaceOrientation]];
+//	[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
+	[[UIApplication sharedApplication] performSelector:@selector(setStatusBarOrientation:)  withInt:[self interfaceOrientation] afterDelay:0.25];
+	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
+	UIView *rootView = [self.view.window.subviews objectAtIndex:0];
+	if (rootView) {
+		CGRect correctedFrame = [[UIScreen mainScreen] bounds];
+//		if ([self interfaceOrientation] == UIInterfaceOrientationPortraitUpsideDown) {
+//			correctedFrame.origin.y = [[UIApplication sharedApplication] statusBarFrame].size.height;
+//			correctedFrame.size.height = correctedFrame.size.height - correctedFrame.origin.y;
+//		}
+		rootView.frame = correctedFrame;
+	}
+}
+
+- (void)windowDidBecomeHidden:(NSNotification *)notification {
+//	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
+}
 
 - (BOOL)hasHeaders {
     return headerRows > 0;
@@ -304,6 +371,9 @@
 					self.mediaWebView = [[[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
 					mediaWebView.delegate = self;
 					[self.activityIndicator startAnimating];
+					statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
+//					UIView *rootView = [[[self.view.window.subviews objectAtIndex:0] subviews] objectAtIndex:0];
+					[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
 					[mediaWebView loadRequest:mediaURL.to_request];
 				}
 				[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
