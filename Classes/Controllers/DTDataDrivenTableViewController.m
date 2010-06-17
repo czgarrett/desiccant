@@ -301,7 +301,7 @@
 			else {
 				NSURL *mediaURL = [self mediaURLFor:[query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
 				if (mediaURL) {
-					self.mediaWebView = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
+					self.mediaWebView = [[[UIWebView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]] autorelease];
 					mediaWebView.delegate = self;
 					[self.activityIndicator startAnimating];
 					[mediaWebView loadRequest:mediaURL.to_request];
