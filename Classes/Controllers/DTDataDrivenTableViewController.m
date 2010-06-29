@@ -197,15 +197,16 @@
 
 - (void)setNoResultsCellWithMessage:(NSString *)message {
 	DTCustomTableViewCell *newCell = [[[DTCustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+	newCell.textLabel.text = message;
 	newCell.frame = CGRectMake(0, 0, [[UIScreen mainScreen] applicationFrame].size.width, 44.0f);
 	newCell.textLabel.numberOfLines = 0;
 	newCell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
 	newCell.textLabel.adjustsFontSizeToFitWidth = YES;
 	newCell.textLabel.font = [UIFont boldSystemFontOfSize:17.0];
-	newCell.textLabel.text = message;
 	newCell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	newCell.userInteractionEnabled = NO;
 	[newCell layoutSubviews];
+	newCell.textLabel.width = newCell.width - 20.0;
 	newCell.textLabel.height = [newCell.textLabel heightToFitText];
 	newCell.textLabel.y = 10.0f;
 	newCell.height = newCell.textLabel.height + 20.0f;
