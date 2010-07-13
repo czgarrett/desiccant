@@ -220,6 +220,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 		theCell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
 		theCell.detailTextLabel.numberOfLines = 0;
 		theCell.detailTextLabel.font = [self cellDetailTextLabelFont];
+		theCell.detailTextLabel.width = theCell.width - 20.0;
 		theCell.textLabel.font = [self cellTextLabelFont];
 		theCell.textLabel.numberOfLines = 1;
 		theCell.textLabel.adjustsFontSizeToFitWidth = YES;
