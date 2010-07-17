@@ -233,12 +233,13 @@
 }
 
 - (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding {
-	return (NSString *)CFURLCreateStringByAddingPercentEscapes(
+	NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(
 															   NULL,
 															   (CFStringRef)self,
 															   NULL,
 															   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
 															   CFStringConvertNSStringEncodingToEncoding(encoding));	
+   return [result autorelease];
 }
 
 @end

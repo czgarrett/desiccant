@@ -11,38 +11,50 @@
 
 @implementation DTRestfulService
 
-@synthesize currentConnection, currentConnectionData, currentSyncObject, urlHost;
+@synthesize currentConnection, currentConnectionData, currentSyncObject, urlHost, currentResponse, delegate;
 
 - (void) resetConnection {
    if (self.currentConnection) [self.currentConnection cancel];
    self.currentConnection = nil;
    self.currentConnectionData = nil;
    self.currentSyncObject = nil;
+   self.currentResponse = nil;
 }
 
 #pragma mark URLConnection delegate methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
    self.currentConnectionData = [NSMutableData data];
+   self.currentResponse = response;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-   NSString *errorMessage;
+   NSString *errorWithXML;
    NSDictionary *result = (NSDictionary *)[NSPropertyListSerialization
                                               propertyListFromData: self.currentConnectionData
                                               mutabilityOption: NSPropertyListImmutable
                                               format: nil
-                                              errorDescription: &errorMessage];
-   if (errorMessage) {
-      DTLog(@"Error decoding dictionary: %@", errorMessage);
-      DTLog(@"XML content:");
-      DTLog(@"%@", [[[NSString alloc] initWithData: self.currentConnectionData encoding: NSUTF8StringEncoding] autorelease]);
-      [errorMessage release]; // nonstandard release, per docs for NSPropertyListSerialization
-      [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];
+                                              errorDescription: &errorWithXML];
+   if ([self.currentResponse httpError]) {
+      NSLog(@"Response failed with error %@", [self.currentResponse httpError]);
+      if (!errorWithXML) {
+         NSLog(@"Errors object: %@", [result description]);         
+      }
+      if (delegate) {
+         [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];         
+      }
+   } else if (errorWithXML) {
+      NSLog(@"Response successful, but invalid XML:");
+      NSLog(@"%@", errorWithXML);
+      if (delegate) {
+         [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];         
+      }
    } else {
       [self.currentSyncObject setServerAttributes: result];
       self.currentSyncObject.lastSyncAt = [NSDate date];
-      [delegate restfulService: self didCompleteRequestForObject: self.currentSyncObject withResponse: result];
+      if (delegate) {
+         [delegate restfulService: self didCompleteRequestForObject: self.currentSyncObject withResponse: result];         
+      }
    }
    [self resetConnection];
 }
@@ -52,7 +64,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-   [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];
+   if (delegate) {
+      [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];      
+   }
    [self resetConnection];
 }
 
@@ -67,7 +81,7 @@
    if ([httpMethod isEqualToString: @"POST"]) {
       urlString = [NSString stringWithFormat: @"%@/%@", self.urlHost, [restfulObject serverPathName]];
    } else {
-      urlString = [NSString stringWithFormat: @"%@/%@/%@", self.urlHost, [restfulObject serverPathName], [attrs objectForKey: @"id"]];      
+      urlString = [NSString stringWithFormat: @"%@/%@/%@", self.urlHost, [restfulObject serverPathName], [restfulObject urlParam]];      
    }
    NSURL *url = [NSURL URLWithString: urlString];
    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: url];
@@ -92,12 +106,10 @@
 }
 
 - (void) postObject: (id <DTRestfulObject>) restfulObject {
-   DTLog(@"Posting!");
    [self createRequestForObject: restfulObject withMethod: @"POST"];
 }
 
 - (void) putObject: (id <DTRestfulObject>) restfulObject {
-   DTLog(@"Putting!");
    [self createRequestForObject: restfulObject withMethod: @"PUT"];   
 }
 

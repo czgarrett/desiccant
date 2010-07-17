@@ -11,15 +11,15 @@
 
 @implementation DTPageBrowserController
 
-@synthesize pageControllers;
+@synthesize pages, pageControl, scrollView, currentPage;
 
 // Subclasses should override this
 - (NSInteger) pageCount {
-   return 0;
+   return [self.pages count];
 }
 
 // Subclasses should override this
-- (UIViewController *) createControllerForPage: (NSInteger) page {
+- (DTViewController *) createControllerForPage: (NSInteger) page {
    return nil;
 }
 
@@ -29,10 +29,11 @@
    if (page >= [self pageCount]) return;
    
    // replace the placeholder if necessary
-   UIViewController *controller = [self.pageControllers objectAtIndex:page];
-   if ((NSNull *)controller == [NSNull null]) {
+   DTViewController *controller = [self.pages objectForKey: pageNumber];
+   if (controller == nil) {
       controller = [self createControllerForPage: page];
-      [self.pageControllers replaceObjectAtIndex:page withObject:controller];
+      [self addSubviewController: controller];
+      [self.pages setObject: controller forKey: pageNumber];
    }
    
    // add the controller's view to the scroll view
@@ -41,9 +42,9 @@
       frame.origin.x = frame.size.width * page;
       frame.origin.y = 0;
       controller.view.frame = frame;
-      [controller viewWillAppear: YES];
+      [controller viewWillAppear: NO];
       [scrollView addSubview:controller.view];
-      [controller viewDidAppear: YES];
+      [controller viewDidAppear: NO];
    }
 }
 
@@ -70,8 +71,10 @@
    
    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
    [self loadScrollViewWithPage: [NSNumber numberWithInteger: page]];
-   [self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page-1] afterDelay: 0.5];
-   [self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page+1] afterDelay: 0.5];
+   [self loadScrollViewWithPage: [NSNumber numberWithInteger: page-1]];
+   [self loadScrollViewWithPage: [NSNumber numberWithInteger: page+1]];
+   //[self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page-1] afterDelay: 0.5];
+   //[self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page+1] afterDelay: 0.5];
    
    // A possible optimization would be to unload the views+controllers which are no longer visible
 }
@@ -82,8 +85,10 @@
    int page = pageControl.currentPage;
    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
    [self loadScrollViewWithPage:[NSNumber numberWithInteger: page]];
-   [self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page-1] afterDelay: 0.5];
-   [self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page+1] afterDelay: 0.5];
+   [self loadScrollViewWithPage:[NSNumber numberWithInteger: page-1]];
+   [self loadScrollViewWithPage:[NSNumber numberWithInteger: page+1]];
+//   [self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page-1] afterDelay: 0.5];
+//   [self performSelector: @selector(loadScrollViewWithPage:) withObject: [NSNumber numberWithInteger: page+1] afterDelay: 0.5];
    // update the scroll view to the appropriate page
    CGRect frame = scrollView.frame;
    frame.origin.x = frame.size.width * page;
@@ -93,10 +98,29 @@
    pageControlUsed = YES;
 }
 
+- (void) setCurrentPage:(NSInteger) page{
+   currentPage = page;
+   if (pageControl) {
+      pageControl.currentPage = page;
+   }
+}
+
 #pragma mark UIViewController methods
+
+
+- (void) loadPages {
+   scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [self pageCount], scrollView.frame.size.height);
+   pageControl.numberOfPages = [self pageCount];
+   
+   pageControl.currentPage = self.currentPage;
+   [self changePage: nil];   
+   pageControlUsed = NO;
+   [self.activityIndicator stopAnimating];
+}
 
 - (void) viewWillAppear:(BOOL)animated {
    [super viewWillAppear: animated];
+   [self.activityIndicator startAnimating];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -104,40 +128,27 @@
    [self performSelector: @selector(loadPages) withObject: nil afterDelay: 0.1];
 }
 
-- (void) loadPages {
-   LogTimeStart
-   LogTime(@"DTPageBrowserController viewDidAppear 0");
-   scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [self pageCount], scrollView.frame.size.height);
-   pageControl.numberOfPages = [self pageCount];
-   pageControl.currentPage = 0;
-   self.pageControllers = [NSMutableArray array];
-   for (int i=0; i< [self pageCount]; i++) {
-      [self.pageControllers addObject: [NSNull null]];
-   }
-   [self changePage: nil];   
-   
-   pageControlUsed = NO;
-   for (UIViewController *controller in self.pageControllers) {
-      if ((NSNull *)controller != [NSNull null]) {
-         [controller viewWillAppear: NO];
-      }
-   }
-   [activityIndicator stopAnimating];
-   LogTime(@"DTPageBrowserController viewDidAppear 100");   
-}
-
 - (void) viewDidDisappear:(BOOL)animated {
    [super viewDidDisappear: animated];
-   self.pageControllers = nil;
 }
+
+
 
 - (void) viewDidLoad {
    [super viewDidLoad];
+   self.pages = [NSMutableDictionary dictionary];
    pageControl.numberOfPages = 0;
 }
 
+- (void) viewDidUnload {
+   [super viewDidUnload];
+   self.pages = nil;
+}
+
 - (void) dealloc {
-   self.pageControllers = nil;
+   self.pages = nil;
+   self.pageControl = nil;
+   self.scrollView = nil;
    [super dealloc];
 }
 

@@ -12,5 +12,16 @@
 
 @implementation NSManagedObject ( Zest )
 
+- (NSString *) stringID {
+   return [[[self objectID] URIRepresentation] absoluteString];
+}
+
+- (NSString *) urlParam {
+   NSURL *url = [[self objectID] URIRepresentation];
+   NSString *result =  [[[url absoluteString] substringFromIndex: 14] stringByReplacingOccurrencesOfString: @"/" withString: @"-"];
+   return result;
+}
+
 @end
+
 #endif
