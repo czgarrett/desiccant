@@ -47,13 +47,20 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)loadingWebView {
     [super webViewDidStartLoad:loadingWebView];
+	[self.activityIndicator startAnimating];
     if (errorOverlayView && errorOverlayView.superview) {
         [errorOverlayView removeFromSuperview];
     }
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)loadingWebView {
+	[super webViewDidFinishLoad:loadingWebView];
+	[self.activityIndicator stopAnimating];
+}
+
 - (void)webView:(UIWebView *)loadingWebView didFailLoadWithError:(NSError *)error {
     [super webView:loadingWebView didFailLoadWithError:error];
+	[self.activityIndicator stopAnimating];
     if (errorOverlayView) {
         [errorOverlayView overlayView:self.view];
     }
