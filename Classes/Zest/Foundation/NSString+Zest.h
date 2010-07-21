@@ -13,6 +13,7 @@
 #define nss(s) ((NSString *)(s))
 #define nssWithFormat(...) ((NSString *)[NSString stringWithFormat:__VA_ARGS__])
 #define $S(...) ((NSString *)[NSString stringWithFormat: __VA_ARGS__])
+#define blank(s) ((s) == nil || [(s) length] == 0)
 
 @interface NSString ( Zest )
 

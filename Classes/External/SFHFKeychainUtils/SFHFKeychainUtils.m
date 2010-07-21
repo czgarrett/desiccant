@@ -197,11 +197,14 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 
 + (NSString *) getPasswordForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error {
 	if (!username || !serviceName) {
-		*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: -2000 userInfo: nil];
+      if (error) {
+         *error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: -2000 userInfo: nil];         
+      }
 		return nil;
 	}
-	
-	*error = nil;
+	if (error) {
+      *error = nil;      
+   }
 	
 	// Set up a query dictionary with the base query attributes: item type (generic), username, and service
 	
@@ -224,7 +227,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	
 	if (status != noErr) {
 		// No existing item found--simply return nil for the password
-		if (status != errSecItemNotFound) {
+		if (error && status != errSecItemNotFound) {
 			//Only return an error if a real exception happened--not simply for "not found."
 			*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: status userInfo: nil];
 		}
@@ -278,7 +281,9 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 
 + (void) storeUsername: (NSString *) username andPassword: (NSString *) password forServiceName: (NSString *) serviceName updateExisting: (BOOL) updateExisting error: (NSError **) error {
 	if (!username || !password || !serviceName) {
-		*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: -2000 userInfo: nil];
+      if (error) {
+         *error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: -2000 userInfo: nil];         
+      }
 		return;
 	}
 	
@@ -286,7 +291,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	
 	NSString *existingPassword = [SFHFKeychainUtils getPasswordForUsername: username andServiceName: serviceName error: error];
 	
-	if ([*error code] == -1999) {
+	if (error && [*error code] == -1999) {
 		// There is an existing entry without a password properly stored (possibly as a result of the previous incorrect version of this code.
 		// Delete the existing item before moving on entering a correct one.
 		
@@ -298,11 +303,12 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 			return;
 		}
 	}
-	else if ([*error code] != noErr) {
+	else if (error && [*error code] != noErr) {
 		return;
 	}
-	
-	*error = nil;
+	if (error) {
+      *error = nil;      
+   }
 	
 	OSStatus status = noErr;
 	

@@ -17,7 +17,7 @@
 + (AudioManager *)instance;
 + (void) releaseInstance;
 
-- (AudioPlayer *) newPlayerForSound: (NSString *) soundFileName;
+- (AudioPlayer *) createPlayerForSound: (NSString *) soundFileName;
 - (AudioPlayer *) playerForSound: (NSString *)soundFileName;
 - (void) playSound: (NSString *)soundFileName;
 - (void) stopSound: (NSString *)soundFileName;

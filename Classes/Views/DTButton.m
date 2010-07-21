@@ -2,9 +2,9 @@
 
 #import "DTButton.h"
 #import "Zest.h"
+#import "DTReachability.h"
 
 @interface DTButton()
-- (void)configure;
 - (void)configureGradients;
 - (CGFloat)luminance;
 @property (nonatomic, retain) CAGradientLayer *normalGradient;
@@ -15,6 +15,9 @@
 @synthesize normalGradient, highlightedGradient;
 
 - (void)dealloc {
+   if (dependsOnReachability) {
+      [[NSNotificationCenter defaultCenter] removeObserver: self];
+   }
 	self.normalGradient = nil;
 	self.highlightedGradient = nil;
 	[super dealloc];
@@ -22,10 +25,12 @@
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
+   NSLog(@"DTButton awakeFromNib");
     [self configure];
 }
 
 - (id)initWithFrame:(CGRect)frame {
+   NSLog(@"DTButton initWithFrame:");
     if (self = [super initWithFrame:frame]) {
         [self configure];
     }
@@ -69,6 +74,22 @@
 			nil];
 }
 
+#pragma mark Reachability
+
+- (void) dependsOnReachability: (DTReachability *) reachability {
+   dependsOnReachability = YES;
+   [[NSNotificationCenter defaultCenter] addObserver: self 
+                                            selector: @selector(reachabilityChanged:) 
+                                                name: kReachabilityChangedNotification 
+                                              object: reachability];
+   self.enabled = [reachability isReachable];
+}
+
+- (void) reachabilityChanged: (NSNotification *) notification {
+   DTReachability *reachability = [notification object];
+   self.enabled = [reachability isReachable];
+}
+
 #pragma mark UIView
 
 - (void)setBackgroundColor:(UIColor *)theColor {
@@ -107,18 +128,26 @@
 	super.highlighted = shouldHighlight;
 }
 
-
-#pragma mark Private
-
 - (void)configure {
 	self.layer.borderWidth = 1.0f;
-    self.layer.borderColor = [UIColor colorWithRed:168.0f/255.0f green:171.0f/255.0f blue:173.0f/255.0f alpha:1.0f].CGColor;
-    self.layer.cornerRadius = 8.0f;
-    self.layer.masksToBounds = YES;
+   self.layer.borderColor = [UIColor colorWithRed:168.0f/255.0f green:171.0f/255.0f blue:173.0f/255.0f alpha:1.0f].CGColor;
+   self.layer.cornerRadius = 8.0f;
+   self.layer.masksToBounds = YES;
 	
 	[self configureGradients];
 	
-    [self.layer addSublayer:normalGradient];	
+   //[self.layer insertSublayer:normalGradient atIndex: 0];	
+   [self.layer addSublayer: normalGradient];	
+}
+
+#pragma mark Private
+
+- (CGFloat) cornerRadius {
+   return self.layer.cornerRadius;
+}
+
+- (void) setCornerRadius:(CGFloat) radius {
+   self.layer.cornerRadius = radius;
 }
 
 - (void)configureGradients {
@@ -131,6 +160,8 @@
 	highlightedGradient.frame = self.layer.bounds;
 	highlightedGradient.locations = [self gradientLocations];
 	highlightedGradient.colors = [self highlightedGradientColors];
+   
+   
 }
 
 - (CGFloat)luminance {

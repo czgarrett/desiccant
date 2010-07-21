@@ -10,5 +10,10 @@
 
 @interface NSManagedObject ( Zest ) 
 
+@property(readonly) NSString *stringID;
+@property(readonly) NSString *urlParam;
+
 @end
+
+
 #endif

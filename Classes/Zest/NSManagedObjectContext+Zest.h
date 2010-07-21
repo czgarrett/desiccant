@@ -11,6 +11,8 @@
 
 @interface NSManagedObjectContext ( Zest ) 
 
+- (NSManagedObject *) objectWithStringID: (NSString *) url;
+
 - (NSInteger) count: (NSString *) entityName;
 - (void) deleteAll: (NSString *) entityName;
 - (NSArray *) all: (NSString *) entityName;

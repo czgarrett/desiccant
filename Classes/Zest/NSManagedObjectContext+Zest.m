@@ -12,6 +12,11 @@
 
 @implementation NSManagedObjectContext ( Zest )
 
+- (NSManagedObject *) objectWithStringID: (NSString *) url {
+   return [self objectWithID: [[self persistentStoreCoordinator] managedObjectIDForURIRepresentation: [NSURL URLWithString: url]]];
+}
+
+
 - (NSInteger) count: (NSString *) entityName {
    return [[self all: entityName] count];
 }

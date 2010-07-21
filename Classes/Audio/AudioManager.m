@@ -57,7 +57,7 @@ static AudioManager *audioManager;
    return (AudioPlayer *) [players objectForKey: soundFileName];
 }
 
-- (AudioPlayer *) newPlayerForSound: (NSString *) soundFileName {
+- (AudioPlayer *) createPlayerForSound: (NSString *) soundFileName {
    AudioPlayer *existing = [self playerForSound: soundFileName];
    if (existing) {
       existing.audioPlayerShouldStopImmediately = YES;
@@ -71,7 +71,7 @@ static AudioManager *audioManager;
    return result;
 }
 - (void) playSound: (NSString *)soundFileName {
-   [[self newPlayerForSound: soundFileName] play];
+   [[self createPlayerForSound: soundFileName] play];
 }
 
 

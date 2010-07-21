@@ -138,7 +138,7 @@
 - (void)addAction:(id)sender
 {
 	// create an EventChooserController. This controller will display form for logging in
-	UIViewController *newViewController = [[[newViewController class] alloc] init];
+	UIViewController *newViewController = [[[newControllerClass class] alloc] init];
 	
 	// push the controller onto the navigation stack to display it
 	[[self navigationController] pushViewController: newViewController animated:YES];
@@ -156,7 +156,7 @@
    ACNavigationAppDelegate *appDelegate = (ACNavigationAppDelegate *) [[UIApplication sharedApplication] delegate];
    [[appDelegate operationQueue] cancelAllOperations];
 	busyView.hidden = NO;
-	NSString *text = [filterTextChanged copy];
+	NSString *text = [[filterTextChanged copy] autorelease];
 	if (self.stripDashesFromInput) text = [text stringByReplacingOccurrencesOfString:@"-" withString:@""];
 	if (self.stripSpacesFromInput) text = [text stringByReplacingOccurrencesOfString:@" " withString:@""];
 	

@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSDate *lastSyncAt;
 @property (nonatomic, retain) NSString *serverId;
 @property (nonatomic, readonly) BOOL isReadyForSync;
+@property (nonatomic, readonly) NSString *urlParam;
 
 @end
 
@@ -36,6 +37,7 @@
 @interface DTRestfulService : NSObject {
    id <DTRestfulServiceDelegate> delegate;
    NSURLConnection *currentConnection;
+   NSURLResponse *currentResponse;
    NSMutableData *currentConnectionData;
    id <DTRestfulObject> currentSyncObject;
    NSString *urlHost;
@@ -45,6 +47,8 @@
 @property (nonatomic, retain) NSMutableData *currentConnectionData;
 @property (nonatomic, retain) id <DTRestfulObject> currentSyncObject;
 @property (nonatomic, retain) NSString *urlHost;
+@property (nonatomic, retain) NSURLResponse *currentResponse;
+@property (nonatomic, assign) id <DTRestfulServiceDelegate> delegate;
 
 - (id) initWithDelegate: (id <DTRestfulServiceDelegate>) delegate;
 - (void) resetConnection;
