@@ -40,7 +40,7 @@
 
 -(void)dealloc
 {
-   NSLog(@"dealloc for soap request");
+//   NSLog(@"dealloc for soap request");
 	if (response) {
 		[response release];
 	}
@@ -55,7 +55,7 @@
 
 -(void)main 
 {
-	NSLog(@"Starting main method in SoapRequest with %d arguments: %@", [arguments count], arguments);
+//	NSLog(@"Starting main method in SoapRequest with %d arguments: %@", [arguments count], arguments);
 	if (currentRequest) {
 		[currentRequest cancel];
 	}
@@ -88,7 +88,7 @@
 
 -(void)postWithData: (NSString *)bodyData
 {
-	NSLog(@"Posting Request : %@", bodyData);		
+//	NSLog(@"Posting Request : %@", bodyData);		
 	
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
 	NSData *data = [NSData dataWithBytes: [bodyData UTF8String] length: [bodyData lengthOfBytesUsingEncoding: NSUTF8StringEncoding]];
@@ -109,7 +109,7 @@
    self.currentRequest = connection;
    [connection release];
    NSAssert(self.currentRequest, @"Connection could not be created");
-   NSLog(@"created request, updating delegate");
+//   NSLog(@"created request, updating delegate");
 	[delegate operationUpdate: self progress: 0.0 message: @"Connecting..."];
 }
 
@@ -144,7 +144,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	NSLog(@"Done loading!");
+//	NSLog(@"Done loading!");
 	[UIApplication sharedApplication].networkActivityIndicatorVisible--;
 	[outFile closeFile];
   	[delegate operationComplete: self]; 
@@ -152,7 +152,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	NSLog(@"Connection failed with error: %@", error);
+//	NSLog(@"Connection failed with error: %@", error);
 	[UIApplication sharedApplication].networkActivityIndicatorVisible--;
 	[outFile closeFile];
 	[delegate operation: self didFailWithError: error];

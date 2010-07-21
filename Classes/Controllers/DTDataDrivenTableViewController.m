@@ -124,7 +124,7 @@
 //	[[UIApplication sharedApplication] setStatusBarOrientation:[self interfaceOrientation]];
 //	[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait];
 	[[UIApplication sharedApplication] performSelector:@selector(setStatusBarOrientation:)  withInt:[self interfaceOrientation] afterDelay:0.25];
-	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
+	[[UIApplication sharedApplication] bcompat_setStatusBarHidden:statusBarHiddenBeforeMedia withAnimation:UIStatusBarAnimationNone];
 	UIView *rootView = [self.view.window.subviews objectAtIndex:0];
 	if (rootView) {
 		CGRect correctedFrame = [[UIScreen mainScreen] bounds];
@@ -374,7 +374,7 @@
 					[self.activityIndicator startAnimating];
 					statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
 //					UIView *rootView = [[[self.view.window.subviews objectAtIndex:0] subviews] objectAtIndex:0];
-					[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
+					[[UIApplication sharedApplication] bcompat_setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 					[mediaWebView loadRequest:mediaURL.to_request];
 				}
 				[self.tableView deselectRowAtIndexPath:indexPath animated:YES];

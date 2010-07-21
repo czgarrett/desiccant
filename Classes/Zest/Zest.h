@@ -47,6 +47,7 @@
 #import "UIKit/MKMapView+Zest.h"
 #import "UIKit/UIImageView+Zest.h"
 #import "UIKit/UIScreen+Zest.h"
+#import "UIKit/UIApplication+Zest.h"
 
 #import "NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"
@@ -74,3 +75,5 @@
 // Can I get away with this?
 #define $(s) @selector(s)
 #define DTAbstractMethod NSAssert(0, @"Subclass must implement this abstract method"); [self doesNotRecognizeSelector:_cmd];
+
+#define DTOSVersion [[[UIDevice currentDevice] systemVersion] floatValue]

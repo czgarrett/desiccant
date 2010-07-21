@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface XMLScanner : NSXMLParser {
+@interface XMLScanner : NSXMLParser <NSXMLParserDelegate> {
    NSString *desiredAttribute;
    NSString *desiredElement;
    NSString *scanResult;

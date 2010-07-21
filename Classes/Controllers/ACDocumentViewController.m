@@ -20,16 +20,16 @@
    containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
    if (searchable) {
-      webView = [[UIWebView alloc] initWithFrame: CGRectMake(0.0, 40.0, 320.0, 440.0)];
+      webView = [[UIWebView alloc] initWithFrame: CGRectMake(0.0, 44.0, 320.0, 376.0)];
       webView.scalesPageToFit = YES;
       webView.delegate = self;
-      searchBar = [[UISearchBar alloc] initWithFrame: CGRectMake(0.0, 0.0, 320.0, 40.0)];
+      searchBar = [[UISearchBar alloc] initWithFrame: CGRectMake(0.0, 0.0, 320.0, 44.0)];
       searchBar.placeholder = @"Search Document";
       searchBar.keyboardType = UIKeyboardTypeAlphabet;
       [containerView addSubview: searchBar];      
       self.searchHandler = [[[ACWebSearchHandler alloc] initWithSearchBar: searchBar contentsController: self webView: webView] autorelease];
    } else {
-      webView = [[UIWebView alloc] initWithFrame: CGRectMake(0.0, 0.0, 320.0, 440.0)];
+      webView = [[UIWebView alloc] initWithFrame: CGRectMake(0.0, 0.0, 320.0, 420.0)];
       webView.scalesPageToFit = YES;
    }
    

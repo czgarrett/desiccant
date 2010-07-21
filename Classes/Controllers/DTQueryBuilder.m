@@ -27,6 +27,7 @@
 @synthesize cancelButtonRightMargin, pickerViewRowHeight, pickerViewRowWidth, pickerViewLeftMargin, pickerViewRightMargin, candidateTypes, shouldShowNewInputCell;
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.queryBuilderDelegate = nil;
 	self.pickerView = nil;
 	self.textEditView = nil;
@@ -61,10 +62,20 @@
 	self.pickerViewRightMargin = 10.0;
 	[self initPickerView];
 	[self initTextEditView];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
 	[super viewDidLoad];
 	self.tableView.editing = YES;
 	//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+	[super viewWillAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 //- (void)beforeViewDidLoad:(UITableView *)theTableView {
@@ -184,10 +195,18 @@
 }
 
 #pragma mark Keyboard Notification methods
+
+// Ignoring deprecation warnings for this method because I can't get rid of UIKeyboardBoundsUserInfoKey
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 - (void) keyboardWillShow:(NSNotification *)notification {
 	CGRect keyboardBounds;
 #ifdef __IPHONE_3_2
-	[[[notification userInfo] valueForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardBounds];
+	if (DTOSVersion >= 3.2) { // Running on a 3.2+ device
+		[[[notification userInfo] valueForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardBounds];
+	}
+	else { // Running on a pre-3.2 device
+		[[[notification userInfo] valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];	
+	}
 #else
 	[[[notification userInfo] valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];	
 #endif
@@ -195,9 +214,9 @@
 	textEditFrame.origin.y = pickerView.bounds.size.height;
 	textEditFrame.size.height = 480.0 - keyboardBounds.size.height - pickerView.bounds.size.height;
 	textEditView.frame = textEditFrame;
-//	[[[UIApplication sharedApplication] keyWindow] addSubview:textEditView];
 }
-
+// Re-enabling depreaction warnings
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
 
 #pragma mark UITextFieldDelegate methods
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

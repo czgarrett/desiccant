@@ -7,7 +7,6 @@
 
 #import "DTQueryBuilderElement.h"
 
-
 @interface DTQueryBuilderElement()
 @end
 
@@ -34,3 +33,4 @@
 }
 
 @end
+

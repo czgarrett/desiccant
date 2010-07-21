@@ -156,7 +156,9 @@ static NSString *const kSDURLCacheInfoSizesKey = @"sizes";
 {
     if (![[NSFileManager defaultManager] fileExistsAtPath:diskCachePath])
     {
-        [[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath attributes:nil];
+		NSError *error;
+		[[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath withIntermediateDirectories:YES attributes:nil error:&error];
+//        [[NSFileManager defaultManager] createDirectoryAtPath:diskCachePath attributes:nil];
     }
 }
 
@@ -236,7 +238,9 @@ static NSString *const kSDURLCacheInfoSizesKey = @"sizes";
     }
     
     // Update disk usage info
-    NSNumber *cacheItemSize = [[[NSFileManager defaultManager] fileAttributesAtPath:cacheFilePath traverseLink:NO] objectForKey:NSFileSize];
+	NSError *error;
+	NSNumber *cacheItemSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:cacheFilePath error:&error] objectForKey:NSFileSize];
+//    NSNumber *cacheItemSize = [[[NSFileManager defaultManager] fileAttributesAtPath:cacheFilePath traverseLink:NO] objectForKey:NSFileSize];
     diskCacheUsage += [cacheItemSize unsignedIntegerValue];
     [self.diskCacheInfo setObject:[NSNumber numberWithUnsignedInteger:diskCacheUsage] forKey:kSDURLCacheInfoDiskUsageKey];
     

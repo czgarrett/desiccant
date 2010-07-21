@@ -10,17 +10,15 @@
 
 @implementation UITableViewCellFixed
 - (void) layoutSubviews {
-   [super layoutSubviews];
-#ifdef __IPHONE_3_0   
-   self.textLabel.frame = CGRectMake(self.textLabel.frame.origin.x, 
-                                      4.0, 
-                                      self.textLabel.frame.size.width, 
-                                      self.textLabel.frame.size.height);
-   self.detailTextLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x, 
-                                           8.0 + self.textLabel.frame.size.height, 
-                                           self.detailTextLabel.frame.size.width, 
-                                           self.detailTextLabel.frame.size.height);
-#endif
+	[super layoutSubviews];
+	self.textLabel.frame = CGRectMake(self.textLabel.frame.origin.x, 
+									  4.0, 
+									  self.textLabel.frame.size.width, 
+									  self.textLabel.frame.size.height);
+	self.detailTextLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x, 
+											8.0 + self.textLabel.frame.size.height, 
+											self.detailTextLabel.frame.size.width, 
+											self.detailTextLabel.frame.size.height);
 }
 
 @end

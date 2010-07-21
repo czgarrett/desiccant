@@ -215,7 +215,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	UITableViewCell *theCell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 	if (theCell == nil) {
-#ifdef __IPHONE_3_0
 		theCell = [[[UITableViewCellFixed alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier] autorelease];
 		theCell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
 		theCell.detailTextLabel.numberOfLines = 0;
@@ -224,9 +223,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 		theCell.textLabel.font = [self cellTextLabelFont];
 		theCell.textLabel.numberOfLines = 1;
 		theCell.textLabel.adjustsFontSizeToFitWidth = YES;
-#else
-		theCell = [[[UITableViewCellFixed alloc] initWithFrame:CGRectNull reuseIdentifier:MyIdentifier] autorelease];
-#endif
+
 		[self configureCell:theCell];
 	}
    [self populateCell: theCell forRowAtIndexPath: indexPath];
@@ -245,7 +242,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
    NSArray *content = [self itemsInSection: indexPath.section];
    if (content && indexPath.row < [content count]) {
       // Configure the cell
-#ifdef __IPHONE_3_0
       NSObject *cellItem = [self itemForIndexPath: indexPath];
       if ([cellItem isKindOfClass: [SelectableTableItem class]]) {
          theCell.imageView.image = [UIImage imageNamed: [(SelectableTableItem *)cellItem iconName]];
@@ -257,7 +253,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
    } else {
       theCell.textLabel.text = [self addTextForSection: indexPath.section];
       theCell.detailTextLabel.text = nil;
-#endif
    }
 }
 
