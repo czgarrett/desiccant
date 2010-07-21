@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "GANTracker.h"
 
 #if TARGET_IPHONE_SIMULATOR
 @interface DTAnalytics : NSObject {
