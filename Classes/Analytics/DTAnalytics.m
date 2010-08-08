@@ -6,6 +6,8 @@
 //  Copyright 2010 ZWorkbench, Inc. All rights reserved.
 //
 
+#ifdef USE_GOOGLE_ANALYTICS  // Define this in your project if you want to use this class
+
 #import "DTAnalytics.h"
 #if !TARGET_IPHONE_SIMULATOR
 #import "GANTracker.h"
@@ -58,3 +60,5 @@ static DTAnalytics *sharedInstance;
 #endif
 
 @end
+
+#endif

@@ -34,4 +34,6 @@
 // Returns the ancestor from the view hierarchy that has the specified class, if one exists, or nil otherwise.
 - (UIView *)ancestorWithClass:(Class)ancestorClass;
 
+- (void)removeAllSubviews;
+
 @end

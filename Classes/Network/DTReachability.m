@@ -137,39 +137,39 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 #pragma mark Network Flag Handling
 
-- (NetworkStatus) localWiFiStatusForFlags: (SCNetworkReachabilityFlags) flags
+- (DTNetworkStatus) localWiFiStatusForFlags: (SCNetworkReachabilityFlags) flags
 {
 	PrintReachabilityFlags(flags, "localWiFiStatusForFlags");
    
-	BOOL retVal = NotReachable;
+	BOOL retVal = DTNetworkStatusNotReachable;
 	if((flags & kSCNetworkReachabilityFlagsReachable) && (flags & kSCNetworkReachabilityFlagsIsDirect))
 	{
-		retVal = ReachableViaWiFi;	
+		retVal = DTNetworkStatusReachableViaWiFi;	
 	}
 	return retVal;
 }
 
 - (BOOL) isReachable {
-   NetworkStatus currentStatus = [self currentReachabilityStatus];
-   return currentStatus != NotReachable;
+   DTNetworkStatus currentStatus = [self currentReachabilityStatus];
+   return currentStatus != DTNetworkStatusNotReachable;
 }
 
-- (NetworkStatus) networkStatusForFlags: (SCNetworkReachabilityFlags) flags
+- (DTNetworkStatus) networkStatusForFlags: (SCNetworkReachabilityFlags) flags
 {
 	PrintReachabilityFlags(flags, "networkStatusForFlags");
 	if ((flags & kSCNetworkReachabilityFlagsReachable) == 0)
 	{
 		// if target host is not reachable
-		return NotReachable;
+		return DTNetworkStatusNotReachable;
 	}
    
-	BOOL retVal = NotReachable;
+	BOOL retVal = DTNetworkStatusNotReachable;
 	
 	if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0)
 	{
 		// if target host is reachable and no connection is required
 		//  then we'll assume (for now) that your on Wi-Fi
-		retVal = ReachableViaWiFi;
+		retVal = DTNetworkStatusReachableViaWiFi;
 	}
 	
 	
@@ -182,7 +182,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
       if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0)
       {
          // ... and no [user] intervention is needed
-         retVal = ReachableViaWiFi;
+         retVal = DTNetworkStatusReachableViaWiFi;
       }
    }
 	
@@ -190,7 +190,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	{
 		// ... but WWAN connections are OK if the calling application
 		//     is using the CFNetwork (CFSocketStream?) APIs.
-		retVal = ReachableViaWWAN;
+		retVal = DTNetworkStatusReachableViaWWAN;
 	}
 	return retVal;
 }
@@ -206,10 +206,10 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	return NO;
 }
 
-- (NetworkStatus) currentReachabilityStatus
+- (DTNetworkStatus) currentReachabilityStatus
 {
 	NSAssert(reachabilityRef != NULL, @"currentNetworkStatus called with NULL reachabilityRef");
-	NetworkStatus retVal = NotReachable;
+	DTNetworkStatus retVal = DTNetworkStatusNotReachable;
 	SCNetworkReachabilityFlags flags;
 	if (SCNetworkReachabilityGetFlags(reachabilityRef, &flags))
 	{

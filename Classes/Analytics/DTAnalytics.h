@@ -6,6 +6,8 @@
 //  Copyright 2010 ZWorkbench, Inc. All rights reserved.
 //
 
+#ifdef USE_GOOGLE_ANALYTICS // Define this in your project to use this class
+
 #import <Foundation/Foundation.h>
 #import "GANTracker.h"
 
@@ -23,3 +25,5 @@
 + (void) resetInstance;
 
 @end
+
+#endif

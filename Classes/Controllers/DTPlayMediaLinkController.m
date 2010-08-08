@@ -17,6 +17,7 @@
 @synthesize hiddenWebView, controller;
 
 - (void)dealloc {
+	hiddenWebView.delegate = nil;
 	self.hiddenWebView = nil;
 	self.controller = nil;
     [super dealloc];

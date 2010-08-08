@@ -140,13 +140,14 @@
 #pragma mark DTActsAsChildViewController methods
 
 - (void)setContainerViewController:(UIViewController *)theController {
-	if (theController) {
+	id oldController = self.dtContainerViewController;
+	self.dtContainerViewController = theController;
+	if (theController && [theController respondsToSelector:@selector(addSubviewController:)]) {
 		[(id)theController addSubviewController:self];
 	}
-	else {
-		[(id)dtContainerViewController removeSubviewController:self];
+	else if (!theController && [oldController respondsToSelector:@selector(removeSubviewController:)]) {
+		[(id)oldController removeSubviewController:self];
 	}
-	self.dtContainerViewController = theController;
 }
 
 - (UIViewController *)containerViewController {

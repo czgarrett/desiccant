@@ -13,6 +13,7 @@
 #import "DTRemoteWebViewController.h"
 #import "DTLinkAwayExternalWebLinkController.h"
 #import "DTPlayMediaLinkController.h"
+#import "DTPlayVideoLinkController.h"
 #import "DTDataDrivenTableViewController.h"
 #import "DTCustomTableViewController.h"
 #import "DTHeterogeneousSectionsTableViewController.h"

@@ -16,6 +16,11 @@
 @synthesize subviewControllers;
 
 - (void)dealloc {
+	NSArray *controllers = [subviewControllers allObjects];
+	[subviewControllers removeAllObjects];
+	for (UIViewController <DTActsAsChildViewController> *child in controllers) {
+		child.containerViewController = nil;
+	}
 	self.subviewControllers = nil;
     [super dealloc];
 }
@@ -60,10 +65,12 @@
 }
 
 - (void)removeSubviewController:(id <DTActsAsChildViewController>)subviewController {
-	if ([subviewController containerViewController] == self) {
-		[subviewController setContainerViewController:nil];
+	if ([self.subviewControllers containsObject:subviewController]) {
+		[self.subviewControllers removeObject:subviewController];
+		if ([subviewController containerViewController] == self) {
+			[subviewController setContainerViewController:nil];
+		}
 	}
-	[self.subviewControllers removeObject:subviewController];
 }
 
 #pragma mark Dynamic properties

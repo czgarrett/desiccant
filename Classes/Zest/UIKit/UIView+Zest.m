@@ -100,4 +100,10 @@
 	self.layer.borderColor = borderColor.CGColor;
 }
 
+- (void)removeAllSubviews {
+	for (UIView *subview in self.subviews) {
+		[subview removeFromSuperview];
+	}
+}
+
 @end

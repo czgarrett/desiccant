@@ -1,14 +1,13 @@
-
 // Modified from the Apple reachability example
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
 typedef enum {
-	NotReachable = 0,
-	ReachableViaWiFi,
-	ReachableViaWWAN
-} NetworkStatus;
+	DTNetworkStatusNotReachable = 0,
+	DTNetworkStatusReachableViaWiFi,
+	DTNetworkStatusReachableViaWWAN
+} DTNetworkStatus;
 #define kReachabilityChangedNotification @"kNetworkReachabilityChangedNotification"
 
 @interface DTReachability: NSObject
@@ -35,10 +34,8 @@ typedef enum {
 - (void) stopNotifier;
 
 - (BOOL) isReachable;
-- (NetworkStatus) currentReachabilityStatus;
+- (DTNetworkStatus) currentReachabilityStatus;
 //WWAN may be available, but not active until a connection has been established.
 //WiFi may require a connection for VPN on Demand.
 - (BOOL) connectionRequired;
 @end
-
-

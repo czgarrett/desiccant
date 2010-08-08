@@ -105,13 +105,14 @@
 #pragma mark DTActsAsChildViewController methods
 
 - (void)setContainerViewController:(UIViewController *)theController {
-	if (theController) {
-		[(DTCompositeViewController *)theController addSubviewController:self];
-	}
-	else {
-		[(DTCompositeViewController *)dtContainerViewController removeSubviewController:self];
-	}
+	id oldController = self.dtContainerViewController;
 	self.dtContainerViewController = theController;
+	if (theController && [theController respondsToSelector:@selector(addSubviewController:)]) {
+		[(id)theController addSubviewController:self];
+	}
+	else if (!theController && [oldController respondsToSelector:@selector(removeSubviewController:)]) {
+		[(id)oldController removeSubviewController:self];
+	}
 }
 
 - (UIViewController *)containerViewController {
@@ -220,7 +221,7 @@
 }
 
 - (UIViewController *)parentViewController {
-	if (self.containerViewController) {
+	if ([self.containerViewController respondsToSelector:@selector(parentViewController)]) {
 		return self.containerViewController.parentViewController;
 	}
 	else {

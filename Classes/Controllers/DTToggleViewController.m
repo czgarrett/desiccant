@@ -22,6 +22,8 @@
 #pragma mark Memory Management
 
 - (void)dealloc {
+	self.frontViewController.containerViewController = nil;
+	self.backViewController.containerViewController = nil;
 	self.frontViewController = nil;
 	self.backViewController = nil;
 	self.frontToggleButtonImage = nil;

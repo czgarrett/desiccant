@@ -1,5 +1,5 @@
 //
-//  UIButton+Zest.h
+//  UIViewController+Zest.h
 //  ZWorkbench
 //
 //  Created by Christopher Garrett on 5/22/08.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "Zest.h"
 
 typedef enum {
    UILabelUsageHeading = 0,
@@ -81,5 +82,6 @@ typedef enum {
 // Subclasses can override this to get notified whenever a controller just got pushed on top of them.
 // Requires use of DTNavigationController.
 - (void)controllerDidGetPushedOntoNavigationStack:(UIViewController *)topViewController;
+
 
 @end
