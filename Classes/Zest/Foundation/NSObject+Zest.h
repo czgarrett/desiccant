@@ -17,6 +17,11 @@
 @property (nonatomic, retain, readonly) NSDate *to_date;
 @property (nonatomic, retain, readonly) NSNumber *to_n;
 
+// Easy way to deserialize objects from NIBs.
+// Deserializes all objects from the specified NIB and returns the first object
+// that's an instance of the class on which this method was called.
++ (id)objectFromNib:(NSString *)nibName;
+
 - (NSString *) detailDescription;
 
 // Return all superclasses of object

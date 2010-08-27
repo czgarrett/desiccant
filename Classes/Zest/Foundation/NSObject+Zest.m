@@ -13,6 +13,20 @@
 
 @implementation NSObject (Zest)
 
++ (id)objectFromNib:(NSString *)nibName {
+	NSObject *owner = [[NSObject alloc] init];
+	NSArray *objects = [[NSBundle mainBundle] loadNibNamed:nibName owner:owner options:[NSDictionary dictionary]];
+	NSObject *result = nil;
+	for (NSObject *object in objects) {
+		if ([object isMemberOfClass:self]) {
+			result = object;
+			break;
+		}
+	}
+	[owner release];
+	return result;
+}
+
 - (NSString *)to_s {
     return [self description];
 }
