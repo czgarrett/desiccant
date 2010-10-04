@@ -7,13 +7,26 @@
 //
 
 #import "UIScreen+Zest.h"
-
+#import "Zest.h"
 
 @implementation UIScreen(Zest)
 
 - (CGPoint)center {
 	// TODO: Test this in landscape mode
 	return CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+}
+
+- (CGFloat) bcompat_scale {
+	if ([self respondsToSelector: @selector(scale)]) {
+		return [self scale];
+	}
+	else {
+		return 1.0;
+	}
+}
+
+- (BOOL) is2X {
+   return self.bcompat_scale > 1.99 && self.bcompat_scale < 2.01;
 }
 
 @end

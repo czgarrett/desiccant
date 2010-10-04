@@ -52,20 +52,20 @@
 @property (nonatomic, assign) UITableViewCellAccessoryType tableViewCellAccessoryType;
 
 // Querying properties
-@property (nonatomic) Class activeRecordClass;
+@property (nonatomic, assign) Class activeRecordClass;
 @property (nonatomic, retain) NSString *queryColumn;
 @property (nonatomic, retain) NSString *condition;
 @property (nonatomic, retain) NSString *orderColumn;
 @property (nonatomic, retain) NSString *resultsColumn;
 @property (nonatomic, assign) NSInteger searchLimit;
-@property (nonatomic) BOOL startWithKeyboardVisible;
-@property (nonatomic) BOOL hideKeyboardWhenSearchButtonClicked;
-@property (nonatomic) BOOL stripDashesFromInput;
-@property (nonatomic) BOOL stripSpacesFromInput;
+@property (nonatomic, assign) BOOL startWithKeyboardVisible;
+@property (nonatomic, assign) BOOL hideKeyboardWhenSearchButtonClicked;
+@property (nonatomic, assign) BOOL stripDashesFromInput;
+@property (nonatomic, assign) BOOL stripSpacesFromInput;
 
-@property (nonatomic) Class editControllerClass;
-@property (nonatomic) Class newControllerClass;
-@property (nonatomic) Class showControllerClass;
+@property (nonatomic, assign) Class editControllerClass;
+@property (nonatomic, assign) Class newControllerClass;
+@property (nonatomic, assign) Class showControllerClass;
 
 - (void) filterTextChanged: (NSString *)filterText;
 

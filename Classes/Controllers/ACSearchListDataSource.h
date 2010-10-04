@@ -43,7 +43,7 @@
 @property(nonatomic, retain) NSString *condition;
 @property(nonatomic, retain) NSString *orderColumn;
 @property(nonatomic, retain) NSString *resultsColumn;
-@property(nonatomic) Class activeRecordClass;
+@property(nonatomic, assign) Class activeRecordClass;
 @property(nonatomic, assign) NSInteger searchLimit;
 @property(nonatomic, assign) BOOL empty;
 
