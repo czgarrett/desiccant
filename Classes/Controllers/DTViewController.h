@@ -40,6 +40,10 @@
 
 - (void)fadeWindowOverlay;
 
+// Useful for stubbing out actions that aren't complete yet.
+// Pops up a friendly alert.
+- (IBAction) notImplemented: (id) source;
+
 // Subclasses can override this and set the three shouldAutorotate* properties to allow autorotation
 - (void)setAutorotationProperties;
 
