@@ -26,6 +26,7 @@
 // object's class name with the specified keyPath.  So if you pass two instances
 // of the same class to this method with the same keyPath, the last setter
 // called will dictate the persisted value for all instances.
+
 - (void)persistKeyPath:(NSString *)keyPath ofObject:(NSObject *)object defaultValue:(id)defaultValue {
 	
 	id existingValue = [[NSUserDefaults standardUserDefaults] objectForKey:[self keyForKeyPath:keyPath ofObject:object]];

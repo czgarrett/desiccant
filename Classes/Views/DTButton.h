@@ -7,11 +7,15 @@
 @interface DTButton : UIButton {
 	CAGradientLayer *normalGradient;
 	CAGradientLayer *highlightedGradient;
+	CAGradientLayer *disabledGradient;
    
    BOOL dependsOnReachability;
 }
 
+@property (assign) BOOL shiny;
+@property (assign) BOOL shadow;
 @property (assign) CGFloat cornerRadius;
+@property (assign) CGFloat borderWidth;
 
 - (void) dependsOnReachability: (DTReachability *) reachability;
 - (void) reachabilityChanged: (NSNotification *) notification;
