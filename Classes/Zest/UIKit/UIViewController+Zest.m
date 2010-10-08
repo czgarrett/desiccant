@@ -129,7 +129,7 @@
    [window addSubview: viewToSlide];
    viewToSlide.center = CGPointMake(160.0, 480.0 + viewToSlide.frame.size.height/2);
    [UIView beginAnimations: @"slideViewUp" context: nil];
-   viewToSlide.center = CGPointMake(viewToSlide.center.x, viewToSlide.center.y - viewToSlide.frame.size.height + background);
+   viewToSlide.center = CGPointMake(viewToSlide.center.x, viewToSlide.center.y - viewToSlide.frame.size.height);
    self.view.center = CGPointMake(self.view.center.x, self.view.center.y - background);      
    [UIView commitAnimations];
 	viewToSlide.hidden = NO;
@@ -137,6 +137,7 @@
 
 - (void) slideViewDown: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background {
    viewToSlide.hidden = YES;
+   self.view.center = CGPointMake(self.view.center.x, self.view.center.y - background);      
    [viewToSlide removeFromSuperview];
 }
 
