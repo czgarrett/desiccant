@@ -71,4 +71,8 @@
 // Choose the first selector that the object responds to
 - (SEL) chooseSelector: (SEL) aSelector, ...;
 
+// Create an archiver and encode the object into NSData.
+- (NSData *) encodeIntoData;
++ (id) decodeFromData: (NSData *) data;
+
 @end

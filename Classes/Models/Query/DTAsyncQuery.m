@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSMutableArray *rowTransformers;
 @property (nonatomic, retain) NSMutableArray *rowFilters;
 @property (nonatomic, retain) NSMutableArray *rows;
-@property (nonatomic, retain) DTAsyncQueryOperation *operation;
+//@property (nonatomic, retain) DTAsyncQueryOperation *operation;
 - (void)transformRawRows;
 - (void)filterTransformedRows;
 - (void)groupRows;
@@ -127,7 +127,7 @@
 }
 
 - (NSUInteger)count {
-    return [rows count];
+    return [self.rows count];
 }
 
 - (NSUInteger)rowCountForGroupWithIndex:(NSUInteger)index {
