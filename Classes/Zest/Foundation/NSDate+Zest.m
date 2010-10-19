@@ -110,6 +110,7 @@
 	return newDate;
 }
 
+
 #pragma mark Comparing Dates
 
 - (BOOL) isEqualToDateIgnoringTime: (NSDate *) aDate
@@ -254,6 +255,17 @@
 	return [CURRENT_CALENDAR dateFromComponents:components];
 }
 
+- (NSDate *) dateAtNextQuarterHour {
+	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+   [components setYear: [components year]];
+   [components setMonth: [components month]];
+   [components setDay: [components day]];
+	[components setHour: [components hour]];
+	[components setMinute: ([components minute]/15) * 15]; // rounds down to nearest quarter
+	[components setSecond:0];
+	return [[CURRENT_CALENDAR dateFromComponents:components] dateByAddingMinutes: 15];   
+}
+
 - (NSDateComponents *) componentsWithOffsetFromDate: (NSDate *) aDate
 {
 	NSDateComponents *dTime = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:aDate toDate:self options:0];
@@ -303,6 +315,14 @@
 - (NSInteger) nearestHour
 {
 	NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + D_MINUTE * 30;
+	NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSHourCalendarUnit fromDate:newDate];
+	return [components hour];
+}
+
+- (NSInteger) nextHour
+{
+	NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + D_MINUTE * 60;
 	NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
 	NSDateComponents *components = [CURRENT_CALENDAR components:NSHourCalendarUnit fromDate:newDate];
 	return [components hour];

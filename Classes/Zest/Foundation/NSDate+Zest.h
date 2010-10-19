@@ -56,6 +56,7 @@
 - (NSDate *) dateByAddingMinutes: (NSUInteger) dMinutes;
 - (NSDate *) dateBySubtractingMinutes: (NSUInteger) dMinutes;
 - (NSDate *) dateAtStartOfDay;
+- (NSDate *) dateAtNextQuarterHour;
 
 // Retrieving intervals
 - (NSInteger) minutesAfterDate: (NSDate *) aDate;
@@ -67,6 +68,7 @@
 
 // Decomposing dates
 @property (readonly) NSInteger nearestHour;
+@property (readonly) NSInteger nextHour;
 @property (readonly) NSInteger hour;
 @property (readonly) NSInteger minute;
 @property (readonly) NSInteger seconds;
