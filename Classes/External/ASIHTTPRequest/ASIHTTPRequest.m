@@ -20,7 +20,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #endif
 #import "ASIInputStream.h"
-
+#import "Zest.h"
 
 // Automatically set on build
 NSString *ASIHTTPRequestVersion = @"v1.6.1-6 2010-04-12";

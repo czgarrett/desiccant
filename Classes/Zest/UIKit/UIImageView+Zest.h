@@ -8,6 +8,13 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView(Zest)
+   
 + (id)viewWithImage:(UIImage *)theImage;
 + (UIImageView *)defaultPNGView;
+
+
+// Useful when UIImageView is used as a subview of a UIButton.
+- (IBAction) highlight: (id) src;
+- (IBAction) unhighlight: (id) src;
+
 @end

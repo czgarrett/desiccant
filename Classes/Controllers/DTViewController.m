@@ -128,20 +128,6 @@
 	}
 }
 
-#pragma mark UI Conveniences
-
-// Useful for stubbing out actions that aren't complete yet.
-// Pops up a friendly alert.
-- (IBAction) notImplemented: (id) source {
-   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Not Implemented" 
-                                                   message: @"This feature is not complete yet." 
-                                                  delegate: nil 
-                                         cancelButtonTitle: @"Ok" 
-                                         otherButtonTitles: nil];
-   [alert show];
-   [alert release];
-}
-
 #pragma mark UIViewController methods
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

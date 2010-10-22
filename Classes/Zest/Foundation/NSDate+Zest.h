@@ -17,6 +17,10 @@
 @interface NSDate ( Zest ) 
 + (NSDate *)dateWithISO8601String:(NSString *)dateString;
 - (NSString *)iso8601FormattedString;
+
++ (NSDate *)dateWithSecondsSinceUnixEpochAsString: (NSString *) secondsSinceUnixEpoch;
+- (NSString *) secondsSinceUnixEpochAsString;
+
 // Returns a string formatted using a unicode date pattern
 // http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns
 - (NSString *)stringWithDateFormat:(NSString *)format;

@@ -83,5 +83,9 @@ typedef enum {
 // Requires use of DTNavigationController.
 - (void)controllerDidGetPushedOntoNavigationStack:(UIViewController *)topViewController;
 
+// Useful for stubbing out actions that aren't complete yet.
+// Pops up a friendly alert.
+- (IBAction) notImplemented: (id) source;
+
 
 @end

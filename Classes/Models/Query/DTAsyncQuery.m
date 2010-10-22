@@ -107,7 +107,11 @@
 }
 
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)rowIndex inGroupWithIndex:(NSUInteger)groupIndex {
-    return [self groupCount] == 1 ? [self itemAtIndex:rowIndex] : (NSMutableDictionary *)[(NSMutableArray *)[self.groups objectAtIndex:groupIndex] objectAtIndex:rowIndex];
+   if (self.grouper) {
+      return (NSMutableDictionary *)[(NSMutableArray *)[self.groups objectAtIndex:groupIndex] objectAtIndex:rowIndex];
+   } else {
+      return [self itemAtIndex:rowIndex];      
+   }
 }
 
 - (void)deleteItemAtIndex:(NSUInteger)index {
@@ -131,11 +135,19 @@
 }
 
 - (NSUInteger)rowCountForGroupWithIndex:(NSUInteger)index {
-    return [self groupCount] == 1 ? [self count] : [(NSMutableArray *)[groups objectAtIndex:index] count];
+   if (self.grouper) {
+      return [(NSMutableArray *)[groups objectAtIndex:index] count];
+   } else {
+      return [self count];    
+   }
 }
 
 - (NSUInteger)groupCount {
-    return groups && [groups count] > 0 ? [groups count] : 1;
+   if (self.grouper) {
+      return [groups count];
+   } else {
+      return 1;
+   }
 }
 
 - (void)cancel {

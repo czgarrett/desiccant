@@ -21,12 +21,25 @@
     return date;
 }
 
+
 - (NSString *)iso8601FormattedString {
     ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
     NSString *string = [formatter stringFromDate:self];
     [formatter release];
     return string;    
 }
+
++ (NSDate *)dateWithSecondsSinceUnixEpochAsString: (NSString *) secondsSinceUnixEpochAsString {
+   NSTimeInterval ms = [secondsSinceUnixEpochAsString doubleValue];
+   return [NSDate dateWithTimeIntervalSince1970: ms];         
+}
+
+- (NSString *) secondsSinceUnixEpochAsString {
+   NSTimeInterval interval = [self timeIntervalSince1970];
+   long long intervalAsLong = (long long) interval;
+   return [NSString stringWithFormat: @"%qi", intervalAsLong];
+}
+
 
 - (NSDate *)to_date {
     return self;
