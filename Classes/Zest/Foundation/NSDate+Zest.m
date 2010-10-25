@@ -123,6 +123,25 @@
 	return newDate;
 }
 
++ (NSDate *) dateWithYearsFromNow: (NSUInteger) years
+{
+	NSDate *today = [NSDate date];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSDateComponents *components = [[NSDateComponents alloc] init];
+	[components setYear: years];
+	NSDate *newDate = [gregorian dateByAddingComponents:components toDate:today options:NSWrapCalendarComponents];
+	
+	[components release];
+	[gregorian release];
+	
+	return newDate;
+}
+
++ (NSDate *) dateWithYearsBeforeNow: (NSUInteger) years
+{
+	return [NSDate dateWithYearsFromNow: -years];
+}
+
 
 #pragma mark Comparing Dates
 
