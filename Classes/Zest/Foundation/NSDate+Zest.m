@@ -123,7 +123,7 @@
 	return newDate;
 }
 
-+ (NSDate *) dateWithYearsFromNow: (NSUInteger) years
++ (NSDate *) dateWithYearsFromNow: (NSInteger) years
 {
 	NSDate *today = [NSDate date];
 	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -137,7 +137,7 @@
 	return newDate;
 }
 
-+ (NSDate *) dateWithYearsBeforeNow: (NSUInteger) years
++ (NSDate *) dateWithYearsBeforeNow: (NSInteger) years
 {
 	return [NSDate dateWithYearsFromNow: -years];
 }
