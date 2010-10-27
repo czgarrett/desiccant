@@ -57,6 +57,11 @@
     return self;
 }
 
+- (NSString *) stringValue {
+   return self;
+}
+
+
 - (NSInteger) to_i {
     return [self integerValue];
 }

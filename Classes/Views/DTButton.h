@@ -17,6 +17,9 @@
 @property (assign) CGFloat cornerRadius;
 @property (assign) CGFloat borderWidth;
 
+- (void) highlight;
+
+
 - (void) dependsOnReachability: (DTReachability *) reachability;
 - (void) reachabilityChanged: (NSNotification *) notification;
 - (NSArray *)gradientLocations;

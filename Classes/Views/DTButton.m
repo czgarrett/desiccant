@@ -156,14 +156,18 @@
 
 #pragma mark UIControl
 
+- (void) highlight {
+   [self setHighlighted: YES];
+}
+
 - (void)setHighlighted:(BOOL)shouldHighlight {
+	super.highlighted = shouldHighlight;
 	if (shouldHighlight && normalGradient.superlayer) {
 		[self.layer replaceSublayer:normalGradient with:highlightedGradient];
 	}
 	else if (!shouldHighlight && highlightedGradient.superlayer) {
 		[self.layer replaceSublayer:highlightedGradient with:normalGradient];
 	}
-	super.highlighted = shouldHighlight;
 }
 
 - (void)setEnabled:(BOOL)shouldEnable {
@@ -212,6 +216,9 @@
 
 - (void) setCornerRadius:(CGFloat) radius {
    self.layer.cornerRadius = radius;
+   if(normalGradient) normalGradient.cornerRadius = radius;
+   if(highlightedGradient) highlightedGradient.cornerRadius = radius;
+   if(disabledGradient) disabledGradient.cornerRadius = radius;
 }
 
 - (CGFloat) cornerRadius {

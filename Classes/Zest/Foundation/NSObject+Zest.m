@@ -43,6 +43,10 @@
     return nil;
 }
 
+- (NSDate *) toDate {
+   return [self to_date];
+}
+
 - (NSNumber *)to_n {
     return nil;
 }

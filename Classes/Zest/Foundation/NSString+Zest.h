@@ -116,5 +116,7 @@
 // passing a URL as a GET parameter.
 - (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
 
+// Useful for mixing up NSString objects with NSNumber.  Returns self.
+- (NSString *) stringValue;
 
 @end
