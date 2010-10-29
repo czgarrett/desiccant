@@ -17,10 +17,13 @@
 @end
 
 @implementation DTTableViewController
-@synthesize hasAppeared, cell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
+@synthesize hasAppeared, cell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator,
+shouldAdjustViewOnKeyboardShow;
 
 #pragma mark Memory management
 - (void)dealloc {
+   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+   [nc removeObserver: self];
 	self.cell = nil;
 	self.dtContainerViewController = nil;
 	self.dtWindowOverlay = nil;
@@ -61,12 +64,60 @@
 	return self;
 }
 
+#pragma mark Keyboard show/hide
+
+-(void) keyboardWillShow:(NSNotification *) notif
+{
+   if (!keyboardVisible) {
+      NSDictionary* info = [notif userInfo];
+      NSValue *rectValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
+      CGSize keyboardSize = [rectValue CGRectValue].size;
+      CGRect viewFrame = [self tableView].frame;
+      // Basically this code is to handle the case when a tableview is inside a tab bar controller - it determines the bottom of the
+      // frame in window coordinates and adjusts upward based on that.  Otherwise you end up with a blank
+      // space below the table view when it moves up.
+      CGRect frameInWindow =[[self tableView] convertRect: viewFrame toView: nil];
+      CGFloat bottom = frameInWindow.origin.y + frameInWindow.size.height;
+      CGRect windowFrame = [UIApplication sharedApplication].keyWindow.frame;
+      keyboardAdjustment =  -keyboardSize.height + windowFrame.size.height - bottom;
+      viewFrame.size.height = viewFrame.size.height + keyboardAdjustment;
+      [UIView beginAnimations: @"keyboardResize" context: nil];
+         [self tableView].frame = viewFrame;
+      [UIView commitAnimations];
+      keyboardVisible = YES;      
+   }
+}
+
+-(void) keyboardWillHide: (NSNotification *)notif {
+	if (keyboardVisible) {
+      CGRect viewFrame = [self tableView].frame;
+      viewFrame.size.height -= keyboardAdjustment;
+      [UIView beginAnimations: @"keyboardResize" context: nil];
+         [self tableView].frame = viewFrame;
+      [UIView commitAnimations];
+      keyboardVisible = NO;      
+	}   
+}
+
+
 #pragma mark UIViewController methods
+
+- (void) viewDidUnload {
+   [super viewDidUnload];
+   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+   [nc removeObserver: self];
+}
 
 - (void) viewDidLoad {
    [super viewDidLoad];
    [self.tableView setTableFooterView: footerView];
    [self.tableView setTableHeaderView: headerView];
+   keyboardAdjustment = 0.0;
+   if (self.shouldAdjustViewOnKeyboardShow) {
+      NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+      [nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+      [nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
+   }
 }
 
 // A subclass can override this if it needs to push to a navigation controller that isn't in its stack.  An example of this

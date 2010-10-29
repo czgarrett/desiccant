@@ -22,6 +22,9 @@
 	BOOL shouldAutorotateUpsideDown;
 	BOOL hasAppeared;
 	DTActivityIndicatorView *dtActivityIndicator;
+   
+   BOOL keyboardVisible;
+   CGFloat keyboardAdjustment;
 }
 
 @property (nonatomic, assign) UIViewController *containerViewController;
@@ -29,6 +32,9 @@
 // no container.
 @property (nonatomic, assign, readonly) UIViewController *topContainerViewController;
 @property (nonatomic, retain) UITableViewController *containerTableViewController;
+
+// Set this to YES before calling [super viewDidLoad] in your subclass
+@property (nonatomic, assign) BOOL shouldAdjustViewOnKeyboardShow;
 
 // The .xib should set its File's Owner to DTTableViewController, and connect this cell outlet to its
 // custom UITableViewCell.
