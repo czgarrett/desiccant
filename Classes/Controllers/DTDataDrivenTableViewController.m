@@ -334,10 +334,10 @@
                 self.cellIdentifier = cell.reuseIdentifier;
             }
             else {
-                cell = [self constructCell];
-				self.cellIdentifier = cell.reuseIdentifier;
-                [self customizeCell];
-				unless (cell.delegate) cell.delegate = self;
+               cell = [self constructCell];
+               self.cellIdentifier = cell.reuseIdentifier;
+               [self customizeCell];
+               unless (cell.delegate) cell.delegate = self;
             }
         }
         

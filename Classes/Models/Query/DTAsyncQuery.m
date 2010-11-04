@@ -284,30 +284,30 @@
 }
 
 - (void)transformRawRows {
-    self.rows = [NSMutableArray arrayWithCapacity:[rawRows count]];
+    self.rows = [NSMutableArray arrayWithCapacity:[self.rawRows count]];
     for (NSMutableDictionary *row in self.rawRows) {
         NSMutableDictionary *newRow = [[row mutableCopy] autorelease];
         for (NSObject <DTTransformsUntypedData> *transformer in rowTransformers) {
             [transformer transform:newRow];
         }
-        [rows addObject:newRow];
+        [self.rows addObject:newRow];
     }
 }
 
 - (void)filterTransformedRows {
     for (NSObject <DTFiltersUntypedData> *filter in rowFilters) {
-        for (NSInteger index = [rows count] - 1; index >= 0; index--) {
-            if ([filter rejectsRow:[rows objectAtIndex:index]]) {
-                [rows removeObjectAtIndex:index];
+        for (NSInteger index = [self.rows count] - 1; index >= 0; index--) {
+            if ([filter rejectsRow:[self.rows objectAtIndex:index]]) {
+                [self.rows removeObjectAtIndex:index];
             }
         }
     }
 }
 
 - (void)groupRows {
-    self.groups = [NSMutableArray arrayWithCapacity:[rows count]];
+    self.groups = [NSMutableArray arrayWithCapacity:[self.rows count]];
     if (self.grouper) {
-        [self.grouper groupRows:rows into:groups];
+        [self.grouper groupRows: self.rows into:groups];
     }
 }
 
