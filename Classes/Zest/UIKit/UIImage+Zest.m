@@ -30,4 +30,13 @@
    return image;
 }
 
+- (UIImage *) imageScaledToMaxSize: (CGSize) maxSize {
+   UIGraphicsBeginImageContext(maxSize);
+   [self drawInRect:CGRectMake(0, 0, maxSize.width, maxSize.height)];
+   UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();    
+   UIGraphicsEndImageContext();
+   return newImage;
+}
+
+
 @end

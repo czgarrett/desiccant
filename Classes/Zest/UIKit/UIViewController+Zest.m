@@ -233,7 +233,7 @@
 - (void)alertWithTitle: (NSString *)title message: (NSString *)message {
    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
                                                    message: message
-                                                  delegate: nil 
+                                                  delegate: self 
                                          cancelButtonTitle: @"Ok" 
                                          otherButtonTitles: nil];
    [alert show];
@@ -253,7 +253,7 @@
 - (void) showAlertWithTitle: (NSString *) title message: (NSString *) message {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
                                                  message: message
-                                                 delegate: nil 
+                                                 delegate: self 
                                                  cancelButtonTitle: @"Ok" 
                                                  otherButtonTitles: nil];
     [alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
