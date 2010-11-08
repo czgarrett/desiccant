@@ -72,17 +72,17 @@ shouldAdjustViewOnKeyboardShow;
       NSDictionary* info = [notif userInfo];
       NSValue *rectValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
       CGSize keyboardSize = [rectValue CGRectValue].size;
-      CGRect viewFrame = [self tableView].frame;
+      CGRect viewFrame = self.view.frame;
       // Basically this code is to handle the case when a tableview is inside a tab bar controller - it determines the bottom of the
       // frame in window coordinates and adjusts upward based on that.  Otherwise you end up with a blank
       // space below the table view when it moves up.
-      CGRect frameInWindow =[[self tableView] convertRect: viewFrame toView: nil];
+      CGRect frameInWindow =[self.view convertRect: viewFrame toView: nil];
       CGFloat bottom = frameInWindow.origin.y + frameInWindow.size.height;
       CGRect windowFrame = [UIApplication sharedApplication].keyWindow.frame;
       keyboardAdjustment =  -keyboardSize.height + windowFrame.size.height - bottom;
       viewFrame.size.height = viewFrame.size.height + keyboardAdjustment;
       [UIView beginAnimations: @"keyboardResize" context: nil];
-         [self tableView].frame = viewFrame;
+         self.view.frame = viewFrame;
       [UIView commitAnimations];
       keyboardVisible = YES;      
    }
