@@ -89,6 +89,11 @@
     return [self doubleValue];
 }
 
+- (NSNumber *) integerNumber {
+   return [NSNumber numberWithInteger: [self integerValue]];
+}
+
+
 - (NSString *)trimmed {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }

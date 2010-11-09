@@ -119,4 +119,6 @@
 // Useful for mixing up NSString objects with NSNumber.  Returns self.
 - (NSString *) stringValue;
 
+- (NSNumber *) integerNumber;
+
 @end

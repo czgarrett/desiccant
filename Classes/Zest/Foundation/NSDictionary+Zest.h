@@ -17,6 +17,7 @@
 + (NSDictionary *)dictionaryWithTitle:(NSString *)titleValue subtitle:(NSString *)subtitleValue;
 + (NSDictionary *) dictionaryWithResourceNamed: (NSString *) resourceName;
 
+- (id) objectForKey:(id)aKey ifNil: (id) substitute;
 - (NSString *)stringForKey:(id)key;
 - (NSURL *)urlForKey:(id)key;
 - (NSInteger)integerForKey:(id)key;
