@@ -53,6 +53,8 @@
 - (BOOL) isLastYear;
 - (BOOL) isEarlierThanDate: (NSDate *) aDate;
 - (BOOL) isLaterThanDate: (NSDate *) aDate;
+- (BOOL) isEarlierThanNow;
+- (BOOL) isLaterThanNow;
 
 // Adjusting dates
 - (NSDate *) dateByAddingDays: (NSUInteger) dDays;

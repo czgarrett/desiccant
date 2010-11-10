@@ -239,6 +239,14 @@
 	return ([self laterDate:aDate] == self);
 }
 
+- (BOOL) isEarlierThanNow {
+   return [self isEarlierThanDate: [NSDate date]];
+}
+- (BOOL) isLaterThanNow {
+   return [self isLaterThanDate: [NSDate date]];
+}
+
+
 
 #pragma mark Adjusting Dates
 
