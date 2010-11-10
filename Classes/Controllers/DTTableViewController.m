@@ -21,15 +21,21 @@
 shouldAdjustViewOnKeyboardShow;
 
 #pragma mark Memory management
-- (void)dealloc {
-   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-   [nc removeObserver: self];
+
+- (void) releaseRetainedSubviews {
 	self.cell = nil;
-	self.dtContainerViewController = nil;
 	self.dtWindowOverlay = nil;
 	self.dtActivityIndicator = nil;
 	self.headerView = nil;
 	self.footerView = nil;
+}
+
+
+- (void)dealloc {
+   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+   [nc removeObserver: self];
+   [self releaseRetainedSubviews];
+	self.dtContainerViewController = nil;
 
 	[super dealloc];
 }
@@ -106,6 +112,7 @@ shouldAdjustViewOnKeyboardShow;
    [super viewDidUnload];
    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
    [nc removeObserver: self];
+   [self releaseRetainedSubviews];
 }
 
 - (void) viewDidLoad {
