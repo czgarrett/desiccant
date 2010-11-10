@@ -611,6 +611,22 @@
 	if (!success) NSLog(@"Error: %@", [(NSError *)error localizedDescription]);
 }
 
+#pragma mark SORTING
+
+- (NSComparisonResult) compareFirstName: (ABContact *) other {
+   if (self.firstname) {
+      if (other.firstname) {
+         return [self.firstname compare: other.firstname];
+      } else {
+         return NSOrderedAscending; // this has a firstname, other has nil
+      }
+   } else if (other.firstname) {
+      return NSOrderedDescending; // this is nil, other has a first name
+   } else {
+      return NSOrderedSame; // both nil
+   }
+}
+
 #pragma mark Representations
 
 // No Image

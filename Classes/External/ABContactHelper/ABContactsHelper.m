@@ -98,11 +98,28 @@
 	return ABAddressBookSave(addressBook, (CFErrorRef *) error);
 }
 
++ (NSArray *) contactsWithEmailAndGroup
+{
+   NSArray *groups = [ABContactsHelper groups];
+   NSArray *largestGroupMembers = nil;
+   for (ABGroup *group in groups) {
+      NSArray *members = [group membersWithSorting: kABPersonSortByFirstName];
+      if (largestGroupMembers == nil || [largestGroupMembers count] < [members count]) {
+         largestGroupMembers = members;
+      } 
+   }
+   NSMutableArray *result = [NSMutableArray array];
+   for (ABContact *contact in largestGroupMembers) {
+      NSArray *emails = contact.emailArray;
+      if (emails != nil && [emails count] > 0) [result addObject: contact];
+   }
+	return result;
+}
+
 + (NSArray *) contactsWithEmail
 {
-	NSArray *contacts = [ABContactsHelper contacts];
    NSMutableArray *result = [NSMutableArray array];
-   for (ABContact *contact in contacts) {
+   for (ABContact *contact in [ABContactsHelper contacts]) {
       NSArray *emails = contact.emailArray;
       if (emails != nil && [emails count] > 0) [result addObject: contact];
    }

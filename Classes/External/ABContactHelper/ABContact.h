@@ -101,6 +101,10 @@
 #pragma mark IMAGES
 @property (nonatomic, assign) UIImage *image;
 
+#pragma mark SORTING
+
+- (NSComparisonResult) compareFirstName: (ABContact *) other;
+
 #pragma mark REPRESENTATIONS
 
 // Conversion to dictionary
