@@ -10,10 +10,11 @@
 @property (nonatomic, retain) CAGradientLayer *normalGradient;
 @property (nonatomic, retain) CAGradientLayer *highlightedGradient;
 @property (nonatomic, retain) CAGradientLayer *disabledGradient;
+@property (nonatomic, retain) CAGradientLayer *selectedGradient;
 @end
 
 @implementation DTButton
-@synthesize normalGradient, highlightedGradient, disabledGradient, shiny;
+@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, shiny;
 
 - (void)dealloc {
    if (dependsOnReachability) {
@@ -22,6 +23,7 @@
 	self.normalGradient = nil;
 	self.highlightedGradient = nil;
    self.disabledGradient = nil;
+   self.selectedGradient = nil;
 	[super dealloc];
 }
 
@@ -57,6 +59,10 @@
               (id)[UIColor colorWithWhite:0.0f alpha:0.0f].CGColor,
               nil];
    }
+}
+
+- (NSArray *)selectedGradientColors {
+   return [self highlightedGradientColors];
 }
 
 - (NSArray *)highlightedGradientColors {
@@ -161,23 +167,39 @@
 }
 
 - (void)setHighlighted:(BOOL)shouldHighlight {
-	super.highlighted = shouldHighlight;
-	if (shouldHighlight && normalGradient.superlayer) {
-		[self.layer replaceSublayer:normalGradient with:highlightedGradient];
+   if (!self.selected) { // Selection trumps highlight
+      super.highlighted = shouldHighlight;
+      if (shouldHighlight && normalGradient.superlayer) {
+         [self.layer replaceSublayer:normalGradient with:highlightedGradient];
+      }
+      else if (!shouldHighlight && highlightedGradient.superlayer) {
+         [self.layer replaceSublayer:highlightedGradient with:normalGradient];
+      }
+   }
+}
+
+- (void) setSelected:(BOOL) shouldSelect {
+   super.selected = shouldSelect;
+	if (shouldSelect && normalGradient.superlayer) {
+		[self.layer replaceSublayer:normalGradient with:selectedGradient];
 	}
-	else if (!shouldHighlight && highlightedGradient.superlayer) {
-		[self.layer replaceSublayer:highlightedGradient with:normalGradient];
+	else if (!shouldSelect && selectedGradient.superlayer) {
+		[self.layer replaceSublayer: selectedGradient with:normalGradient];
 	}
 }
 
 - (void)setEnabled:(BOOL)shouldEnable {
-   BOOL shouldDisable = !shouldEnable;
-	if (shouldDisable && normalGradient.superlayer) {
-		[self.layer replaceSublayer:normalGradient with:disabledGradient];
-	}
-	else if (!shouldDisable && disabledGradient.superlayer) {
-		[self.layer replaceSublayer:disabledGradient with:normalGradient];
-	}
+   if (shouldEnable && self.selected) {
+      self.selected = YES;
+   } else { // Only set the enabled gradient if not selected
+      BOOL shouldDisable = !shouldEnable;
+      if (shouldDisable && normalGradient.superlayer) {
+         [self.layer replaceSublayer:normalGradient with:disabledGradient];
+      }
+      else if (!shouldDisable && disabledGradient.superlayer) {
+         [self.layer replaceSublayer:disabledGradient with:normalGradient];
+      }
+   }
 	super.enabled = shouldEnable;
 }
 
@@ -201,6 +223,7 @@
    if (normalGradient) [normalGradient removeFromSuperlayer];
    if (highlightedGradient) [highlightedGradient removeFromSuperlayer];
    if (disabledGradient) [disabledGradient removeFromSuperlayer];
+   if (selectedGradient) [selectedGradient removeFromSuperlayer];
 	self.layer.borderWidth = 1.0f;
    self.layer.borderColor = [UIColor colorWithRed:168.0f/255.0f green:171.0f/255.0f blue:173.0f/255.0f alpha:1.0f].CGColor;
    self.layer.cornerRadius = 8.0f;
@@ -209,6 +232,8 @@
 	[self configureGradients];
 	if (!self.enabled) {
       [self.layer addSublayer: disabledGradient];
+   } else if (self.selected) {
+      [self.layer addSublayer: selectedGradient];	      
    } else {
       [self.layer addSublayer: normalGradient];	      
    }
@@ -219,6 +244,7 @@
    if(normalGradient) normalGradient.cornerRadius = radius;
    if(highlightedGradient) highlightedGradient.cornerRadius = radius;
    if(disabledGradient) disabledGradient.cornerRadius = radius;
+   if(selectedGradient) selectedGradient.cornerRadius = radius;
 }
 
 - (CGFloat) cornerRadius {
@@ -252,6 +278,12 @@
 	highlightedGradient.locations = [self gradientLocations];
 	highlightedGradient.colors = [self highlightedGradientColors];
    highlightedGradient.cornerRadius = self.layer.cornerRadius;
+
+	self.selectedGradient = [CAGradientLayer layer];
+	selectedGradient.frame = self.layer.bounds;
+	selectedGradient.locations = [self gradientLocations];
+	selectedGradient.colors = [self selectedGradientColors];
+   selectedGradient.cornerRadius = self.layer.cornerRadius;
    
 	self.disabledGradient = [CAGradientLayer layer];
 	disabledGradient.frame = self.layer.bounds;

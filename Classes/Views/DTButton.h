@@ -8,6 +8,7 @@
 	CAGradientLayer *normalGradient;
 	CAGradientLayer *highlightedGradient;
 	CAGradientLayer *disabledGradient;
+	CAGradientLayer *selectedGradient;
    
    BOOL dependsOnReachability;
 }
@@ -25,6 +26,7 @@
 - (NSArray *)gradientLocations;
 - (NSArray *)normalGradientColors;
 - (NSArray *)highlightedGradientColors;
+- (NSArray *)selectedGradientColors;
 - (void)configure;
 
 @end
