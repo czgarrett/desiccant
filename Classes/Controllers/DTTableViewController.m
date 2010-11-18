@@ -74,28 +74,36 @@ shouldAdjustViewOnKeyboardShow;
 
 -(void) keyboardWillShow:(NSNotification *) notif
 {
-   if (!keyboardVisible) {
+   if (!keyboardVisible && self.view.window) {
+
       NSDictionary* info = [notif userInfo];
       NSValue *rectValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
       CGSize keyboardSize = [rectValue CGRectValue].size;
-      CGRect viewFrame = self.view.frame;
+      
+      // Important - we use the superview to calculate the origin.
+      // Using the convertRect and convertPoint conversion doesn't appear to work properly
+      // for table views
+      CGPoint originInWindow = [[self.view superview] convertPoint: CGPointMake(0.0, 0.0) toView: nil];
+      
       // Basically this code is to handle the case when a tableview is inside a tab bar controller - it determines the bottom of the
       // frame in window coordinates and adjusts upward based on that.  Otherwise you end up with a blank
       // space below the table view when it moves up.
-      CGRect frameInWindow =[self.view convertRect: viewFrame toView: nil];
-      CGFloat bottom = frameInWindow.origin.y + frameInWindow.size.height;
       CGRect windowFrame = [UIApplication sharedApplication].keyWindow.frame;
-      keyboardAdjustment =  -keyboardSize.height + windowFrame.size.height - bottom;
-      viewFrame.size.height = viewFrame.size.height + keyboardAdjustment;
+      CGFloat newBottom = windowFrame.origin.y + windowFrame.size.height - keyboardSize.height;
+      
+      CGFloat newHeight = newBottom - originInWindow.y;
+
+      keyboardAdjustment = newHeight - self.view.frame.size.height;
+      
       [UIView beginAnimations: @"keyboardResize" context: nil];
-         self.view.frame = viewFrame;
+         self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, newHeight);
       [UIView commitAnimations];
       keyboardVisible = YES;      
    }
 }
 
 -(void) keyboardWillHide: (NSNotification *)notif {
-	if (keyboardVisible) {
+	if (keyboardVisible && self.view.window) {
       CGRect viewFrame = [self tableView].frame;
       viewFrame.size.height -= keyboardAdjustment;
       [UIView beginAnimations: @"keyboardResize" context: nil];

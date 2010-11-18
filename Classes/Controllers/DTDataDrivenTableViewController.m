@@ -79,7 +79,8 @@
 
 - (void)viewDidFirstAppear:(BOOL)animated {
 	[super viewDidFirstAppear:animated];
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] removeObserver: self name: UIWindowDidBecomeVisibleNotification object: self.view.window];
+	[[NSNotificationCenter defaultCenter] removeObserver: self name: UIWindowDidBecomeHiddenNotification object: self.view.window];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeVisible:) name:UIWindowDidBecomeVisibleNotification object:self.view.window];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeHidden:) name:UIWindowDidBecomeHiddenNotification object:self.view.window];
 }
