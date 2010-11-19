@@ -586,11 +586,14 @@
 #pragma mark Images
 - (UIImage *) image
 {
-	if (!ABPersonHasImageData(record)) return nil;
-	CFDataRef imageData = ABPersonCopyImageData(record);
-	UIImage *image = [UIImage imageWithData:(NSData *) imageData];
-	CFRelease(imageData);
-	return image;
+	if (ABPersonHasImageData(record)) {
+      CFDataRef imageData = ABPersonCopyImageData(record);
+      UIImage *image = [UIImage imageWithData:(NSData *) imageData];
+      CFRelease(imageData);
+      return image;
+   } else {
+      return nil;
+   }
 }
 
 - (void) setImage: (UIImage *) image
