@@ -14,7 +14,7 @@
 @end
 
 @implementation DTButton
-@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, shiny;
+@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, shiny, disabledShadingLevel;
 
 - (void)dealloc {
    if (dependsOnReachability) {
@@ -30,12 +30,14 @@
 - (void)awakeFromNib {
 	[super awakeFromNib];
    shiny = YES;
+   self.disabledShadingLevel = 0.5;
     [self configure];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
        shiny = YES;
+       self.disabledShadingLevel = 0.5;
        [self configure];
     }
     return self;

@@ -17,6 +17,8 @@
 @property (assign) BOOL shadow;
 @property (assign) CGFloat cornerRadius;
 @property (assign) CGFloat borderWidth;
+// Value should be 0-1.0.
+@property (assign) CGFloat disabledShadingLevel;
 
 - (void) highlight;
 
