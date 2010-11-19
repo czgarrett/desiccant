@@ -616,7 +616,7 @@
 - (NSComparisonResult) compareFirstName: (ABContact *) other {
    if (self.firstname) {
       if (other.firstname) {
-         return [self.firstname compare: other.firstname];
+         return [[self.firstname uppercaseString] compare: [other.firstname uppercaseString]];
       } else {
          return NSOrderedAscending; // this has a firstname, other has nil
       }
