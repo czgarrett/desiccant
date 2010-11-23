@@ -30,5 +30,7 @@
 - (NSArray *)highlightedGradientColors;
 - (NSArray *)selectedGradientColors;
 - (void)configure;
+- (void)configureGradients;
+
 
 @end
