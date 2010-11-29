@@ -13,7 +13,7 @@
 #import "DTGroupsUntypedData.h"
 #import "DTSortsUntypedData.h"
 
-@class DTAsyncQuery;
+@class DTAsyncQuery, DTAsyncQueryOperation;
 @protocol DTAsyncQueryDelegate
 
 - (void)queryDidFinishLoading:(DTAsyncQuery *)query;
@@ -96,5 +96,6 @@
 @property (nonatomic, readonly) BOOL loaded;
 @property (nonatomic, copy)  NSString *error;
 @property (nonatomic, retain) DTAsyncQuery *moreResultsQuery;
+@property (nonatomic, retain) DTAsyncQueryOperation *operation;
 
 @end

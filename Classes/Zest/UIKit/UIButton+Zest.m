@@ -45,4 +45,9 @@
 	return button;
 }
 
+- (void) highlight {
+   [self setHighlighted: YES];
+}
+
+
 @end

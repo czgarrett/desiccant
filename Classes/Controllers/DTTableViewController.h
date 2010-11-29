@@ -22,6 +22,9 @@
 	BOOL shouldAutorotateUpsideDown;
 	BOOL hasAppeared;
 	DTActivityIndicatorView *dtActivityIndicator;
+   
+   BOOL keyboardVisible;
+   CGFloat keyboardAdjustment;
 }
 
 @property (nonatomic, assign) UIViewController *containerViewController;
@@ -29,6 +32,9 @@
 // no container.
 @property (nonatomic, assign, readonly) UIViewController *topContainerViewController;
 @property (nonatomic, retain) UITableViewController *containerTableViewController;
+
+// Set this to YES before calling [super viewDidLoad] in your subclass
+@property (nonatomic, assign) BOOL shouldAdjustViewOnKeyboardShow;
 
 // The .xib should set its File's Owner to DTTableViewController, and connect this cell outlet to its
 // custom UITableViewCell.
@@ -78,6 +84,12 @@
 //- (void) afterView:(UIView *)theTableView willDisappear:(BOOL)animated;
 //- (void) beforeView:(UIView *)theTableView didDisappear:(BOOL)animated;
 //- (void) afterView:(UIView *)theTableView didDisappear:(BOOL)animated;
+
+// Because you're supposed to release retained subviews in viewDidUnload, as well as in dealloc,
+// you will often end up nilling out or releasing views in two places.  This method gets called in both
+// viewDidUnload and dealloc, so you only need to release those views once in subclasses.  Override
+// this method and put your statements here.  
+- (void) releaseRetainedSubviews;
 
 - (NSInteger)numberOfRowsAcrossAllSectionsInTableView:(UITableView*)theTableView;
 

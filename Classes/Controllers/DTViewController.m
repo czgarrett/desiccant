@@ -23,10 +23,15 @@
 
 - (void) dealloc {
 	self.dtContainerViewController = nil;
-	self.dtWindowOverlay = nil;
-	self.dtActivityIndicator = nil;
+   [self releaseRetainedSubviews];
 	[super dealloc];
 }
+
+- (void) releaseRetainedSubviews {
+	self.dtWindowOverlay = nil;
+	self.dtActivityIndicator = nil;
+}
+
 
 #pragma mark Constructors
 
@@ -158,9 +163,10 @@
 ////	[self afterViewDidLoad:self.view];
 //}
 
-//- (void) viewDidUnload {
-//	[super viewDidUnload];
-//}
+- (void) viewDidUnload {
+	[super viewDidUnload];
+   [self releaseRetainedSubviews];
+}
 
 - (void) viewWillAppear:(BOOL)animated {
 //	[self beforeView:self.view willAppear:animated];

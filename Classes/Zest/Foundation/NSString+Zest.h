@@ -49,6 +49,8 @@
 + (NSString *) stringWithInteger:(NSInteger)integer;
 + (NSString *) stringWithData: (NSData *) data encoding: (NSStringEncoding) encoding;
 
++ (NSString *) stringWithGUID;
+
 - (NSString *) stringByPrependingString:(NSString *)prefix;
 - (NSString *) stringByAppendingNewLine:(NSString *)line;
 - (BOOL)fileExists;
@@ -116,5 +118,9 @@
 // passing a URL as a GET parameter.
 - (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
 
+// Useful for mixing up NSString objects with NSNumber.  Returns self.
+- (NSString *) stringValue;
+
+- (NSNumber *) integerNumber;
 
 @end

@@ -27,6 +27,10 @@
 	return [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(self.bounds.size.width, [self maxHeight]) lineBreakMode:self.lineBreakMode].height;
 }
 
+- (void) alignTop {
+   self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, [self heightToFitText]);
+}
+
 - (CGFloat)lineHeight {
 //	CGFloat spaceHeight = [@" " sizeWithFont:self.font constrainedToSize:CGSizeMake(9999.0, 9999.0) lineBreakMode:self.lineBreakMode].height;
 //	CGFloat xHeight = [@"x" sizeWithFont:self.font constrainedToSize:CGSizeMake(9999.0, 9999.0) lineBreakMode:self.lineBreakMode].height;

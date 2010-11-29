@@ -9,10 +9,12 @@
 - (CGFloat)luminance;
 @property (nonatomic, retain) CAGradientLayer *normalGradient;
 @property (nonatomic, retain) CAGradientLayer *highlightedGradient;
+@property (nonatomic, retain) CAGradientLayer *disabledGradient;
+@property (nonatomic, retain) CAGradientLayer *selectedGradient;
 @end
 
 @implementation DTButton
-@synthesize normalGradient, highlightedGradient;
+@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, shiny, disabledShadingLevel;
 
 - (void)dealloc {
    if (dependsOnReachability) {
@@ -20,19 +22,23 @@
    }
 	self.normalGradient = nil;
 	self.highlightedGradient = nil;
+   self.disabledGradient = nil;
+   self.selectedGradient = nil;
 	[super dealloc];
 }
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
-   NSLog(@"DTButton awakeFromNib");
+   shiny = YES;
+   self.disabledShadingLevel = 0.5;
     [self configure];
 }
 
 - (id)initWithFrame:(CGRect)frame {
-   NSLog(@"DTButton initWithFrame:");
     if (self = [super initWithFrame:frame]) {
-        [self configure];
+       shiny = YES;
+       self.disabledShadingLevel = 0.5;
+       [self configure];
     }
     return self;
 }
@@ -41,37 +47,77 @@
 
 - (NSArray *)normalGradientColors {
 	CGFloat luminance = [self luminance];
-	return [NSArray arrayWithObjects:
-			(id)[UIColor colorWithWhite:1.0f alpha:1.0f].CGColor,
-			(id)[UIColor colorWithWhite:1.0f alpha:0.5f + 0.15 * luminance].CGColor,
-			(id)[UIColor colorWithWhite:1.0f alpha:0.15f + 0.15 * luminance].CGColor,
-			(id)[UIColor colorWithWhite:1.0f alpha:0.0f + 0.02 * luminance].CGColor,
-			(id)[UIColor colorWithWhite:1.0f alpha:0.0f + 0.01 * luminance].CGColor,
-			(id)[UIColor colorWithWhite:0.0f alpha:0.0f].CGColor,
-			nil];
+   if (self.shiny) {
+      return [NSArray arrayWithObjects:
+              (id)[UIColor colorWithWhite:1.0f alpha:1.0f].CGColor,
+              (id)[UIColor colorWithWhite:1.0f alpha:0.5f + 0.15 * luminance].CGColor,
+              (id)[UIColor colorWithWhite:1.0f alpha:0.15f + 0.15 * luminance].CGColor,
+              (id)[UIColor colorWithWhite:1.0f alpha:0.0f + 0.02 * luminance].CGColor,
+              (id)[UIColor colorWithWhite:1.0f alpha:0.0f + 0.01 * luminance].CGColor,
+              (id)[UIColor colorWithWhite:0.0f alpha:0.0f].CGColor,
+              nil];      
+   } else {
+      return [NSArray arrayWithObjects:
+              (id)[UIColor colorWithWhite:0.0f alpha:0.0f].CGColor,
+              nil];
+   }
+}
+
+- (NSArray *)selectedGradientColors {
+   return [self highlightedGradientColors];
 }
 
 - (NSArray *)highlightedGradientColors {
 	CGFloat luminance = [self luminance];
-	return [NSArray arrayWithObjects:
-			(id)[UIColor colorWithWhite:1.0f alpha:1.0f].CGColor,
-			(id)[UIColor colorWithWhite:0.5f + 0.5f * luminance alpha:0.8f].CGColor,
-			(id)[UIColor colorWithWhite:0.2f + 0.4f * luminance alpha:0.6f].CGColor,
-			(id)[UIColor colorWithWhite:0.1f + 0.1f * luminance alpha:0.5f].CGColor,
-			(id)[UIColor colorWithWhite:0.1f + 0.1f * luminance alpha:0.3f].CGColor,
-			(id)[UIColor colorWithWhite:0.0f alpha:0.2f].CGColor,
-			nil];
+   if (self.shiny) {
+      return [NSArray arrayWithObjects:
+              (id)[UIColor colorWithWhite:1.0f alpha:1.0f].CGColor,
+              (id)[UIColor colorWithWhite:0.5f + 0.5f * luminance alpha:0.8f].CGColor,
+              (id)[UIColor colorWithWhite:0.2f + 0.4f * luminance alpha:0.6f].CGColor,
+              (id)[UIColor colorWithWhite:0.1f + 0.1f * luminance alpha:0.5f].CGColor,
+              (id)[UIColor colorWithWhite:0.1f + 0.1f * luminance alpha:0.3f].CGColor,
+              (id)[UIColor colorWithWhite:0.0f alpha:0.2f].CGColor,
+              nil];      
+   } else {
+      return [NSArray arrayWithObjects:
+              (id)[UIColor colorWithWhite:0.0f alpha:0.2f].CGColor,
+              nil];      
+   }
 }
 
+- (NSArray *)disabledGradientColors {
+	CGFloat luminance = [self luminance];
+   CGFloat disabledShading = 0.5;
+   if (self.shiny) {
+      return [NSArray arrayWithObjects:
+              (id)[UIColor colorWithWhite: disabledShading * 1.0f alpha:1.0f].CGColor,
+              (id)[UIColor colorWithWhite: disabledShading * 0.5f + 0.5f * luminance alpha:0.8f].CGColor,
+              (id)[UIColor colorWithWhite: disabledShading * 0.2f + 0.4f * luminance alpha:0.6f].CGColor,
+              (id)[UIColor colorWithWhite: disabledShading * 0.1f + 0.1f * luminance alpha:0.5f].CGColor,
+              (id)[UIColor colorWithWhite: disabledShading * 0.1f + 0.1f * luminance alpha:0.3f].CGColor,
+              (id)[UIColor colorWithWhite: disabledShading * 0.0f alpha:0.2f].CGColor,
+              nil];      
+   } else {
+      return [NSArray arrayWithObjects:
+              (id)[UIColor colorWithWhite:0.0f alpha: disabledShading].CGColor,
+              nil];      
+   }
+}
+
+
 - (NSArray *)gradientLocations {
-	return [NSArray arrayWithObjects:
-			[NSNumber numberWithFloat:0.0f],
-			[NSNumber numberWithFloat:0.1f],
-			[NSNumber numberWithFloat:0.5f],
-			[NSNumber numberWithFloat:0.5f],
-			[NSNumber numberWithFloat:0.8f],
-			[NSNumber numberWithFloat:1.0f],
-			nil];
+   if (self.shiny) {
+      return [NSArray arrayWithObjects:
+              [NSNumber numberWithFloat:0.0f],
+              [NSNumber numberWithFloat:0.1f],
+              [NSNumber numberWithFloat:0.5f],
+              [NSNumber numberWithFloat:0.5f],
+              [NSNumber numberWithFloat:0.8f],
+              [NSNumber numberWithFloat:1.0f],
+              nil];      
+   } else {
+      return nil;
+   }
 }
 
 #pragma mark Reachability
@@ -118,50 +164,134 @@
 
 #pragma mark UIControl
 
-- (void)setHighlighted:(BOOL)shouldHighlight {
-	if (shouldHighlight && normalGradient.superlayer) {
-		[self.layer replaceSublayer:normalGradient with:highlightedGradient];
-	}
-	else if (!shouldHighlight && highlightedGradient.superlayer) {
-		[self.layer replaceSublayer:highlightedGradient with:normalGradient];
-	}
-	super.highlighted = shouldHighlight;
+- (void) highlight {
+   [self setHighlighted: YES];
 }
 
+- (void)setHighlighted:(BOOL)shouldHighlight {
+   if (!self.selected) { // Selection trumps highlight
+      super.highlighted = shouldHighlight;
+      if (shouldHighlight && normalGradient.superlayer) {
+         [self.layer replaceSublayer:normalGradient with:highlightedGradient];
+      }
+      else if (!shouldHighlight && highlightedGradient.superlayer) {
+         [self.layer replaceSublayer:highlightedGradient with:normalGradient];
+      }
+   }
+}
+
+- (void) setSelected:(BOOL) shouldSelect {
+   super.selected = shouldSelect;
+	if (shouldSelect && normalGradient.superlayer) {
+		[self.layer replaceSublayer:normalGradient with:selectedGradient];
+	}
+	else if (!shouldSelect && selectedGradient.superlayer) {
+		[self.layer replaceSublayer: selectedGradient with:normalGradient];
+	}
+}
+
+- (void)setEnabled:(BOOL)shouldEnable {
+   if (shouldEnable && self.selected) {
+      self.selected = YES;
+   } else { // Only set the enabled gradient if not selected
+      BOOL shouldDisable = !shouldEnable;
+      if (shouldDisable && normalGradient.superlayer) {
+         [self.layer replaceSublayer:normalGradient with:disabledGradient];
+      }
+      else if (!shouldDisable && disabledGradient.superlayer) {
+         [self.layer replaceSublayer:disabledGradient with:normalGradient];
+      }
+   }
+	super.enabled = shouldEnable;
+}
+
+- (void) setShadow: (BOOL) shouldShadow {
+   if (shouldShadow) {
+      self.layer.shadowColor = [[UIColor blackColor] CGColor];
+      self.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+      self.layer.shadowOpacity = 0.5f;
+      self.layer.shadowRadius = 2.0f;         
+   } else {
+      self.layer.shadowOpacity = 0.0f;
+   }
+}
+
+- (BOOL) shadow {
+   return self.layer.shadowOpacity > 0.01;
+}
+
+
 - (void)configure {
+   if (normalGradient) [normalGradient removeFromSuperlayer];
+   if (highlightedGradient) [highlightedGradient removeFromSuperlayer];
+   if (disabledGradient) [disabledGradient removeFromSuperlayer];
+   if (selectedGradient) [selectedGradient removeFromSuperlayer];
 	self.layer.borderWidth = 1.0f;
    self.layer.borderColor = [UIColor colorWithRed:168.0f/255.0f green:171.0f/255.0f blue:173.0f/255.0f alpha:1.0f].CGColor;
    self.layer.cornerRadius = 8.0f;
-   self.layer.masksToBounds = YES;
-	
+   self.layer.masksToBounds = NO;
+   	
 	[self configureGradients];
-	
-   //[self.layer insertSublayer:normalGradient atIndex: 0];	
-   [self.layer addSublayer: normalGradient];	
+	if (!self.enabled) {
+      [self.layer addSublayer: disabledGradient];
+   } else if (self.selected) {
+      [self.layer addSublayer: selectedGradient];	      
+   } else {
+      [self.layer addSublayer: normalGradient];	      
+   }
 }
 
-#pragma mark Private
+- (void) setCornerRadius:(CGFloat) radius {
+   self.layer.cornerRadius = radius;
+   if(normalGradient) normalGradient.cornerRadius = radius;
+   if(highlightedGradient) highlightedGradient.cornerRadius = radius;
+   if(disabledGradient) disabledGradient.cornerRadius = radius;
+   if(selectedGradient) selectedGradient.cornerRadius = radius;
+}
 
 - (CGFloat) cornerRadius {
    return self.layer.cornerRadius;
 }
 
-- (void) setCornerRadius:(CGFloat) radius {
-   self.layer.cornerRadius = radius;
+- (void) setBorderWidth: (CGFloat) width {
+   self.layer.borderWidth = width;
 }
+
+- (CGFloat) borderWidth {
+   return self.layer.borderWidth;
+}
+
+- (void) setShiny: (BOOL) newShiny {
+   shiny = newShiny;
+   [self configure];
+}
+
+#pragma mark Private
 
 - (void)configureGradients {
 	self.normalGradient = [CAGradientLayer layer];
     normalGradient.frame = self.layer.bounds;
     normalGradient.locations = [self gradientLocations];
     normalGradient.colors = [self normalGradientColors];
+   normalGradient.cornerRadius = self.layer.cornerRadius;
 	
 	self.highlightedGradient = [CAGradientLayer layer];
 	highlightedGradient.frame = self.layer.bounds;
 	highlightedGradient.locations = [self gradientLocations];
 	highlightedGradient.colors = [self highlightedGradientColors];
+   highlightedGradient.cornerRadius = self.layer.cornerRadius;
+
+	self.selectedGradient = [CAGradientLayer layer];
+	selectedGradient.frame = self.layer.bounds;
+	selectedGradient.locations = [self gradientLocations];
+	selectedGradient.colors = [self selectedGradientColors];
+   selectedGradient.cornerRadius = self.layer.cornerRadius;
    
-   
+	self.disabledGradient = [CAGradientLayer layer];
+	disabledGradient.frame = self.layer.bounds;
+	disabledGradient.locations = [self gradientLocations];
+	disabledGradient.colors = [self disabledGradientColors];   
+   disabledGradient.cornerRadius = self.layer.cornerRadius;
 }
 
 - (CGFloat)luminance {

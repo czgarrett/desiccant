@@ -17,6 +17,7 @@
 - (CGFloat)lineHeight;
 - (NSInteger)numberOfLinesToFitText;
 - (CGFloat)maxHeight;
+- (void) alignTop;
 
 
 @end

@@ -119,6 +119,21 @@
 	}
 }
 
+#pragma mark UI Conveniences
+
+// Useful for stubbing out actions that aren't complete yet.
+// Pops up a friendly alert.
+- (IBAction) notImplemented: (id) source {
+   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Not Implemented" 
+                                                   message: @"This feature is not complete yet." 
+                                                  delegate: nil 
+                                         cancelButtonTitle: @"Ok" 
+                                         otherButtonTitles: nil];
+   [alert show];
+   [alert release];
+}
+
+
 #pragma mark Custom actionsheet-like support
 
 - (void) slideViewUp: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background {
@@ -129,7 +144,7 @@
    [window addSubview: viewToSlide];
    viewToSlide.center = CGPointMake(160.0, 480.0 + viewToSlide.frame.size.height/2);
    [UIView beginAnimations: @"slideViewUp" context: nil];
-   viewToSlide.center = CGPointMake(viewToSlide.center.x, viewToSlide.center.y - viewToSlide.frame.size.height + background);
+   viewToSlide.center = CGPointMake(viewToSlide.center.x, viewToSlide.center.y - viewToSlide.frame.size.height);
    self.view.center = CGPointMake(self.view.center.x, self.view.center.y - background);      
    [UIView commitAnimations];
 	viewToSlide.hidden = NO;
@@ -137,6 +152,7 @@
 
 - (void) slideViewDown: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background {
    viewToSlide.hidden = YES;
+   self.view.center = CGPointMake(self.view.center.x, self.view.center.y - background);      
    [viewToSlide removeFromSuperview];
 }
 
@@ -217,7 +233,7 @@
 - (void)alertWithTitle: (NSString *)title message: (NSString *)message {
    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
                                                    message: message
-                                                  delegate: nil 
+                                                  delegate: self 
                                          cancelButtonTitle: @"Ok" 
                                          otherButtonTitles: nil];
    [alert show];
@@ -237,7 +253,7 @@
 - (void) showAlertWithTitle: (NSString *) title message: (NSString *) message {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
                                                  message: message
-                                                 delegate: nil 
+                                                 delegate: self 
                                                  cancelButtonTitle: @"Ok" 
                                                  otherButtonTitles: nil];
     [alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];

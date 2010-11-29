@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSMutableArray *rowTransformers;
 @property (nonatomic, retain) NSMutableArray *rowFilters;
 @property (nonatomic, retain) NSMutableArray *rows;
-@property (nonatomic, retain) DTAsyncQueryOperation *operation;
+//@property (nonatomic, retain) DTAsyncQueryOperation *operation;
 - (void)transformRawRows;
 - (void)filterTransformedRows;
 - (void)groupRows;
@@ -107,7 +107,11 @@
 }
 
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)rowIndex inGroupWithIndex:(NSUInteger)groupIndex {
-    return [self groupCount] == 1 ? [self itemAtIndex:rowIndex] : (NSMutableDictionary *)[(NSMutableArray *)[self.groups objectAtIndex:groupIndex] objectAtIndex:rowIndex];
+   if (self.grouper) {
+      return (NSMutableDictionary *)[(NSMutableArray *)[self.groups objectAtIndex:groupIndex] objectAtIndex:rowIndex];
+   } else {
+      return [self itemAtIndex:rowIndex];      
+   }
 }
 
 - (void)deleteItemAtIndex:(NSUInteger)index {
@@ -127,15 +131,23 @@
 }
 
 - (NSUInteger)count {
-    return [rows count];
+    return [self.rows count];
 }
 
 - (NSUInteger)rowCountForGroupWithIndex:(NSUInteger)index {
-    return [self groupCount] == 1 ? [self count] : [(NSMutableArray *)[groups objectAtIndex:index] count];
+   if (self.grouper) {
+      return [(NSMutableArray *)[groups objectAtIndex:index] count];
+   } else {
+      return [self count];    
+   }
 }
 
 - (NSUInteger)groupCount {
-    return groups && [groups count] > 0 ? [groups count] : 1;
+   if (self.grouper) {
+      return [groups count];
+   } else {
+      return 1;
+   }
 }
 
 - (void)cancel {
@@ -272,30 +284,30 @@
 }
 
 - (void)transformRawRows {
-    self.rows = [NSMutableArray arrayWithCapacity:[rawRows count]];
+    self.rows = [NSMutableArray arrayWithCapacity:[self.rawRows count]];
     for (NSMutableDictionary *row in self.rawRows) {
         NSMutableDictionary *newRow = [[row mutableCopy] autorelease];
         for (NSObject <DTTransformsUntypedData> *transformer in rowTransformers) {
             [transformer transform:newRow];
         }
-        [rows addObject:newRow];
+        [self.rows addObject:newRow];
     }
 }
 
 - (void)filterTransformedRows {
     for (NSObject <DTFiltersUntypedData> *filter in rowFilters) {
-        for (NSInteger index = [rows count] - 1; index >= 0; index--) {
-            if ([filter rejectsRow:[rows objectAtIndex:index]]) {
-                [rows removeObjectAtIndex:index];
+        for (NSInteger index = [self.rows count] - 1; index >= 0; index--) {
+            if ([filter rejectsRow:[self.rows objectAtIndex:index]]) {
+                [self.rows removeObjectAtIndex:index];
             }
         }
     }
 }
 
 - (void)groupRows {
-    self.groups = [NSMutableArray arrayWithCapacity:[rows count]];
+    self.groups = [NSMutableArray arrayWithCapacity:[self.rows count]];
     if (self.grouper) {
-        [self.grouper groupRows:rows into:groups];
+        [self.grouper groupRows: self.rows into:groups];
     }
 }
 

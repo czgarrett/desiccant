@@ -18,4 +18,13 @@
 	return  [UIImageView viewWithImage:[UIImage imageNamed:@"Default.png"]];
 }
 
+- (IBAction) highlight: (id) src {
+   self.highlighted = YES;
+}
+
+- (IBAction) unhighlight: (id) src {
+   self.highlighted = NO;
+}
+
+
 @end

@@ -6,14 +6,21 @@
 //
 
 #import "DTActivityIndicatorView.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface DTActivityIndicatorView()
 @property (nonatomic, retain) UIActivityIndicatorView *childIndicator;
 @end
 
+static DTActivityIndicatorStyle defaultStyle;
+
 @implementation DTActivityIndicatorView
-@synthesize childIndicator, hidesWhenStopped;
+@synthesize childIndicator, hidesWhenStopped, dtActivityIndicatorStyle;
+
++ (void) setDefaultStyle: (DTActivityIndicatorStyle) style {
+   defaultStyle = style;
+}
 
 - (void)dealloc {
 	self.childIndicator = nil;
@@ -27,10 +34,26 @@
 		newIndicator.hidesWhenStopped = NO;
 		self.childIndicator = newIndicator;
 		[self addSubview:childIndicator];
+      self.dtActivityIndicatorStyle = defaultStyle;
 		hidesWhenStopped = YES;
 		activityCount = 0;
 	}
 	return self;
+}
+
+- (void) setDtActivityIndicatorStyle: (DTActivityIndicatorStyle) style {
+   dtActivityIndicatorStyle = style;
+   switch (dtActivityIndicatorStyle) {
+      case DTActivityIndicatorStyleNormal:
+         break;
+      case DTActivityIndicatorStyleDarkGrayBackground:
+         self.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
+         self.layer.cornerRadius = 10.0;
+         self.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.5];
+         break;
+      default:
+         break;
+   }
 }
 
 - (void)startAnimating {

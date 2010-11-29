@@ -52,10 +52,22 @@
    return [[[NSString alloc] initWithData: data encoding: encoding] autorelease];
 }
 
++ (NSString *) stringWithGUID {
+   CFUUIDRef theUUID = CFUUIDCreate(NULL);
+   CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+   CFRelease(theUUID);
+   return [(NSString *)string autorelease];
+}
+
 
 - (NSString *) to_s {
     return self;
 }
+
+- (NSString *) stringValue {
+   return self;
+}
+
 
 - (NSInteger) to_i {
     return [self integerValue];
@@ -83,6 +95,11 @@
 - (double) to_double {
     return [self doubleValue];
 }
+
+- (NSNumber *) integerNumber {
+   return [NSNumber numberWithInteger: [self integerValue]];
+}
+
 
 - (NSString *)trimmed {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

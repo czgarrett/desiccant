@@ -43,6 +43,10 @@
     return nil;
 }
 
+- (NSDate *) toDate {
+   return [self to_date];
+}
+
 - (NSNumber *)to_n {
     return nil;
 }
@@ -556,5 +560,26 @@
 {
 	return [self tryPerformSelector:aSelector withObject:nil withObject:nil];
 }
+
+// Create an archiver and encode the object into NSData.
+- (NSData *) encodeIntoData {
+   NSMutableData *data = [NSMutableData data];
+   NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+   [archiver encodeRootObject: self];
+   [archiver finishEncoding];
+   [archiver release];
+   return data;
+}
+
++ (id) decodeFromData: (NSData *) data {
+   id result;
+   NSKeyedUnarchiver *unarchiver;
+   unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+   result = [unarchiver decodeObject];
+   [unarchiver finishDecoding];
+   [unarchiver release];   
+   return result;
+}
+
 
 @end

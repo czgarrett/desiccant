@@ -20,7 +20,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #endif
 #import "ASIInputStream.h"
-
+#import "Zest.h"
 
 // Automatically set on build
 NSString *ASIHTTPRequestVersion = @"v1.6.1-6 2010-04-12";
@@ -237,7 +237,7 @@ static BOOL isiPhoneOS2;
 	[self setTimeOutSeconds:[ASIHTTPRequest defaultTimeOutSeconds]];
 	[self setUseSessionPersistence:YES];
 	[self setUseCookiePersistence:YES];
-	[self setValidatesSecureCertificate:YES];
+	[self setValidatesSecureCertificate:NO];
 	[self setRequestCookies:[[[NSMutableArray alloc] init] autorelease]];
 	[self setDidStartSelector:@selector(requestStarted:)];
 	[self setDidFinishSelector:@selector(requestFinished:)];
