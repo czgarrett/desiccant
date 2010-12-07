@@ -11,12 +11,13 @@
 
 @interface DTActivityIndicatorView()
 @property (nonatomic, retain) UIActivityIndicatorView *childIndicator;
+@property (nonatomic, retain) UIView *childIndicatorBackground;
 @end
 
 static DTActivityIndicatorStyle defaultStyle;
 
 @implementation DTActivityIndicatorView
-@synthesize childIndicator, hidesWhenStopped, dtActivityIndicatorStyle;
+@synthesize childIndicator, hidesWhenStopped, dtActivityIndicatorStyle, childIndicatorBackground;
 
 + (void) setDefaultStyle: (DTActivityIndicatorStyle) style {
    defaultStyle = style;
@@ -24,16 +25,24 @@ static DTActivityIndicatorStyle defaultStyle;
 
 - (void)dealloc {
 	self.childIndicator = nil;
+   self.childIndicatorBackground = nil;
     [super dealloc];
 }
 
 - (id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style {
 	UIActivityIndicatorView *newIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style] autorelease];
-	if (self = [super initWithFrame:newIndicator.frame]) {
+	if (self = [super initWithFrame: CGRectMake(0.0, 0.0, 300.0, 300.0)]) {
 		newIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		newIndicator.hidesWhenStopped = NO;
 		self.childIndicator = newIndicator;
-		[self addSubview:childIndicator];
+      
+      self.childIndicatorBackground = [[[UIView alloc] initWithFrame: CGRectMake(100.0, 100.0, 100.0, 100.0)] autorelease];
+      self.childIndicatorBackground.layer.cornerRadius = 10.0;
+		self.childIndicatorBackground.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+      
+		[self.childIndicatorBackground addSubview:childIndicator];
+      [self addSubview: self.childIndicatorBackground];
+      childIndicator.center = CGPointMake(50.0, 50.0);
       self.dtActivityIndicatorStyle = defaultStyle;
 		hidesWhenStopped = YES;
 		activityCount = 0;
@@ -47,9 +56,7 @@ static DTActivityIndicatorStyle defaultStyle;
       case DTActivityIndicatorStyleNormal:
          break;
       case DTActivityIndicatorStyleDarkGrayBackground:
-         self.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
-         self.layer.cornerRadius = 10.0;
-         self.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.5];
+         self.childIndicatorBackground.backgroundColor = [UIColor colorWithRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.5];
          break;
       default:
          break;

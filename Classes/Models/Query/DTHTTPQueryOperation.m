@@ -74,6 +74,7 @@
 	self.error = nil;
 	if ([self.method isEqual:@"POST"]) {
 		ASIFormDataRequest *postRequest =  [ASIFormDataRequest requestWithURL:self.url];
+      postRequest.validatesSecureCertificate = NO;
 		[postRequest setRequestMethod:@"POST"];
 		if (self.body) [postRequest setPostBody:self.body];
 		if (self.postParameters) {

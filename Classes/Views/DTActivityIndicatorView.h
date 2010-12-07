@@ -19,6 +19,7 @@ typedef enum {
 //    have completed.
 @interface DTActivityIndicatorView : UIView {
 	UIActivityIndicatorView *childIndicator;
+   UIView *childIndicatorBackground;
 	NSInteger activityCount;
 	BOOL hidesWhenStopped;
 }

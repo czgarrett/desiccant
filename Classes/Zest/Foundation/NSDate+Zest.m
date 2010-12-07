@@ -314,6 +314,10 @@
 
 #pragma mark Retrieving Intervals
 
+- (NSInteger) secondsBeforeNow {
+   return (NSInteger) -[self timeIntervalSinceNow];
+}
+
 - (NSInteger) minutesAfterDate: (NSDate *) aDate
 {
 	NSTimeInterval ti = [self timeIntervalSinceDate:aDate];

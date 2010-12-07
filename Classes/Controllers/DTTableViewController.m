@@ -192,7 +192,7 @@ shouldAdjustViewOnKeyboardShow;
 - (DTActivityIndicatorView *)activityIndicator {
 	unless (dtActivityIndicator) {
 		self.dtActivityIndicator = [[[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-		dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+		//dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
 	}
 	unless (dtActivityIndicator.superview) {
 		dtActivityIndicator.hidesWhenStopped = YES;
