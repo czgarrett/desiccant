@@ -309,8 +309,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self indexPathIsHeader:indexPath]) {
         return [self headerRowForIndexPath:indexPath];
-    }
-	else if ([self indexPathIsMoreResultsCell:indexPath]) {
+    }	else if ([self indexPathIsMoreResultsCell:indexPath]) {
 		cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:moreResultsCellIdentifier];
 		if (cell == nil) {
 			if (moreResultsCellNibName) {
@@ -324,6 +323,7 @@
 			}
 			[cell setData:[self.query cursorData]];
 		}
+      NSAssert(cell != nil, @"Cell should not be nil here!");
 		return cell;
 	}
     else if ([query count] > 0) {
@@ -344,6 +344,7 @@
         
         indexPath = [self adjustIndexPathForHeaders:indexPath];
         [cell setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
+       NSAssert(cell != nil, @"Cell should not be nil here!");
         return cell;
     }
 	else {
@@ -351,7 +352,12 @@
 			return self.noResultsCell;
 		}
 		else {
-			return nil;
+         // I'm putting this in here, because I have seen some strange behavior that may be a bug in either
+         // ASIHTTPRequest or in UITableView.
+         // Somehow, under heavy loads (banging on the UI), a call to this method gets made when
+         // a query is empty.  Maybe the query rows get reset after numberOfRowsInSection is called?
+         // In any case, it causes an exception, so I am returning an empty table cell.
+         return [[DTCustomTableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"BLANK_CELL"];
 		}
 	}
 }
@@ -492,8 +498,9 @@
 }
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section {
-    if ([self hasHeaders] && section == 0) return headerRows;
-    else if ([query count] > 0) {
+    if ([self hasHeaders] && section == 0) {
+       return headerRows;
+    } else if ([query count] > 0) {
 		NSInteger numRows = [query rowCountForGroupWithIndex:[self adjustSectionForHeaders:section]];
 		if ([query hasMoreResults] && [self adjustSectionForHeaders:section] == ([query groupCount] - 1)) {
 			numRows += 1;
