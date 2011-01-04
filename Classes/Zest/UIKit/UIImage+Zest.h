@@ -13,4 +13,6 @@
 
 + (UIImage *)newImageFromResource:(NSString *)resource ofType:(NSString *)type;
 
+- (UIImage *) imageScaledAndCroppedToMaxSize: (CGSize) maxSize;
+
 @end

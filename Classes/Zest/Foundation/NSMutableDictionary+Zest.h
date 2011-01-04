@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define $MD(...) [NSMutableDictionary dictionaryWithKeysAndObjects: __VA_ARGS__, nil]
+#define $MD(...) (NSMutableDictionary *)[NSMutableDictionary dictionaryWithKeysAndObjects: __VA_ARGS__, nil]
 
 @interface NSMutableDictionary (Zest)
 

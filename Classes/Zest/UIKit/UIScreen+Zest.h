@@ -13,4 +13,7 @@
 
 - (CGPoint)center;
 
+@property(readonly) CGFloat bcompat_scale;
+@property(readonly) BOOL is2X;
+
 @end

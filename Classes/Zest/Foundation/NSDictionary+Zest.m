@@ -28,6 +28,12 @@
 			nil];
 }
 
+- (id) objectForKey:(id)aKey ifNil: (id) substitute {
+   id result = [self objectForKey: aKey];
+   return result == nil ? substitute : result;
+}
+
+
 - (NSString *)stringForKey:(id)key {
     return ((NSObject *)[self objectForKey:key]).to_s;
 }

@@ -17,7 +17,7 @@
    Class initialControllerClass;
 }
 
-@property (nonatomic) Class initialControllerClass;
+@property (nonatomic, assign) Class initialControllerClass;
 @property (nonatomic, retain) NSOperationQueue *operationQueue;
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UIViewController *startViewController;

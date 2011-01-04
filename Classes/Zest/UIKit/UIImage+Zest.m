@@ -33,4 +33,26 @@
 	return image;
 }
 
+- (UIImage *) imageScaledAndCroppedToMaxSize: (CGSize) maxSize {
+   float hfactor = self.size.width / maxSize.width;
+   float vfactor = self.size.height / maxSize.height;
+   
+   float factor = MIN(hfactor, vfactor);
+   
+   // Divide the size by the greater of the vertical or horizontal shrinkage factor
+   float newWidth = self.size.width / factor;
+   float newHeight = self.size.height / factor;
+   
+   // Then figure out if you need to offset it to center vertically or horizontally
+   float leftOffset = (maxSize.width - newWidth) / 2;
+   float topOffset = (maxSize.height - newHeight) / 2;
+   
+   UIGraphicsBeginImageContext(maxSize);
+   [self drawInRect: CGRectMake(leftOffset, topOffset, newWidth, newHeight)];
+   UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();    
+   UIGraphicsEndImageContext();
+   return newImage;
+}
+
+
 @end

@@ -21,4 +21,10 @@
 						normalShadowColor:(UIColor *)normalShadowColor
 					 selectedShadowColor:(UIColor *)selectedShadowColor;
 
+// Useful convenience method for setting highlighted state
+// in next run loop iteration.  (i.e. performSelector...).
+// Typically if you try to highlight a button on click, it just resets
+// back to unhighlighted.
+- (void) highlight;
+
 @end

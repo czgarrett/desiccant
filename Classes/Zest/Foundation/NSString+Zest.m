@@ -58,6 +58,11 @@
     return self;
 }
 
+- (NSString *) stringValue {
+   return self;
+}
+
+
 - (NSInteger) to_i {
     return [[self to_n] integerValue];
 }
@@ -84,6 +89,11 @@
 - (double) to_double {
     return [[self to_n] doubleValue];
 }
+
+- (NSNumber *) integerNumber {
+   return [NSNumber numberWithInteger: [self integerValue]];
+}
+
 
 - (NSString *)trimmed {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

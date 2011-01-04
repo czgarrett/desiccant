@@ -21,12 +21,25 @@
     return date;
 }
 
+
 - (NSString *)iso8601FormattedString {
     ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
     NSString *string = [formatter stringFromDate:self];
     [formatter release];
     return string;    
 }
+
++ (NSDate *)dateWithSecondsSinceUnixEpochAsString: (NSString *) secondsSinceUnixEpochAsString {
+   NSTimeInterval ms = [secondsSinceUnixEpochAsString doubleValue];
+   return [NSDate dateWithTimeIntervalSince1970: ms];         
+}
+
+- (NSString *) secondsSinceUnixEpochAsString {
+   NSTimeInterval interval = [self timeIntervalSince1970];
+   long long intervalAsLong = (long long) interval;
+   return [NSString stringWithFormat: @"%qi", intervalAsLong];
+}
+
 
 - (NSDate *)to_date {
     return self;
@@ -109,6 +122,26 @@
 	NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
 	return newDate;
 }
+
++ (NSDate *) dateWithYearsFromNow: (NSInteger) years
+{
+	NSDate *today = [NSDate date];
+	NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSDateComponents *components = [[NSDateComponents alloc] init];
+	[components setYear: years];
+	NSDate *newDate = [gregorian dateByAddingComponents:components toDate:today options:NSWrapCalendarComponents];
+	
+	[components release];
+	[gregorian release];
+	
+	return newDate;
+}
+
++ (NSDate *) dateWithYearsBeforeNow: (NSInteger) years
+{
+	return [NSDate dateWithYearsFromNow: -years];
+}
+
 
 #pragma mark Comparing Dates
 
@@ -206,6 +239,14 @@
 	return ([self laterDate:aDate] == self);
 }
 
+- (BOOL) isEarlierThanNow {
+   return [self isEarlierThanDate: [NSDate date]];
+}
+- (BOOL) isLaterThanNow {
+   return [self isLaterThanDate: [NSDate date]];
+}
+
+
 
 #pragma mark Adjusting Dates
 
@@ -252,6 +293,17 @@
 	[components setMinute:0];
 	[components setSecond:0];
 	return [CURRENT_CALENDAR dateFromComponents:components];
+}
+
+- (NSDate *) dateAtNextQuarterHour {
+	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+   [components setYear: [components year]];
+   [components setMonth: [components month]];
+   [components setDay: [components day]];
+	[components setHour: [components hour]];
+	[components setMinute: ([components minute]/15) * 15]; // rounds down to nearest quarter
+	[components setSecond:0];
+	return [[CURRENT_CALENDAR dateFromComponents:components] dateByAddingMinutes: 15];   
 }
 
 - (NSDateComponents *) componentsWithOffsetFromDate: (NSDate *) aDate
@@ -303,6 +355,14 @@
 - (NSInteger) nearestHour
 {
 	NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + D_MINUTE * 30;
+	NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
+	NSDateComponents *components = [CURRENT_CALENDAR components:NSHourCalendarUnit fromDate:newDate];
+	return [components hour];
+}
+
+- (NSInteger) nextHour
+{
+	NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + D_MINUTE * 60;
 	NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
 	NSDateComponents *components = [CURRENT_CALENDAR components:NSHourCalendarUnit fromDate:newDate];
 	return [components hour];

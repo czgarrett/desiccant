@@ -16,6 +16,7 @@
 @property (nonatomic, retain, readonly) NSURL *to_url;
 @property (nonatomic, retain, readonly) NSDate *to_date;
 @property (nonatomic, retain, readonly) NSNumber *to_n;
+@property (nonatomic, retain, readonly) NSDate *toDate;
 
 // Easy way to deserialize objects from NIBs.
 // Deserializes all objects from the specified NIB and returns the first object
@@ -70,5 +71,9 @@
 
 // Choose the first selector that the object responds to
 - (SEL) chooseSelector: (SEL) aSelector, ...;
+
+// Create an archiver and encode the object into NSData.
+- (NSData *) encodeIntoData;
++ (id) decodeFromData: (NSData *) data;
 
 @end

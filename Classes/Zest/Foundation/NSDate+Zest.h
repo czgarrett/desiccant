@@ -17,6 +17,10 @@
 @interface NSDate ( Zest ) 
 + (NSDate *)dateWithISO8601String:(NSString *)dateString;
 - (NSString *)iso8601FormattedString;
+
++ (NSDate *)dateWithSecondsSinceUnixEpochAsString: (NSString *) secondsSinceUnixEpoch;
+- (NSString *) secondsSinceUnixEpochAsString;
+
 // Returns a string formatted using a unicode date pattern
 // http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns
 - (NSString *)stringWithDateFormat:(NSString *)format;
@@ -31,6 +35,8 @@
 + (NSDate *) dateWithHoursBeforeNow: (NSInteger) dHours;
 + (NSDate *) dateWithMinutesFromNow: (NSInteger) dMinutes;
 + (NSDate *) dateWithMinutesBeforeNow: (NSInteger) dMinutes;
++ (NSDate *) dateWithYearsFromNow: (NSInteger) years;
++ (NSDate *) dateWithYearsBeforeNow: (NSInteger) years;
 
 // Comparing dates
 - (BOOL) isEqualToDateIgnoringTime: (NSDate *) aDate;
@@ -47,6 +53,8 @@
 - (BOOL) isLastYear;
 - (BOOL) isEarlierThanDate: (NSDate *) aDate;
 - (BOOL) isLaterThanDate: (NSDate *) aDate;
+- (BOOL) isEarlierThanNow;
+- (BOOL) isLaterThanNow;
 
 // Adjusting dates
 - (NSDate *) dateByAddingDays: (NSInteger) dDays;
@@ -56,6 +64,7 @@
 - (NSDate *) dateByAddingMinutes: (NSInteger) dMinutes;
 - (NSDate *) dateBySubtractingMinutes: (NSInteger) dMinutes;
 - (NSDate *) dateAtStartOfDay;
+- (NSDate *) dateAtNextQuarterHour;
 
 // Retrieving intervals
 - (NSInteger) minutesAfterDate: (NSDate *) aDate;
@@ -67,6 +76,7 @@
 
 // Decomposing dates
 @property (readonly) NSInteger nearestHour;
+@property (readonly) NSInteger nextHour;
 @property (readonly) NSInteger hour;
 @property (readonly) NSInteger minute;
 @property (readonly) NSInteger seconds;

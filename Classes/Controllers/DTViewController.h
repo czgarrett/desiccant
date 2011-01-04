@@ -40,6 +40,7 @@
 
 - (void)fadeWindowOverlay;
 
+
 // Subclasses can override this and set the three shouldAutorotate* properties to allow autorotation
 - (void)setAutorotationProperties;
 
@@ -56,5 +57,12 @@
 //- (void) afterView:(UIView *)theTableView willDisappear:(BOOL)animated;
 //- (void) beforeView:(UIView *)theTableView didDisappear:(BOOL)animated;
 //- (void) afterView:(UIView *)theTableView didDisappear:(BOOL)animated;
+
+// Because you're supposed to release retained subviews in viewDidUnload, as well as in dealloc,
+// you will often end up nilling out or releasing views in two places.  This method gets called in both
+// viewDidUnload and dealloc, so you only need to release those views once in subclasses.  Override
+// this method and put your statements here.  
+- (void) releaseRetainedSubviews;
+
 
 @end
