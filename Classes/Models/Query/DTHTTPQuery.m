@@ -12,7 +12,7 @@
 @end
 
 @implementation DTHTTPQuery
-@synthesize url, parser, body, method, postParameters, postFileKey, postFileData, postFilePath; //operation, 
+@synthesize url, parser, body, method, postParameters, postFileKey, postFileData, postFilePath, username, password; //operation, 
 
 - (void)dealloc {
 	self.url = nil;
@@ -24,6 +24,8 @@
 	self.postFileKey = nil;
 	self.postFileData = nil;
 	self.postFilePath = nil;
+	self.username = nil;
+	self.password = nil;
 	[super dealloc];
 }
 
@@ -38,6 +40,8 @@
 		self.postFileKey = nil;
 		self.postFileData = nil;
 		self.postFilePath = nil;
+		self.username = nil;
+		self.password = nil;
 	}
 	return self;
 }

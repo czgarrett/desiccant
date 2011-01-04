@@ -22,6 +22,8 @@
 	NSString *postFileKey;
 	NSData *postFileData;
 	NSString *postFilePath;
+	NSString *username;
+	NSString *password;
 }
 
 @property (nonatomic, retain) NSURL *url;
@@ -32,6 +34,9 @@
 @property (nonatomic, retain) NSString *postFileKey;
 @property (nonatomic, retain) NSData *postFileData;
 @property (nonatomic, retain) NSString *postFilePath;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
+
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate;
 + (id)queryOperationWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate;

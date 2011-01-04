@@ -7,6 +7,7 @@
 //
 
 #import "NSString+Zest.h"
+#import "NSObject+Zest.h"
 
 @implementation NSString ( Zest )
 
@@ -58,7 +59,7 @@
 }
 
 - (NSInteger) to_i {
-    return [self integerValue];
+    return [[self to_n] integerValue];
 }
 
 - (NSURL *) to_url {
@@ -66,7 +67,7 @@
 }
 
 - (NSNumber *) to_n {
-    NSScanner *scanner = [NSScanner scannerWithString:self];
+    NSScanner *scanner = [NSScanner scannerWithString:[self stringByReplacingOccurrencesOfString:@"," withString:@""]];
     double doubleValue;
     NSInteger integerValue;
     if ([scanner scanDouble:&doubleValue]) {
@@ -81,7 +82,7 @@
 }
 
 - (double) to_double {
-    return [self doubleValue];
+    return [[self to_n] doubleValue];
 }
 
 - (NSString *)trimmed {

@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 
-@interface XMLScanner : NSXMLParser <NSXMLParserDelegate> {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED <= 30200
+@interface XMLScanner : NSXMLParser
+#else
+@interface XMLScanner : NSXMLParser <NSXMLParserDelegate> 
+#endif
+{
    NSString *desiredAttribute;
    NSString *desiredElement;
    NSString *scanResult;

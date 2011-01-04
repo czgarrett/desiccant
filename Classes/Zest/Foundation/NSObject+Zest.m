@@ -18,7 +18,7 @@
 	NSArray *objects = [[NSBundle mainBundle] loadNibNamed:nibName owner:owner options:[NSDictionary dictionary]];
 	NSObject *result = nil;
 	for (NSObject *object in objects) {
-		if ([object isMemberOfClass:self]) {
+		if ([object isKindOfClass:self]) {
 			result = object;
 			break;
 		}

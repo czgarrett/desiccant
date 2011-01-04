@@ -25,12 +25,10 @@
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
-   NSLog(@"DTButton awakeFromNib");
     [self configure];
 }
 
-- (id)initWithFrame:(CGRect)frame {
-   NSLog(@"DTButton initWithFrame:");
+- (id)initWithFrame:(CGRect)frame { 
     if (self = [super initWithFrame:frame]) {
         [self configure];
     }

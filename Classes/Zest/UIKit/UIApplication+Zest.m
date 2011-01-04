@@ -21,4 +21,25 @@
 	}
 }
 
++ (NSString *)versionNumberString {
+	return [[[NSBundle mainBundle] infoDictionary] stringForKey:@"CFBundleVersion"];
+}
+
++ (NSString *)bundleName {
+	return [[[NSBundle mainBundle] infoDictionary] stringForKey:@"CFBundleName"];
+}
+
+
++ (NSString *)buildNumberString {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"MMM dd yyyy HH:mm:ss"];
+	NSString *timeString = [NSString stringWithCString:__TIME__ encoding:NSUTF8StringEncoding];
+	NSString *dateString = [NSString stringWithCString:__DATE__ encoding:NSUTF8StringEncoding];
+	NSString *timeStampString = [NSString stringWithFormat:@"%@ %@", dateString, timeString];
+	NSDate *buildDate = [formatter dateFromString:timeStampString];
+	NSTimeInterval seconds = [buildDate timeIntervalSinceReferenceDate];
+	[formatter release];
+	return [NSString stringWithFormat:@"%d", (NSInteger)seconds - 290000000];
+}
+
 @end

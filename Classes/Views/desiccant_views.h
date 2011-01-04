@@ -25,3 +25,4 @@
 #import "DTSlideshowView.h"
 #import "DTActivityIndicatorView.h"
 #import "DTButton.h"
+#import "DTGaugeView.h"

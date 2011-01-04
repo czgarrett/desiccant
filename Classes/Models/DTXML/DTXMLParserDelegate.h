@@ -11,7 +11,13 @@
 
 @class DTXMLParserContext;
 
-@interface DTXMLParserDelegate : NSObject <NSXMLParserDelegate> {    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED <= 30200
+@interface DTXMLParserDelegate : NSObject
+#else
+@protocol NSXMLParserDelegate;
+@interface DTXMLParserDelegate : NSObject <NSXMLParserDelegate>
+#endif
+{    
     NSString *key;
     NSString *element;
     NSDictionary *matchingAttributes;  
