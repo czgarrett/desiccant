@@ -104,6 +104,11 @@
 	return newDictionary;
 }
 
+- (id) anyKey {
+   return [[self allKeys] firstObject];
+}
+
+
 - (NSString *)toQueryString {
 	NSMutableString *queryString = [NSMutableString stringWithCapacity:128];
 	NSString *separator = @"";

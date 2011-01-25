@@ -9,6 +9,7 @@
 
 #import "DTActsAsChildViewController.h"
 #import "DTActivityIndicatorView.h"
+#import "UIViewController+Zest.h"
 
 @interface DTViewController : UIViewController <DTActsAsChildViewController> {
 	UIViewController *dtContainerViewController;

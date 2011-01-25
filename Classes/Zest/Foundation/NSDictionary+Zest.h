@@ -35,6 +35,7 @@
 - (NSDictionary *)dictionaryWithLowercaseKeys;
 - (NSString *)toQueryString;
 + (NSDictionary *)dictionaryWithKeysAndObjects:(id)firstKey, ...;
-
+// Returns the first key it can find.  Useful for a dictionary that has only one key.
+- (id) anyKey;
 
 @end
