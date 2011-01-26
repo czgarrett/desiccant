@@ -59,6 +59,9 @@
    return [(NSString *)string autorelease];
 }
 
+- (NSString *) pluralize {
+   return [self stringByAppendingString: @"s"];
+}
 
 - (NSString *) to_s {
     return self;
