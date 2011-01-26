@@ -9,6 +9,8 @@
 #import "DTMapAnnotation.h"
 #import "Zest.h"
 #import "DTDrivingDirectionsViewController.h"
+#import <MapKit/MapKit.h>
+#import <MapKit/MKUserLocation.h>
 
 static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 

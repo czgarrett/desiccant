@@ -145,6 +145,57 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 	[[self externalResourceQueue] go];
 }
 
+- (const char *)encodingName
+{
+	xmlCharEncoding encoding = XML_CHAR_ENCODING_NONE;
+	switch ([self responseEncoding])
+	{
+		case NSASCIIStringEncoding:
+			encoding = XML_CHAR_ENCODING_ASCII;
+			break;
+		case NSJapaneseEUCStringEncoding:
+			encoding = XML_CHAR_ENCODING_EUC_JP;
+			break;
+		case NSUTF8StringEncoding:
+			encoding = XML_CHAR_ENCODING_UTF8;
+			break;
+		case NSISOLatin1StringEncoding:
+			encoding = XML_CHAR_ENCODING_8859_1;
+			break;
+		case NSShiftJISStringEncoding:
+			encoding = XML_CHAR_ENCODING_SHIFT_JIS;
+			break;
+		case NSISOLatin2StringEncoding:
+			encoding = XML_CHAR_ENCODING_8859_2;
+			break;
+		case NSISO2022JPStringEncoding:
+			encoding = XML_CHAR_ENCODING_2022_JP;
+			break;
+		case NSUTF16BigEndianStringEncoding:
+			encoding = XML_CHAR_ENCODING_UTF16BE;
+			break;
+		case NSUTF16LittleEndianStringEncoding:
+			encoding = XML_CHAR_ENCODING_UTF16LE;
+			break;
+		case NSUTF32BigEndianStringEncoding:
+			encoding = XML_CHAR_ENCODING_UCS4BE;
+			break;
+		case NSUTF32LittleEndianStringEncoding:
+			encoding = XML_CHAR_ENCODING_UCS4LE;
+			break;
+		case NSNEXTSTEPStringEncoding:
+		case NSSymbolStringEncoding:
+		case NSNonLossyASCIIStringEncoding:
+		case NSUnicodeStringEncoding:
+		case NSMacOSRomanStringEncoding:
+		case NSUTF32StringEncoding:
+		default:
+			encoding = XML_CHAR_ENCODING_ERROR;
+			break;
+	}
+	return xmlGetCharEncodingName(encoding);
+}
+
 - (void)parseAsHTML
 {
 	webContentType = ASIHTMLWebContentType;
@@ -160,10 +211,10 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 
     /* Load XML document */
 	if ([self downloadDestinationPath]) {
-		doc = htmlReadFile([[self downloadDestinationPath] cStringUsingEncoding:NSUTF8StringEncoding], NULL, HTML_PARSE_NONET | HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
+		doc = htmlReadFile([[self downloadDestinationPath] cStringUsingEncoding:NSUTF8StringEncoding], [self encodingName], HTML_PARSE_NONET | HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	} else {
 		NSData *data = [self responseData];
-		doc = htmlReadMemory([data bytes], (int)[data length], "", NULL, HTML_PARSE_NONET | HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
+		doc = htmlReadMemory([data bytes], (int)[data length], "", [self encodingName], HTML_PARSE_NONET | HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	}
     if (doc == NULL) {
 		[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:101 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Error: unable to parse reponse XML",NSLocalizedDescriptionKey,nil]]];
@@ -289,6 +340,10 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 				xmlSaveCtxtPtr saveContext;
 
 				if ([self downloadDestinationPath]) {
+
+					// Truncate the file first
+					[[[[NSFileManager alloc] init] autorelease] createFileAtPath:[self downloadDestinationPath] contents:nil attributes:nil];
+
 					saveContext = xmlSaveToFd([[NSFileHandle fileHandleForWritingAtPath:[self downloadDestinationPath]] fileDescriptor],NULL,2); // 2 == XML_SAVE_NO_DECL, this isn't declared on Mac OS 10.5
 					xmlSaveDoc(saveContext, doc);
 					xmlSaveClose(saveContext);
@@ -297,7 +352,7 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 	#if TARGET_OS_MAC && MAC_OS_X_VERSION_MAX_ALLOWED <= __MAC_10_5
 					// xmlSaveToBuffer() is not implemented in the 10.5 version of libxml
 					NSString *tempPath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSProcessInfo processInfo] globallyUniqueString]];
-					[[NSFileManager defaultManager] createFileAtPath:tempPath contents:nil attributes:nil];
+					[[[[NSFileManager alloc] init] autorelease] createFileAtPath:tempPath contents:nil attributes:nil];
 					saveContext = xmlSaveToFd([[NSFileHandle fileHandleForWritingAtPath:tempPath] fileDescriptor],NULL,2); // 2 == XML_SAVE_NO_DECL, this isn't declared on Mac OS 10.5
 					xmlSaveDoc(saveContext, doc);
 					xmlSaveClose(saveContext);
@@ -312,8 +367,12 @@ static NSMutableArray *requestsUsingXMLParser = nil;
 	#endif
 				}
 
-				// libxml will generate UTF-8
-				[self setResponseEncoding:NSUTF8StringEncoding];
+				// Strip the content encoding if the original response was gzipped
+				if ([self isResponseCompressed]) {
+					NSMutableDictionary *headers = [[self responseHeaders] mutableCopy];
+					[headers removeObjectForKey:@"Content-Encoding"];
+					[self setResponseHeaders:headers];
+				}
 			}
 
 			xmlFreeDoc(doc);

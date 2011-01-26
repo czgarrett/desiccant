@@ -48,6 +48,7 @@
 #import "UIKit/UIImageView+Zest.h"
 #import "UIKit/UIScreen+Zest.h"
 #import "UIKit/UIApplication+Zest.h"
+#import "UIKit/UIScrollView+Zest.h"
 
 #import "NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"
@@ -61,7 +62,7 @@
 #define LogTimeStart double logTimeStart = [NSDate timeIntervalSinceReferenceDate];
 #define LogTime(msg) DTLog(@"%@: %f", msg, [NSDate timeIntervalSinceReferenceDate] - logTimeStart);
 #else
-#define DTLog(...)
+#define DTLog(fmt, ...) if (0) { NSLog((@"%s [Line %d] \n" fmt @"\n--"), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }
 #define LogTimeStart
 #define LogTime(msg)
 #endif

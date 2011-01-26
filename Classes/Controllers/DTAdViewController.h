@@ -56,7 +56,7 @@
 @protocol DTAdLoaderDelegate <NSObject>
 // Loader must call this when the ad is loaded and ready for display.  adData
 // will be passed back to the registerAd* loader methods.
-- (void)adLoader:(id <DTAdLoader>)loader didFinishLoadingView:(UIView *)theAdView withAdData:(NSObject *)theAdData;
+- (void)adLoader:(NSObject <DTAdLoader> *)loader didFinishLoadingView:(UIView *)theAdView withAdData:(NSObject *)theAdData;
 @end
 
 @interface DTAdViewController : DTCompositeViewController <DTAdLoaderDelegate> {

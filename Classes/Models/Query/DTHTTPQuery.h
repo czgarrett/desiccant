@@ -21,6 +21,8 @@
 	NSString *postFileKey;
 	NSData *postFileData;
 	NSString *postFilePath;
+	NSString *username;
+	NSString *password;
 //	DTHTTPQueryOperation *operation;	
 }
 
@@ -32,6 +34,8 @@
 @property (nonatomic, retain) NSString *postFileKey;
 @property (nonatomic, retain) NSData *postFileData;
 @property (nonatomic, retain) NSString *postFilePath;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
 
 //@property (nonatomic, retain) DTHTTPQueryOperation *operation;	
 

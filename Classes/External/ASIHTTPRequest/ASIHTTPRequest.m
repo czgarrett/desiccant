@@ -24,7 +24,7 @@
 #import "ASIDataCompressor.h"
 
 // Automatically set on build
-NSString *ASIHTTPRequestVersion = @"v1.8-10 2010-11-24";
+NSString *ASIHTTPRequestVersion = @"v1.8-33 2011-01-06";
 
 NSString* const NetworkRequestErrorDomain = @"ASIHTTPRequestErrorDomain";
 
@@ -162,6 +162,8 @@ static NSOperationQueue *sharedQueue = nil;
 - (void)startRequest;
 - (void)updateStatus:(NSTimer *)timer;
 - (void)checkRequestStatus;
+- (void)reportFailure;
+- (void)reportFinished;
 - (void)markAsFinished;
 - (void)performRedirect;
 - (BOOL)shouldTimeOut;
@@ -331,6 +333,9 @@ static NSOperationQueue *sharedQueue = nil;
 		CFRelease(clientCertificateIdentity);
 	}
 	[self cancelLoad];
+	[redirectURL release];
+	[statusTimer invalidate];
+	[statusTimer release];
 	[queue release];
 	[userInfo release];
 	[postBody release];
@@ -497,9 +502,9 @@ static NSOperationQueue *sharedQueue = nil;
 			path = [self postBodyFilePath];
 		}
 		NSError *err = nil;
-		[self setPostLength:[[[NSFileManager defaultManager] attributesOfItemAtPath:path error:&err] fileSize]];
+		[self setPostLength:[[[[[NSFileManager alloc] init] autorelease] attributesOfItemAtPath:path error:&err] fileSize]];
 		if (err) {
-			[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:ASIFileManagementError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Failed to get attributes for file at path '@%'",path],NSLocalizedDescriptionKey,error,NSUnderlyingErrorKey,nil]]];
+			[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:ASIFileManagementError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Failed to get attributes for file at path '%@'",path],NSLocalizedDescriptionKey,error,NSUnderlyingErrorKey,nil]]];
 			return;
 		}
 		
@@ -1041,11 +1046,13 @@ static NSOperationQueue *sharedQueue = nil;
 
 - (void)updatePartialDownloadSize
 {
-	if ([self allowResumeForFileDownloads] && [self downloadDestinationPath] && [self temporaryFileDownloadPath] && [[NSFileManager defaultManager] fileExistsAtPath:[self temporaryFileDownloadPath]]) {
+	NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+
+	if ([self allowResumeForFileDownloads] && [self downloadDestinationPath] && [self temporaryFileDownloadPath] && [fileManager fileExistsAtPath:[self temporaryFileDownloadPath]]) {
 		NSError *err = nil;
-		[self setPartialDownloadSize:[[[NSFileManager defaultManager] attributesOfItemAtPath:[self temporaryFileDownloadPath] error:&err] fileSize]];
+		[self setPartialDownloadSize:[[fileManager attributesOfItemAtPath:[self temporaryFileDownloadPath] error:&err] fileSize]];
 		if (err) {
-			[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:ASIFileManagementError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Failed to get attributes for file at path '@%'",[self temporaryFileDownloadPath]],NSLocalizedDescriptionKey,error,NSUnderlyingErrorKey,nil]]];
+			[self failWithError:[NSError errorWithDomain:NetworkRequestErrorDomain code:ASIFileManagementError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Failed to get attributes for file at path '%@'",[self temporaryFileDownloadPath]],NSLocalizedDescriptionKey,error,NSUnderlyingErrorKey,nil]]];
 			return;
 		}
 	}
@@ -1084,14 +1091,16 @@ static NSOperationQueue *sharedQueue = nil;
     //
 	// Create the stream for the request
 	//
-	
+
+	NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+
 	[self setReadStreamIsScheduled:NO];
 	
 	// Do we need to stream the request body from disk
-	if ([self shouldStreamPostDataFromDisk] && [self postBodyFilePath] && [[NSFileManager defaultManager] fileExistsAtPath:[self postBodyFilePath]]) {
+	if ([self shouldStreamPostDataFromDisk] && [self postBodyFilePath] && [fileManager fileExistsAtPath:[self postBodyFilePath]]) {
 		
 		// Are we gzipping the request body?
-		if ([self compressedPostBodyFilePath] && [[NSFileManager defaultManager] fileExistsAtPath:[self compressedPostBodyFilePath]]) {
+		if ([self compressedPostBodyFilePath] && [fileManager fileExistsAtPath:[self compressedPostBodyFilePath]]) {
 			[self setPostBodyReadStream:[ASIInputStream inputStreamWithFileAtPath:[self compressedPostBodyFilePath] request:self]];
 		} else {
 			[self setPostBodyReadStream:[ASIInputStream inputStreamWithFileAtPath:[self postBodyFilePath] request:self]];
@@ -1926,7 +1935,6 @@ static NSOperationQueue *sharedQueue = nil;
 	}
 }
 
-/* ALWAYS CALLED ON MAIN THREAD! */
 // Subclasses might override this method to process the result in the same thread
 // If you do this, don't forget to call [super requestFinished] to let the queue / delegate know we're done
 - (void)requestFinished
@@ -1937,18 +1945,23 @@ static NSOperationQueue *sharedQueue = nil;
 	if ([self error] || [self mainRequest]) {
 		return;
 	}
+	[self performSelectorOnMainThread:@selector(reportFinished) withObject:nil waitUntilDone:[NSThread isMainThread]];
+}
 
+/* ALWAYS CALLED ON MAIN THREAD! */
+- (void)reportFinished
+{
 	if (delegate && [delegate respondsToSelector:didFinishSelector]) {
 		[delegate performSelector:didFinishSelector withObject:self];
 	}
 	if (queue && [queue respondsToSelector:@selector(requestFinished:)]) {
 		[queue performSelector:@selector(requestFinished:) withObject:self];
 	}
-	#if NS_BLOCKS_AVAILABLE
+#if NS_BLOCKS_AVAILABLE
 	if(completionBlock){
 		completionBlock();
 	}
-	#endif
+#endif
 }
 
 /* ALWAYS CALLED ON MAIN THREAD! */
@@ -2009,9 +2022,12 @@ static NSOperationQueue *sharedQueue = nil;
 		return;
 	}
 	
+	// If we have cached data, use it and ignore the error when using ASIFallbackToCacheIfLoadFailsCachePolicy
 	if ([self downloadCache] && ([self cachePolicy] & ASIFallbackToCacheIfLoadFailsCachePolicy)) {
-		[self useDataFromCache];
-		return;
+		if ([[self downloadCache] canUseCachedDataForRequest:self]) {
+			[self useDataFromCache];
+			return;
+		}
 	}
 	
 	
@@ -2157,7 +2173,6 @@ static NSOperationQueue *sharedQueue = nil;
 			}
 
 			// Force the redirected request to rebuild the request headers (if not a 303, it will re-use old ones, and add any new ones)
-			
 			[self setRedirectURL:[[NSURL URLWithString:[responseHeaders valueForKey:@"Location"] relativeToURL:[self url]] absoluteURL]];
 			[self setNeedsRedirect:YES];
 			
@@ -2914,13 +2929,16 @@ static NSOperationQueue *sharedQueue = nil;
 
 - (void)handleNetworkEvent:(CFStreamEventType)type
 {	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
 	[[self cancelledLock] lock];
 	
 	if ([self complete] || [self isCancelled]) {
 		[[self cancelledLock] unlock];
+		[pool release];
 		return;
 	}
-	
+
 	CFRetain(self);
 
     // Dispatch the stream events.
@@ -2969,6 +2987,7 @@ static NSOperationQueue *sharedQueue = nil;
 	}
 
 	CFRelease(self);
+	[pool release];
 }
 
 - (void)handleBytesAvailable
@@ -3178,7 +3197,7 @@ static NSOperationQueue *sharedQueue = nil;
 			// Response should already have been inflated, move the temporary file to the destination path
 			} else {
 				NSError *moveError = nil;
-				[[NSFileManager defaultManager] moveItemAtPath:[self temporaryUncompressedDataDownloadPath] toPath:[self downloadDestinationPath] error:&moveError];
+				[[[[NSFileManager alloc] init] autorelease] moveItemAtPath:[self temporaryUncompressedDataDownloadPath] toPath:[self downloadDestinationPath] error:&moveError];
 				if (moveError) {
 					fileError = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIFileManagementError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Failed to move file from '%@' to '%@'",[self temporaryFileDownloadPath],[self downloadDestinationPath]],NSLocalizedDescriptionKey,moveError,NSUnderlyingErrorKey,nil]];
 				}
@@ -3198,7 +3217,7 @@ static NSOperationQueue *sharedQueue = nil;
 
 			//Move the temporary file to the destination path
 			if (!fileError) {
-				[[NSFileManager defaultManager] moveItemAtPath:[self temporaryFileDownloadPath] toPath:[self downloadDestinationPath] error:&moveError];
+				[[[[NSFileManager alloc] init] autorelease] moveItemAtPath:[self temporaryFileDownloadPath] toPath:[self downloadDestinationPath] error:&moveError];
 				if (moveError) {
 					fileError = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIFileManagementError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Failed to move file from '%@' to '%@'",[self temporaryFileDownloadPath],[self downloadDestinationPath]],NSLocalizedDescriptionKey,moveError,NSUnderlyingErrorKey,nil]];
 				}
@@ -3237,7 +3256,7 @@ static NSOperationQueue *sharedQueue = nil;
 		if (fileError) {
 			[self failWithError:fileError];
 		} else {
-			[self performSelectorOnMainThread:@selector(requestFinished) withObject:nil waitUntilDone:[NSThread isMainThread]];
+			[self requestFinished];
 		}
 
 		[self markAsFinished];
@@ -3336,7 +3355,7 @@ static NSOperationQueue *sharedQueue = nil;
 	}
 
 	[theRequest updateProgressIndicators];
-	[theRequest performSelectorOnMainThread:@selector(requestFinished) withObject:nil waitUntilDone:[NSThread isMainThread]];
+	[theRequest requestFinished];
 	[theRequest markAsFinished];	
 	if ([self mainRequest]) {
 		[self markAsFinished];
@@ -3509,9 +3528,11 @@ static NSOperationQueue *sharedQueue = nil;
 
 + (BOOL)removeFileAtPath:(NSString *)path error:(NSError **)err
 {
-	if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+	NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+
+	if ([fileManager fileExistsAtPath:path]) {
 		NSError *removeError = nil;
-		[[NSFileManager defaultManager] removeItemAtPath:path error:&removeError];
+		[fileManager removeItemAtPath:path error:&removeError];
 		if (removeError) {
 			if (err) {
 				*err = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIFileManagementError userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Failed to delete file at path '%@'",path],NSLocalizedDescriptionKey,removeError,NSUnderlyingErrorKey,nil]];
@@ -3940,7 +3961,7 @@ static NSOperationQueue *sharedQueue = nil;
 
 + (NSString *)mimeTypeForFileAtPath:(NSString *)path
 {
-	if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+	if (![[[[NSFileManager alloc] init] autorelease] fileExistsAtPath:path]) {
 		return nil;
 	}
 	// Borrowed from http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database

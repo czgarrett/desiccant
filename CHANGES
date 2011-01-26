@@ -1,3 +1,17 @@
+Changes committed Jan 4, 2010 by Curtis Duhn
+
+- Updated ASIHTTPRequest
+- -[DTKeychain persistKeyPath:ofObject:defaultValue:] uses KVO to persist the specified string property of the specified object.
+- DTHTTPQuery and its subclasses now support HTTP basic auth via username and password properties.
+- DTJSONQuery can now post the file at postFilePath.
+- -[NSData to_s] tries decoding its data as UTF-8.  If that fails, it tries decoding as ISOLatin1.
+- -[NSString to_n/to_i/to_double] can now handle numbers with commas.
+- +[UIApplication versionNumberString] returns the version number from info.plist.
+- +[UIApplication bundleName] returns the app bundle name from info.plist.
+- +[UIApplication buildNumberString] returns a string that uniquely identifies the build with a unique, monotonically increasing, non-sequential integer, based on seconds since a given date.
+- DTGaugeView presents a radial gauge like a speedometer.  Currently hard-coded to use NeedleImage.png for the rotating needle and PinImage.png for the pin on top of the needle.
+- Zest extensions to UIScrollView: -currentHorizontalPage and -currentVerticalPage, based on contentOffset.
+
 Changes committed Jun 16, 2010 by Curtis Duhn
 
 - Worked around iOS 4 bug that breaks video and audio presented using a hidden UIWebView

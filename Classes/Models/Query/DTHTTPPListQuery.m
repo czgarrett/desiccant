@@ -21,6 +21,8 @@
 	newOperation.postFileKey = postFileKey;
 	newOperation.postFileData = postFileData;
 	newOperation.postFilePath = postFilePath;
+	newOperation.username = username;
+	newOperation.password = password;
 	return newOperation;
 }
 

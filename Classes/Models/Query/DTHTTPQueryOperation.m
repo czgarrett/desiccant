@@ -26,7 +26,7 @@
 @end
 
 @implementation DTHTTPQueryOperation
-@synthesize url, responseData, error, method, body, request, tempData, connection, postParameters, postFileKey, postFileData, postFilePath;
+@synthesize url, responseData, error, method, body, request, tempData, connection, postParameters, postFileKey, postFileData, postFilePath, username, password;
 
 - (void)dealloc {
 	self.url = nil;
@@ -42,6 +42,8 @@
 	self.postFileKey = nil;
 	self.postFileData = nil;
 	self.postFilePath = nil;
+	self.username = nil;
+	self.password = nil;
 	
 	[super dealloc];
 }
@@ -49,7 +51,6 @@
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate {
 	if (self = [super initWithDelegate:theDelegate]) {
 		self.url = theURL;
-		request.timeOutSeconds = 30;
 		self.method = @"GET";
 	}
 	return self;
@@ -99,7 +100,12 @@
 		[self.request setRequestMethod:self.method];
 	}
 	
-	DTLog(@"%@: %@", self.method, request.url.absoluteString);
+	if (self.username && self.password) {
+		[self.request setUsername:self.username];
+		[self.request setPassword:self.password];
+	}
+	[self.request setTimeOutSeconds:30];
+	
 	request.delegate = self;
 	[request startAsynchronous];
 }
@@ -107,7 +113,15 @@
 - (void)requestFinished:(ASIHTTPRequest *)theRequest {
 	ABORT_IF_CANCELLED
 	self.responseData = theRequest.responseData;
-	[self completeOperationWithError:![self parseResponseData]];
+	NSString *responseBodyText = [NSString stringWithCString:[[responseData nullTerminated] bytes] encoding:NSUTF8StringEncoding];
+	DTLog(@"%@ %@\n%@", self.method, self.url.to_s, responseBodyText);
+	BOOL errorOccurredWhileParsing = ![self parseResponseData];
+	if (errorOccurredWhileParsing) {
+		NSLog(@"Error parsing response from URL: %@", url);
+		NSLog(@"Response body:");
+		NSLog(@"%@", self.responseData.to_s);
+	}
+	[self completeOperationWithError:errorOccurredWhileParsing];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)theRequest {

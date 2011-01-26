@@ -26,7 +26,7 @@
 @property (nonatomic, retain) NSString *nibName;
 
 - (id)initWithCell:(DTCustomTableViewCell *)theCell nibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier;
-- (id)initWithCell:(UITableViewCell *)theCell data:(NSDictionary *)theData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector;
+- (id)initWithCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)theData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector;
 - (id)initWithNibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier;
 + (id)rowWithCell:(DTCustomTableViewCell *)cell data:(NSDictionary *)theData detailViewController:(UIViewController *)detailViewController dataInjector:(SEL)theDataInjector;
 + (id)rowWithNibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier;
