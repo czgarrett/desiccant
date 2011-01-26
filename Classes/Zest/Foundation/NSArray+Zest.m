@@ -55,7 +55,9 @@
    return result;
 }
 
-
+- (BOOL) isMutable {
+   return NO;
+}
 
 - (BOOL) empty {
    return [self isEmpty];

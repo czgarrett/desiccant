@@ -220,13 +220,13 @@
 
 - (void)errorAlertTitle: (NSString *)title message:(NSString *)message
 {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
-												 message: message
-												 delegate: nil 
-												 cancelButtonTitle: @"Ok" 
-												 otherButtonTitles: nil];
-	[alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
-	[alert autorelease];												
+//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
+//												 message: message
+//												 delegate: nil 
+//												 cancelButtonTitle: @"Ok" 
+//												 otherButtonTitles: nil];
+//	[alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
+//	[alert autorelease];												
 	[self alertWithTitle:title message:message];
 }
 

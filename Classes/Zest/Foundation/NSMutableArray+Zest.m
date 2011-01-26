@@ -94,4 +94,9 @@
 	return self;
 }
 
+- (BOOL) isMutable {
+   return YES;
+}
+
+
 @end

@@ -25,6 +25,7 @@
 // Returns a new array with the contents of this array reversed
 - (NSMutableArray *) reversed;
 - (BOOL) isEmpty;
+- (BOOL) isMutable;
 - (id) firstObject;
 - (NSArray *)inRandomOrder;
 
