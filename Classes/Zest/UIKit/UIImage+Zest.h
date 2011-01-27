@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^ImageBlock)(UIImage *);
 
 @interface UIImage (Zest) 
 
 + (UIImage *)newImageFromResource:(NSString *)resource ofType:(NSString *)type;
++ (void) loadImageFromURL: (NSURL *) url completion: (ImageBlock) block;
 
 - (UIImage *) imageScaledAndCroppedToMaxSize: (CGSize) maxSize;
 - (UIImage *) imageScaledToMaxWidth: (CGFloat) width;

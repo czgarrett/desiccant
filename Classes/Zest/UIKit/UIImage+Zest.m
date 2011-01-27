@@ -33,6 +33,18 @@
 	return image;
 }
 
++ (void) loadImageFromURL: (NSURL *) url completion: (ImageBlock) imageBlock {
+   dispatch_queue_t image_queue = dispatch_queue_create(NULL, NULL);
+   dispatch_async(image_queue, ^{
+      UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: url]];
+      dispatch_async(dispatch_get_main_queue(), ^{
+         imageBlock(image);   
+      });
+   });
+   dispatch_release(image_queue);
+}
+
+
 - (UIImage *) imageScaledAndCroppedToMaxSize: (CGSize) maxSize {
    float hfactor = self.size.width / maxSize.width;
    float vfactor = self.size.height / maxSize.height;
