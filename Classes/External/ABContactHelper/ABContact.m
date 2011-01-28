@@ -63,7 +63,7 @@
 	ABAddressBookRef addressBook = ABAddressBookCreate();
 	ABRecordRef contactrec = ABAddressBookGetPersonWithRecordID(addressBook, recordID);
 	ABContact *contact = [self contactWithRecord:contactrec];
-	// CFRelease(contactrec); // Thanks Gary Fung
+	CFAutorelease(addressBook);
 	return contact;
 }
 
