@@ -18,7 +18,15 @@
 @end
 
 @implementation DTCustomTableViewCell
-@synthesize minHeight, dtTextLabel, dtDetailTextLabel, dtImageView, delegate, dtData;
+@synthesize minHeight, dtTextLabel, dtDetailTextLabel, dtImageView, delegate, dtData, deleteBlock;
+
+-(IBAction) deleteFromTable: (id) src {
+   if (self.deleteBlock) {
+      self.deleteBlock(self);
+   } else {
+      NSAssert(0, @"No delete block was given.  You should set a delete block when you create or configure the table cell.");
+   }
+}
 
 #pragma mark Memory management
 
@@ -28,8 +36,10 @@
 	self.dtImageView = nil;
 	self.delegate = nil;
 	self.dtData = nil;
+   self.deleteBlock = nil;
 	
 	[super dealloc];
+   NSLog(@"Cell dealloced");
 }
 
 #pragma mark Public methods

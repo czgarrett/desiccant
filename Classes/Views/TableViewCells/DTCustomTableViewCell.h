@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class DTCustomTableViewCell;
+
+typedef void(^DTTableCellBlock)(DTCustomTableViewCell *);
+
 @protocol DTCustomTableViewCellDelegate <NSObject>
 
 // If the delegate returns YES, the default setData: will resize the title
@@ -49,6 +52,14 @@
 	id <DTCustomTableViewCellDelegate> delegate;
 	NSDictionary *dtData;
 }
+
+// Custom cell deletion.  This block will get executed when delete: is called.
+// This allows a table view cell to have a custom deletion button, without knowing what
+// index path or tableview it is in.  This block should normally be set when the table data source
+// creates and configures the cell.
+@property (nonatomic, copy) DTTableCellBlock deleteBlock;
+// This should be called by the custom delete button
+-(IBAction) deleteFromTable: (id) src;
 
 // Set this to enforce a min height on variable height rows.
 @property (nonatomic) CGFloat minHeight;
