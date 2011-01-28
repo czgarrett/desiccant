@@ -357,7 +357,7 @@
          // Somehow, under heavy loads (banging on the UI), a call to this method gets made when
          // a query is empty.  Maybe the query rows get reset after numberOfRowsInSection is called?
          // In any case, it causes an exception, so I am returning an empty table cell.
-         return [[DTCustomTableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"BLANK_CELL"];
+         return [[[DTCustomTableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"BLANK_CELL"] autorelease];
 		}
 	}
 }
