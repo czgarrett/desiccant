@@ -8,7 +8,6 @@
 #import "DTMarkupDocument.h"
 #import "XPathQuery.h"
 #import "Zest.h"
-#import "RegexKitLite.h"
 
 @interface DTMarkupDocument()
 - (NSString *)parseXMLNamespaceFromData;

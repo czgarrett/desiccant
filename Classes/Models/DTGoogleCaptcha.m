@@ -7,7 +7,6 @@
 
 #import "DTGoogleCaptcha.h"
 #import "Zest.h"
-#import "RegexKitLite.h"
 
 @interface DTGoogleCaptcha()
 - (BOOL)parseData:(NSData *)data;

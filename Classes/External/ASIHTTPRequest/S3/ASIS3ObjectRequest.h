@@ -65,7 +65,14 @@ extern NSString *const ASIS3StorageClassReducedRedundancy;
 
 // Create a PUT request to copy an object from one location to another
 // Clang will complain because it thinks this method should return an object with +1 retain :(
-+ (id)COPYRequestFromBucket:(NSString *)sourceBucket key:(NSString *)sourceKey toBucket:(NSString *)bucket key:(NSString *)key;
+#ifndef NS_RETURNS_NOT_RETAINED
+#if __has_feature(attribute_ns_returns_not_retained)
+#define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
+#else
+#define NS_RETURNS_NOT_RETAINED
+#endif
+#endif
++ (id)COPYRequestFromBucket:(NSString *)sourceBucket key:(NSString *)sourceKey toBucket:(NSString *)bucket key:(NSString *)key NS_RETURNS_NOT_RETAINED;
 
 // Creates a HEAD request for the object at path
 + (id)HEADRequestWithBucket:(NSString *)bucket key:(NSString *)key;

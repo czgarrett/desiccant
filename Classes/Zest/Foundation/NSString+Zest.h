@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RegexKitLite.h"
 #import "GTMNSString+HTML.h"
+#import "RegexKitLite.h"
 
 #define nss(s) ((NSString *)(s))
 #define nssWithFormat(...) ((NSString *)[NSString stringWithFormat:__VA_ARGS__])
@@ -124,5 +124,6 @@
 - (NSString *) stringValue;
 
 - (NSNumber *) integerNumber;
+
 
 @end

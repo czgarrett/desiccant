@@ -7,7 +7,6 @@
 //
 
 #import "DTDatedEventCell.h"
-#import "RegexKitLite.h"
 #import "Zest.h"
 
 @implementation DTDatedEventCell
