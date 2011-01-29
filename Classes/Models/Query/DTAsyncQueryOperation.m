@@ -19,6 +19,7 @@
 @synthesize updating, delegate;
 
 - (void)dealloc {
+   NSLog(@"DTAsyncQueryOperation dealloc");
     [delegate release];    
     [super dealloc];
 }
@@ -90,6 +91,7 @@
     [self didChangeValueForKey:@"isExecuting"];
     [self didChangeValueForKey:@"isFinished"];
 	
+   NSLog(@"Delegate is %@", delegate);
 	if ([self isCancelled]) {
 		[delegate performSelectorOnMainThread:@selector(operationDidCancelLoading:) withObject:self waitUntilDone:YES];
 	}
