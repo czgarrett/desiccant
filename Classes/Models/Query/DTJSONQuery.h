@@ -13,6 +13,4 @@
 @interface DTJSONQuery : DTHTTPQuery {
 }
 
-- (void) reprocessResponseData;
-
 @end

@@ -96,6 +96,6 @@
 @property (nonatomic, readonly) BOOL loaded;
 @property (nonatomic, copy)  NSString *error;
 @property (nonatomic, retain) DTAsyncQuery *moreResultsQuery;
-@property (nonatomic, retain) DTAsyncQueryOperation *operation;
+//@property (nonatomic, retain) DTAsyncQueryOperation *operation;
 
 @end

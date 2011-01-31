@@ -17,7 +17,6 @@
 - (void)dealloc {
 	self.url = nil;
 	self.parser = nil;
-//	self.operation = nil;
 	self.method = nil;
 	self.body = nil;
 	self.postParameters = nil;

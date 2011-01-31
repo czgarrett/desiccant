@@ -13,8 +13,8 @@
 @protocol DTAsyncQueryOperationDelegate;
 
 @interface DTAsyncQueryOperation : NSOperation {
-    BOOL updating;
-    NSObject <DTAsyncQueryOperationDelegate> *delegate;
+   BOOL updating;
+   NSObject <DTAsyncQueryOperationDelegate> *delegate;
 	BOOL executing;
 	BOOL finished;
 }

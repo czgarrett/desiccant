@@ -28,8 +28,4 @@
 	return newOperation;
 }
 
-- (void) reprocessResponseData {
-   [(DTHTTPStructuredResponseQueryOperation *)self.operation parseResponseData];
-}
-
 @end

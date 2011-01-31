@@ -108,6 +108,7 @@
 	[self.request setTimeOutSeconds:30];
 	
 	request.delegate = self;
+   [self retain]; // released when request is done
 	[request startAsynchronous];
 }
 
@@ -123,12 +124,14 @@
 		NSLog(@"%@", self.responseData.to_s);
 	}
 	[self completeOperationWithError:errorOccurredWhileParsing];
+   [self release];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)theRequest {
 	ABORT_IF_CANCELLED
 	self.error = @"Unable to connect to the server at this time.  Please try again later.  (error dthqo1)";
 	[self completeOperationWithError:YES];
+   [self release];
 }
 
 //- (void)connection:(NSURLConnection *)theConnection didReceiveResponse:(NSURLResponse *)response {

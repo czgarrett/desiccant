@@ -31,7 +31,7 @@
 
 #pragma mark Class Implementation
 @implementation DTAsyncQuery
-@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, rowSorter, error, operation, moreResultsQuery;
+@synthesize rows, rawRows, groups, operationQueue, delegate, updating, loaded, rowTransformers, rowFilters, grouper, rowSorter, error, moreResultsQuery;
 
 #pragma mark Memory management
 
@@ -46,8 +46,6 @@
 	self.grouper = nil;
 	self.rowSorter = nil;
 	self.error = nil;
-	self.operation.delegate = nil;
-	self.operation = nil;
 	self.moreResultsQuery.delegate = nil;
 	self.moreResultsQuery = nil;
     
@@ -60,7 +58,7 @@
     if (self = [super init]) {
         [self clear];
         self.delegate = newDelegate;
-        [self.operationQueue = [[NSOperationQueue alloc] init] release];
+        [self.operationQueue = [[NSOperationQueue alloc] init] autorelease];
         [self clearRowTransformers];
         [self clearRowFilters];
     }
@@ -155,12 +153,12 @@
 		[self.moreResultsQuery cancel];
 	}
 	else {
-		[self.operation cancel];
+		[self.operationQueue cancelAllOperations];
 	}
 }
 
 - (BOOL)isCancelled {
-	return [self.operation isCancelled];
+	return NO;
 }
 
 - (BOOL)hasMoreResults {
