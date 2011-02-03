@@ -9,6 +9,13 @@
 #import "DTGeocoder.h"
 #import "ASIHTTPRequest.h"
 #import "NSString+SBJSON.h"
+#import "NSDictionary+Zest.h"
+
+NSString * const kStatusOk = @"OK";
+NSString * const kStatusZeroResults = @"ZERO_RESULTS";
+NSString * const kStatusOverQueryLimit = @"OVER_QUERY_LIMIT";
+NSString * const kStatusRequestDenied = @"REQUEST_DENIED";
+NSString * const kStatusInvalidRequest = @"INVALID_REQUEST";
 
 @interface DTGeocoder ()
 
@@ -33,7 +40,7 @@
    self.failureBlock = onError;
 
    NSString *parameter = [[searchTerm stringByReplacingOccurrencesOfString: @" " withString: @"+"] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-   NSMutableString *urlString = [NSMutableString stringWithString: @"http://maps.googleapis.com/maps/api/geocode/json?address="];
+   NSMutableString *urlString = [NSMutableString stringWithString: @"http://maps.googleapis.com/maps/api/geocode/json?sensor=true&address="];
    [urlString appendString: parameter];
    if (self.region) [urlString appendFormat: @"&region=%@", self.region];
    NSURL *url = [NSURL URLWithString: urlString];
@@ -51,8 +58,16 @@
       NSDictionary *jsonDict = [[request responseString] JSONValue];
       NSLog(@"Geocoder Results: %@", jsonDict);
       NSArray *results = [jsonDict objectForKey: @"results"];
-      self.completionBlock(results);
-      self.completionBlock = nil;
+      NSString *status = [jsonDict objectForKey: @"status"];
+      if ([status isEqual: kStatusOk] || [status isEqual: kStatusZeroResults]) {
+         self.completionBlock(results);
+         self.completionBlock = nil;
+      } else {
+         NSError *error = [NSError errorWithDomain: @"DTGeocoder" 
+                                              code: 2 
+                                          userInfo: $D(NSLocalizedDescriptionKey, @"Sorry, the location lookup service is not currently available.")];
+         self.failureBlock(error);
+      }
       [self autorelease];
    }];
    [request startAsynchronous];
