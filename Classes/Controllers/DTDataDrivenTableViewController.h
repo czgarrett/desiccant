@@ -79,6 +79,11 @@
 // visual design for this cell, consider using setNoResultsCellWithMessage:.
 @property (nonatomic, retain) IBOutlet UITableViewCell *noResultsCell;
 
+// Loads the query on view did appear.  By default this is YES.  
+// If you set it to NO, then you will manually need to load the query based on some other logic.   
+// Use [self.query refresh] to start it.
+@property (nonatomic, assign) BOOL loadQueryOnViewDidAppear;
+
 @property (nonatomic, retain)  DTAsyncQuery * query;
 //@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) UIWebView *mediaWebView;

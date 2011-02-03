@@ -22,7 +22,7 @@
 @end
 
 @implementation DTDataDrivenTableViewController
-@synthesize query, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier, dtNoResultsCell;
+@synthesize query, prototype, dtPrototypeMoreResultsCell, mediaWebView, moreResultsCellNibName, moreResultsCellIdentifier, dtNoResultsCell, loadQueryOnViewDidAppear;
 
 #pragma mark Memory management
 
@@ -73,6 +73,7 @@
 
 - (void)viewDidLoad {
 	self.moreResultsCellIdentifier = [NSString stringWithFormat:@"cell_type_%d", [DTCustomTableViewController nextIdentifierNumber]];
+   self.loadQueryOnViewDidAppear = YES;
 	[super viewDidLoad];
 //	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
 }
@@ -96,7 +97,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (query && !query.loaded) {
+    if (query && !query.loaded && self.loadQueryOnViewDidAppear) {
         [query refresh];
     }
 	[super viewDidAppear:animated];
@@ -142,7 +143,7 @@
 }
 
 - (BOOL)hasHeaders {
-    return headerRows > 0;
+    return self.headerRows > 0;
 }
 
 - (NSIndexPath *)adjustIndexPathForHeaders:(NSIndexPath *)indexPath {
@@ -182,7 +183,7 @@
 - (UITableViewCell *)prototypeMoreResultsCell {
 	if (moreResultsCellNibName && !dtPrototypeMoreResultsCell) {
 		[[NSBundle mainBundle] loadNibNamed:moreResultsCellNibName owner:self options:nil];
-		self.dtPrototypeMoreResultsCell = cell;
+		self.dtPrototypeMoreResultsCell = self.cell;
 	}
 	return dtPrototypeMoreResultsCell;
 }
@@ -310,42 +311,42 @@
     if ([self indexPathIsHeader:indexPath]) {
         return [self headerRowForIndexPath:indexPath];
     }	else if ([self indexPathIsMoreResultsCell:indexPath]) {
-		cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:moreResultsCellIdentifier];
-		if (cell == nil) {
+		self.cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:moreResultsCellIdentifier];
+		if (self.cell == nil) {
 			if (moreResultsCellNibName) {
                 [[NSBundle mainBundle] loadNibNamed:moreResultsCellNibName owner:self options:nil];
-				NSAssert ([moreResultsCellNibName isEqual:cell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
-				self.moreResultsCellIdentifier = cell.reuseIdentifier;
+				NSAssert ([moreResultsCellNibName isEqual: self.cell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
+				self.moreResultsCellIdentifier = self.cell.reuseIdentifier;
 			}
 			else {
-				cell = [self constructMoreResultsCell];
+				self.cell = [self constructMoreResultsCell];
 				[self customizeMoreResultsCell];
 			}
-			[cell setData:[self.query cursorData]];
+			[self.cell setData:[self.query cursorData]];
 		}
-      NSAssert(cell != nil, @"Cell should not be nil here!");
-		return cell;
+      NSAssert(self.cell != nil, @"Cell should not be nil here!");
+		return self.cell;
 	}
     else if ([query count] > 0) {
-        cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            if (cellNibName) {
-                [[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil];
-                NSAssert ([cellNibName isEqual:cell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
-                self.cellIdentifier = cell.reuseIdentifier;
+        self.cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+        if (self.cell == nil) {
+            if (self.cellNibName) {
+                [[NSBundle mainBundle] loadNibNamed:self.cellNibName owner:self options:nil];
+                NSAssert ([self.cellNibName isEqual:self.cell.reuseIdentifier], @"For optimal performance, set Identifier for your cell in IB to match your nib name.");
+                self.cellIdentifier = self.cell.reuseIdentifier;
             }
             else {
-               cell = [self constructCell];
-               self.cellIdentifier = cell.reuseIdentifier;
+               self.cell = [self constructCell];
+               self.cellIdentifier = self.cell.reuseIdentifier;
                [self customizeCell];
-               unless (cell.delegate) cell.delegate = self;
+               unless (self.cell.delegate) self.cell.delegate = self;
             }
         }
         
         indexPath = [self adjustIndexPathForHeaders:indexPath];
-        [cell setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
-       NSAssert(cell != nil, @"Cell should not be nil here!");
-        return cell;
+        [self.cell setData:[self.query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
+       NSAssert(self.cell != nil, @"Cell should not be nil here!");
+        return self.cell;
     }
 	else {
 		if ([self hasNoResultsCell]  && query.loaded) {
@@ -472,9 +473,9 @@
 #pragma mark Private methods
 
 - (DTCustomTableViewCell *)prototypeCell {
-    if (cellNibName && !prototype) {
-        [[NSBundle mainBundle] loadNibNamed:cellNibName owner:self options:nil];
-        self.prototype = cell;
+    if (self.cellNibName && !prototype) {
+        [[NSBundle mainBundle] loadNibNamed:self.cellNibName owner:self options:nil];
+        self.prototype = self.cell;
     }
     return prototype;
 }
@@ -493,13 +494,13 @@
 }
 
 - (NSInteger)numberOfSections {
-    if (headerRows == 0) return [query groupCount];
+    if (self.headerRows == 0) return [query groupCount];
     else return [query groupCount] + 1;
 }
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section {
     if ([self hasHeaders] && section == 0) {
-       return headerRows;
+       return self.headerRows;
     } else if ([query count] > 0) {
 		NSInteger numRows = [query rowCountForGroupWithIndex:[self adjustSectionForHeaders:section]];
 		if ([query hasMoreResults] && [self adjustSectionForHeaders:section] == ([query groupCount] - 1)) {
