@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define $Nd(i) ([NSNumber numberWithInt: (i)])
+#define $Nf(d) ([NSNumber numberWithDouble: (d)])
 
 @interface NSNumber (Zest)
 @end
