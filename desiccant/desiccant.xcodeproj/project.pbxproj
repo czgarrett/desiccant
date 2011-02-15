@@ -30,13 +30,13 @@
 /* Begin PBXFileReference section */
 		83546465130ABBEB002A1947 /* libdesiccant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdesiccant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		83546468130ABBEB002A1947 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		8354646C130ABBEB002A1947 /* desiccant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "desiccant-Prefix.pch"; sourceTree = "<group>"; };
+		8354646C130ABBEB002A1947 /* desiccant-Prefix.pch */ = {isa = PBXFileReference; path = "desiccant-Prefix.pch"; sourceTree = "<group>"; };
 		83546472130ABBEB002A1947 /* desiccantTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = desiccantTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83546473130ABBEB002A1947 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83546476130ABBEB002A1947 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		8354647D130ABBEB002A1947 /* desiccantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "desiccantTests-Info.plist"; sourceTree = "<group>"; };
+		8354647D130ABBEB002A1947 /* desiccantTests-Info.plist */ = {isa = PBXFileReference; path = "desiccantTests-Info.plist"; sourceTree = "<group>"; };
 		8354647F130ABBEB002A1947 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		83546481130ABBEB002A1947 /* desiccantTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "desiccantTests-Prefix.pch"; sourceTree = "<group>"; };
+		83546481130ABBEB002A1947 /* desiccantTests-Prefix.pch */ = {isa = PBXFileReference; path = "desiccantTests-Prefix.pch"; sourceTree = "<group>"; };
 		83546482130ABBEB002A1947 /* desiccantTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = desiccantTests.h; sourceTree = "<group>"; };
 		83546484130ABBEB002A1947 /* desiccantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = desiccantTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
