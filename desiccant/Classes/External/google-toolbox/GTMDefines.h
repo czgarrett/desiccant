@@ -20,6 +20,7 @@
 
 #include <AvailabilityMacros.h>
 #include <TargetConditionals.h>
+#import "Zest.h"
 
 // Not all MAC_OS_X_VERSION_10_X macros defined in past SDKs
 #ifndef MAC_OS_X_VERSION_10_5
