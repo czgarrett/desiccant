@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GTMNSString+HTML.h"
-#import "RegexKitLite.h"
 
 #define nss(s) ((NSString *)(s))
 #define nssWithFormat(...) ((NSString *)[NSString stringWithFormat:__VA_ARGS__])
@@ -68,10 +66,19 @@
 - (BOOL) isImageExtension;
 - (BOOL) startsWith:(NSString *)prefix;
 - (BOOL)contains:(NSString *)substring;
+
+// Regex helpers
 - (BOOL)containsRegex:(NSString *)regex;
+- (NSString *) stringByMatching: (NSString *) regexString capture: (NSInteger) captureGroup;
+- (NSArray *) componentsMatchedByRegex: (NSString *) regexString;
+- (NSString *) stringByReplacingOccurrencesOfRegex: (NSString *) regexString withString: (NSString *) replacement;
+
 - (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set;
 - (BOOL)isEmpty;
 - (NSString *)stringByRemovingMarkupTags;
+// Returns a range with index 0 and length = [self length]
+- (NSRange) range;
+
 
 /// Get a string where internal characters that need escaping for HTML are escaped 
 //

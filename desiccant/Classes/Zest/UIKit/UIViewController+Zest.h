@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Constants.h"
 #import "Zest.h"
 
 typedef enum {

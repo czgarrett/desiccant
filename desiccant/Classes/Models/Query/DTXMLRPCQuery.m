@@ -12,6 +12,7 @@
 #import "DTXMLObjectParserDelegate.h"
 #import "DTXMLCollectionParserDelegate.h"
 #import "Zest.h"
+#import "NSData+Base64.h"
 
 @interface NSObject(xmlrpc)
 @property (nonatomic, retain, readonly) NSString *to_xmlrpc_value;

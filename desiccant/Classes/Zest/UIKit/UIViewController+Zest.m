@@ -7,6 +7,34 @@
 //
 
 #import "UIViewController+Zest.h"
+#import "UIColor+Zest.h"
+
+#define kSmallLabelHeight 18.0
+#define kMediumLabelHeight 24.0
+#define kLargeLabelHeight 30.0
+
+#define kLabelInfoColor [UIColor whiteColor]
+
+#define kSmallFontSize 16.0
+#define kMediumFontSize 20.0
+#define kLargeFontSize 24.0
+
+#define kMargin 20.0
+#define kPadding 10.0
+#define kClippedWidth (320.0 - kMargin * 2.0)
+
+#define kButtonWidth 240.0
+#define kButtonHeight 44.0
+#define kButtonLeft (160.0 - kButtonWidth / 2.0)
+#define kButtonType UIButtonTypeRoundedRect
+
+#define kTextFieldHeight 30.0
+#define kTextFieldWidth 280.0
+#define kTextFieldLeft (160.0 - kTextFieldWidth / 2.0)
+
+#define kSearchFieldHeight 40.0
+
+
  
 @implementation UIViewController ( Zest )
 
@@ -47,12 +75,12 @@
 		case UILabelUsageProgress:
 			label.frame = CGRectMake(kMargin, [self nextViewTop] + kPadding, kClippedWidth, kMediumLabelHeight);
 			label.font = [UIFont systemFontOfSize: kMediumFontSize];
-			label.textColor = kGoldColor;
+			label.textColor = [UIColor colorWithName: @"gold"];
 			break;
 		case UILabelUsageInfo:
 			label.frame = CGRectMake(kMargin, [self nextViewTop] + kPadding, kClippedWidth, kMediumLabelHeight);
 			label.font = [UIFont boldSystemFontOfSize: kMediumFontSize];
-			label.textColor = kGoldColor;
+			label.textColor = [UIColor colorWithName: @"gold"];
 			break;
 		case UILabelUsageWarning:
 			label.frame = CGRectMake(kMargin, [self nextViewTop] + kPadding, kClippedWidth, kMediumLabelHeight);
@@ -90,7 +118,7 @@
 	//UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 	UIView *contentView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"BackgroundGradient.jpg"]];
 	contentView.userInteractionEnabled = YES;
-	contentView.backgroundColor = kBackgroundColor;
+	contentView.backgroundColor = [UIColor colorWithName: @"gray"];
 	contentView.autoresizesSubviews = YES;
 	self.view = contentView;	
 	[contentView release];	

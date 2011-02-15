@@ -88,7 +88,6 @@
 }
 
 - (CLLocationDegrees) latitudeFromURLString:(NSString *)urlString {
-//    return [[urlString stringByMatching:@"app://map\\?.*ll=([^,]*),"] floatValue];
     NSString *s = [urlString stringByMatching:@"app://map\\?.*ll=([^,]*)," capture:1L];
     return [s floatValue];
 }

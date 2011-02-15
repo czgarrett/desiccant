@@ -26,37 +26,6 @@
 		835466E8130ABF84002A1947 /* AudioQueueObjectDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B2130ABF84002A1947 /* AudioQueueObjectDelegate.h */; };
 		835466E9130ABF84002A1947 /* AudioRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B3130ABF84002A1947 /* AudioRecorder.h */; };
 		835466EA130ABF84002A1947 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464B4130ABF84002A1947 /* AudioRecorder.m */; };
-		835466EC130ABF84002A1947 /* ACAboutViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B6130ABF84002A1947 /* ACAboutViewController.h */; };
-		835466ED130ABF84002A1947 /* ACAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464B7130ABF84002A1947 /* ACAboutViewController.m */; };
-		835466EF130ABF84002A1947 /* ACDictionaryTableController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B8130ABF84002A1947 /* ACDictionaryTableController.h */; };
-		835466F0130ABF84002A1947 /* ACDictionaryTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464B9130ABF84002A1947 /* ACDictionaryTableController.m */; };
-		835466F2130ABF84002A1947 /* ACDictionaryTableControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464BA130ABF84002A1947 /* ACDictionaryTableControllerDelegate.h */; };
-		835466F3130ABF84002A1947 /* ACDocumentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464BB130ABF84002A1947 /* ACDocumentViewController.h */; };
-		835466F4130ABF84002A1947 /* ACDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464BC130ABF84002A1947 /* ACDocumentViewController.m */; };
-		835466F6130ABF84002A1947 /* ACGroupedTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464BD130ABF84002A1947 /* ACGroupedTableViewController.h */; };
-		835466F7130ABF84002A1947 /* ACGroupedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464BE130ABF84002A1947 /* ACGroupedTableViewController.m */; };
-		835466F9130ABF84002A1947 /* ACMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464BF130ABF84002A1947 /* ACMenuController.h */; };
-		835466FA130ABF84002A1947 /* ACMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464C0130ABF84002A1947 /* ACMenuController.m */; };
-		835466FC130ABF84002A1947 /* ACModelObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464C1130ABF84002A1947 /* ACModelObjectController.h */; };
-		835466FD130ABF84002A1947 /* ACNavigationAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464C2130ABF84002A1947 /* ACNavigationAppDelegate.h */; };
-		835466FE130ABF84002A1947 /* ACNavigationAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464C3130ABF84002A1947 /* ACNavigationAppDelegate.m */; };
-		83546700130ABF84002A1947 /* ACPlainTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464C4130ABF84002A1947 /* ACPlainTableViewController.h */; };
-		83546701130ABF84002A1947 /* ACPlainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464C5130ABF84002A1947 /* ACPlainTableViewController.m */; };
-		83546703130ABF84002A1947 /* ACSearchListController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464C6130ABF84002A1947 /* ACSearchListController.h */; };
-		83546704130ABF84002A1947 /* ACSearchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464C7130ABF84002A1947 /* ACSearchListController.m */; };
-		83546706130ABF84002A1947 /* ACSearchListDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464C8130ABF84002A1947 /* ACSearchListDataSource.h */; };
-		83546707130ABF84002A1947 /* ACSearchListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464C9130ABF84002A1947 /* ACSearchListDataSource.m */; };
-		83546709130ABF84002A1947 /* ACShowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464CA130ABF84002A1947 /* ACShowController.h */; };
-		8354670A130ABF84002A1947 /* ACShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464CB130ABF84002A1947 /* ACShowController.m */; };
-		8354670C130ABF84002A1947 /* ACTabbedAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464CC130ABF84002A1947 /* ACTabbedAppDelegate.h */; };
-		8354670D130ABF84002A1947 /* ACTabbedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464CD130ABF84002A1947 /* ACTabbedAppDelegate.m */; };
-		8354670F130ABF84002A1947 /* ACTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464CE130ABF84002A1947 /* ACTableViewController.h */; };
-		83546710130ABF84002A1947 /* ACTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464CF130ABF84002A1947 /* ACTableViewController.m */; };
-		83546712130ABF84002A1947 /* ACWebLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D0130ABF84002A1947 /* ACWebLinkController.h */; };
-		83546713130ABF84002A1947 /* ACWebSearchHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D1130ABF84002A1947 /* ACWebSearchHandler.h */; };
-		83546714130ABF84002A1947 /* ACWebSearchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464D2130ABF84002A1947 /* ACWebSearchHandler.m */; };
-		83546716130ABF84002A1947 /* ACWebShowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D3130ABF84002A1947 /* ACWebShowController.h */; };
-		83546717130ABF84002A1947 /* ACWebShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464D4130ABF84002A1947 /* ACWebShowController.m */; };
 		83546719130ABF84002A1947 /* desiccant_controllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D5130ABF84002A1947 /* desiccant_controllers.h */; };
 		8354671A130ABF84002A1947 /* DTActsAsChildViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D6130ABF84002A1947 /* DTActsAsChildViewController.h */; };
 		8354671B130ABF84002A1947 /* DTAdViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D7130ABF84002A1947 /* DTAdViewController.h */; };
@@ -229,8 +198,6 @@
 		8354683C130ABF85002A1947 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A9130ABF84002A1947 /* NSData+Base64.m */; };
 		8354683E130ABF85002A1947 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465AB130ABF84002A1947 /* Reachability.h */; };
 		8354683F130ABF85002A1947 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465AC130ABF84002A1947 /* Reachability.m */; };
-		83546841130ABF85002A1947 /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465AD130ABF84002A1947 /* RegexKitLite.h */; };
-		83546842130ABF85002A1947 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465AE130ABF84002A1947 /* RegexKitLite.m */; };
 		83546844130ABF85002A1947 /* SDURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B0130ABF84002A1947 /* SDURLCache.h */; };
 		83546845130ABF85002A1947 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465B1130ABF84002A1947 /* SDURLCache.m */; };
 		83546847130ABF85002A1947 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B3130ABF84002A1947 /* SFHFKeychainUtils.h */; };
@@ -261,17 +228,6 @@
 		8354686C130ABF85002A1947 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D1130ABF84002A1947 /* Constants.h */; };
 		8354686D130ABF85002A1947 /* DTSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D2130ABF84002A1947 /* DTSingleton.h */; };
 		8354686E130ABF85002A1947 /* DTSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465D3130ABF84002A1947 /* DTSingleton.m */; };
-		83546870130ABF85002A1947 /* FileMenuItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D4130ABF84002A1947 /* FileMenuItem.h */; };
-		83546871130ABF85002A1947 /* FileMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465D5130ABF84002A1947 /* FileMenuItem.m */; };
-		83546873130ABF85002A1947 /* OperationProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D6130ABF84002A1947 /* OperationProgressDelegate.h */; };
-		83546874130ABF85002A1947 /* SelectableTableItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D7130ABF84002A1947 /* SelectableTableItem.h */; };
-		83546875130ABF85002A1947 /* SelectableTableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465D8130ABF84002A1947 /* SelectableTableItem.m */; };
-		83546877130ABF85002A1947 /* SoapException.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D9130ABF84002A1947 /* SoapException.h */; };
-		83546878130ABF85002A1947 /* SoapException.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465DA130ABF84002A1947 /* SoapException.m */; };
-		8354687A130ABF85002A1947 /* SoapRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465DB130ABF84002A1947 /* SoapRequest.h */; };
-		8354687B130ABF85002A1947 /* SoapRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465DC130ABF84002A1947 /* SoapRequest.m */; };
-		8354687D130ABF85002A1947 /* XMLScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465DD130ABF84002A1947 /* XMLScanner.h */; };
-		8354687E130ABF85002A1947 /* XMLScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465DE130ABF84002A1947 /* XMLScanner.m */; };
 		83546880130ABF85002A1947 /* ARObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E0130ABF84002A1947 /* ARObject.h */; };
 		83546881130ABF85002A1947 /* ARObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465E1130ABF84002A1947 /* ARObject.m */; };
 		83546883130ABF85002A1947 /* desiccant_models.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E2130ABF84002A1947 /* desiccant_models.h */; };
@@ -522,6 +478,10 @@
 		83546A2A130AC20F002A1947 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1F130AC20E002A1947 /* Security.framework */; };
 		83546A2B130AC20F002A1947 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A20130AC20E002A1947 /* SystemConfiguration.framework */; };
 		83546A2C130AC20F002A1947 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A21130AC20E002A1947 /* UIKit.framework */; };
+		83546A3B130B0543002A1947 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A39130B0542002A1947 /* AddressBook.framework */; };
+		83546A3C130B0543002A1947 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3A130B0542002A1947 /* AddressBookUI.framework */; };
+		83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3D130B0590002A1947 /* AudioToolbox.framework */; };
+		83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3E130B0590002A1947 /* AudioUnit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -557,37 +517,6 @@
 		835464B2130ABF84002A1947 /* AudioQueueObjectDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioQueueObjectDelegate.h; sourceTree = "<group>"; };
 		835464B3130ABF84002A1947 /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
 		835464B4130ABF84002A1947 /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
-		835464B6130ABF84002A1947 /* ACAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAboutViewController.h; sourceTree = "<group>"; };
-		835464B7130ABF84002A1947 /* ACAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAboutViewController.m; sourceTree = "<group>"; };
-		835464B8130ABF84002A1947 /* ACDictionaryTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDictionaryTableController.h; sourceTree = "<group>"; };
-		835464B9130ABF84002A1947 /* ACDictionaryTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDictionaryTableController.m; sourceTree = "<group>"; };
-		835464BA130ABF84002A1947 /* ACDictionaryTableControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDictionaryTableControllerDelegate.h; sourceTree = "<group>"; };
-		835464BB130ABF84002A1947 /* ACDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDocumentViewController.h; sourceTree = "<group>"; };
-		835464BC130ABF84002A1947 /* ACDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDocumentViewController.m; sourceTree = "<group>"; };
-		835464BD130ABF84002A1947 /* ACGroupedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACGroupedTableViewController.h; sourceTree = "<group>"; };
-		835464BE130ABF84002A1947 /* ACGroupedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACGroupedTableViewController.m; sourceTree = "<group>"; };
-		835464BF130ABF84002A1947 /* ACMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMenuController.h; sourceTree = "<group>"; };
-		835464C0130ABF84002A1947 /* ACMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMenuController.m; sourceTree = "<group>"; };
-		835464C1130ABF84002A1947 /* ACModelObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACModelObjectController.h; sourceTree = "<group>"; };
-		835464C2130ABF84002A1947 /* ACNavigationAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNavigationAppDelegate.h; sourceTree = "<group>"; };
-		835464C3130ABF84002A1947 /* ACNavigationAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNavigationAppDelegate.m; sourceTree = "<group>"; };
-		835464C4130ABF84002A1947 /* ACPlainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlainTableViewController.h; sourceTree = "<group>"; };
-		835464C5130ABF84002A1947 /* ACPlainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPlainTableViewController.m; sourceTree = "<group>"; };
-		835464C6130ABF84002A1947 /* ACSearchListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSearchListController.h; sourceTree = "<group>"; };
-		835464C7130ABF84002A1947 /* ACSearchListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSearchListController.m; sourceTree = "<group>"; };
-		835464C8130ABF84002A1947 /* ACSearchListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSearchListDataSource.h; sourceTree = "<group>"; };
-		835464C9130ABF84002A1947 /* ACSearchListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACSearchListDataSource.m; sourceTree = "<group>"; };
-		835464CA130ABF84002A1947 /* ACShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACShowController.h; sourceTree = "<group>"; };
-		835464CB130ABF84002A1947 /* ACShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACShowController.m; sourceTree = "<group>"; };
-		835464CC130ABF84002A1947 /* ACTabbedAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTabbedAppDelegate.h; sourceTree = "<group>"; };
-		835464CD130ABF84002A1947 /* ACTabbedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTabbedAppDelegate.m; sourceTree = "<group>"; };
-		835464CE130ABF84002A1947 /* ACTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTableViewController.h; sourceTree = "<group>"; };
-		835464CF130ABF84002A1947 /* ACTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTableViewController.m; sourceTree = "<group>"; };
-		835464D0130ABF84002A1947 /* ACWebLinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebLinkController.h; sourceTree = "<group>"; };
-		835464D1130ABF84002A1947 /* ACWebSearchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebSearchHandler.h; sourceTree = "<group>"; };
-		835464D2130ABF84002A1947 /* ACWebSearchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebSearchHandler.m; sourceTree = "<group>"; };
-		835464D3130ABF84002A1947 /* ACWebShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebShowController.h; sourceTree = "<group>"; };
-		835464D4130ABF84002A1947 /* ACWebShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACWebShowController.m; sourceTree = "<group>"; };
 		835464D5130ABF84002A1947 /* desiccant_controllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = desiccant_controllers.h; sourceTree = "<group>"; };
 		835464D6130ABF84002A1947 /* DTActsAsChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTActsAsChildViewController.h; sourceTree = "<group>"; };
 		835464D7130ABF84002A1947 /* DTAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTAdViewController.h; sourceTree = "<group>"; };
@@ -761,8 +690,6 @@
 		835465A9130ABF84002A1947 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		835465AB130ABF84002A1947 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		835465AC130ABF84002A1947 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		835465AD130ABF84002A1947 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		835465AE130ABF84002A1947 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		835465B0130ABF84002A1947 /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDURLCache.h; sourceTree = "<group>"; };
 		835465B1130ABF84002A1947 /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDURLCache.m; sourceTree = "<group>"; };
 		835465B3130ABF84002A1947 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
@@ -793,17 +720,6 @@
 		835465D1130ABF84002A1947 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		835465D2130ABF84002A1947 /* DTSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTSingleton.h; sourceTree = "<group>"; };
 		835465D3130ABF84002A1947 /* DTSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTSingleton.m; sourceTree = "<group>"; };
-		835465D4130ABF84002A1947 /* FileMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileMenuItem.h; sourceTree = "<group>"; };
-		835465D5130ABF84002A1947 /* FileMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileMenuItem.m; sourceTree = "<group>"; };
-		835465D6130ABF84002A1947 /* OperationProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationProgressDelegate.h; sourceTree = "<group>"; };
-		835465D7130ABF84002A1947 /* SelectableTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectableTableItem.h; sourceTree = "<group>"; };
-		835465D8130ABF84002A1947 /* SelectableTableItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectableTableItem.m; sourceTree = "<group>"; };
-		835465D9130ABF84002A1947 /* SoapException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapException.h; sourceTree = "<group>"; };
-		835465DA130ABF84002A1947 /* SoapException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapException.m; sourceTree = "<group>"; };
-		835465DB130ABF84002A1947 /* SoapRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapRequest.h; sourceTree = "<group>"; };
-		835465DC130ABF84002A1947 /* SoapRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapRequest.m; sourceTree = "<group>"; };
-		835465DD130ABF84002A1947 /* XMLScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLScanner.h; sourceTree = "<group>"; };
-		835465DE130ABF84002A1947 /* XMLScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLScanner.m; sourceTree = "<group>"; };
 		835465E0130ABF84002A1947 /* ARObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARObject.h; sourceTree = "<group>"; };
 		835465E1130ABF84002A1947 /* ARObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARObject.m; sourceTree = "<group>"; };
 		835465E2130ABF84002A1947 /* desiccant_models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = desiccant_models.h; sourceTree = "<group>"; };
@@ -1075,6 +991,12 @@
 		83546A1F130AC20E002A1947 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83546A20130AC20E002A1947 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		83546A21130AC20E002A1947 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		83546A34130B0507002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		83546A35130B0507002A1947 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		83546A39130B0542002A1947 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		83546A3A130B0542002A1947 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		83546A3D130B0590002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		83546A3E130B0590002A1947 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1082,6 +1004,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */,
+				83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */,
+				83546A3B130B0543002A1947 /* AddressBook.framework in Frameworks */,
+				83546A3C130B0543002A1947 /* AddressBookUI.framework in Frameworks */,
 				83546A22130AC20E002A1947 /* CoreData.framework in Frameworks */,
 				83546A23130AC20E002A1947 /* CoreLocation.framework in Frameworks */,
 				83546A24130AC20E002A1947 /* libsqlite3.0.dylib in Frameworks */,
@@ -1115,6 +1041,8 @@
 		8354645A130ABBEB002A1947 = {
 			isa = PBXGroup;
 			children = (
+				83546A3D130B0590002A1947 /* AudioToolbox.framework */,
+				83546A3E130B0590002A1947 /* AudioUnit.framework */,
 				8354646A130ABBEB002A1947 /* desiccant */,
 				8354647B130ABBEB002A1947 /* desiccantTests */,
 				83546467130ABBEB002A1947 /* Frameworks */,
@@ -1134,6 +1062,10 @@
 		83546467130ABBEB002A1947 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83546A39130B0542002A1947 /* AddressBook.framework */,
+				83546A3A130B0542002A1947 /* AddressBookUI.framework */,
+				83546A34130B0507002A1947 /* AudioToolbox.framework */,
+				83546A35130B0507002A1947 /* AudioUnit.framework */,
 				83546A17130AC20E002A1947 /* CoreData.framework */,
 				83546A18130AC20E002A1947 /* CoreLocation.framework */,
 				83546A19130AC20E002A1947 /* libsqlite3.0.dylib */,
@@ -1237,37 +1169,6 @@
 		835464B5130ABF84002A1947 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				835464B6130ABF84002A1947 /* ACAboutViewController.h */,
-				835464B7130ABF84002A1947 /* ACAboutViewController.m */,
-				835464B8130ABF84002A1947 /* ACDictionaryTableController.h */,
-				835464B9130ABF84002A1947 /* ACDictionaryTableController.m */,
-				835464BA130ABF84002A1947 /* ACDictionaryTableControllerDelegate.h */,
-				835464BB130ABF84002A1947 /* ACDocumentViewController.h */,
-				835464BC130ABF84002A1947 /* ACDocumentViewController.m */,
-				835464BD130ABF84002A1947 /* ACGroupedTableViewController.h */,
-				835464BE130ABF84002A1947 /* ACGroupedTableViewController.m */,
-				835464BF130ABF84002A1947 /* ACMenuController.h */,
-				835464C0130ABF84002A1947 /* ACMenuController.m */,
-				835464C1130ABF84002A1947 /* ACModelObjectController.h */,
-				835464C2130ABF84002A1947 /* ACNavigationAppDelegate.h */,
-				835464C3130ABF84002A1947 /* ACNavigationAppDelegate.m */,
-				835464C4130ABF84002A1947 /* ACPlainTableViewController.h */,
-				835464C5130ABF84002A1947 /* ACPlainTableViewController.m */,
-				835464C6130ABF84002A1947 /* ACSearchListController.h */,
-				835464C7130ABF84002A1947 /* ACSearchListController.m */,
-				835464C8130ABF84002A1947 /* ACSearchListDataSource.h */,
-				835464C9130ABF84002A1947 /* ACSearchListDataSource.m */,
-				835464CA130ABF84002A1947 /* ACShowController.h */,
-				835464CB130ABF84002A1947 /* ACShowController.m */,
-				835464CC130ABF84002A1947 /* ACTabbedAppDelegate.h */,
-				835464CD130ABF84002A1947 /* ACTabbedAppDelegate.m */,
-				835464CE130ABF84002A1947 /* ACTableViewController.h */,
-				835464CF130ABF84002A1947 /* ACTableViewController.m */,
-				835464D0130ABF84002A1947 /* ACWebLinkController.h */,
-				835464D1130ABF84002A1947 /* ACWebSearchHandler.h */,
-				835464D2130ABF84002A1947 /* ACWebSearchHandler.m */,
-				835464D3130ABF84002A1947 /* ACWebShowController.h */,
-				835464D4130ABF84002A1947 /* ACWebShowController.m */,
 				835464D5130ABF84002A1947 /* desiccant_controllers.h */,
 				835464D6130ABF84002A1947 /* DTActsAsChildViewController.h */,
 				835464D7130ABF84002A1947 /* DTAdViewController.h */,
@@ -1374,8 +1275,6 @@
 				83546599130ABF84002A1947 /* JSON */,
 				835465A7130ABF84002A1947 /* NSData_Base64 */,
 				835465AA130ABF84002A1947 /* Reachability */,
-				835465AD130ABF84002A1947 /* RegexKitLite.h */,
-				835465AE130ABF84002A1947 /* RegexKitLite.m */,
 				835465AF130ABF84002A1947 /* SDURLCache */,
 				835465B2130ABF84002A1947 /* SFHFKeychainUtils */,
 				835465B5130ABF84002A1947 /* TouchXML */,
@@ -1630,17 +1529,6 @@
 				835465D1130ABF84002A1947 /* Constants.h */,
 				835465D2130ABF84002A1947 /* DTSingleton.h */,
 				835465D3130ABF84002A1947 /* DTSingleton.m */,
-				835465D4130ABF84002A1947 /* FileMenuItem.h */,
-				835465D5130ABF84002A1947 /* FileMenuItem.m */,
-				835465D6130ABF84002A1947 /* OperationProgressDelegate.h */,
-				835465D7130ABF84002A1947 /* SelectableTableItem.h */,
-				835465D8130ABF84002A1947 /* SelectableTableItem.m */,
-				835465D9130ABF84002A1947 /* SoapException.h */,
-				835465DA130ABF84002A1947 /* SoapException.m */,
-				835465DB130ABF84002A1947 /* SoapRequest.h */,
-				835465DC130ABF84002A1947 /* SoapRequest.m */,
-				835465DD130ABF84002A1947 /* XMLScanner.h */,
-				835465DE130ABF84002A1947 /* XMLScanner.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2111,23 +1999,6 @@
 				835466E5130ABF84002A1947 /* AudioQueueObject.h in Headers */,
 				835466E8130ABF84002A1947 /* AudioQueueObjectDelegate.h in Headers */,
 				835466E9130ABF84002A1947 /* AudioRecorder.h in Headers */,
-				835466EC130ABF84002A1947 /* ACAboutViewController.h in Headers */,
-				835466EF130ABF84002A1947 /* ACDictionaryTableController.h in Headers */,
-				835466F2130ABF84002A1947 /* ACDictionaryTableControllerDelegate.h in Headers */,
-				835466F3130ABF84002A1947 /* ACDocumentViewController.h in Headers */,
-				835466F6130ABF84002A1947 /* ACGroupedTableViewController.h in Headers */,
-				835466F9130ABF84002A1947 /* ACMenuController.h in Headers */,
-				835466FC130ABF84002A1947 /* ACModelObjectController.h in Headers */,
-				835466FD130ABF84002A1947 /* ACNavigationAppDelegate.h in Headers */,
-				83546700130ABF84002A1947 /* ACPlainTableViewController.h in Headers */,
-				83546703130ABF84002A1947 /* ACSearchListController.h in Headers */,
-				83546706130ABF84002A1947 /* ACSearchListDataSource.h in Headers */,
-				83546709130ABF84002A1947 /* ACShowController.h in Headers */,
-				8354670C130ABF84002A1947 /* ACTabbedAppDelegate.h in Headers */,
-				8354670F130ABF84002A1947 /* ACTableViewController.h in Headers */,
-				83546712130ABF84002A1947 /* ACWebLinkController.h in Headers */,
-				83546713130ABF84002A1947 /* ACWebSearchHandler.h in Headers */,
-				83546716130ABF84002A1947 /* ACWebShowController.h in Headers */,
 				83546719130ABF84002A1947 /* desiccant_controllers.h in Headers */,
 				8354671A130ABF84002A1947 /* DTActsAsChildViewController.h in Headers */,
 				8354671B130ABF84002A1947 /* DTAdViewController.h in Headers */,
@@ -2221,7 +2092,6 @@
 				83546838130ABF85002A1947 /* SBJsonWriter.h in Headers */,
 				8354683B130ABF85002A1947 /* NSData+Base64.h in Headers */,
 				8354683E130ABF85002A1947 /* Reachability.h in Headers */,
-				83546841130ABF85002A1947 /* RegexKitLite.h in Headers */,
 				83546844130ABF85002A1947 /* SDURLCache.h in Headers */,
 				83546847130ABF85002A1947 /* SFHFKeychainUtils.h in Headers */,
 				8354684A130ABF85002A1947 /* CXMLDocument_CreationExtensions.h in Headers */,
@@ -2238,12 +2108,6 @@
 				83546869130ABF85002A1947 /* XPathQuery.h in Headers */,
 				8354686C130ABF85002A1947 /* Constants.h in Headers */,
 				8354686D130ABF85002A1947 /* DTSingleton.h in Headers */,
-				83546870130ABF85002A1947 /* FileMenuItem.h in Headers */,
-				83546873130ABF85002A1947 /* OperationProgressDelegate.h in Headers */,
-				83546874130ABF85002A1947 /* SelectableTableItem.h in Headers */,
-				83546877130ABF85002A1947 /* SoapException.h in Headers */,
-				8354687A130ABF85002A1947 /* SoapRequest.h in Headers */,
-				8354687D130ABF85002A1947 /* XMLScanner.h in Headers */,
 				83546880130ABF85002A1947 /* ARObject.h in Headers */,
 				83546883130ABF85002A1947 /* desiccant_models.h in Headers */,
 				83546884130ABF85002A1947 /* DTAddress.h in Headers */,
@@ -2474,20 +2338,6 @@
 				835466E3130ABF84002A1947 /* AudioPlayer.m in Sources */,
 				835466E6130ABF84002A1947 /* AudioQueueObject.m in Sources */,
 				835466EA130ABF84002A1947 /* AudioRecorder.m in Sources */,
-				835466ED130ABF84002A1947 /* ACAboutViewController.m in Sources */,
-				835466F0130ABF84002A1947 /* ACDictionaryTableController.m in Sources */,
-				835466F4130ABF84002A1947 /* ACDocumentViewController.m in Sources */,
-				835466F7130ABF84002A1947 /* ACGroupedTableViewController.m in Sources */,
-				835466FA130ABF84002A1947 /* ACMenuController.m in Sources */,
-				835466FE130ABF84002A1947 /* ACNavigationAppDelegate.m in Sources */,
-				83546701130ABF84002A1947 /* ACPlainTableViewController.m in Sources */,
-				83546704130ABF84002A1947 /* ACSearchListController.m in Sources */,
-				83546707130ABF84002A1947 /* ACSearchListDataSource.m in Sources */,
-				8354670A130ABF84002A1947 /* ACShowController.m in Sources */,
-				8354670D130ABF84002A1947 /* ACTabbedAppDelegate.m in Sources */,
-				83546710130ABF84002A1947 /* ACTableViewController.m in Sources */,
-				83546714130ABF84002A1947 /* ACWebSearchHandler.m in Sources */,
-				83546717130ABF84002A1947 /* ACWebShowController.m in Sources */,
 				8354671C130ABF84002A1947 /* DTAdViewController.m in Sources */,
 				8354671F130ABF84002A1947 /* DTCompositeTableViewController.m in Sources */,
 				83546722130ABF84002A1947 /* DTCompositeTableViewControllerMapping.m in Sources */,
@@ -2567,7 +2417,6 @@
 				83546839130ABF85002A1947 /* SBJsonWriter.m in Sources */,
 				8354683C130ABF85002A1947 /* NSData+Base64.m in Sources */,
 				8354683F130ABF85002A1947 /* Reachability.m in Sources */,
-				83546842130ABF85002A1947 /* RegexKitLite.m in Sources */,
 				83546845130ABF85002A1947 /* SDURLCache.m in Sources */,
 				83546848130ABF85002A1947 /* SFHFKeychainUtils.m in Sources */,
 				8354684B130ABF85002A1947 /* CXMLDocument_CreationExtensions.m in Sources */,
@@ -2582,11 +2431,6 @@
 				83546866130ABF85002A1947 /* CTidy.m in Sources */,
 				8354686A130ABF85002A1947 /* XPathQuery.m in Sources */,
 				8354686E130ABF85002A1947 /* DTSingleton.m in Sources */,
-				83546871130ABF85002A1947 /* FileMenuItem.m in Sources */,
-				83546875130ABF85002A1947 /* SelectableTableItem.m in Sources */,
-				83546878130ABF85002A1947 /* SoapException.m in Sources */,
-				8354687B130ABF85002A1947 /* SoapRequest.m in Sources */,
-				8354687E130ABF85002A1947 /* XMLScanner.m in Sources */,
 				83546881130ABF85002A1947 /* ARObject.m in Sources */,
 				83546885130ABF85002A1947 /* DTAddress.m in Sources */,
 				83546888130ABF85002A1947 /* DTGeocoder.m in Sources */,

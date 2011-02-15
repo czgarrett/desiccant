@@ -11,9 +11,6 @@
 #import <CoreData/CoreData.h>
 #endif
 
-#import "ISO8601DateFormatter.h"
-#import "NSData+Base64.h"
-
 #import "Foundation/NSObject+Zest.h"
 #import "Foundation/NSString+Zest.h"
 #import "Foundation/NSDate+Zest.h"
@@ -49,10 +46,10 @@
 #import "UIKit/UIApplication+Zest.h"
 #import "UIKit/UIScrollView+Zest.h"
 
-#import "NSManagedObject+Zest.h"
+#import "CoreData/NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"
-#import "NSSortDescriptor+Zest.h"
-#import "NSFetchRequest+Zest.h"
+#import "CoreData/NSSortDescriptor+Zest.h"
+#import "CoreData/NSFetchRequest+Zest.h"
 
 #define unless(X) if(!(X))
 
