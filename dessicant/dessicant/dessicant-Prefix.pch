@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'dessicant' target in the 'dessicant' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-#endif
