@@ -568,10 +568,15 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 
 - (BOOL)containsRegex:(NSString *)regexString {
    NSError *error = NULL;
-   [NSRegularExpression regularExpressionWithPattern:regexString
+   NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString
                                              options:NSRegularExpressionCaseInsensitive
                                                error:&error];
-   return error == NULL;
+   if (error) {
+      return NO;
+   } else {
+      NSTextCheckingResult *match = [regex firstMatchInString: self options: 0 range: [self range]];
+      return match != nil;
+   }
 }
 
 - (NSString *) stringByMatching: (NSString *) regexString capture: (NSInteger) captureGroup {
@@ -582,7 +587,8 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    if (!error) {
       NSTextCheckingResult *match = [regex firstMatchInString: self options:0 range: NSMakeRange(0, [self length])];
       if (match && [match numberOfRanges] >= captureGroup) {
-         return [self substringWithRange: [match rangeAtIndex: captureGroup]];
+         NSRange matchRange = [match rangeAtIndex: captureGroup];
+         return [self substringWithRange: matchRange];
       } else {
          return nil;
       }
@@ -596,12 +602,12 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 }
 
 - (NSArray *) componentsMatchedByRegex: (NSString *) regexString {
-   NSError *error = NULL;
+    NSError *error = NULL;
    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: regexString
                                                                           options: NSRegularExpressionSearch
                                                                             error: &error];
    if (!error) {
-      NSArray *matches = [regex matchesInString: self options: NSMatchingHitEnd range: [self range]];
+      NSArray *matches = [regex matchesInString: self options: 0 range: [self range]];
       NSMutableArray *result = [NSMutableArray array];
       for (NSTextCheckingResult *match in matches) {
          [result addObject: [self substringWithRange: [match range]]];
@@ -620,12 +626,12 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
                                                                           options: NSRegularExpressionSearch
                                                                             error: &error];
    if (!error) {
-      NSArray *matches = [regex matchesInString: self options: NSMatchingHitEnd range: [self range]];
+      NSArray *matches = [regex matchesInString: self options: 0 range: [self range]];
       for (NSTextCheckingResult *match in matches) {
          NSRange matchRange = [match range];
-         [result appendString: [self substringWithRange: NSMakeRange(currentOffset, matchRange.location)]];
+         [result appendString: [self substringWithRange: NSMakeRange(currentOffset, matchRange.location - currentOffset)]];
          [result appendString: replacement];
-         currentOffset += matchRange.length;
+         currentOffset = matchRange.location + matchRange.length;
       }
       [result appendString: [self substringWithRange: NSMakeRange(currentOffset, [self length] - currentOffset)]];
    }
