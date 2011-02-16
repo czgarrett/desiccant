@@ -6,6 +6,7 @@
 //
 
 #import "DTDrivingDirectionsViewController.h"
+#import "UIViewController+RedRover.h"
 
 
 @interface DTDrivingDirectionsViewController()
@@ -42,7 +43,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+	[self addBackButton];
 	self.navigationItem.title = @"Info";
 	[self startSectionWithTitle:[self.annotation title]];
 //	[self addRowWithDedicatedCell:[self titleCell]];
