@@ -25,6 +25,9 @@
 
 - (NSString *) detailDescription;
 
+// Return YES if this object is the NSNull instance
+- (BOOL) isNull;
+
 // Return all superclasses of object
 - (NSArray *) superclasses;
 

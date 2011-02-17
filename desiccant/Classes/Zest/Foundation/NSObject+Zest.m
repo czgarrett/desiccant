@@ -27,6 +27,11 @@
 	return result;
 }
 
+- (BOOL) isNull {
+   return [self isEqual: [NSNull null]];
+}
+
+
 - (NSString *)to_s {
     return [self description];
 }
