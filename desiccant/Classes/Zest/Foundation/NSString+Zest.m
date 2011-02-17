@@ -620,7 +620,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 
 - (NSString *) stringByReplacingOccurrencesOfRegex: (NSString *) regexString withString: (NSString *) replacement {
    NSMutableString *result =[NSMutableString string];
-   NSInteger currentOffset = 0;
+   NSInteger currentLocation = 0;
    NSError *error = nil;
    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: regexString
                                                                           options: NSRegularExpressionSearch
@@ -629,11 +629,11 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
       NSArray *matches = [regex matchesInString: self options: 0 range: [self range]];
       for (NSTextCheckingResult *match in matches) {
          NSRange matchRange = [match range];
-         [result appendString: [self substringWithRange: NSMakeRange(currentOffset, matchRange.location - currentOffset)]];
+         [result appendString: [self substringWithRange: NSMakeRange(currentLocation, matchRange.location - currentLocation)]];
          [result appendString: replacement];
-         currentOffset = matchRange.location + matchRange.length;
+         currentLocation = matchRange.location + matchRange.length;
       }
-      [result appendString: [self substringWithRange: NSMakeRange(currentOffset, [self length] - currentOffset)]];
+      [result appendString: [self substringWithRange: NSMakeRange(currentLocation, [self length] - currentLocation)]];
    }
    return result;
 }
