@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'desiccant' target in the 'desiccant' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#import <CoreFoundation/CoreFoundation.h>
+#import <UIKit/UIKit.h>
+#endif
