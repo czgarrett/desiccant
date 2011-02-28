@@ -27,6 +27,17 @@
     return (NSString *)[self objectAtIndex:index];
 }
 
+- (NSArray *) selectWithBlock: (FilterBlock) block {
+   NSMutableArray *result = [NSMutableArray array];
+   for (id obj in self) {
+      if (block(obj)) {
+         [result addObject: obj];
+      }
+   }
+   return result;
+}
+
+
 - (NSDictionary *) dictionaryAtIndex:(NSUInteger)index {
     return (NSDictionary *)[self objectAtIndex:index];
 }

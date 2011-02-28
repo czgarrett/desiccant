@@ -10,6 +10,8 @@
 
 #define $A(...) [NSArray arrayWithObjects: __VA_ARGS__, nil]
 
+typedef BOOL (^FilterBlock)(id object);
+
 @interface NSArray ( Zest )
 
 - (NSString *)stringAtIndex:(NSUInteger)index;
@@ -51,6 +53,8 @@
 - (NSArray *) reject: (SEL) selector withObject: (id) object1 withObject: (id) object2;
 - (NSArray *) reject: (SEL) selector withObject: (id) object1;
 - (NSArray *) reject: (SEL) selector;
+
+- (NSArray *) selectWithBlock: (FilterBlock) block;
 
 - (void)perform:(SEL)selector;
 - (void)perform:(SEL)selector withObject:(id)p1;

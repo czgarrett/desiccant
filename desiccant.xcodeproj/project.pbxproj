@@ -529,6 +529,8 @@
 		83546A3C130B0543002A1947 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3A130B0542002A1947 /* AddressBookUI.framework */; };
 		83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3D130B0590002A1947 /* AudioToolbox.framework */; };
 		83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3E130B0590002A1947 /* AudioUnit.framework */; };
+		83CB34FA13183A7900A42B07 /* DTCustomTableViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CB34F913183A7900A42B07 /* DTCustomTableViewCellTests.m */; };
+		83CB34FC13183B2B00A42B07 /* DTCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546670130ABF84002A1947 /* DTCustomTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1132,6 +1134,8 @@
 		83546A3A130B0542002A1947 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		83546A3D130B0590002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		83546A3E130B0590002A1947 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		83CB34F813183A7900A42B07 /* DTCustomTableViewCellTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTCustomTableViewCellTests.h; path = Views/TableViewCells/DTCustomTableViewCellTests.h; sourceTree = "<group>"; };
+		83CB34F913183A7900A42B07 /* DTCustomTableViewCellTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTCustomTableViewCellTests.m; path = Views/TableViewCells/DTCustomTableViewCellTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1184,6 +1188,8 @@
 		8309AA3B130B0EF6007AFCC8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83CB34F813183A7900A42B07 /* DTCustomTableViewCellTests.h */,
+				83CB34F913183A7900A42B07 /* DTCustomTableViewCellTests.m */,
 				8309AA3C130B0EF6007AFCC8 /* Zest */,
 			);
 			path = Classes;
@@ -2879,6 +2885,8 @@
 				8309AB0A130C2173007AFCC8 /* UIView+Zest.m in Sources */,
 				8309AB0B130C2173007AFCC8 /* UIViewController+Zest.m in Sources */,
 				8309AB0C130C2173007AFCC8 /* UIWebView+Zest.m in Sources */,
+				83CB34FA13183A7900A42B07 /* DTCustomTableViewCellTests.m in Sources */,
+				83CB34FC13183B2B00A42B07 /* DTCustomTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2915,7 +2923,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
@@ -2930,7 +2938,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class DTCustomTableViewCell;
 
-typedef void(^DTTableCellBlock)(DTCustomTableViewCell *);
+@class DTCustomTableViewCell; 
+
+typedef void (^DTTableCellBlock)(DTCustomTableViewCell *);
+
 
 @protocol DTCustomTableViewCellDelegate <NSObject>
 
