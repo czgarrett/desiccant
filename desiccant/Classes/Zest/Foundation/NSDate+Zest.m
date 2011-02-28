@@ -296,6 +296,10 @@
 }
 
 - (NSDate *) dateAtNextQuarterHour {
+	return [[self dateAtPreviousQuarterHour] dateByAddingMinutes: 15];   
+}
+
+- (NSDate *) dateAtPreviousQuarterHour {
 	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
    [components setYear: [components year]];
    [components setMonth: [components month]];
@@ -303,8 +307,9 @@
 	[components setHour: [components hour]];
 	[components setMinute: ([components minute]/15) * 15]; // rounds down to nearest quarter
 	[components setSecond:0];
-	return [[CURRENT_CALENDAR dateFromComponents:components] dateByAddingMinutes: 15];   
+	return [CURRENT_CALENDAR dateFromComponents:components];   
 }
+
 
 - (NSDateComponents *) componentsWithOffsetFromDate: (NSDate *) aDate
 {

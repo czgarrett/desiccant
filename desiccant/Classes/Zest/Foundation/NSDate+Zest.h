@@ -66,6 +66,7 @@
 - (NSDate *) dateBySubtractingMinutes: (NSInteger) dMinutes;
 - (NSDate *) dateAtStartOfDay;
 - (NSDate *) dateAtNextQuarterHour;
+- (NSDate *) dateAtPreviousQuarterHour;
 
 // Retrieving intervals
 - (NSInteger) secondsBeforeNow;
