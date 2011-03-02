@@ -14,6 +14,10 @@
 	return [[(UIImageView *)[self alloc] initWithImage:theImage] autorelease];
 }
 
++ (id)viewWithImageNamed: (NSString *) imageName {
+   return [[self class] viewWithImage: [UIImage imageNamed: imageName]];
+}
+
 + (UIImageView *)defaultPNGView {
 	return  [UIImageView viewWithImage:[UIImage imageNamed:@"Default.png"]];
 }

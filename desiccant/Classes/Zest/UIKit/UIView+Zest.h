@@ -34,6 +34,10 @@
 // Returns the ancestor from the view hierarchy that has the specified class, if one exists, or nil otherwise.
 - (UIView *)ancestorWithClass:(Class)ancestorClass;
 
+// Recursively searches the view hierarchy for the first responder
+- (UIView *)findFirstResponder;
+
+
 - (void)removeAllSubviews;
 
 @end

@@ -10,6 +10,7 @@
 @interface UIImageView(Zest)
    
 + (id)viewWithImage:(UIImage *)theImage;
++ (id)viewWithImageNamed:(NSString *)imageName;
 + (UIImageView *)defaultPNGView;
 
 

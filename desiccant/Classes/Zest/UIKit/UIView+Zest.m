@@ -35,6 +35,19 @@
 	else return [self.superview ancestorWithClass:ancestorClass];
 }
 
+- (UIView *)findFirstResponder { 
+   if ([self isFirstResponder]) { 
+      return self; 
+   } 
+   for (UIView *subView in self.subviews) { 
+      UIView *firstResponder = [subView findFirstResponder]; 
+      if (firstResponder != nil) { 
+         return firstResponder; 
+      } 
+   } 
+   return nil; 
+} 
+
 - (CGFloat)height {
 	return self.frame.size.height;
 }
