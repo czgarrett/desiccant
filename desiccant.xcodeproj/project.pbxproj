@@ -243,8 +243,6 @@
 		83546839130ABF85002A1947 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A6130ABF84002A1947 /* SBJsonWriter.m */; };
 		8354683B130ABF85002A1947 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A8130ABF84002A1947 /* NSData+Base64.h */; };
 		8354683C130ABF85002A1947 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A9130ABF84002A1947 /* NSData+Base64.m */; };
-		8354683E130ABF85002A1947 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465AB130ABF84002A1947 /* Reachability.h */; };
-		8354683F130ABF85002A1947 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465AC130ABF84002A1947 /* Reachability.m */; };
 		83546844130ABF85002A1947 /* SDURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B0130ABF84002A1947 /* SDURLCache.h */; };
 		83546845130ABF85002A1947 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465B1130ABF84002A1947 /* SDURLCache.m */; };
 		83546847130ABF85002A1947 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B3130ABF84002A1947 /* SFHFKeychainUtils.h */; };
@@ -823,8 +821,6 @@
 		835465A6130ABF84002A1947 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		835465A8130ABF84002A1947 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		835465A9130ABF84002A1947 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		835465AB130ABF84002A1947 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		835465AC130ABF84002A1947 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		835465B0130ABF84002A1947 /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDURLCache.h; sourceTree = "<group>"; };
 		835465B1130ABF84002A1947 /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDURLCache.m; sourceTree = "<group>"; };
 		835465B3130ABF84002A1947 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
@@ -1561,7 +1557,6 @@
 				83546595130ABF84002A1947 /* ISO-8601-parser */,
 				83546599130ABF84002A1947 /* JSON */,
 				835465A7130ABF84002A1947 /* NSData_Base64 */,
-				835465AA130ABF84002A1947 /* Reachability */,
 				835465AF130ABF84002A1947 /* SDURLCache */,
 				835465B2130ABF84002A1947 /* SFHFKeychainUtils */,
 				835465B5130ABF84002A1947 /* TouchXML */,
@@ -1728,15 +1723,6 @@
 				835465A9130ABF84002A1947 /* NSData+Base64.m */,
 			);
 			path = NSData_Base64;
-			sourceTree = "<group>";
-		};
-		835465AA130ABF84002A1947 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				835465AB130ABF84002A1947 /* Reachability.h */,
-				835465AC130ABF84002A1947 /* Reachability.m */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 		835465AF130ABF84002A1947 /* SDURLCache */ = {
@@ -2378,7 +2364,6 @@
 				83546835130ABF85002A1947 /* SBJsonParser.h in Headers */,
 				83546838130ABF85002A1947 /* SBJsonWriter.h in Headers */,
 				8354683B130ABF85002A1947 /* NSData+Base64.h in Headers */,
-				8354683E130ABF85002A1947 /* Reachability.h in Headers */,
 				83546844130ABF85002A1947 /* SDURLCache.h in Headers */,
 				83546847130ABF85002A1947 /* SFHFKeychainUtils.h in Headers */,
 				8354684A130ABF85002A1947 /* CXMLDocument_CreationExtensions.h in Headers */,
@@ -2702,7 +2687,6 @@
 				83546836130ABF85002A1947 /* SBJsonParser.m in Sources */,
 				83546839130ABF85002A1947 /* SBJsonWriter.m in Sources */,
 				8354683C130ABF85002A1947 /* NSData+Base64.m in Sources */,
-				8354683F130ABF85002A1947 /* Reachability.m in Sources */,
 				83546845130ABF85002A1947 /* SDURLCache.m in Sources */,
 				83546848130ABF85002A1947 /* SFHFKeychainUtils.m in Sources */,
 				8354684B130ABF85002A1947 /* CXMLDocument_CreationExtensions.m in Sources */,
