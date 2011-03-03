@@ -8,6 +8,7 @@ branch_name = nil # Name your branch here
 if branch_name
   if File.exists? "desiccant"
     Dir.chdir('desiccant')
+    `git fetch`
     `git pull origin #{branch_name}`
   else 
     `git clone git@github.com:czgarrett/desiccant.git desiccant`

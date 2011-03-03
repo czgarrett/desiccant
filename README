@@ -4,25 +4,44 @@ Copyright 2010 ZWorkbench, Inc.
 
 See CHANGES for a list of recent changes
 
-Usage: 
+To convert an existing ClientProject to use an XCode 4 Workspace with Desiccant as a subproject:
 
-1. Add Classes to your project. 
+1)  Remove any references to existing Desiccant from ClientProject
 
-2. Add the following frameworks:
+2)  In XCode: Create ClientProject XCode workspace in ClientProject root.  ClientProject should be located somewhere inside this workspace root.
 
-	AudioToolbox.framework
-	CFNetwork.framework
-    CoreData.framework
-	CoreGraphics.framework
-	CoreLocation.framework
-	Foundation.framework
-	libicucore.dylib
-	libsqlite3.0.dylib 
-	libxml2.dylib
-	libz.1.2.3.dylib
-	MapKit.framework
-	MobileCoreServices.framework
-	QuartzCore.framework
-	Security.framework
-	SystemConfiguration.framework
-	UIKit.framework
+3)  From Finder, drag ClientProject.xcodeproj into XCode workspace navigator.
+
+4)  To Add Desiccant:
+
+From workspace root:
+
+git clone git@github.com:czgarrett/desiccant.git
+cd desiccant
+
+If branch doesn't exist:
+git checkout -b client_project_branch_name
+git push origin client_project_branch_name
+
+If branch exists:
+git fetch
+git checkout -b client_project_branch_name origin/client_project_branch_name
+
+To allow non-devs to check out easily:
+
+cp desiccant/update_libraries.rb .
+mate update_libraries.rb
+
+Edit update_libraries with your desiccant branch name
+
+Drag the desiccant/Desiccant.xcodeproj file from the finder into the workspace navigator.  Be sure not to drag it into the existing project, but below it.
+
+Select ClientProject in XCode:
+
+Add ../desiccant/desiccant/Classes/** to Header Search Paths
+
+Add -ObjC and -all_load to "Other Linker Flags"
+
+Drag desiccant/Products/libdesiccant.a to the Frameworks section of ClientProject
+
+Add frameworks used by Desiccant to your own project by dragging frameworks from the desiccant project into your client project's frameworks group.
