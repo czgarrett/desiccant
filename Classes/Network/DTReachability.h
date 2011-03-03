@@ -4,11 +4,14 @@
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
+#ifndef NetworkStatus
 typedef enum {
 	NotReachable = 0,
 	ReachableViaWiFi,
 	ReachableViaWWAN
 } NetworkStatus;
+#endif
+
 #define kReachabilityChangedNotification @"kNetworkReachabilityChangedNotification"
 
 @interface DTReachability: NSObject
