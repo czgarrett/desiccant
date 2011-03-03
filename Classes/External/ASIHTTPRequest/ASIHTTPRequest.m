@@ -13,7 +13,7 @@
 #import "ASIHTTPRequest.h"
 #import <zlib.h>
 #if TARGET_OS_IPHONE
-#import "Reachability.h"
+#import "DTReachability.h"
 #import "ASIAuthenticationDialog.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #else
@@ -3647,9 +3647,9 @@ static BOOL isiPhoneOS2;
 + (void)registerForNetworkReachabilityNotifications
 {
 #if REACHABILITY_20_API
-	[[Reachability reachabilityForInternetConnection] startNotifer];
+	[[DTReachability reachabilityForInternetConnection] startNotifer];
 #else
-	[[Reachability sharedReachability] setNetworkStatusNotificationsEnabled:YES];
+	[[DTReachability sharedReachability] setNetworkStatusNotificationsEnabled:YES];
 #endif
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:@"kNetworkReachabilityChangedNotification" object:nil];
 }
@@ -3664,9 +3664,9 @@ static BOOL isiPhoneOS2;
 + (BOOL)isNetworkReachableViaWWAN
 {
 #if REACHABILITY_20_API
-	return ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWWAN);	
+	return ([[DTReachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWWAN);	
 #else
-	return ([[Reachability sharedReachability] internetConnectionStatus] == ReachableViaCarrierDataNetwork);
+	return ([[DTReachability sharedReachability] internetConnectionStatus] == ReachableViaCarrierDataNetwork);
 #endif
 }
 
