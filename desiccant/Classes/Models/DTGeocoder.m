@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "NSString+SBJSON.h"
 #import "NSDictionary+Zest.h"
+#import "CBucks.h"
 
 NSString * const kStatusOk = @"OK";
 NSString * const kStatusZeroResults = @"ZERO_RESULTS";
