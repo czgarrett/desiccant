@@ -8,7 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-#define $Nd(i) ([NSNumber numberWithInt: (i)])
-
 @interface NSNumber (Zest)
 @end

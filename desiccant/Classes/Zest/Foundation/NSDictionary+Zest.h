@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define $D(...) [NSDictionary dictionaryWithKeysAndObjects: __VA_ARGS__, nil]
-
 @interface NSDictionary(Zest)
 // Returns a dictionary with a single key, "title", mapped to the specified titleValue.
 + (NSDictionary *)dictionaryWithTitle:(NSString *)titleValue;
@@ -34,7 +32,6 @@
 - (void)appendString:(NSString *)string toMutableStringWithKey:(id)key;
 - (NSDictionary *)dictionaryWithLowercaseKeys;
 - (NSString *)toQueryString;
-+ (NSDictionary *)dictionaryWithKeysAndObjects:(id)firstKey, ...;
 // Returns the first key it can find.  Useful for a dictionary that has only one key.
 - (id) anyKey;
 

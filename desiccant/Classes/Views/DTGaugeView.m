@@ -8,6 +8,7 @@
 
 #import "DTGaugeView.h"
 #import "Zest.h"
+#import "CBucks.h"
 
 #define DEFAULT_SHOW_WARNING_BANDS NO
 #define DEFAULT_SHOW_VALUE_LABELS NO

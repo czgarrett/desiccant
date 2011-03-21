@@ -7,6 +7,7 @@
 
 #import "NSData+Zest.h"
 #import "NSString+Zest.h"
+#import "CBucks.h"
 
 @implementation NSData(Zest)
 

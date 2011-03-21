@@ -527,6 +527,7 @@
 		83546A3C130B0543002A1947 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3A130B0542002A1947 /* AddressBookUI.framework */; };
 		83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3D130B0590002A1947 /* AudioToolbox.framework */; };
 		83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3E130B0590002A1947 /* AudioUnit.framework */; };
+		83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83725230132957D200555ADD /* libcocoa-bucks.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1128,6 +1129,7 @@
 		83546A3A130B0542002A1947 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		83546A3D130B0590002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		83546A3E130B0590002A1947 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		83725230132957D200555ADD /* libcocoa-bucks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libcocoa-bucks.a"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1135,6 +1137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */,
 				83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */,
 				83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */,
 				83546A3B130B0543002A1947 /* AddressBook.framework in Frameworks */,
@@ -1334,6 +1337,7 @@
 		83546467130ABBEB002A1947 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83725230132957D200555ADD /* libcocoa-bucks.a */,
 				8309AB0D130C2231007AFCC8 /* AddressBook.framework */,
 				8309AB0E130C2231007AFCC8 /* AddressBookUI.framework */,
 				8309AB0F130C2231007AFCC8 /* AudioToolbox.framework */,
@@ -2898,7 +2902,10 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"../cocoa-bucks/cocoa-bucks/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
@@ -2914,7 +2921,10 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/include/libxml2",
+					"../cocoa-bucks/cocoa-bucks/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
@@ -2929,6 +2939,10 @@
 				DSTROOT = /tmp/desiccant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "desiccant/desiccant-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2942,6 +2956,10 @@
 				DSTROOT = /tmp/desiccant.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "desiccant/desiccant-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

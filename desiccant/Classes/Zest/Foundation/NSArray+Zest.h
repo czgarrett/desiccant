@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define $A(...) [NSArray arrayWithObjects: __VA_ARGS__, nil]
 
 @interface NSArray ( Zest )
 
