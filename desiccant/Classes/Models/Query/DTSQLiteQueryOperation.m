@@ -29,7 +29,7 @@
 }
 
 - (id) initWithSQL:(NSString *)newSQL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)newDelegate {
-    if (self = [super initWithDelegate:newDelegate]) {
+    if ((self = [super initWithDelegate:newDelegate])) {
         self.sql = newSQL;
         self.rows = [NSMutableArray array];
     }

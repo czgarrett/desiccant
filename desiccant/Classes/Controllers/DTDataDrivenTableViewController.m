@@ -44,28 +44,28 @@
 #pragma mark UIViewController methods
 
 //- (id)init {
-//	if (self = [super init]) {
+//	if ((self = [super init])) {
 //		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
 //	}
 //	return self;
 //}
 //
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-//	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+//	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 //		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
 //	}
 //	return self;
 //}
 //
 //- (id)initWithStyle:(UITableViewStyle)style {
-//	if (self = [super initWithStyle:style]) {
+//	if ((self = [super initWithStyle:style])) {
 //		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
 //	}
 //	return self;
 //}
 //
 //- (id)initWithCoder:(NSCoder *)aDecoder {
-//	if (self = [super initWithCoder:aDecoder]) {
+//	if ((self = [super initWithCoder:aDecoder])) {
 //		statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
 //	}
 //	return self;

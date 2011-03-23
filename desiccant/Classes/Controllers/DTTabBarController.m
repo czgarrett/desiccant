@@ -31,21 +31,21 @@
 #pragma mark Constructors
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-	if (self = [super initWithCoder:aDecoder]) {
+	if ((self = [super initWithCoder:aDecoder])) {
 		persistSelectedIndex = YES;
 	}
 	return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		persistSelectedIndex = YES;
 	}
 	return self;
 }
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		persistSelectedIndex = YES;
 	}
 	return self;

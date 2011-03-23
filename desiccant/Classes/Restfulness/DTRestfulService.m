@@ -36,16 +36,16 @@
                                               format: nil
                                               errorDescription: &errorWithXML];
    if ([self.currentResponse httpError]) {
-      NSLog(@"Response failed with error %@", [self.currentResponse httpError]);
+      DTLog(@"Response failed with error %@", [self.currentResponse httpError]);
       if (!errorWithXML) {
-         NSLog(@"Errors object: %@", [result description]);         
+         DTLog(@"Errors object: %@", [result description]);         
       }
       if (delegate) {
          [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];         
       }
    } else if (errorWithXML) {
-      NSLog(@"Response successful, but invalid XML:");
-      NSLog(@"%@", errorWithXML);
+      DTLog(@"Response successful, but invalid XML:");
+      DTLog(@"%@", errorWithXML);
       if (delegate) {
          [delegate restfulService: self didFailRequestForObject: self.currentSyncObject];         
       }
@@ -124,7 +124,7 @@
 #pragma mark  lifecycle
 
 - (id) initWithDelegate: (id <DTRestfulServiceDelegate>) myDelegate {
-   if (self = [super init]) {
+   if ((self = [super init])) {
       delegate = myDelegate;
    }
    return self;

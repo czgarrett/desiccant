@@ -24,7 +24,7 @@
 }
 
 - (DTSQLiteQuery *)initWithSQL:(NSString *)newSQL delegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate {
-    if (self = (DTSQLiteQuery *)[super initQueryWithDelegate:newDelegate]) {
+    if ((self = (DTSQLiteQuery *)[super initQueryWithDelegate:newDelegate])) {
         self.sql = newSQL;
     }
     return self;

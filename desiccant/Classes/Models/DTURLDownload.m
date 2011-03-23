@@ -39,7 +39,7 @@
 
 #pragma mark Constructors
 - (id)initWithRequest:(NSURLRequest *)theRequest destination:(NSString *)theDestination delegate:(id <DTURLDownloadDelegate>)theDelegate {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.request = theRequest;
 		self.destination = theDestination;
 		self.delegate = theDelegate;

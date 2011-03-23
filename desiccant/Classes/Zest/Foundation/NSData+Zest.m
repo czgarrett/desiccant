@@ -8,11 +8,12 @@
 #import "NSData+Zest.h"
 #import "NSString+Zest.h"
 #import "CBucks.h"
+#import "NSMutableData+Zest.h"
 
 @implementation NSData(Zest)
 
 - (NSData *)nullTerminated {
-	return [[NSMutableData dataWithData:self] nullTerminated];
+	return [[NSMutableData dataWithData:self] terminateWithNull];
 }
 
 - (NSString *)to_s {

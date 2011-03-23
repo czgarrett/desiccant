@@ -31,7 +31,7 @@
 	 secondsPerTransition:(NSTimeInterval)theSecondsPerTransition
 secondsBetweenTransitions:(NSTimeInterval)theSecondsBetweenTransitions
 {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.startPoint = theStartPoint;
 		self.endPoint = theEndPoint;
 		self.secondsPerTransition = theSecondsPerTransition;

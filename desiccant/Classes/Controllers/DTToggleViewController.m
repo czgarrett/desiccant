@@ -40,7 +40,7 @@
 		   frontToggleButtonImage:(UIImage *)theFrontToggleButtonImage
 			backToggleButtonImage:(UIImage *)theBackToggleButtonImage
 {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.frontViewController = aFrontController;
 		self.backViewController = aBackController;
 		self.frontToggleButtonImage = theFrontToggleButtonImage;

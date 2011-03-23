@@ -27,7 +27,7 @@ static DTKeychain *sharedKeychain = nil;
 #pragma mark Constructors
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.defaultServiceName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
 		unless (defaultServiceName) self.defaultServiceName = @"dtkeychain_default_service_name";
 	}

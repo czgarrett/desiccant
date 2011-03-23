@@ -38,21 +38,21 @@
 
 #pragma mark Constructors
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		self.controllerMappings = [NSMutableArray arrayWithCapacity:3];
 	}
 	return self;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
-	if (self = [super initWithStyle:style]) {
+	if ((self = [super initWithStyle:style])) {
 		self.controllerMappings = [NSMutableArray arrayWithCapacity:3];
 	}
 	return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-	if (self = [super initWithCoder:aDecoder]) {
+	if ((self = [super initWithCoder:aDecoder])) {
 		self.controllerMappings = [NSMutableArray arrayWithCapacity:3];
 	}
 	return self;

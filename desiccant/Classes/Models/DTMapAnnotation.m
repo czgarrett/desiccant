@@ -22,7 +22,7 @@
 }
 
 - (id)initWithTitle:(NSString *)theTitle subtitle:(NSString *)theSubtitle latitude:(CLLocationDegrees)theLatitude longitude:(CLLocationDegrees)theLongitude {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = theTitle;
         self.subtitle = theSubtitle;
         coordinate.latitude = theLatitude;

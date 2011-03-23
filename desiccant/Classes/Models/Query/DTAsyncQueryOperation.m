@@ -25,7 +25,7 @@
 }
 
 - (id)initWithDelegate:(NSObject <DTAsyncQueryOperationDelegate> *)newDelegate {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.delegate = newDelegate;
     }
     return self;

@@ -27,7 +27,7 @@
 #pragma mark Constructors
 
 - (id)initWithAnnotation:(id <MKAnnotation>)theAnnotation userLocation:(MKUserLocation *)theUserLocation {
-	if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+	if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
 		self.annotation = theAnnotation;
 		self.userLocation = theUserLocation;
 	}

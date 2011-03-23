@@ -25,7 +25,7 @@
 #pragma mark Constructors
 
 - (id)initWithContainerView:(UITableView *)theContainer mapping:(DTCompositeTableViewControllerMapping *)theMapping {
-	if (self = [super initWithFrame:theContainer.frame style:theContainer.style]) {
+	if ((self = [super initWithFrame:theContainer.frame style:theContainer.style])) {
 		self.containerTableView = theContainer;
 		self.mapping = theMapping;
 	}

@@ -24,7 +24,7 @@
 }
 
 - (id) initWithParserDelegate:(DTXMLParserDelegate *)newParserDelegate {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.parserDelegate = newParserDelegate;
         [self reset];
     }

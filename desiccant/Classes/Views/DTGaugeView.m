@@ -81,7 +81,7 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180 / M_PI;};
 }
 
 - (id)initWithFrame:(CGRect)theFrame {
-	if (self = [super initWithFrame:theFrame]) {
+	if ((self = [super initWithFrame:theFrame])) {
 		[self configureDefaultsWithFrame:theFrame];
 	}
 	return self;

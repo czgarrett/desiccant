@@ -10,7 +10,7 @@
 
 @implementation NSMutableData (Zest)
 
-- (NSMutableData *)nullTerminated {
+- (NSMutableData *)terminateWithNull {
 	if (((char *)[self bytes])[[self length] - 1] != 0) {
 		char c = 0;
 		[self appendBytes:&c length:1];

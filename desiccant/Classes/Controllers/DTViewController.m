@@ -36,21 +36,21 @@
 #pragma mark Constructors
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		[self setAutorotationProperties];
 	}
 	return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-	if (self = [super initWithCoder:aDecoder]) {
+	if ((self = [super initWithCoder:aDecoder])) {
 		[self setAutorotationProperties];
 	}
 	return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		[self setAutorotationProperties];
 	}
 	return self;

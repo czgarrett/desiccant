@@ -35,7 +35,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    if ((self = [super initWithFrame:frame])) {
        shiny = YES;
        self.disabledShadingLevel = 0.5;
        [self configure];

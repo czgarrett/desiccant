@@ -27,10 +27,10 @@
            element:(NSString *)newElement 
          attribute:(NSString *)newAttribute 
 matchingAttributes:(NSDictionary *)newMatchingAttributes {
-    if (self = [super 
+    if ((self = [super 
                 initWithKey:newKey
                 element:newElement
-                matchingAttributes:newMatchingAttributes]) {
+                matchingAttributes:newMatchingAttributes])) {
         self.attribute = newAttribute;
     }
     return self;

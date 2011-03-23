@@ -28,7 +28,7 @@
 }
 
 - (id)initWithImage:(UIImage *)image {
-    if (self = [super initWithImage:image]) {
+    if ((self = [super initWithImage:image])) {
         self.defaultImage = image;
     }
     return self;

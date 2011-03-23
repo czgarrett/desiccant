@@ -182,7 +182,7 @@
                                                                                     paramsParserDelegate,
                                                                                     nil]];
     
-    if (self = [super initWithURL:newURL delegate:newDelegate parser:[DTXMLParser parserWithParserDelegate:responseParserDelegate]]) {
+    if ((self = [super initWithURL:newURL delegate:newDelegate parser:[DTXMLParser parserWithParserDelegate:responseParserDelegate]])) {
         self.method = @"POST";
         self.body = [self methodCallForName:newMethodName params:newParams];
         [self addRowTransformer:self];

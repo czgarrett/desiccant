@@ -29,7 +29,7 @@
 }
 
 - (id)initWithDelegate:(id <DTMapLinkControllerDelegate>)theDelegate {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.delegate = theDelegate;
     }
     return self;

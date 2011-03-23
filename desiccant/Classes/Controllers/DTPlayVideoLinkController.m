@@ -22,7 +22,7 @@
 }
 
 - (id)initWithController:(UIViewController *)theController {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.controller = theController;
 	}
 	return self;

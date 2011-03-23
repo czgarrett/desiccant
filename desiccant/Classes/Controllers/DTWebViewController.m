@@ -40,7 +40,7 @@
 }
 
 - (id)initWithTitle:(NSString *)title {
-    if (self = [super initWithNibName:nil bundle:nil]) {
+    if ((self = [super initWithNibName:nil bundle:nil])) {
         self.linkControllerChain = [NSMutableArray array];
         self.navigationItem.title = title;
         self.javascriptOnLoad = nil;

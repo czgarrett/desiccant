@@ -26,7 +26,7 @@
 }
 
 - (id)initWithCell:(DTCustomTableViewCell *)theCell nibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.cell = theCell;
 		self.nibName = theNibName;
 		self.dataDictionary = theRowData;

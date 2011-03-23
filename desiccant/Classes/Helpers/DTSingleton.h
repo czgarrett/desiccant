@@ -31,7 +31,7 @@
 //// 5. Implement a normal -init method to initialize your singleton.
 //
 //- (id)init {
-//	if (self = [super init]) {
+//	if ((self = [super init])) {
 //		// Setup your instance variables
 //	}
 //	return self;

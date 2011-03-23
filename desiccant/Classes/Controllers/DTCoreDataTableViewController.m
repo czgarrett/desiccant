@@ -268,7 +268,7 @@
 #pragma mark LifeCycle
 
 - (id) init {
-   if (self = [super init]) {
+   if ((self = [super init])) {
       self.ascending = YES;
       self.searchable = YES;
       self.fetchLimit = DEFAULT_FETCH_LIMIT;
@@ -277,7 +277,7 @@
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-   if (self = [super initWithNibName:nibNameOrNil bundle: nibBundleOrNil]) {
+   if ((self = [super initWithNibName:nibNameOrNil bundle: nibBundleOrNil])) {
       self.ascending = YES;
       self.searchable = YES;
       self.fetchLimit = DEFAULT_FETCH_LIMIT;
@@ -286,7 +286,7 @@
 }
 
 - (id) initWithEntityName: (NSString *) myEntityName sortAttribute: (NSString *) mySortAttribute {
-   if (self = [super initWithStyle: UITableViewStylePlain]) {
+   if ((self = [super initWithStyle: UITableViewStylePlain])) {
       self.entityName = myEntityName;
       self.sortAttribute = mySortAttribute;
       self.searchable = YES;

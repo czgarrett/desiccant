@@ -12,7 +12,7 @@
 @implementation UILabel (Zest)
 
 - (id)initWithText:(NSString *)newText {
-    if (self = [self initWithFrame:CGRectZero]) {
+    if ((self = [self initWithFrame:CGRectZero])) {
         self.text = newText;
     }
     return self;

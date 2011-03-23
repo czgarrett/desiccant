@@ -8,6 +8,8 @@
 #import "DTHTTPQueryOperation.h"
 #import "Zest.h"
 
+#define LOG_HTTP_RESPONSES YES
+
 #define ABORT_IF_CANCELLED \
 	if ([self isCancelled]) { \
 		[connection cancel]; \
@@ -49,7 +51,7 @@
 }
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate {
-	if (self = [super initWithDelegate:theDelegate]) {
+	if ((self = [super initWithDelegate:theDelegate])) {
 		self.url = theURL;
 		self.method = @"GET";
 	}
@@ -115,13 +117,15 @@
 - (void)requestFinished:(ASIHTTPRequest *)theRequest {
 	ABORT_IF_CANCELLED
 	self.responseData = theRequest.responseData;
-	NSString *responseBodyText = [NSString stringWithCString:[[responseData nullTerminated] bytes] encoding:NSUTF8StringEncoding];
-	DTLog(@"%@ %@\n%@", self.method, self.url.to_s, responseBodyText);
+    if (LOG_HTTP_RESPONSES) {
+        NSString *responseBodyText = [NSString stringWithCString:[[responseData nullTerminated] bytes] encoding:NSUTF8StringEncoding];
+        DTLog(@"%@ %@\n\n%@", self.method, self.url.to_s, responseBodyText);
+    }
 	BOOL errorOccurredWhileParsing = ![self parseResponseData];
 	if (errorOccurredWhileParsing) {
-		NSLog(@"Error parsing response from URL: %@", url);
-		NSLog(@"Response body:");
-		NSLog(@"%@", self.responseData.to_s);
+		DTLog(@"Error parsing response from URL: %@", url);
+		DTLog(@"Response body:");
+		DTLog(@"%@", self.responseData.to_s);
 	}
 	[self completeOperationWithError:errorOccurredWhileParsing];
    [self release];

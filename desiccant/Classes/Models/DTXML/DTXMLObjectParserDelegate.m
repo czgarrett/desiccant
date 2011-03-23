@@ -27,7 +27,7 @@
 }
 
 - (id)initWithKey:(NSString *)newKey element:(NSString *)newElement matchingAttributes:(NSDictionary *)newMatchingAttributes nestedParserDelegates:(NSArray *)newNestedDelegates {
-    if (self = [super initWithKey:newKey element:newElement matchingAttributes:newMatchingAttributes]) {
+    if ((self = [super initWithKey:newKey element:newElement matchingAttributes:newMatchingAttributes])) {
         self.nestedParserDelegates = [NSMutableArray arrayWithArray:newNestedDelegates];
 //        for (DTXMLParserDelegate *nestedParserDelegate in nestedParserDelegates) {
 //            nestedParserDelegate.parent = self;

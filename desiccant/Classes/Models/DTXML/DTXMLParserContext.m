@@ -20,7 +20,7 @@
 }
 
 - (id)initWithParent:(DTXMLParserContext *)newParent delegate:(DTXMLParserDelegate *)newDelegate {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.parent = newParent;
         self.delegate = newDelegate;
         self.insideTargetElement = NO;

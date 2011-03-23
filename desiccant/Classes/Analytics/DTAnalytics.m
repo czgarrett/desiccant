@@ -45,7 +45,7 @@ static DTAnalytics *sharedInstance;
    NSError *error;
    if (![[GANTracker sharedTracker] trackPageview: name
                                         withError:&error]) {
-      NSLog(@"Tracking error: %@", error);
+      DTLog(@"Tracking error: %@", error);
    }   
 #endif
 }

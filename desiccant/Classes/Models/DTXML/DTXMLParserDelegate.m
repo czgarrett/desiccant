@@ -29,7 +29,7 @@
 }
 
 - (id)initWithKey:(NSString *)newKey element:(NSString *)newElement matchingAttributes:(NSDictionary *)newMatchingAttributes {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.key = newKey;
         self.element = newElement;
         self.matchingAttributes = newMatchingAttributes;
@@ -120,7 +120,7 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName 
   namespaceURI:(NSString *)namespaceURI 
- qualifiedName:(NSString *)qName {
+ qualifiedName:(NSString *)qName {    
     context.parsingDepth--;
     
     if (context.insideTargetElement) {
@@ -145,6 +145,18 @@
         }
     }
 }
+
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
+    DTLog(@">>> XML parsing error at line %d, column %d.", [parser lineNumber], [parser columnNumber]);
+}
+
+- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError {
+    DTLog(@">>> XML parsing error at line %d, column %d.", [parser lineNumber], [parser columnNumber]);
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser {
+}
+
 
 - (NSObject *)result {
     return nil;

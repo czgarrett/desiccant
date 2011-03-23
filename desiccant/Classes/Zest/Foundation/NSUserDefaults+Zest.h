@@ -26,4 +26,7 @@
 // called will dictate the persisted value for all instances.
 - (void)persistKeyPath:(NSString *)keyPath ofObject:(NSObject *)object defaultValue:(id)defaultValue;	
 
+- (void)setDate:(NSDate *)date forKey:(NSString *)key;
+- (NSDate *)dateForKey:(NSString *)key;
+
 @end

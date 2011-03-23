@@ -20,7 +20,7 @@
 }
 
 - (id)initQueryWithClass:(Class)theARObjectClass delegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate {
-	if (self = [super initQueryWithDelegate:newDelegate]) {
+	if ((self = [super initQueryWithDelegate:newDelegate])) {
 		self.arObjectClass = theARObjectClass;
 	}
 	return self;

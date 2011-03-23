@@ -65,7 +65,7 @@
 #pragma mark Constructors
 
 - (id)initWithViewController:(UIViewController <DTActsAsChildViewController> *)theController adLoader:(NSObject <DTAdLoader> *)theAdLoader {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.viewController = theController;
 //		[self addSubviewController:viewController];
 		self.adLoader = theAdLoader;

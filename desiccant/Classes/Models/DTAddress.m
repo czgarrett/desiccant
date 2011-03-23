@@ -34,7 +34,7 @@
 				zip:(NSString *)theZip 
 {
 	unless ([theName length] + [theAddress1 length] + [theAddress2 length] + [theCity length] + [theState length] + [theZip length]) return nil;
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.name = theName;
 		self.address1 = theAddress1;
 		self.address2 = theAddress2;

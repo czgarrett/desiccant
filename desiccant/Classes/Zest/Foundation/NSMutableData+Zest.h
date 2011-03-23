@@ -8,5 +8,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NSMutableData (Zest)
-- (NSMutableData *)nullTerminated;
+- (NSMutableData *)terminateWithNull;
 @end

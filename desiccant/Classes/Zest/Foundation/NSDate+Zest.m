@@ -15,6 +15,7 @@
 @implementation NSDate ( Zest )
 
 + (NSDate *)dateWithISO8601String:(NSString *)dateString {
+    if (!dateString) return nil;
     ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
     NSDate *date = [formatter dateFromString:dateString];
     [formatter release];

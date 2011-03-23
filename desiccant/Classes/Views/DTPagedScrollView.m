@@ -30,7 +30,7 @@
 @synthesize externalDelegate, pageIndex, dataSource, shouldPassNonDragTouchEndEventsToNextResponder;
 
 - (id)initWithFrame:(CGRect)aRect {
-    if (self = [super initWithFrame:aRect]) {
+    if ((self = [super initWithFrame:aRect])) {
         [super setDelegate:self];
     }
     return self;

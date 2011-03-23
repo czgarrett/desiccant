@@ -29,7 +29,7 @@
 }
 
 - (id)initWithURL:(NSURL *)theURL {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self._url = theURL;
     }
     return self;

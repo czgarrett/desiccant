@@ -6,6 +6,8 @@
 //
 
 #import "NSUserDefaults+Zest.h"
+#import "NSObject+Zest.h"
+#import "NSDate+Zest.h"
 #import <objc/runtime.h>
 
 @implementation NSUserDefaults (Zest) 
@@ -43,6 +45,14 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	[self setObject:[object valueForKeyPath:keyPath] forKey:[self keyForKeyPath:keyPath ofObject:object]];
+}
+
+- (void)setDate:(NSDate *)date forKey:(NSString *)key {
+    [self setValue:[date iso8601FormattedString] forKey:key];
+}
+
+- (NSDate *)dateForKey:(NSString *)key {
+    return [NSDate dateWithISO8601String:[self stringForKey:key]];
 }
 
 @end

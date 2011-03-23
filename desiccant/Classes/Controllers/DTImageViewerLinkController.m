@@ -23,7 +23,7 @@
 }
 
 - (id)initWithTitle:(NSString *)aTitle parentController:(UIViewController *)theParentController {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.title = aTitle;
         self.parentController = theParentController;
     }

@@ -28,7 +28,7 @@
 //}
 
 - (id)initWithX:(CGFloat)xParam Y:(CGFloat)yParam Z:(CGFloat)zParam {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.x = xParam;
 		self.y = yParam;
 		self.z = zParam;

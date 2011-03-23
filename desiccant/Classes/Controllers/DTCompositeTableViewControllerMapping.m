@@ -30,13 +30,13 @@
 #pragma mark Constructors
 
 - (id) initWithController:(DTTableViewController *)aController {
-	if (self = [self initWithController:aController proxiesSections:NO]) {
+	if ((self = [self initWithController:aController proxiesSections:NO])) {
 	}
 	return self;
 }
 
 - (id) initWithController:(DTTableViewController *)aController proxiesSections:(BOOL)itProxiesSections {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.controller = aController;
 		self.proxiesSections = itProxiesSections;
 		self.startsSection = NO;
@@ -53,7 +53,7 @@
 }
 
 - (id) initWithController:(DTTableViewController *)aController startsSectionWithHeaderTitle:(NSString *)aHeaderTitle indexTitle:(NSString *)anIndexTitle footerTitle:(NSString *)aFooterTitle {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.controller = aController;
 		self.proxiesSections = NO;
 		self.startsSection = (aHeaderTitle || anIndexTitle || aFooterTitle);

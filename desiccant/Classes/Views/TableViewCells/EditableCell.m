@@ -13,7 +13,7 @@
 @synthesize textField, indexPath;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+   if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
        // Set the frame to CGRectZero as it will be reset in layoutSubviews
       textField = [[UITextField alloc] initWithFrame:CGRectZero];
       textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;

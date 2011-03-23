@@ -30,7 +30,7 @@
 
 #pragma mark Constructors
 - (id)initWithData:(NSData *)theData {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.data = theData;
 		self.namespaceURI = [self parseXMLNamespaceFromData];
 		self.namespacePrefix = @"node";

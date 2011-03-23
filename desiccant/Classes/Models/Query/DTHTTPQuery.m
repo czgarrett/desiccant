@@ -29,7 +29,7 @@
 }
 
 - (id)initWithURL:(NSURL *)newURL queryDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)newParser {
-	if (self = (DTHTTPQuery *)[super initQueryWithDelegate:newDelegate]) {
+	if ((self = (DTHTTPQuery *)[super initQueryWithDelegate:newDelegate])) {
 		self.url = newURL;
 		self.delegate = newDelegate;
 		self.parser = newParser;

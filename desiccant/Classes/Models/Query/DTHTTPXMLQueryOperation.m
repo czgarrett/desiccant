@@ -29,7 +29,7 @@
 }
 
 - (DTHTTPXMLQueryOperation *)initWithURL:(NSURL *)newURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)newDelegate parser:(DTXMLParser *)newParser {
-	if (self = [super initWithURL:newURL delegate:newDelegate]) {
+	if ((self = [super initWithURL:newURL delegate:newDelegate])) {
         self.parser = newParser;
     }
     return self;

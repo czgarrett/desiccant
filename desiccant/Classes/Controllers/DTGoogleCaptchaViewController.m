@@ -35,7 +35,7 @@
 #pragma mark Constructors
 
 - (id)initWithCaptcha:(DTGoogleCaptcha *)theCaptcha delegate:(id <DTGoogleCaptchaViewControllerDelegate>)theDelegate {
-	if (self = [super initWithNibName:[self captchaViewControllerNibName] bundle:nil]) {
+	if ((self = [super initWithNibName:[self captchaViewControllerNibName] bundle:nil])) {
 		self.captcha = theCaptcha;
 		captcha.delegate = self;
 		self.delegate = theDelegate;

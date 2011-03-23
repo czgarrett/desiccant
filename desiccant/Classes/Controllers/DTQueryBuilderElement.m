@@ -21,7 +21,7 @@
 }
 
 - (id)initWithText:(NSString *)theText type:(NSObject <DTQueryBuilderElementType> *)theType {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.type = theType;
 		self.text = theText;
 	}

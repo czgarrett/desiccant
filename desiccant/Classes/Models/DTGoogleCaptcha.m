@@ -41,7 +41,7 @@
 }
 
 - (id)initWithHTMLData:(NSData *)theData returnedFromURL:(NSURL *)theBaseURL {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.baseURL = theBaseURL;
 		unless ([self parseData:theData]) {
 			[self release];

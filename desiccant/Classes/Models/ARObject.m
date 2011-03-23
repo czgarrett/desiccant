@@ -216,7 +216,7 @@
 
 - (id)init
 {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		attributes = [[NSMutableDictionary alloc] init];
 		newRecord = YES;
       NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];

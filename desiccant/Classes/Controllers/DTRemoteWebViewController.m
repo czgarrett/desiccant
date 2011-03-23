@@ -25,7 +25,7 @@
 }
 
 - (DTRemoteWebViewController *)initWithTitle:(NSString *)newTitle url:(NSURL *)newURL {
-    if (self = [super initWithTitle:newTitle]) {
+    if ((self = [super initWithTitle:newTitle])) {
         self.url = newURL;
     }
     return self;

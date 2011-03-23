@@ -40,7 +40,7 @@
 }
 
 - (id)initWithQueryBuilderDelegate:(NSObject <DTQueryBuilderDelegate> *)theDelegate {
-	if (self = [super initWithStyle:UITableViewStylePlain]) {
+	if ((self = [super initWithStyle:UITableViewStylePlain])) {
 		self.queryBuilderDelegate = theDelegate;
 	}
 	return self;

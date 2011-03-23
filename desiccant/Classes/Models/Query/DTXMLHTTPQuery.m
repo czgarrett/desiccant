@@ -36,7 +36,7 @@ url, parser, method, body, postParameters, postFileKey, postFileData, postFilePa
 }
 
 - (id)initWithURL:(NSURL *)newURL delegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate parser:(DTXMLParser *)newParser {
-    if (self = (DTXMLHTTPQuery *)[super initQueryWithDelegate:newDelegate]) {
+    if ((self = (DTXMLHTTPQuery *)[super initQueryWithDelegate:newDelegate])) {
         self.url = newURL;
         self.parser = newParser;
         self.method = @"GET";

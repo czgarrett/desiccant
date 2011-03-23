@@ -36,7 +36,7 @@
 #pragma mark Constructors
 
 - (id)initWithPlaceholderView:(UIView *)thePlaceholderView url:(NSURL *)theXMLRPCURL source:(NSString *)theSource zoneNumber:(NSInteger)theZoneNumber {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.placeholderView = thePlaceholderView;
 		self.url = theXMLRPCURL;
 		self.source = theSource;
@@ -125,7 +125,7 @@
 }
 
 - (void)queryDidFailLoading:(DTAsyncQuery *)theQuery {
-    NSLog(@"Ad query failed loading with error: %@", theQuery.error);
+    DTLog(@"Ad query failed loading with error: %@", theQuery.error);
 }
 
 - (void)queryDidFinishLoading:(DTAsyncQuery *)theQuery {
@@ -138,18 +138,18 @@
 			[self.adView loadFromURL:bannerContentURL];
 		}
 		else {
-			NSLog(@"Response from ad server didn't contain a bannerContent URL");
+			DTLog(@"Response from ad server didn't contain a bannerContent URL");
 		}
     }
     else {
-        NSLog(@"*** XML-RPC Fault: \"%@\"", query.faultString);
+        DTLog(@"*** XML-RPC Fault: \"%@\"", query.faultString);
     }
 }
 
 #pragma mark DTImageViewDelegate methods
 
 - (void)imageView:(DTImageView *)imageView didFailLoadingWithError:(NSError *)error {
-	NSLog(@"Ad image failed loading with error: %@", error.description);
+	DTLog(@"Ad image failed loading with error: %@", error.description);
 }
 
 - (void)imageViewDidFinishLoading:(DTImageView *)imageView {
@@ -176,7 +176,7 @@
         }
     }
     else {
-        NSLog(@"Didn't get a logUrl in the response from the ad server.");
+        DTLog(@"Didn't get a logUrl in the response from the ad server.");
     }
 }
 

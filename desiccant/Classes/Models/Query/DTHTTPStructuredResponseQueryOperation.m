@@ -25,7 +25,7 @@
 }
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)theResultObjectParser {
-	if (self = [super initWithURL:theURL delegate:theDelegate]) {
+	if ((self = [super initWithURL:theURL delegate:theDelegate])) {
 		self.resultObjectParser = theResultObjectParser;
 	}
 	return self;

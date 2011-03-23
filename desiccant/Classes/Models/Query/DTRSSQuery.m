@@ -16,7 +16,7 @@
 @implementation DTRSSQuery
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryDelegate> *)theDelegate {
-	if (self = [super initWithURL:theURL 
+	if ((self = [super initWithURL:theURL 
 						 delegate:theDelegate 
 						   parser:[DTXMLParser 
 								   parserWithParserDelegate:[DTXMLCollectionParserDelegate
@@ -36,7 +36,7 @@
 																				   ]
 															 ]
 								   ]
-				]) 
+				]))
 	{
 		[self addRowTransformer:self];
 	}

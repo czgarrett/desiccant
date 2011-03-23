@@ -14,7 +14,7 @@
 
 -(id)init
 {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		rows = [[NSMutableArray alloc] init];
 		columnNames = [[NSMutableArray alloc] init];
 	}

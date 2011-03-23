@@ -55,7 +55,7 @@
 #pragma mark Constructors
 
 - (id)initQueryWithDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         [self clear];
         self.delegate = newDelegate;
         [self.operationQueue = [[NSOperationQueue alloc] init] autorelease];

@@ -1,4 +1,13 @@
-Changes committed Jan 4, 2010 by Curtis Duhn
+Changes committed Mar 23, 2011 by Curtis Duhn
+- Changed DTLog to print without timestamp line noise, with lines separated by "--"
+- Changed "(self = [super init])" idiom to "((self = [super init]))" to silence warnings.
+- Changed DTPlayMediaLinkController to use MPMoviePlayerViewController instead of a UIWebView, as iOS 4.3 seems to have broken our existing UIWebView based implementation.
+- Changed DTSpinner implementation to maintain its reference count in its own global variable rather than directly incrementing/decrementing [UIApplication sharedApplication].networkActivityIndicatorVisible.  This change was necessary because the latest builds of ASIHTTPRequest and three20 have started setting networkActivityIndicatorVisible themselves, which broke our reference counts leading to infinite spinners.
+- -[NSMutableData nullTerminated] now makes a copy of the data and null terminates that copy (via -[NSData nullTerminated] rather than null terminating itself in-place.  Needed this because null terminating an NSMutableData for the sake of a diagnostic NSLog caused XML parsing to break on the null terminator as a side effect.
+- Added -[NSMutableData terminateWithNull] to null terminate an NSMutableData in place without copying.
+- Added -setDate:forKey: and -dateForKey: to NSUserDefaults+Zest.
+
+Changes committed Jan 4, 2011 by Curtis Duhn
 
 - Updated ASIHTTPRequest
 - -[DTKeychain persistKeyPath:ofObject:defaultValue:] uses KVO to persist the specified string property of the specified object.

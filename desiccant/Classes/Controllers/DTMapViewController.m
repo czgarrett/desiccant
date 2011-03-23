@@ -36,7 +36,7 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
               longitude:(CLLocationDegrees)theLongitude 
 		  latitudeDelta:(CLLocationDegrees)theLatitudeDelta 
 		 longitudeDelta:(CLLocationDegrees)theLongitudeDelta {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         self.defaultLatitude = theLatitude;
         self.defaultLongitude = theLongitude;
         self.defaultLatitudeDelta = theLatitudeDelta;

@@ -26,7 +26,7 @@
 }
 
 - (id)initOperationWithFileNamed:(NSString *)aFileName delegate:(NSObject <DTAsyncQueryOperationDelegate> *)aDelegate {
-    if (self = [super initWithDelegate:aDelegate]) {
+    if ((self = [super initWithDelegate:aDelegate])) {
         self.fileName = aFileName;
     }
     return self;

@@ -31,7 +31,7 @@ static DTActivityIndicatorStyle defaultStyle;
 
 - (id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style {
 	UIActivityIndicatorView *newIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style] autorelease];
-	if (self = [super initWithFrame: CGRectMake(0.0, 0.0, 300.0, 300.0)]) {
+	if ((self = [super initWithFrame: CGRectMake(0.0, 0.0, 300.0, 300.0)])) {
 		newIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		newIndicator.hidesWhenStopped = NO;
 		self.childIndicator = newIndicator;

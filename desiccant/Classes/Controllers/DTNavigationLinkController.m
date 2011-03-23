@@ -26,7 +26,7 @@
 #pragma mark Constructors
 
 - (id)initWithWebViewController:(DTWebViewController *)theWebViewController {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.webViewController = theWebViewController;
 	}
 	return self;

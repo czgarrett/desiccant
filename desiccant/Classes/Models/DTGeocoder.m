@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "NSString+SBJSON.h"
 #import "NSDictionary+Zest.h"
+#import "Zest.h"
 
 NSString * const kStatusOk = @"OK";
 NSString * const kStatusZeroResults = @"ZERO_RESULTS";
@@ -44,7 +45,7 @@ NSString * const kStatusInvalidRequest = @"INVALID_REQUEST";
    [urlString appendString: parameter];
    if (self.region) [urlString appendFormat: @"&region=%@", self.region];
    NSURL *url = [NSURL URLWithString: urlString];
-   NSLog(@"Search URL: %@", url);
+   DTLog(@"Search URL: %@", url);
    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL: url];
    request.requestMethod =  @"GET";
    [request setFailedBlock: ^{
@@ -56,7 +57,7 @@ NSString * const kStatusInvalidRequest = @"INVALID_REQUEST";
    }];
    [request setCompletionBlock: ^{
       NSDictionary *jsonDict = [[request responseString] JSONValue];
-      NSLog(@"Geocoder Results: %@", jsonDict);
+      DTLog(@"Geocoder Results: %@", jsonDict);
       NSArray *results = [jsonDict objectForKey: @"results"];
       NSString *status = [jsonDict objectForKey: @"status"];
       if ([status isEqual: kStatusOk] || [status isEqual: kStatusZeroResults]) {

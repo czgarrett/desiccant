@@ -39,7 +39,7 @@
    self.deleteBlock = nil;
 	
 	[super dealloc];
-   NSLog(@"Cell dealloced");
+   DTLog(@"Cell dealloced");
 }
 
 #pragma mark Public methods
