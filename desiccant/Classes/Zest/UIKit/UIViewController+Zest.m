@@ -299,3 +299,9 @@
 - (void)controllerDidGetPushedOntoNavigationStack:(UIViewController *)topViewController {}
 
 @end
+
+
+@interface FixCategoryBugUIViewController : NSObject {}
+@end
+@implementation FixCategoryBugUIViewController
+@end

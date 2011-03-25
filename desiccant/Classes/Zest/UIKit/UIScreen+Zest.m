@@ -7,7 +7,6 @@
 //
 
 #import "UIScreen+Zest.h"
-#import "Zest.h"
 
 @implementation UIScreen(Zest)
 
@@ -29,4 +28,11 @@
    return self.bcompat_scale > 1.99 && self.bcompat_scale < 2.01;
 }
 
+@end
+
+
+
+@interface FixCategoryBugUIScreen : NSObject {}
+@end
+@implementation FixCategoryBugUIScreen
 @end

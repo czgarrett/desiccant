@@ -7,7 +7,7 @@
 //
 
 #import "NSFetchRequest+Zest.h"
-#import "Zest.h"
+#import "NSSortDescriptor+Zest.h"
 
 @implementation NSFetchRequest (Zest)
 
@@ -28,4 +28,10 @@
 
 
 
+@end
+
+
+@interface FixCategoryBugNSFetchRequest : NSObject {}
+@end
+@implementation FixCategoryBugNSFetchRequest
 @end

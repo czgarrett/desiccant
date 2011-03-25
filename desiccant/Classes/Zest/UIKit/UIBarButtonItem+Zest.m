@@ -21,3 +21,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugUIBarButtonItem : NSObject {}
+@end
+@implementation FixCategoryBugUIBarButtonItem
+@end

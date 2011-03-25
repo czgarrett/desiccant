@@ -92,3 +92,9 @@
 
 
 @end
+
+
+@interface FixCategoryBugUIImage : NSObject {}
+@end
+@implementation FixCategoryBugUIImage
+@end

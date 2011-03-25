@@ -40,3 +40,9 @@
 
 
 @end
+
+
+@interface FixCategoryBugNSMutableDictionary : NSObject {}
+@end
+@implementation FixCategoryBugNSMutableDictionary
+@end

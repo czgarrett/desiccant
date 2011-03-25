@@ -24,3 +24,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugUIScrollView : NSObject {}
+@end
+@implementation FixCategoryBugUIScrollView
+@end

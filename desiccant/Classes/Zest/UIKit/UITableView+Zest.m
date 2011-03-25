@@ -22,3 +22,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugUITableView : NSObject {}
+@end
+@implementation FixCategoryBugUITableView
+@end

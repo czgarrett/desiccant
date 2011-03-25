@@ -6,7 +6,7 @@
 //
 
 #import "MKMapView+Zest.h"
-#import "desiccant.h"
+#import <MapKit/MapKit.h>
 
 @implementation MKMapView(Zest)
 
@@ -34,4 +34,10 @@
 	return filteredAnnotations;
 }
 
+@end
+
+
+@interface FixCategoryBugMKMapView : NSObject {}
+@end
+@implementation FixCategoryBugMKMapView
 @end

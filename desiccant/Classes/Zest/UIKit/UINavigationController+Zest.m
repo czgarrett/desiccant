@@ -37,3 +37,9 @@
 
 
 @end
+
+
+@interface FixCategoryBugUINavigationController : NSObject {}
+@end
+@implementation FixCategoryBugUINavigationController
+@end

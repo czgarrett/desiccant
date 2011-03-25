@@ -822,3 +822,8 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 
 
 @end
+
+@interface FixCategoryBugNSString : NSObject {}
+@end
+@implementation FixCategoryBugNSString
+@end

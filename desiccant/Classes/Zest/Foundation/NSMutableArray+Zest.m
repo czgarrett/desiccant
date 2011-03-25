@@ -7,7 +7,6 @@
 //
 
 #import "NSMutableArray+Zest.h"
-#import "Zest.h"
 
 @implementation NSMutableArray ( Zest )
 
@@ -99,4 +98,10 @@
 }
 
 
+@end
+
+
+@interface FixCategoryBugNSMutableArray : NSObject {}
+@end
+@implementation FixCategoryBugNSMutableArray
 @end

@@ -51,3 +51,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugNSObjectSBJSON : NSObject {}
+@end
+@implementation FixCategoryBugNSObjectSBJSON
+@end

@@ -7,7 +7,7 @@
 //
 
 #import "UIApplication+Zest.h"
-#import "Zest.h"
+#import "../../desiccant.h"
 
 @implementation UIApplication(Zest)
 
@@ -42,4 +42,10 @@
 	return [NSString stringWithFormat:@"%d", (NSInteger)seconds - 290000000];
 }
 
+@end
+
+
+@interface FixCategoryBugUIApplication : NSObject {}
+@end
+@implementation FixCategoryBugUIApplication
 @end

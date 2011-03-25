@@ -7,6 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61BDB7D6133CE1AD0086DC2C /* NSFetchRequest+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA96130C2173007AFCC8 /* NSFetchRequest+Zest.m */; };
+		61BDB7D8133CE1AD0086DC2C /* NSManagedObject+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA98130C2173007AFCC8 /* NSManagedObject+Zest.m */; };
+		61BDB7DA133CE1AE0086DC2C /* NSSortDescriptor+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA9A130C2173007AFCC8 /* NSSortDescriptor+Zest.m */; };
+		61BDB7DC133CE1AE0086DC2C /* NSArray+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA9D130C2173007AFCC8 /* NSArray+Zest.m */; };
+		61BDB7DE133CE1AF0086DC2C /* NSData+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA9F130C2173007AFCC8 /* NSData+Zest.m */; };
+		61BDB7E0133CE1AF0086DC2C /* NSDate+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAA1130C2173007AFCC8 /* NSDate+Zest.m */; };
+		61BDB7E2133CE1B00086DC2C /* NSDictionary+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAA3130C2173007AFCC8 /* NSDictionary+Zest.m */; };
+		61BDB7E4133CE1B00086DC2C /* NSHTTPURLResponse+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAA5130C2173007AFCC8 /* NSHTTPURLResponse+Zest.m */; };
+		61BDB7E6133CE1B10086DC2C /* NSIndexPath+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAA7130C2173007AFCC8 /* NSIndexPath+Zest.m */; };
+		61BDB7E8133CE1B10086DC2C /* NSMutableArray+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAA9130C2173007AFCC8 /* NSMutableArray+Zest.m */; };
+		61BDB7EA133CE1B20086DC2C /* NSMutableData+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAAB130C2173007AFCC8 /* NSMutableData+Zest.m */; };
+		61BDB7EC133CE1B30086DC2C /* NSMutableDictionary+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAAD130C2173007AFCC8 /* NSMutableDictionary+Zest.m */; };
+		61BDB7EE133CE1B30086DC2C /* NSMutableString+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAAF130C2173007AFCC8 /* NSMutableString+Zest.m */; };
+		61BDB7F0133CE1B40086DC2C /* NSMutableURLRequest+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAB1130C2173007AFCC8 /* NSMutableURLRequest+Zest.m */; };
+		61BDB7F2133CE1B40086DC2C /* NSNull+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAB3130C2173007AFCC8 /* NSNull+Zest.m */; };
+		61BDB7F4133CE1B50086DC2C /* NSNumber+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAB5130C2173007AFCC8 /* NSNumber+Zest.m */; };
+		61BDB7F6133CE1B60086DC2C /* NSObject+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAB7130C2173007AFCC8 /* NSObject+Zest.m */; };
+		61BDB7F8133CE1B60086DC2C /* NSSet+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAB9130C2173007AFCC8 /* NSSet+Zest.m */; };
+		61BDB7FA133CE1B70086DC2C /* NSString+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AABB130C2173007AFCC8 /* NSString+Zest.m */; };
+		61BDB7FC133CE1B80086DC2C /* NSURL+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AABD130C2173007AFCC8 /* NSURL+Zest.m */; };
+		61BDB7FE133CE1B80086DC2C /* NSURLResponse+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AABF130C2173007AFCC8 /* NSURLResponse+Zest.m */; };
+		61BDB800133CE1B90086DC2C /* NSUserDefaults+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAC1130C2173007AFCC8 /* NSUserDefaults+Zest.m */; };
+		61BDB802133CE1BA0086DC2C /* NSManagedObjectContext+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAC3130C2173007AFCC8 /* NSManagedObjectContext+Zest.m */; };
+		61BDB804133CE1BB0086DC2C /* MKMapView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAC6130C2173007AFCC8 /* MKMapView+Zest.m */; };
+		61BDB806133CE1BB0086DC2C /* UIApplication+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAC8130C2173007AFCC8 /* UIApplication+Zest.m */; };
+		61BDB808133CE1BC0086DC2C /* UIBarButtonItem+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AACA130C2173007AFCC8 /* UIBarButtonItem+Zest.m */; };
+		61BDB80A133CE1BD0086DC2C /* UIButton+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AACC130C2173007AFCC8 /* UIButton+Zest.m */; };
+		61BDB80C133CE1BE0086DC2C /* UIColor+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AACE130C2173007AFCC8 /* UIColor+Zest.m */; };
+		61BDB80E133CE1BF0086DC2C /* UIImage+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAD0130C2173007AFCC8 /* UIImage+Zest.m */; };
+		61BDB810133CE1C00086DC2C /* UIImageView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAD2130C2173007AFCC8 /* UIImageView+Zest.m */; };
+		61BDB812133CE1C10086DC2C /* UILabel+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAD4130C2173007AFCC8 /* UILabel+Zest.m */; };
+		61BDB814133CE1C20086DC2C /* UINavigationController+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAD6130C2173007AFCC8 /* UINavigationController+Zest.m */; };
+		61BDB816133CE1C20086DC2C /* UIScreen+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAD8130C2173007AFCC8 /* UIScreen+Zest.m */; };
+		61BDB818133CE1C30086DC2C /* UIScrollView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AADA130C2173007AFCC8 /* UIScrollView+Zest.m */; };
+		61BDB81A133CE1C50086DC2C /* UITabBarItem+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AADC130C2173007AFCC8 /* UITabBarItem+Zest.m */; };
+		61BDB81C133CE1C60086DC2C /* UITableView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AADE130C2173007AFCC8 /* UITableView+Zest.m */; };
+		61BDB81E133CE1C70086DC2C /* UIView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAE0130C2173007AFCC8 /* UIView+Zest.m */; };
+		61BDB820133CE1C80086DC2C /* UIViewController+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAE2130C2173007AFCC8 /* UIViewController+Zest.m */; };
+		61BDB822133CE1C90086DC2C /* UIWebView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAE4130C2173007AFCC8 /* UIWebView+Zest.m */; };
 		8309AA40130B0EF6007AFCC8 /* NSString+ZestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA3F130B0EF6007AFCC8 /* NSString+ZestTests.m */; };
 		8309AAE6130C2173007AFCC8 /* NSFetchRequest+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA96130C2173007AFCC8 /* NSFetchRequest+Zest.m */; };
 		8309AAE7130C2173007AFCC8 /* NSManagedObject+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA98130C2173007AFCC8 /* NSManagedObject+Zest.m */; };
@@ -2301,6 +2340,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61BDB7D6133CE1AD0086DC2C /* NSFetchRequest+Zest.m in Sources */,
+				61BDB7D8133CE1AD0086DC2C /* NSManagedObject+Zest.m in Sources */,
+				61BDB7DA133CE1AE0086DC2C /* NSSortDescriptor+Zest.m in Sources */,
+				61BDB7DC133CE1AE0086DC2C /* NSArray+Zest.m in Sources */,
+				61BDB7DE133CE1AF0086DC2C /* NSData+Zest.m in Sources */,
+				61BDB7E0133CE1AF0086DC2C /* NSDate+Zest.m in Sources */,
+				61BDB7E2133CE1B00086DC2C /* NSDictionary+Zest.m in Sources */,
+				61BDB7E4133CE1B00086DC2C /* NSHTTPURLResponse+Zest.m in Sources */,
+				61BDB7E6133CE1B10086DC2C /* NSIndexPath+Zest.m in Sources */,
+				61BDB7E8133CE1B10086DC2C /* NSMutableArray+Zest.m in Sources */,
+				61BDB7EA133CE1B20086DC2C /* NSMutableData+Zest.m in Sources */,
+				61BDB7EC133CE1B30086DC2C /* NSMutableDictionary+Zest.m in Sources */,
+				61BDB7EE133CE1B30086DC2C /* NSMutableString+Zest.m in Sources */,
+				61BDB7F0133CE1B40086DC2C /* NSMutableURLRequest+Zest.m in Sources */,
+				61BDB7F2133CE1B40086DC2C /* NSNull+Zest.m in Sources */,
+				61BDB7F4133CE1B50086DC2C /* NSNumber+Zest.m in Sources */,
+				61BDB7F6133CE1B60086DC2C /* NSObject+Zest.m in Sources */,
+				61BDB7F8133CE1B60086DC2C /* NSSet+Zest.m in Sources */,
+				61BDB7FA133CE1B70086DC2C /* NSString+Zest.m in Sources */,
+				61BDB7FC133CE1B80086DC2C /* NSURL+Zest.m in Sources */,
+				61BDB7FE133CE1B80086DC2C /* NSURLResponse+Zest.m in Sources */,
+				61BDB800133CE1B90086DC2C /* NSUserDefaults+Zest.m in Sources */,
+				61BDB802133CE1BA0086DC2C /* NSManagedObjectContext+Zest.m in Sources */,
+				61BDB804133CE1BB0086DC2C /* MKMapView+Zest.m in Sources */,
+				61BDB806133CE1BB0086DC2C /* UIApplication+Zest.m in Sources */,
+				61BDB808133CE1BC0086DC2C /* UIBarButtonItem+Zest.m in Sources */,
+				61BDB80A133CE1BD0086DC2C /* UIButton+Zest.m in Sources */,
+				61BDB80C133CE1BE0086DC2C /* UIColor+Zest.m in Sources */,
+				61BDB80E133CE1BF0086DC2C /* UIImage+Zest.m in Sources */,
+				61BDB810133CE1C00086DC2C /* UIImageView+Zest.m in Sources */,
+				61BDB812133CE1C10086DC2C /* UILabel+Zest.m in Sources */,
+				61BDB814133CE1C20086DC2C /* UINavigationController+Zest.m in Sources */,
+				61BDB816133CE1C20086DC2C /* UIScreen+Zest.m in Sources */,
+				61BDB818133CE1C30086DC2C /* UIScrollView+Zest.m in Sources */,
+				61BDB81A133CE1C50086DC2C /* UITabBarItem+Zest.m in Sources */,
+				61BDB81C133CE1C60086DC2C /* UITableView+Zest.m in Sources */,
+				61BDB81E133CE1C70086DC2C /* UIView+Zest.m in Sources */,
+				61BDB820133CE1C80086DC2C /* UIViewController+Zest.m in Sources */,
+				61BDB822133CE1C90086DC2C /* UIWebView+Zest.m in Sources */,
 				835466DD130ABF84002A1947 /* DTAnalytics.m in Sources */,
 				835466E0130ABF84002A1947 /* AudioManager.m in Sources */,
 				835466E3130ABF84002A1947 /* AudioPlayer.m in Sources */,
@@ -2557,8 +2635,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/include/libxml2",
-					"$(SRCROOT)/../cocoa-bucks/cocoa-bucks/**",
+					"\"$(SRCROOT)/desiccant\"/**",
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+					"\"$(SRCROOT)/../cocoa-bucks/cocoa-bucks\"/**",
+					"\"desiccant/Classes/External/ISO-8601-parser\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lxml2";
@@ -2576,8 +2656,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/include/libxml2",
-					"$(SRCROOT)/../cocoa-bucks/cocoa-bucks/**",
+					"\"$(SRCROOT)/desiccant\"/**",
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+					"\"$(SRCROOT)/../cocoa-bucks/cocoa-bucks\"/**",
+					"\"desiccant/Classes/External/ISO-8601-parser\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_LDFLAGS = "-lxml2";
@@ -2597,7 +2679,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -2614,7 +2699,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

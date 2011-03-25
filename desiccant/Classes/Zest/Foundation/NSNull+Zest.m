@@ -32,3 +32,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugNSNull : NSObject {}
+@end
+@implementation FixCategoryBugNSNull
+@end

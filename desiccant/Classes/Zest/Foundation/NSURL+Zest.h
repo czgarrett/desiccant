@@ -27,3 +27,6 @@
 // Returns a dictionary containing the URL's decoded query parameters, if any
 - (NSDictionary *)queryParameters;
 @end
+
+@interface FixCategoryBugNSURL : NSObject {}
+@end

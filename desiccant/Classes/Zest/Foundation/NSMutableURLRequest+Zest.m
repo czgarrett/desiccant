@@ -24,3 +24,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugNSMutableURLRequest : NSObject {}
+@end
+@implementation FixCategoryBugNSMutableURLRequest
+@end

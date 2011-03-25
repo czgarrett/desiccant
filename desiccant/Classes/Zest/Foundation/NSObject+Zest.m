@@ -9,7 +9,6 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "NSObject+Zest.h"
-#import "Zest.h"
 
 @implementation NSObject (Zest)
 
@@ -174,7 +173,7 @@
 			else
 			{
 				// assume its a pointer and punt
-				DTLog(@"%@", type);
+				NSLog(@"%@", type);
 				void *ptr = va_arg(arguments, void *);
 				[inv setArgument:ptr atIndex:argcount++];
 			}
@@ -587,4 +586,10 @@
 }
 
 
+@end
+
+
+@interface FixCategoryBugNSObject : NSObject {}
+@end
+@implementation FixCategoryBugNSObject
 @end

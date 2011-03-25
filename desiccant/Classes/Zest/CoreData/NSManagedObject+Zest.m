@@ -25,3 +25,9 @@
 @end
 
 #endif
+
+
+@interface FixCategoryBugNSManagedObject : NSObject {}
+@end
+@implementation FixCategoryBugNSManagedObject
+@end

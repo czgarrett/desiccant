@@ -51,3 +51,9 @@
 
 
 @end
+
+
+@interface FixCategoryBugUIButton : NSObject {}
+@end
+@implementation FixCategoryBugUIButton
+@end

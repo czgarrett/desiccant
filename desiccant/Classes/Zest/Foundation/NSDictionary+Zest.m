@@ -7,8 +7,9 @@
 //
 
 #import "NSDictionary+Zest.h"
-#import "Zest.h"
 #import "NSString+Zest.h"
+#import "NSObject+Zest.h"
+#import "NSArray+Zest.h"
 
 @implementation NSDictionary(Zest)
 
@@ -120,4 +121,10 @@
 	return queryString;
 }
 
+@end
+
+
+@interface FixCategoryBugNSDictionary : NSObject {}
+@end
+@implementation FixCategoryBugNSDictionary
 @end

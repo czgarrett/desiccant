@@ -19,3 +19,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugNSMutableData : NSObject {}
+@end
+@implementation FixCategoryBugNSMutableData
+@end

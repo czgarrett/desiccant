@@ -6,8 +6,8 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
+#import "../../External/ISO-8601-parser/ISO8601DateFormatter.h"
 #import "NSDate+Zest.h"
-#import "ISO8601DateFormatter.h"
 
 #define DATE_COMPONENTS (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)
 #define CURRENT_CALENDAR [NSCalendar currentCalendar]
@@ -443,4 +443,10 @@
 	return [components year];
 }
 
+@end
+
+
+@interface FixCategoryBugNSDate : NSObject {}
+@end
+@implementation FixCategoryBugNSDate
 @end

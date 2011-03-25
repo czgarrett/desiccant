@@ -7,7 +7,6 @@
 //
 
 #import "UIWebView+Zest.h"
-#import "Zest.h"
 
 @implementation UIWebView(Zest)
 
@@ -17,11 +16,17 @@
    NSError *error = nil;
    NSString *fileContents = [NSString stringWithContentsOfFile: [mainBundle pathForResource: htmlResourceName ofType: @"html"] usedEncoding:&encoding error:&error];
    if (error) {
-      DTLog(@"Error reading file: %@", [error localizedDescription]);
+      NSLog(@"Error reading file: %@", [error localizedDescription]);
    } else {
       [self loadHTMLString: fileContents baseURL:[NSURL fileURLWithPath:[mainBundle resourcePath]]];         
    } 
 }
 
 
+@end
+
+
+@interface FixCategoryBugUIWebView : NSObject {}
+@end
+@implementation FixCategoryBugUIWebView
 @end

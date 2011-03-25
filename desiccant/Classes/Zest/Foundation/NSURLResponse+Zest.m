@@ -19,3 +19,8 @@
 }
 
 @end
+
+@interface FixCategoryBugNSURLResponse : NSObject {}
+@end
+@implementation FixCategoryBugNSURLResponse
+@end

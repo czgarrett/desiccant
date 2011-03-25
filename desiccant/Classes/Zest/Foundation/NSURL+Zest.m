@@ -119,7 +119,7 @@
 
 - (NSData *) cachedData {
     return [[[NSURLCache sharedURLCache] cachedResponseForRequest:self.to_request] data];
-}
+} 
 
 - (NSString *)pathExtension {
     return [[self path] pathExtension];
@@ -142,4 +142,7 @@
 	return params;
 }
 
+@end
+
+@implementation FixCategoryBugNSURL
 @end

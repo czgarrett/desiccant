@@ -21,3 +21,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugNSIndexPath : NSObject {}
+@end
+@implementation FixCategoryBugNSIndexPath
+@end

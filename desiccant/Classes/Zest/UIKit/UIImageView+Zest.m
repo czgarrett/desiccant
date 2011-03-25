@@ -32,3 +32,9 @@
 
 
 @end
+
+
+@interface FixCategoryBugUIImageView : NSObject {}
+@end
+@implementation FixCategoryBugUIImageView
+@end

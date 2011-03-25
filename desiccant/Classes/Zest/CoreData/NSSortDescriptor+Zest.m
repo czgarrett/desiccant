@@ -16,3 +16,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugNSSortDescriptor : NSObject {}
+@end
+@implementation FixCategoryBugNSSortDescriptor
+@end

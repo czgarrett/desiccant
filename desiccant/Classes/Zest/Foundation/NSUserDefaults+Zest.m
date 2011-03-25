@@ -56,3 +56,8 @@
 }
 
 @end
+
+@interface FixCategoryBugNSUserDefaults : NSObject {}
+@end
+@implementation FixCategoryBugNSUserDefaults
+@end

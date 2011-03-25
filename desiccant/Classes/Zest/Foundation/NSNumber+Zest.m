@@ -29,3 +29,9 @@
 
 
 @end
+
+
+@interface FixCategoryBugNSNumber : NSObject {}
+@end
+@implementation FixCategoryBugNSNumber
+@end

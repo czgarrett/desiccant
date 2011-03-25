@@ -21,3 +21,9 @@
 
 
 @end
+
+
+@interface FixCategoryBugUITabBarItem : NSObject {}
+@end
+@implementation FixCategoryBugUITabBarItem
+@end

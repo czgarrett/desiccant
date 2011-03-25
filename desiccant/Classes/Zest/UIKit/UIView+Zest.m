@@ -120,3 +120,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugUIView : NSObject {}
+@end
+@implementation FixCategoryBugUIView
+@end

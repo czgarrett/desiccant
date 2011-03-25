@@ -149,3 +149,9 @@ static char encodingTable[64] = {
 }
 
 @end
+
+
+@interface FixCategoryBugNSDataBase64 : NSObject {}
+@end
+@implementation FixCategoryBugNSDataBase64
+@end

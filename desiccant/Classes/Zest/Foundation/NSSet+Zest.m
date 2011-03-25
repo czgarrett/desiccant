@@ -9,3 +9,8 @@
 }
 
 @end
+
+@interface FixCategoryBugNSSet : NSObject {}
+@end
+@implementation FixCategoryBugNSSet
+@end

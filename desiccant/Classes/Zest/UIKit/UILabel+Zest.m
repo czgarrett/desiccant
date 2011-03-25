@@ -49,3 +49,9 @@
 }
 
 @end
+
+
+@interface FixCategoryBugUILabel : NSObject {}
+@end
+@implementation FixCategoryBugUILabel
+@end

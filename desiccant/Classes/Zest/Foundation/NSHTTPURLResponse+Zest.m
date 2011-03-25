@@ -30,3 +30,9 @@ NSString * const NSHTTPURLResponseErrorDomain = @"NSHTTPURLResponseErrorDomain";
 
 
 @end
+
+
+@interface FixCategoryBugNSHTTPURLResponse : NSObject {}
+@end
+@implementation FixCategoryBugNSHTTPURLResponse
+@end

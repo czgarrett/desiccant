@@ -81,3 +81,8 @@
 
 @end
 #endif
+
+@interface FixCategoryBugNSManagedObjectContext : NSObject {}
+@end
+@implementation FixCategoryBugNSManagedObjectContext
+@end
