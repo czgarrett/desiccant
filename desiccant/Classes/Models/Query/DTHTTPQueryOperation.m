@@ -122,6 +122,7 @@
 		NSLog(@"Error parsing response from URL: %@", url);
 		NSLog(@"Response body:");
 		NSLog(@"%@", self.responseData.to_s);
+      self.error = self.responseData.to_s;
 	}
 	[self completeOperationWithError:errorOccurredWhileParsing];
    [self release];
