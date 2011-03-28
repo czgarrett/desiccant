@@ -6,7 +6,6 @@
 //  Copyright 2009 ZWorkbench, Inc.. All rights reserved.
 //
 
-#ifdef __IPHONE_3_0
 #import "DTCoreDataApplicationDelegate.h"
 #import "Zest.h"
 
@@ -177,5 +176,3 @@
 
 
 @end
-
-#endif

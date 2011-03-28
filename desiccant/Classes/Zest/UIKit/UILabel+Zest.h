@@ -11,8 +11,10 @@
 
 @interface UILabel (Zest)
 
-- (id)initWithText:(NSString *)newText;
 + (UILabel *)labelWithText:(NSString *)text;
+
+- (id)initWithText:(NSString *)newText;
+
 - (CGFloat)heightToFitText;
 - (CGFloat)lineHeight;
 - (NSInteger)numberOfLinesToFitText;
