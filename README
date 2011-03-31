@@ -18,7 +18,12 @@ To convert an existing ClientProject to use an XCode 4 Workspace with Desiccant 
 
 From workspace root:
 
-git clone git@github.com:czgarrett/desiccant.git
+Copy libraries_init.rb to your workspace root.
+Run it.  This will set up cocoa-bucks and desiccant as submodules in your workspace.
+ruby libraries_init.rb
+
+5) If you wish to be able to edit and check code into desiccant:
+
 cd desiccant
 
 If branch doesn't exist:
@@ -31,10 +36,13 @@ git checkout -b client_project_branch_name origin/client_project_branch_name
 
 To allow non-devs to check out easily:
 
-cp desiccant/update_libraries.rb .
-mate update_libraries.rb
+cp desiccant/libraries_clone.rb .
 
-Edit update_libraries with your desiccant branch name
+Edit the file with your branch names
+
+mate libraries_clone.rb
+
+6)  Setting up XCode
 
 Drag the desiccant/Desiccant.xcodeproj file from the finder into the workspace navigator.  Be sure not to drag it into the existing project, but below it.
 
