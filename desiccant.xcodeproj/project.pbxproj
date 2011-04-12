@@ -488,6 +488,8 @@
 		83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3D130B0590002A1947 /* AudioToolbox.framework */; };
 		83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3E130B0590002A1947 /* AudioUnit.framework */; };
 		83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83725230132957D200555ADD /* libcocoa-bucks.a */; };
+		839D91931344CD08001FF554 /* DTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354652A130ABF84002A1947 /* DTViewController.m */; };
+		839D91951344CD34001FF554 /* DTReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354664E130ABF84002A1947 /* DTReachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2599,6 +2601,8 @@
 				8309AB0A130C2173007AFCC8 /* UIView+Zest.m in Sources */,
 				8309AB0B130C2173007AFCC8 /* UIViewController+Zest.m in Sources */,
 				8309AB0C130C2173007AFCC8 /* UIWebView+Zest.m in Sources */,
+				839D91931344CD08001FF554 /* DTViewController.m in Sources */,
+				839D91951344CD34001FF554 /* DTReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

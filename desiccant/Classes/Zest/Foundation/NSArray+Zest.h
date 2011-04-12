@@ -17,6 +17,7 @@
 - (NSMutableArray *)mutableArrayAtIndex:(NSUInteger)index;
 
 - (NSArray *) arrayByRemovingObject: (id) object;
+- (NSArray *) arrayByRemovingObjectAtIndex: (NSInteger) indexToRemove;
 
 - (NSMutableArray *) collectWithSelector: (SEL) selector;
 

@@ -47,6 +47,18 @@
    return result;
 }
 
+- (NSArray *) arrayByRemovingObjectAtIndex: (NSInteger) indexToRemove {
+   NSMutableArray *result = [NSMutableArray array];
+   NSInteger index = 0;
+   for (id obj in self) {
+      if (index != indexToRemove) {
+         [result addObject: obj];
+      }
+      index++;
+   }
+   return result;
+}
+
 - (NSMutableArray *) collectWithSelector: (SEL) selector {
    NSMutableArray *result = [NSMutableArray array];
    for (NSObject *object in self) {
