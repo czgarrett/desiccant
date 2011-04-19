@@ -299,12 +299,6 @@ static NSString *const kSDURLCacheInfoSizesKey = @"sizes";
 
 - (void)storeCachedResponse:(NSCachedURLResponse *)cachedResponse forRequest:(NSURLRequest *)request
 {
-   if ([cachedResponse.data length] < 20) {
-      NSLog(@"Caching bad data for URL: %@", request.URL);
-   } else {
-      NSLog(@"Caching good data for URL: %@", request.URL);
-      NSLog(@"foo");
-   }
     if (request.cachePolicy == NSURLRequestReloadIgnoringLocalCacheData
         || request.cachePolicy == NSURLRequestReloadIgnoringLocalAndRemoteCacheData
         || request.cachePolicy == NSURLRequestReloadIgnoringCacheData)
