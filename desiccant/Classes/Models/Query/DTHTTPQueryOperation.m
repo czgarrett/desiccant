@@ -49,7 +49,7 @@
 }
 
 - (id)initWithURL:(NSURL *)theURL delegate:(NSObject <DTAsyncQueryOperationDelegate> *)theDelegate {
-	if (self = [super initWithDelegate:theDelegate]) {
+	if ((self = [super initWithDelegate:theDelegate])) {
 		self.url = theURL;
 		self.method = @"GET";
 	}
