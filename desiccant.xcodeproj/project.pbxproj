@@ -56,6 +56,9 @@
 		8309AB1D130C2234007AFCC8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB14130C2233007AFCC8 /* Security.framework */; };
 		8309AB1E130C2234007AFCC8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */; };
 		8309AB1F130C2287007AFCC8 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546597130ABF84002A1947 /* ISO8601DateFormatter.m */; };
+		8337F58913608F9B00A29D49 /* NSDateFormatter+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */; };
+		8337F58A13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */; };
+		8337F58B13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */; };
 		83546469130ABBEB002A1947 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546468130ABBEB002A1947 /* Foundation.framework */; };
 		83546475130ABBEB002A1947 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546468130ABBEB002A1947 /* Foundation.framework */; };
 		83546480130ABBEB002A1947 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8354647E130ABBEB002A1947 /* InfoPlist.strings */; };
@@ -636,6 +639,8 @@
 		8309AB12130C2232007AFCC8 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		8309AB14130C2233007AFCC8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Zest.h"; sourceTree = "<group>"; };
+		8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Zest.m"; sourceTree = "<group>"; };
 		83546465130ABBEB002A1947 /* libdesiccant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdesiccant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		83546468130ABBEB002A1947 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8354646C130ABBEB002A1947 /* desiccant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "desiccant-Prefix.pch"; sourceTree = "<group>"; };
@@ -1272,6 +1277,8 @@
 				8309AABF130C2173007AFCC8 /* NSURLResponse+Zest.m */,
 				8309AAC0130C2173007AFCC8 /* NSUserDefaults+Zest.h */,
 				8309AAC1130C2173007AFCC8 /* NSUserDefaults+Zest.m */,
+				8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */,
+				8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -2496,6 +2503,7 @@
 				835469DB130ABF85002A1947 /* UIViewController+Zest.h in Headers */,
 				835469DE130ABF85002A1947 /* UIWebView+Zest.h in Headers */,
 				835469E1130ABF85002A1947 /* Zest.h in Headers */,
+				8337F58913608F9B00A29D49 /* NSDateFormatter+Zest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2807,6 +2815,7 @@
 				835469D9130ABF85002A1947 /* UIView+Zest.m in Sources */,
 				835469DC130ABF85002A1947 /* UIViewController+Zest.m in Sources */,
 				835469DF130ABF85002A1947 /* UIWebView+Zest.m in Sources */,
+				8337F58A13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2855,6 +2864,7 @@
 				8309AB0A130C2173007AFCC8 /* UIView+Zest.m in Sources */,
 				8309AB0B130C2173007AFCC8 /* UIViewController+Zest.m in Sources */,
 				8309AB0C130C2173007AFCC8 /* UIWebView+Zest.m in Sources */,
+				8337F58B13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
