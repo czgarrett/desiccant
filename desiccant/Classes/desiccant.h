@@ -10,4 +10,5 @@
 #import "desiccant_models.h"
 #import "desiccant_controllers.h"
 #import "desiccant_views.h"
+#import "DTAudioStreamer.h"
 #import "DTSingleton.h"

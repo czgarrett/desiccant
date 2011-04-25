@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		615D44661349D64E00CDD0C2 /* DTAudioStreamer.h in Headers */ = {isa = PBXBuildFile; fileRef = 615D44641349D64E00CDD0C2 /* DTAudioStreamer.h */; };
+		615D44671349D64E00CDD0C2 /* DTAudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 615D44651349D64E00CDD0C2 /* DTAudioStreamer.m */; };
 		61BDB7D6133CE1AD0086DC2C /* NSFetchRequest+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA96130C2173007AFCC8 /* NSFetchRequest+Zest.m */; };
 		61BDB7D8133CE1AD0086DC2C /* NSManagedObject+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA98130C2173007AFCC8 /* NSManagedObject+Zest.m */; };
 		61BDB7DA133CE1AE0086DC2C /* NSSortDescriptor+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA9A130C2173007AFCC8 /* NSSortDescriptor+Zest.m */; };
@@ -504,6 +506,8 @@
 
 /* Begin PBXFileReference section */
 		612D48B1132ADD5B00105FEB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		615D44641349D64E00CDD0C2 /* DTAudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTAudioStreamer.h; sourceTree = "<group>"; };
+		615D44651349D64E00CDD0C2 /* DTAudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTAudioStreamer.m; sourceTree = "<group>"; };
 		8309AA3E130B0EF6007AFCC8 /* NSString+ZestTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZestTests.h"; sourceTree = "<group>"; };
 		8309AA3F130B0EF6007AFCC8 /* NSString+ZestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZestTests.m"; sourceTree = "<group>"; };
 		8309AA95130C2173007AFCC8 /* NSFetchRequest+Zest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+Zest.h"; sourceTree = "<group>"; };
@@ -1324,6 +1328,8 @@
 		835464AB130ABF84002A1947 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				615D44641349D64E00CDD0C2 /* DTAudioStreamer.h */,
+				615D44651349D64E00CDD0C2 /* DTAudioStreamer.m */,
 				835464AC130ABF84002A1947 /* AudioManager.h */,
 				835464AD130ABF84002A1947 /* AudioManager.m */,
 				835464AE130ABF84002A1947 /* AudioPlayer.h */,
@@ -2242,6 +2248,7 @@
 				83546963130ABF85002A1947 /* DTWebTableViewCell.h in Headers */,
 				83546966130ABF85002A1947 /* EditableCell.h in Headers */,
 				83546969130ABF85002A1947 /* UITableViewCellFixed.h in Headers */,
+				615D44661349D64E00CDD0C2 /* DTAudioStreamer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2553,6 +2560,7 @@
 				83546964130ABF85002A1947 /* DTWebTableViewCell.m in Sources */,
 				83546967130ABF85002A1947 /* EditableCell.m in Sources */,
 				8354696A130ABF85002A1947 /* UITableViewCellFixed.m in Sources */,
+				615D44671349D64E00CDD0C2 /* DTAudioStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
