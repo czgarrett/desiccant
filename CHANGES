@@ -1,3 +1,7 @@
+Changes committed Apr 25, 2011 by Curtis Duhn
+- DTImageView alwaysCacheToDisk property, if set to YES, always caches asynchronously loaded images to disk regardless of response headers
+- DTAudioStreamer singleton streams audio content from remote URL, signals UI front-end via notifications.
+
 Changes committed Mar 23, 2011 by Curtis Duhn
 - Changed DTLog to print without timestamp line noise, with lines separated by "--"
 - Changed "(self = [super init])" idiom to "((self = [super init]))" to silence warnings.
