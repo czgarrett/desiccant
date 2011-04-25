@@ -15,7 +15,7 @@
 @end
 
 @implementation DTImageView
-@synthesize connection, data, defaultImage, delegate;
+@synthesize connection, data, defaultImage, delegate, alwaysCacheToDisk;
 
 - (void)dealloc {
     [connection cancel];
@@ -62,7 +62,17 @@
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-	return cachedResponse;
+    if (self.alwaysCacheToDisk) {
+        NSCachedURLResponse *memOnlyCachedResponse =
+        [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response
+                                                 data:cachedResponse.data
+                                             userInfo:cachedResponse.userInfo
+                                        storagePolicy:NSURLCacheStorageAllowed];
+        return [memOnlyCachedResponse autorelease];
+    }
+    else {
+        return cachedResponse;
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
