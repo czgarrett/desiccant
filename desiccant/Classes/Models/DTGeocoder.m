@@ -11,6 +11,7 @@
 #import "NSString+SBJSON.h"
 #import "NSDictionary+Zest.h"
 #import "Zest.h"
+#import "CBucks.h"
 
 NSString * const kStatusOk = @"OK";
 NSString * const kStatusZeroResults = @"ZERO_RESULTS";

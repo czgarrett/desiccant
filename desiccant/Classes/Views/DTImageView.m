@@ -47,6 +47,7 @@
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else {
+         NSLog(@"Loading uncached image: %@", url);
          self.image = defaultImage;
          self.data = [NSMutableData data];
          NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -79,7 +80,10 @@
     [theConnection cancel];
     self.connection = nil;
     if (data) self.image = [UIImage imageWithData:data];
-    if (!self.image) self.image = defaultImage;
+   if (!self.image) {
+      NSLog(@"Didn't load, data size was %d", [data length]);
+      self.image = defaultImage;  
+   }
     self.data = nil;
     [delegate imageViewDidFinishLoading:self];
 }

@@ -123,9 +123,10 @@
     }
 	BOOL errorOccurredWhileParsing = ![self parseResponseData];
 	if (errorOccurredWhileParsing) {
-		DTLog(@"Error parsing response from URL: %@", url);
-		DTLog(@"Response body:");
-		DTLog(@"%@", self.responseData.to_s);
+		NSLog(@"Error parsing response from URL: %@", url);
+		NSLog(@"Response body:");
+		NSLog(@"%@", self.responseData.to_s);
+      self.error = self.responseData.to_s;
 	}
 	[self completeOperationWithError:errorOccurredWhileParsing];
    [self release];

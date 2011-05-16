@@ -118,8 +118,15 @@
 }
 
 - (NSData *) cachedData {
-    return [[[NSURLCache sharedURLCache] cachedResponseForRequest:self.to_request] data];
-} 
+   NSCachedURLResponse *response = [[NSURLCache sharedURLCache] cachedResponseForRequest: self.to_request];
+   NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)[response response];
+   if ([httpResponse statusCode] >= 300 && [httpResponse statusCode] < 400) {
+      NSURL *redirectURL = [NSURL URLWithString: [[httpResponse allHeaderFields] objectForKey: @"Location"]];
+      return [redirectURL cachedData];
+   } else {
+      return [response data];
+   }
+}
 
 - (NSString *)pathExtension {
     return [[self path] pathExtension];

@@ -46,8 +46,12 @@
 {
     SBJsonParser *jsonParser = [SBJsonParser new];
     id repr = [jsonParser objectWithString:self];
-    if (!repr)
-        NSLog(@"-JSONValue failed. Error trace is: %@", [jsonParser errorTrace]);
+   if (!repr) {
+      NSLog(@"-JSONValue failed. Error trace is: %@", [jsonParser errorTrace]);
+      NSLog(@"Attempted to parse:");
+      NSLog(@"%@", self);
+   }
+      
     [jsonParser release];
     return repr;
 }

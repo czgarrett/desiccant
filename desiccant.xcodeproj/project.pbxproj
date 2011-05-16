@@ -94,14 +94,14 @@
 		8309AB19130C2234007AFCC8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB10130C2232007AFCC8 /* CoreData.framework */; };
 		8309AB1A130C2234007AFCC8 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB11130C2232007AFCC8 /* libxml2.2.dylib */; };
 		8309AB1B130C2234007AFCC8 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB12130C2232007AFCC8 /* libz.1.2.3.dylib */; };
-		8309AB1C130C2234007AFCC8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB13130C2232007AFCC8 /* MapKit.framework */; };
 		8309AB1D130C2234007AFCC8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB14130C2233007AFCC8 /* Security.framework */; };
 		8309AB1E130C2234007AFCC8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */; };
 		8309AB1F130C2287007AFCC8 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546597130ABF84002A1947 /* ISO8601DateFormatter.m */; };
+		8337F58913608F9B00A29D49 /* NSDateFormatter+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */; };
+		8337F58A13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */; };
+		8337F58B13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */; };
 		83546469130ABBEB002A1947 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546468130ABBEB002A1947 /* Foundation.framework */; };
-		83546474130ABBEB002A1947 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546473130ABBEB002A1947 /* UIKit.framework */; };
 		83546475130ABBEB002A1947 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546468130ABBEB002A1947 /* Foundation.framework */; };
-		83546477130ABBEB002A1947 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546476130ABBEB002A1947 /* CoreGraphics.framework */; };
 		83546480130ABBEB002A1947 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8354647E130ABBEB002A1947 /* InfoPlist.strings */; };
 		835466DC130ABF84002A1947 /* DTAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464A9130ABF84002A1947 /* DTAnalytics.h */; };
 		835466DD130ABF84002A1947 /* DTAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464AA130ABF84002A1947 /* DTAnalytics.m */; };
@@ -474,24 +474,33 @@
 		83546969130ABF85002A1947 /* UITableViewCellFixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546687130ABF84002A1947 /* UITableViewCellFixed.h */; };
 		8354696A130ABF85002A1947 /* UITableViewCellFixed.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546688130ABF84002A1947 /* UITableViewCellFixed.m */; };
 		83546A16130AC162002A1947 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A15130AC162002A1947 /* CoreGraphics.framework */; };
-		83546A22130AC20E002A1947 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A17130AC20E002A1947 /* CoreData.framework */; };
 		83546A23130AC20E002A1947 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A18130AC20E002A1947 /* CoreLocation.framework */; };
 		83546A24130AC20E002A1947 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A19130AC20E002A1947 /* libsqlite3.0.dylib */; };
-		83546A25130AC20E002A1947 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1A130AC20E002A1947 /* libxml2.2.dylib */; };
 		83546A26130AC20E002A1947 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1B130AC20E002A1947 /* MapKit.framework */; };
 		83546A27130AC20E002A1947 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1C130AC20E002A1947 /* MessageUI.framework */; };
 		83546A28130AC20E002A1947 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1D130AC20E002A1947 /* MobileCoreServices.framework */; };
 		83546A29130AC20F002A1947 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1E130AC20E002A1947 /* QuartzCore.framework */; };
-		83546A2A130AC20F002A1947 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1F130AC20E002A1947 /* Security.framework */; };
-		83546A2B130AC20F002A1947 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A20130AC20E002A1947 /* SystemConfiguration.framework */; };
 		83546A2C130AC20F002A1947 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A21130AC20E002A1947 /* UIKit.framework */; };
-		83546A3B130B0543002A1947 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A39130B0542002A1947 /* AddressBook.framework */; };
-		83546A3C130B0543002A1947 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3A130B0542002A1947 /* AddressBookUI.framework */; };
 		83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3D130B0590002A1947 /* AudioToolbox.framework */; };
-		83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3E130B0590002A1947 /* AudioUnit.framework */; };
 		83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83725230132957D200555ADD /* libcocoa-bucks.a */; };
 		839D91931344CD08001FF554 /* DTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354652A130ABF84002A1947 /* DTViewController.m */; };
 		839D91951344CD34001FF554 /* DTReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354664E130ABF84002A1947 /* DTReachability.m */; };
+		83C75D091337BAB0006AD83A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB0D130C2231007AFCC8 /* AddressBook.framework */; };
+		83C75D0A1337BB11006AD83A /* libcocoa-bucks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83725230132957D200555ADD /* libcocoa-bucks.a */; };
+		83C75D0B1337BB17006AD83A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB0E130C2231007AFCC8 /* AddressBookUI.framework */; };
+		83C75D0C1337BB1D006AD83A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB10130C2232007AFCC8 /* CoreData.framework */; };
+		83C75D0D1337BB28006AD83A /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB11130C2232007AFCC8 /* libxml2.2.dylib */; };
+		83C75D0E1337BB28006AD83A /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB12130C2232007AFCC8 /* libz.1.2.3.dylib */; };
+		83C75D0F1337BB34006AD83A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB14130C2233007AFCC8 /* Security.framework */; };
+		83C75D101337BB34006AD83A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */; };
+		83C75D121337BB3D006AD83A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A18130AC20E002A1947 /* CoreLocation.framework */; };
+		83C75D131337BB41006AD83A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A19130AC20E002A1947 /* libsqlite3.0.dylib */; };
+		83C75D141337BB4D006AD83A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1B130AC20E002A1947 /* MapKit.framework */; };
+		83C75D151337BB4D006AD83A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1C130AC20E002A1947 /* MessageUI.framework */; };
+		83C75D161337BB4D006AD83A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1D130AC20E002A1947 /* MobileCoreServices.framework */; };
+		83C75D171337BB4D006AD83A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1E130AC20E002A1947 /* QuartzCore.framework */; };
+		83C75D181337BB4D006AD83A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A21130AC20E002A1947 /* UIKit.framework */; };
+		83C75D191337BB4D006AD83A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A15130AC162002A1947 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -595,15 +604,14 @@
 		8309AB10130C2232007AFCC8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8309AB11130C2232007AFCC8 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		8309AB12130C2232007AFCC8 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
-		8309AB13130C2232007AFCC8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8309AB14130C2233007AFCC8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Zest.h"; sourceTree = "<group>"; };
+		8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Zest.m"; sourceTree = "<group>"; };
 		83546465130ABBEB002A1947 /* libdesiccant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdesiccant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		83546468130ABBEB002A1947 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8354646C130ABBEB002A1947 /* desiccant-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "desiccant-Prefix.pch"; sourceTree = "<group>"; };
 		83546472130ABBEB002A1947 /* desiccantTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = desiccantTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83546473130ABBEB002A1947 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		83546476130ABBEB002A1947 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8354647D130ABBEB002A1947 /* desiccantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "desiccantTests-Info.plist"; sourceTree = "<group>"; };
 		8354647F130ABBEB002A1947 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83546481130ABBEB002A1947 /* desiccantTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "desiccantTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -1000,23 +1008,14 @@
 		835469FF130ABF9C002A1947 /* DTSingleTextViewEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTSingleTextViewEditorViewController.xib; sourceTree = "<group>"; };
 		83546A01130ABF9C002A1947 /* DTTextEditorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTTextEditorCell.xib; sourceTree = "<group>"; };
 		83546A15130AC162002A1947 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		83546A17130AC20E002A1947 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		83546A18130AC20E002A1947 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		83546A19130AC20E002A1947 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		83546A1A130AC20E002A1947 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		83546A1B130AC20E002A1947 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83546A1C130AC20E002A1947 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		83546A1D130AC20E002A1947 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		83546A1E130AC20E002A1947 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		83546A1F130AC20E002A1947 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		83546A20130AC20E002A1947 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		83546A21130AC20E002A1947 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		83546A34130B0507002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		83546A35130B0507002A1947 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		83546A39130B0542002A1947 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		83546A3A130B0542002A1947 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		83546A3D130B0590002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		83546A3E130B0590002A1947 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		83725230132957D200555ADD /* libcocoa-bucks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libcocoa-bucks.a"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -1027,22 +1026,22 @@
 			files = (
 				83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */,
 				83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */,
-				83546A40130B0591002A1947 /* AudioUnit.framework in Frameworks */,
-				83546A3B130B0543002A1947 /* AddressBook.framework in Frameworks */,
-				83546A3C130B0543002A1947 /* AddressBookUI.framework in Frameworks */,
-				83546A22130AC20E002A1947 /* CoreData.framework in Frameworks */,
 				83546A23130AC20E002A1947 /* CoreLocation.framework in Frameworks */,
 				83546A24130AC20E002A1947 /* libsqlite3.0.dylib in Frameworks */,
-				83546A25130AC20E002A1947 /* libxml2.2.dylib in Frameworks */,
 				83546A26130AC20E002A1947 /* MapKit.framework in Frameworks */,
 				83546A27130AC20E002A1947 /* MessageUI.framework in Frameworks */,
 				83546A28130AC20E002A1947 /* MobileCoreServices.framework in Frameworks */,
 				83546A29130AC20F002A1947 /* QuartzCore.framework in Frameworks */,
-				83546A2A130AC20F002A1947 /* Security.framework in Frameworks */,
-				83546A2B130AC20F002A1947 /* SystemConfiguration.framework in Frameworks */,
 				83546A2C130AC20F002A1947 /* UIKit.framework in Frameworks */,
 				83546A16130AC162002A1947 /* CoreGraphics.framework in Frameworks */,
 				83546469130ABBEB002A1947 /* Foundation.framework in Frameworks */,
+				83C75D091337BAB0006AD83A /* AddressBook.framework in Frameworks */,
+				83C75D0B1337BB17006AD83A /* AddressBookUI.framework in Frameworks */,
+				83C75D0C1337BB1D006AD83A /* CoreData.framework in Frameworks */,
+				83C75D0D1337BB28006AD83A /* libxml2.2.dylib in Frameworks */,
+				83C75D0E1337BB28006AD83A /* libz.1.2.3.dylib in Frameworks */,
+				83C75D0F1337BB34006AD83A /* Security.framework in Frameworks */,
+				83C75D101337BB34006AD83A /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,12 +1055,18 @@
 				8309AB19130C2234007AFCC8 /* CoreData.framework in Frameworks */,
 				8309AB1A130C2234007AFCC8 /* libxml2.2.dylib in Frameworks */,
 				8309AB1B130C2234007AFCC8 /* libz.1.2.3.dylib in Frameworks */,
-				8309AB1C130C2234007AFCC8 /* MapKit.framework in Frameworks */,
 				8309AB1D130C2234007AFCC8 /* Security.framework in Frameworks */,
 				8309AB1E130C2234007AFCC8 /* SystemConfiguration.framework in Frameworks */,
-				83546474130ABBEB002A1947 /* UIKit.framework in Frameworks */,
 				83546475130ABBEB002A1947 /* Foundation.framework in Frameworks */,
-				83546477130ABBEB002A1947 /* CoreGraphics.framework in Frameworks */,
+				83C75D0A1337BB11006AD83A /* libcocoa-bucks.a in Frameworks */,
+				83C75D121337BB3D006AD83A /* CoreLocation.framework in Frameworks */,
+				83C75D131337BB41006AD83A /* libsqlite3.0.dylib in Frameworks */,
+				83C75D141337BB4D006AD83A /* MapKit.framework in Frameworks */,
+				83C75D151337BB4D006AD83A /* MessageUI.framework in Frameworks */,
+				83C75D161337BB4D006AD83A /* MobileCoreServices.framework in Frameworks */,
+				83C75D171337BB4D006AD83A /* QuartzCore.framework in Frameworks */,
+				83C75D181337BB4D006AD83A /* UIKit.framework in Frameworks */,
+				83C75D191337BB4D006AD83A /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,6 +1165,8 @@
 				8309AABF130C2173007AFCC8 /* NSURLResponse+Zest.m */,
 				8309AAC0130C2173007AFCC8 /* NSUserDefaults+Zest.h */,
 				8309AAC1130C2173007AFCC8 /* NSUserDefaults+Zest.m */,
+				8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */,
+				8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1233,30 +1240,18 @@
 				8309AB10130C2232007AFCC8 /* CoreData.framework */,
 				8309AB11130C2232007AFCC8 /* libxml2.2.dylib */,
 				8309AB12130C2232007AFCC8 /* libz.1.2.3.dylib */,
-				8309AB13130C2232007AFCC8 /* MapKit.framework */,
 				8309AB14130C2233007AFCC8 /* Security.framework */,
 				8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */,
 				83546A3D130B0590002A1947 /* AudioToolbox.framework */,
-				83546A3E130B0590002A1947 /* AudioUnit.framework */,
-				83546A39130B0542002A1947 /* AddressBook.framework */,
-				83546A3A130B0542002A1947 /* AddressBookUI.framework */,
-				83546A34130B0507002A1947 /* AudioToolbox.framework */,
-				83546A35130B0507002A1947 /* AudioUnit.framework */,
-				83546A17130AC20E002A1947 /* CoreData.framework */,
 				83546A18130AC20E002A1947 /* CoreLocation.framework */,
 				83546A19130AC20E002A1947 /* libsqlite3.0.dylib */,
-				83546A1A130AC20E002A1947 /* libxml2.2.dylib */,
 				83546A1B130AC20E002A1947 /* MapKit.framework */,
 				83546A1C130AC20E002A1947 /* MessageUI.framework */,
 				83546A1D130AC20E002A1947 /* MobileCoreServices.framework */,
 				83546A1E130AC20E002A1947 /* QuartzCore.framework */,
-				83546A1F130AC20E002A1947 /* Security.framework */,
-				83546A20130AC20E002A1947 /* SystemConfiguration.framework */,
 				83546A21130AC20E002A1947 /* UIKit.framework */,
 				83546A15130AC162002A1947 /* CoreGraphics.framework */,
 				83546468130ABBEB002A1947 /* Foundation.framework */,
-				83546473130ABBEB002A1947 /* UIKit.framework */,
-				83546476130ABBEB002A1947 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2249,6 +2244,47 @@
 				83546966130ABF85002A1947 /* EditableCell.h in Headers */,
 				83546969130ABF85002A1947 /* UITableViewCellFixed.h in Headers */,
 				615D44661349D64E00CDD0C2 /* DTAudioStreamer.h in Headers */,
+				8354696C130ABF85002A1947 /* NSFetchRequest+Zest.h in Headers */,
+				8354696F130ABF85002A1947 /* NSManagedObject+Zest.h in Headers */,
+				83546972130ABF85002A1947 /* NSSortDescriptor+Zest.h in Headers */,
+				83546975130ABF85002A1947 /* NSArray+Zest.h in Headers */,
+				83546978130ABF85002A1947 /* NSData+Zest.h in Headers */,
+				8354697B130ABF85002A1947 /* NSDate+Zest.h in Headers */,
+				8354697E130ABF85002A1947 /* NSDictionary+Zest.h in Headers */,
+				83546981130ABF85002A1947 /* NSHTTPURLResponse+Zest.h in Headers */,
+				83546984130ABF85002A1947 /* NSIndexPath+Zest.h in Headers */,
+				83546987130ABF85002A1947 /* NSMutableArray+Zest.h in Headers */,
+				8354698A130ABF85002A1947 /* NSMutableData+Zest.h in Headers */,
+				8354698D130ABF85002A1947 /* NSMutableDictionary+Zest.h in Headers */,
+				83546990130ABF85002A1947 /* NSMutableString+Zest.h in Headers */,
+				83546993130ABF85002A1947 /* NSMutableURLRequest+Zest.h in Headers */,
+				83546996130ABF85002A1947 /* NSNull+Zest.h in Headers */,
+				83546999130ABF85002A1947 /* NSNumber+Zest.h in Headers */,
+				8354699C130ABF85002A1947 /* NSObject+Zest.h in Headers */,
+				8354699F130ABF85002A1947 /* NSSet+Zest.h in Headers */,
+				835469A2130ABF85002A1947 /* NSString+Zest.h in Headers */,
+				835469A5130ABF85002A1947 /* NSURL+Zest.h in Headers */,
+				835469A8130ABF85002A1947 /* NSURLResponse+Zest.h in Headers */,
+				835469AB130ABF85002A1947 /* NSUserDefaults+Zest.h in Headers */,
+				835469AE130ABF85002A1947 /* NSManagedObjectContext+Zest.h in Headers */,
+				835469B1130ABF85002A1947 /* MKMapView+Zest.h in Headers */,
+				835469B4130ABF85002A1947 /* UIApplication+Zest.h in Headers */,
+				835469B7130ABF85002A1947 /* UIBarButtonItem+Zest.h in Headers */,
+				835469BA130ABF85002A1947 /* UIButton+Zest.h in Headers */,
+				835469BD130ABF85002A1947 /* UIColor+Zest.h in Headers */,
+				835469C0130ABF85002A1947 /* UIImage+Zest.h in Headers */,
+				835469C3130ABF85002A1947 /* UIImageView+Zest.h in Headers */,
+				835469C6130ABF85002A1947 /* UILabel+Zest.h in Headers */,
+				835469C9130ABF85002A1947 /* UINavigationController+Zest.h in Headers */,
+				835469CC130ABF85002A1947 /* UIScreen+Zest.h in Headers */,
+				835469CF130ABF85002A1947 /* UIScrollView+Zest.h in Headers */,
+				835469D2130ABF85002A1947 /* UITabBarItem+Zest.h in Headers */,
+				835469D5130ABF85002A1947 /* UITableView+Zest.h in Headers */,
+				835469D8130ABF85002A1947 /* UIView+Zest.h in Headers */,
+				835469DB130ABF85002A1947 /* UIViewController+Zest.h in Headers */,
+				835469DE130ABF85002A1947 /* UIWebView+Zest.h in Headers */,
+				835469E1130ABF85002A1947 /* Zest.h in Headers */,
+				8337F58913608F9B00A29D49 /* NSDateFormatter+Zest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2561,6 +2597,46 @@
 				83546967130ABF85002A1947 /* EditableCell.m in Sources */,
 				8354696A130ABF85002A1947 /* UITableViewCellFixed.m in Sources */,
 				615D44671349D64E00CDD0C2 /* DTAudioStreamer.m in Sources */,
+				8354696D130ABF85002A1947 /* NSFetchRequest+Zest.m in Sources */,
+				83546970130ABF85002A1947 /* NSManagedObject+Zest.m in Sources */,
+				83546973130ABF85002A1947 /* NSSortDescriptor+Zest.m in Sources */,
+				83546976130ABF85002A1947 /* NSArray+Zest.m in Sources */,
+				83546979130ABF85002A1947 /* NSData+Zest.m in Sources */,
+				8354697C130ABF85002A1947 /* NSDate+Zest.m in Sources */,
+				8354697F130ABF85002A1947 /* NSDictionary+Zest.m in Sources */,
+				83546982130ABF85002A1947 /* NSHTTPURLResponse+Zest.m in Sources */,
+				83546985130ABF85002A1947 /* NSIndexPath+Zest.m in Sources */,
+				83546988130ABF85002A1947 /* NSMutableArray+Zest.m in Sources */,
+				8354698B130ABF85002A1947 /* NSMutableData+Zest.m in Sources */,
+				8354698E130ABF85002A1947 /* NSMutableDictionary+Zest.m in Sources */,
+				83546991130ABF85002A1947 /* NSMutableString+Zest.m in Sources */,
+				83546994130ABF85002A1947 /* NSMutableURLRequest+Zest.m in Sources */,
+				83546997130ABF85002A1947 /* NSNull+Zest.m in Sources */,
+				8354699A130ABF85002A1947 /* NSNumber+Zest.m in Sources */,
+				8354699D130ABF85002A1947 /* NSObject+Zest.m in Sources */,
+				835469A0130ABF85002A1947 /* NSSet+Zest.m in Sources */,
+				835469A3130ABF85002A1947 /* NSString+Zest.m in Sources */,
+				835469A6130ABF85002A1947 /* NSURL+Zest.m in Sources */,
+				835469A9130ABF85002A1947 /* NSURLResponse+Zest.m in Sources */,
+				835469AC130ABF85002A1947 /* NSUserDefaults+Zest.m in Sources */,
+				835469AF130ABF85002A1947 /* NSManagedObjectContext+Zest.m in Sources */,
+				835469B2130ABF85002A1947 /* MKMapView+Zest.m in Sources */,
+				835469B5130ABF85002A1947 /* UIApplication+Zest.m in Sources */,
+				835469B8130ABF85002A1947 /* UIBarButtonItem+Zest.m in Sources */,
+				835469BB130ABF85002A1947 /* UIButton+Zest.m in Sources */,
+				835469BE130ABF85002A1947 /* UIColor+Zest.m in Sources */,
+				835469C1130ABF85002A1947 /* UIImage+Zest.m in Sources */,
+				835469C4130ABF85002A1947 /* UIImageView+Zest.m in Sources */,
+				835469C7130ABF85002A1947 /* UILabel+Zest.m in Sources */,
+				835469CA130ABF85002A1947 /* UINavigationController+Zest.m in Sources */,
+				835469CD130ABF85002A1947 /* UIScreen+Zest.m in Sources */,
+				835469D0130ABF85002A1947 /* UIScrollView+Zest.m in Sources */,
+				835469D3130ABF85002A1947 /* UITabBarItem+Zest.m in Sources */,
+				835469D6130ABF85002A1947 /* UITableView+Zest.m in Sources */,
+				835469D9130ABF85002A1947 /* UIView+Zest.m in Sources */,
+				835469DC130ABF85002A1947 /* UIViewController+Zest.m in Sources */,
+				835469DF130ABF85002A1947 /* UIWebView+Zest.m in Sources */,
+				8337F58A13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2611,6 +2687,7 @@
 				8309AB0C130C2173007AFCC8 /* UIWebView+Zest.m in Sources */,
 				839D91931344CD08001FF554 /* DTViewController.m in Sources */,
 				839D91951344CD34001FF554 /* DTReachability.m in Sources */,
+				8337F58B13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2731,6 +2808,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "desiccantTests/desiccantTests-Prefix.pch";
 				INFOPLIST_FILE = "desiccantTests/desiccantTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -2751,6 +2832,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "desiccantTests/desiccantTests-Prefix.pch";
 				INFOPLIST_FILE = "desiccantTests/desiccantTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
