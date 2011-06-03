@@ -15,7 +15,7 @@
 @end
 
 @implementation DTImageView
-@synthesize connection, data, defaultImage, delegate;
+@synthesize connection, data, defaultImage, delegate, alwaysCacheToDisk;
 
 - (void)dealloc {
     [connection cancel];
@@ -47,6 +47,7 @@
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else {
+         NSLog(@"Loading uncached image: %@", url);
          self.image = defaultImage;
          self.data = [NSMutableData data];
          NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -62,14 +63,27 @@
 }
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
-	return cachedResponse;
+    if (self.alwaysCacheToDisk) {
+        NSCachedURLResponse *memOnlyCachedResponse =
+        [[NSCachedURLResponse alloc] initWithResponse:cachedResponse.response
+                                                 data:cachedResponse.data
+                                             userInfo:cachedResponse.userInfo
+                                        storagePolicy:NSURLCacheStorageAllowed];
+        return [memOnlyCachedResponse autorelease];
+    }
+    else {
+        return cachedResponse;
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
     [theConnection cancel];
     self.connection = nil;
     if (data) self.image = [UIImage imageWithData:data];
-    if (!self.image) self.image = defaultImage;
+   if (!self.image) {
+      NSLog(@"Didn't load, data size was %d", [data length]);
+      self.image = defaultImage;  
+   }
     self.data = nil;
     [delegate imageViewDidFinishLoading:self];
 }

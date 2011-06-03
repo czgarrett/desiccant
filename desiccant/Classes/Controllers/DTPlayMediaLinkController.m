@@ -11,7 +11,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface DTPlayMediaLinkController()
-- (NSURL *)mediaURLFromURLParameter:(NSURL *)appURL;
 @end
 
 @implementation DTPlayMediaLinkController

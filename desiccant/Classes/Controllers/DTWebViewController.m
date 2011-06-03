@@ -15,7 +15,7 @@
 
 @implementation DTWebViewController
 
-@synthesize dtLinkControllerChain, javascriptOnLoad;
+@synthesize dtLinkControllerChain, javascriptOnLoad, webView;
 
 + (DTWebViewController *) webViewController {
    return [[[DTWebViewController alloc] init] autorelease];
@@ -30,6 +30,7 @@
 	self.dtLinkControllerChain = nil;
 	self.javascriptOnLoad = nil;
 	self.webView.delegate = nil;
+    self.webView = nil;
 	self.view = nil;
     
     [super dealloc];
@@ -57,19 +58,27 @@
 }
 
 - (void)loadView {
-    [super loadView];
-    self.view = [[[UIWebView alloc] init] autorelease];
+//    CGRect initialFrame = CGRectMake(0.0, 0.0, 100.0, 100.0); // Doesn't matter, because it will get resized.
+    CGRect initialFrame = CGRectZero; // Doesn't matter, because it will get resized.
+    UIView *wrapperView = [[[UIView alloc] initWithFrame:initialFrame] autorelease];
+    wrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    UIWebView *newWebView = [[[UIWebView alloc] initWithFrame:initialFrame] autorelease];
+    newWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    [wrapperView addSubview:newWebView];
+    self.webView = newWebView;
+    self.view = wrapperView;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.webView = (UIWebView *)self.view;
-   
+    [super viewDidLoad];   
     self.webView.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear:animated];
     [self reloadWebView];
 }
 
@@ -146,14 +155,6 @@
 
 - (void)setLinkControllerChain:(NSMutableArray *)theChain {
 	self.dtLinkControllerChain = theChain; 
-}
-
-- (UIWebView *)webView {
-	return (UIWebView *)self.view;
-}
-
-- (void)setWebView:(UIWebView *)theWebView {
-	self.view = theWebView;
 }
 
 @end

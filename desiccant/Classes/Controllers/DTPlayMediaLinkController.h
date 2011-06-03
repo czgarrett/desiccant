@@ -23,5 +23,6 @@
 - (id)init;
 + (id)controllerWithController:(DTWebViewController *)theController;
 + (id)controller;
+- (NSURL *)mediaURLFromURLParameter:(NSURL *)appURL;
 
 @end
