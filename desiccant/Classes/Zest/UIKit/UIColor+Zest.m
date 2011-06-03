@@ -7,6 +7,7 @@
 //
 
 #import "UIColor+Zest.h"
+#import "CBucks.h"
 
 /*
  FOR REFERENCE: Color Space Models: enum CGColorSpaceModel {
@@ -114,6 +115,12 @@ static NSLock *crayolaNameCacheLock;
 			[NSNumber numberWithFloat:a],
 			nil];
 }
+
+- (NSString *) rgbaDescription {
+   NSArray *rgba = [self arrayFromRGBAComponents];
+   return $S(@"%@: %@,%@,%@,%@", [self description], [rgba objectAtIndex: 0], [rgba objectAtIndex: 1], [rgba objectAtIndex: 2], [rgba objectAtIndex: 3]);
+}
+
 
 - (BOOL)red:(CGFloat *)red green:(CGFloat *)green blue:(CGFloat *)blue alpha:(CGFloat *)alpha {
 	const CGFloat *components = CGColorGetComponents(self.CGColor);

@@ -40,6 +40,7 @@
 
 - (NSString *)colorSpaceString;
 - (NSArray *)arrayFromRGBAComponents;
+- (NSString *) rgbaDescription;
 
 // Bulk access to RGB and HSB components of the color
 // HSB components are converted from the RGB components
