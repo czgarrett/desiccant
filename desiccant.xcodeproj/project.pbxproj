@@ -503,6 +503,7 @@
 		83C75D171337BB4D006AD83A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1E130AC20E002A1947 /* QuartzCore.framework */; };
 		83C75D181337BB4D006AD83A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A21130AC20E002A1947 /* UIKit.framework */; };
 		83C75D191337BB4D006AD83A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A15130AC162002A1947 /* CoreGraphics.framework */; };
+		83CC318A139E8E4700E7C634 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CC3189139E8E4700E7C634 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -512,6 +513,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 83546464130ABBEB002A1947;
 			remoteInfo = desiccant;
+		};
+		83CC3180139E8AE900E7C634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CC3178139E8AE900E7C634 /* cocoa-bucks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 837251F31329522A00555ADD;
+			remoteInfo = "cocoa-bucks";
+		};
+		83CC3182139E8AE900E7C634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CC3178139E8AE900E7C634 /* cocoa-bucks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 837252001329522A00555ADD;
+			remoteInfo = "cocoa-bucksTests";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1019,6 +1034,8 @@
 		83546A21130AC20E002A1947 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83546A3D130B0590002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		83725230132957D200555ADD /* libcocoa-bucks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libcocoa-bucks.a"; sourceTree = SOURCE_ROOT; };
+		83CC3178139E8AE900E7C634 /* cocoa-bucks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocoa-bucks.xcodeproj"; path = "../cocoa-bucks/cocoa-bucks.xcodeproj"; sourceTree = "<group>"; };
+		83CC3189139E8E4700E7C634 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1026,6 +1043,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83CC318A139E8E4700E7C634 /* AVFoundation.framework in Frameworks */,
 				831E07A91381B2BC005A30A5 /* CoreMedia.framework in Frameworks */,
 				83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */,
 				83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */,
@@ -1217,6 +1235,8 @@
 		8354645A130ABBEB002A1947 = {
 			isa = PBXGroup;
 			children = (
+				83CC3189139E8E4700E7C634 /* AVFoundation.framework */,
+				83CC3178139E8AE900E7C634 /* cocoa-bucks.xcodeproj */,
 				8354646A130ABBEB002A1947 /* desiccant */,
 				8354647B130ABBEB002A1947 /* desiccantTests */,
 				83546467130ABBEB002A1947 /* Frameworks */,
@@ -2042,6 +2062,15 @@
 			path = TextEditorCell;
 			sourceTree = "<group>";
 		};
+		83CC3179139E8AE900E7C634 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83CC3181139E8AE900E7C634 /* libcocoa-bucks.a */,
+				83CC3183139E8AE900E7C634 /* cocoa-bucksTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2309,6 +2338,12 @@
 			mainGroup = 8354645A130ABBEB002A1947;
 			productRefGroup = 83546466130ABBEB002A1947 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 83CC3179139E8AE900E7C634 /* Products */;
+					ProjectRef = 83CC3178139E8AE900E7C634 /* cocoa-bucks.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				83546464130ABBEB002A1947 /* desiccant */,
@@ -2316,6 +2351,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		83CC3181139E8AE900E7C634 /* libcocoa-bucks.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libcocoa-bucks.a";
+			remoteRef = 83CC3180139E8AE900E7C634 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		83CC3183139E8AE900E7C634 /* cocoa-bucksTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "cocoa-bucksTests.octest";
+			remoteRef = 83CC3182139E8AE900E7C634 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8354646F130ABBEB002A1947 /* Resources */ = {
@@ -2693,10 +2745,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -2713,10 +2762,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
