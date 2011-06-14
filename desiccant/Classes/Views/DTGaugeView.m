@@ -38,6 +38,10 @@
 #define NORMAL_WARNING_BAND_MARGIN 6.0f
 #define NORMAL_PIN_RADIUS 20.0f
 
+CGFloat DegreesToRadians(CGFloat degrees);
+CGFloat RadiansToDegrees(CGFloat radians);
+
+
 CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180 / M_PI;};
 

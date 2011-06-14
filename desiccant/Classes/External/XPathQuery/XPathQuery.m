@@ -25,6 +25,9 @@
 #import <libxml/xpath.h>
 #import <libxml/xpathInternals.h>
 
+NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *parentResult);
+NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query, NSString *prefix, NSString *namespaceURI);
+
 NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *parentResult)
 {
 	NSMutableDictionary *resultForNode = [NSMutableDictionary dictionary];

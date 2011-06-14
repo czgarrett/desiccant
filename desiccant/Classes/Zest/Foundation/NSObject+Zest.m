@@ -6,8 +6,8 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
-#import <objc/runtime.h>
-#import <objc/message.h>
+//#import <objc/runtime.h>
+//#import <objc/message.h>
 #import "NSObject+Zest.h"
 
 @implementation NSObject (Zest)
@@ -22,7 +22,6 @@
 			break;
 		}
 	}
-	[owner release];
 	return result;
 }
 
@@ -232,7 +231,6 @@
 	[self performSelector:selector withReturnValue:&result andArguments:arglist];
 	va_end(arglist);
 	
-	CFShow(result);
 	return result;
 }
 /*
@@ -406,6 +404,7 @@
 
 
 // Return an array of all an object's selectors
+/*
 + (NSArray *) getSelectorListForClass
 {
 	NSMutableArray *selectors = [NSMutableArray array];
@@ -476,14 +475,16 @@
 {
 	NSMutableArray *protocolNames = [NSMutableArray array];
 	unsigned int num;
-	Protocol **protocols = class_copyProtocolList(self, &num);
+	Protocol * const *protocols = class_copyProtocolList(self, &num);
 	for (int i = 0; i < num; i++)
 		[protocolNames addObject:[NSString stringWithCString:protocol_getName(protocols[i]) encoding:NSUTF8StringEncoding]];
-	free(protocols);
+	free((void *)protocols);
 	return protocolNames;
 }
+ */
 
 // Return a dictionary with class/selectors entries, all the way up to NSObject
+/*
 - (NSDictionary *) protocols
 {
 	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -511,6 +512,7 @@
 		[set addObjectsFromArray:ivars];
 	return [set containsObject:ivarName];
 }
+ */
 
 + (BOOL) classExists: (NSString *) className
 {
@@ -520,7 +522,7 @@
 + (id) instanceOfClassNamed: (NSString *) className
 {
 	if (NSClassFromString(className) != nil)
-		return [[[NSClassFromString(className) alloc] init] autorelease];
+		return [[NSClassFromString(className) alloc] init];
 	else
 		return nil;
 }
@@ -571,7 +573,6 @@
    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
    [archiver encodeRootObject: self];
    [archiver finishEncoding];
-   [archiver release];
    return data;
 }
 
@@ -581,7 +582,6 @@
    unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
    result = [unarchiver decodeObject];
    [unarchiver finishDecoding];
-   [unarchiver release];   
    return result;
 }
 

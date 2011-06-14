@@ -15,7 +15,7 @@
 //}
 
 + itemWithTitle:(NSString *)title {
-	UIBarButtonItem *item = [[[UIBarButtonItem alloc] init] autorelease];
+	UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
 	item.title = title;
 	return item;
 }

@@ -35,7 +35,7 @@
 {
 	if ([self count] == 0) return nil;
 	
-	id firstObject = [[[self objectAtIndex:0] retain] autorelease];
+	id firstObject = [self objectAtIndex:0];
 	[self removeObjectAtIndex:0];
 	return firstObject;
 }
@@ -58,8 +58,6 @@
 
 - (id) pop {
    id result = [self lastObject];
-   [result retain];
-   [result autorelease];
    [self removeLastObject];
    return result;
 }
@@ -68,7 +66,7 @@
 {
 	if ([self count] == 0) return nil;
 	
-    id lastObject = [[[self lastObject] retain] autorelease];
+    id lastObject = [self lastObject];
     [self removeLastObject];
     return lastObject;
 }

@@ -56,7 +56,7 @@
 - (NSArray *) findEntities: (NSString *) entityName predicate: (NSPredicate *) predicate sortDescriptors: (NSArray *) sortDescriptors {
    NSEntityDescription *entityDescription = [NSEntityDescription
                                              entityForName: entityName inManagedObjectContext: self];
-   NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+   NSFetchRequest *request = [[NSFetchRequest alloc] init];
    [request setEntity:entityDescription];
    if (predicate) {
       [request setPredicate:predicate];      

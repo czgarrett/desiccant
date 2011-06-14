@@ -10,7 +10,7 @@
 #import "DTCompositeViewController.h"
 
 @interface DTViewController()
-@property (nonatomic, assign) UIViewController *dtContainerViewController;
+@property (nonatomic, weak) UIViewController *dtContainerViewController;
 @property (nonatomic, retain) UIView *dtWindowOverlay;
 @property (nonatomic, retain) DTActivityIndicatorView *dtActivityIndicator;
 @end
@@ -18,19 +18,6 @@
 
 @implementation DTViewController
 @synthesize hasAppeared, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
-
-#pragma mark Memory management
-
-- (void) dealloc {
-	self.dtContainerViewController = nil;
-   [self releaseRetainedSubviews];
-	[super dealloc];
-}
-
-- (void) releaseRetainedSubviews {
-	self.dtWindowOverlay = nil;
-	self.dtActivityIndicator = nil;
-}
 
 
 #pragma mark Constructors
@@ -95,7 +82,7 @@
 
 - (DTActivityIndicatorView *)activityIndicator {
 	unless (dtActivityIndicator) {
-		self.dtActivityIndicator = [[[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+		self.dtActivityIndicator = [[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 		dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
 	}
 	unless (dtActivityIndicator.superview) {
@@ -104,7 +91,7 @@
 		[self.view.superview addSubview:dtActivityIndicator];
 	}
 	
-	return self.dtActivityIndicator;
+	return self.dtActivityIndicator; 
 }
 
 #pragma mark DTActsAsChildViewController methods
@@ -165,7 +152,6 @@
 
 - (void) viewDidUnload {
 	[super viewDidUnload];
-   [self releaseRetainedSubviews];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

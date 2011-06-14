@@ -23,44 +23,36 @@
 
 -(QueryResult *)initWithStatement:(sqlite3_stmt *)statement operation:(NSOperation *)operation
 {
-	[self init];
-	QueryRow *row;
-	int columnCount = 0;
-	int execResult = sqlite3_step(statement);
-	// The columns will be same for the whole result set, so we build them up here
-	if (execResult == SQLITE_ROW) {
-		columnCount = sqlite3_column_count(statement);
-		for (int column = 0; column < columnCount; column++) {
-			NSString *columnName = [[NSString alloc] initWithUTF8String: (char *)sqlite3_column_name(statement, column)];
-			[columnNames addObject: columnName];
-         [columnName release];
-		}
-	}
-	while (execResult == SQLITE_ROW && !(operation && [operation isCancelled])) {		
-		row = [[QueryRow alloc] initWithStatement: statement result: self];
-		[rows addObject: row];			
-		[row release];
-		execResult = sqlite3_step(statement);
-	}
-   // Because we want to reuse the statement, we "reset" it instead of "finalizing" it.
-   sqlite3_reset(statement);
-   if (execResult == SQLITE_ERROR) {
-		[[SQLiteConnectionAdapter defaultInstance] handleSQLiteError];
-   }
-   if (execResult == SQLITE_READONLY) {
-      DTLog(@"Attempted to write to a read-only database!");
-   }
-   if(operation && [operation isCancelled]) {
-      [rows removeAllObjects];
+   if ((self = [super init])) {
+      QueryRow *row;
+      int columnCount = 0;
+      int execResult = sqlite3_step(statement);
+      // The columns will be same for the whole result set, so we build them up here
+      if (execResult == SQLITE_ROW) {
+         columnCount = sqlite3_column_count(statement);
+         for (int column = 0; column < columnCount; column++) {
+            NSString *columnName = [[NSString alloc] initWithUTF8String: (char *)sqlite3_column_name(statement, column)];
+            [columnNames addObject: columnName];
+         }
+      }
+      while (execResult == SQLITE_ROW && !(operation && [operation isCancelled])) {		
+         row = [[QueryRow alloc] initWithStatement: statement result: self];
+         [rows addObject: row];			
+         execResult = sqlite3_step(statement);
+      }
+      // Because we want to reuse the statement, we "reset" it instead of "finalizing" it.
+      sqlite3_reset(statement);
+      if (execResult == SQLITE_ERROR) {
+         [[SQLiteConnectionAdapter defaultInstance] handleSQLiteError];
+      }
+      if (execResult == SQLITE_READONLY) {
+         DTLog(@"Attempted to write to a read-only database!");
+      }
+      if(operation && [operation isCancelled]) {
+         [rows removeAllObjects];
+      }
    }
    return self;	
-}
-
--(void)dealloc
-{
-	[rows release];
-	[columnNames release];
-	[super dealloc];
 }
 
 
@@ -97,7 +89,7 @@
 
 -(NSArray *)valuesForColumn:(NSString *)column {
    NSEnumerator *rowEnumerator = [self rowEnumerator];
-   NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
+   NSMutableArray *result = [NSMutableArray array];
    QueryRow *currentRow;
    while (currentRow = (QueryRow *)[rowEnumerator nextObject]) {
       [result addObject: [currentRow valueForColumn: column]];

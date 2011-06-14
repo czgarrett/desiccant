@@ -233,7 +233,7 @@
 // Subclasses can override this to return a custom subclass of DTCustomTableViewCell with retain count 0 (autoreleased)
 // for displaying the "More results" cell
 - (DTCustomTableViewCell *)constructMoreResultsCell {
-    DTCustomTableViewCell *newCell = [[[DTCustomTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:moreResultsCellIdentifier] autorelease];
+   DTCustomTableViewCell *newCell = [[[DTCustomTableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:moreResultsCellIdentifier] autorelease];
 	newCell.textLabel.text = @"more";
 	newCell.textLabel.textColor = [UIColor grayColor];
 	newCell.textLabel.textAlignment = UITextAlignmentRight;
@@ -291,7 +291,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     NSArray *indexes;
-    if (indexes = [query groupIndexes])  {
+    if ((indexes = [query groupIndexes]))  {
         if ([self hasHeaders]) {
             NSMutableArray *tempArray = [NSMutableArray arrayWithArray:indexes];
             [tempArray insertObject:@"" atIndex:0];

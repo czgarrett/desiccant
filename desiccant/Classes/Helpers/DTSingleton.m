@@ -27,7 +27,7 @@
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-	return [[self loadedSingleton] retain];
+	return (id)[[self loadedSingleton] retain];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -45,7 +45,7 @@
     return NSUIntegerMax;  //denotes an object that cannot be released
 }
 
-- (void)release
+- (oneway void)release
 {
     //do nothing
 }

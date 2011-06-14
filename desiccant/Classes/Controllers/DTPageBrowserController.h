@@ -12,7 +12,7 @@
    NSInteger currentPage;
 }
 
-@property (assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger currentPage;
 
 @property (nonatomic, retain) NSMutableDictionary *pages;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;

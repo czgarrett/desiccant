@@ -109,7 +109,7 @@
    return [[self allKeys] firstObject];
 }
 
-
+/* TODO convert to ARC
 - (NSString *)toQueryString {
 	NSMutableString *queryString = [NSMutableString stringWithCapacity:128];
 	NSString *separator = @"";
@@ -120,6 +120,7 @@
 	}
 	return queryString;
 }
+ */
 
 @end
 

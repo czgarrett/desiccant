@@ -145,12 +145,6 @@
    self.pages = nil;
 }
 
-- (void) dealloc {
-   self.pages = nil;
-   self.pageControl = nil;
-   self.scrollView = nil;
-   [super dealloc];
-}
 
 
 @end

@@ -23,7 +23,6 @@ static AudioManager *audioManager;
 + (void) releaseInstance {
    if (audioManager) {
       [audioManager stopAllPlayers];
-      [audioManager release];
    }
 }
 
@@ -34,10 +33,6 @@ static AudioManager *audioManager;
    return self;
 }
 
-- (void) dealloc {
-   [players release];
-   [super dealloc];
-}
 
 - (void) stopAllPlayers {
    NSEnumerator *playerEnum = [players objectEnumerator];
@@ -67,7 +62,6 @@ static AudioManager *audioManager;
    AudioPlayer *result;
    result = [[AudioPlayer alloc] initWithFileName: soundFileName];
    [players setObject: result forKey: soundFileName];
-   [result autorelease];
    return result;
 }
 - (void) playSound: (NSString *)soundFileName {

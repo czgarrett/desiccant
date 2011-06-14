@@ -11,7 +11,7 @@
 
 @interface DTURLDownload : NSObject {
 	NSURLConnection *connection;
-	<DTURLDownloadDelegate> delegate;
+	id<DTURLDownloadDelegate> delegate;
 	NSURLRequest *request;
 	NSURLResponse *response;
 	NSString *destination;
@@ -23,7 +23,7 @@
 	BOOL isFinished;
 }
 
-@property (nonatomic, assign) <DTURLDownloadDelegate> delegate;
+@property (nonatomic, assign) id<DTURLDownloadDelegate> delegate;
 @property (nonatomic, retain, readonly) NSURLRequest *request;
 @property (nonatomic, retain, readonly) NSURLResponse *response;
 @property (nonatomic, retain, readonly) NSString *destination;

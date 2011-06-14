@@ -23,20 +23,14 @@ static DTActivityIndicatorStyle defaultStyle;
    defaultStyle = style;
 }
 
-- (void)dealloc {
-	self.childIndicator = nil;
-   self.childIndicatorBackground = nil;
-    [super dealloc];
-}
-
 - (id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style {
-	UIActivityIndicatorView *newIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style] autorelease];
+	UIActivityIndicatorView *newIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
 	if ((self = [super initWithFrame: CGRectMake(0.0, 0.0, 300.0, 300.0)])) {
 		newIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		newIndicator.hidesWhenStopped = NO;
 		self.childIndicator = newIndicator;
       
-      self.childIndicatorBackground = [[[UIView alloc] initWithFrame: CGRectMake(100.0, 100.0, 100.0, 100.0)] autorelease];
+      self.childIndicatorBackground = [[UIView alloc] initWithFrame: CGRectMake(100.0, 100.0, 100.0, 100.0)];
       self.childIndicatorBackground.layer.cornerRadius = 10.0;
 		self.childIndicatorBackground.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
       

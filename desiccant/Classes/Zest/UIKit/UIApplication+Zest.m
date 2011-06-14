@@ -7,7 +7,7 @@
 //
 
 #import "UIApplication+Zest.h"
-#import "../../desiccant.h"
+#import "Zest.h"
 
 @implementation UIApplication(Zest)
 
@@ -38,7 +38,6 @@
 	NSString *timeStampString = [NSString stringWithFormat:@"%@ %@", dateString, timeString];
 	NSDate *buildDate = [formatter dateFromString:timeStampString];
 	NSTimeInterval seconds = [buildDate timeIntervalSinceReferenceDate];
-	[formatter release];
 	return [NSString stringWithFormat:@"%d", (NSInteger)seconds - 290000000];
 }
 

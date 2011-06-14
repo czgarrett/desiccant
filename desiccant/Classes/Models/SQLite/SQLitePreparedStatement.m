@@ -14,20 +14,19 @@
 
 - (id)initWithConnection:(sqlite3 *)myConnection sql:(NSString *)mySql
 {
-	sql = mySql;
-	[sql retain];
-	connection = myConnection;
-	if (sqlite3_prepare_v2(connection, (const char *)[sql UTF8String], -1, &statement, NULL) != SQLITE_OK) {
-       NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(connection));
+   if ((self = [super init])) {
+      sql = mySql;
+      connection = myConnection;
+      if (sqlite3_prepare_v2(connection, (const char *)[sql UTF8String], -1, &statement, NULL) != SQLITE_OK) {
+         NSAssert1(0, @"Error: failed to prepare statement with message '%s'.", sqlite3_errmsg(connection));
+      }
    }
    return self;
 }
 
 - (void) dealloc
 {
-	[sql release];
 	if (statement) sqlite3_finalize(statement);
-	[super dealloc];
 }
 
 - (QueryResult *)execute
@@ -37,7 +36,7 @@
 
 - (QueryResult *)executeWithOperation:(NSOperation *)operation
 {
-   return [[[QueryResult alloc] initWithStatement: statement operation: operation] autorelease];         
+   return [[QueryResult alloc] initWithStatement: statement operation: operation];         
 }
 
 

@@ -9,7 +9,8 @@
 #import "NSString+Zest.h"
 #import "NSObject+Zest.h"
 
-
+// TODO convert this to be ARC compliant
+/*
 typedef struct {
    NSString *escapeSequence;
    unichar uchar;
@@ -361,6 +362,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    return val;
 }
 
+ */
 
 @implementation NSString ( Zest )
 
@@ -403,15 +405,16 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 }
 
 + (NSString *) stringWithData: (NSData *) data encoding: (NSStringEncoding) encoding {
-   return [[[NSString alloc] initWithData: data encoding: encoding] autorelease];
+   return [[NSString alloc] initWithData: data encoding: encoding];
 }
 
+/*
 + (NSString *) stringWithGUID {
    CFUUIDRef theUUID = CFUUIDCreate(NULL);
    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
    CFRelease(theUUID);
-   return [(NSString *)string autorelease];
-}
+   return (NSString *)objc_retainedObject(string);
+}*/
 
 - (NSString *) pluralize {
    return [self stringByAppendingString: @"s"];
@@ -509,7 +512,6 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
     [dateFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss Z"];
     NSDate *date = [dateFormatter dateFromString:self];
     // if (date == nil) { } - uncomment this if you want to handle failures
-    [dateFormatter release];
 
     return date;
 }
@@ -526,7 +528,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    if ([self length] > length) {
       return [NSString stringWithFormat: @"%@…", [self substringToIndex: length - 1]];
    } else {
-      return [[self copy] autorelease];
+      return [self copy];
    }
 }
 
@@ -647,11 +649,14 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 	return [self length] == 0;
 }
 
+// TODO convert to ARC
+/*
 - (NSString *)stringByRemovingMarkupTags {
 	return [[[self stringByReplacingOccurrencesOfRegex:@"<.*?>" withString:@""] stringByUnescapingFromHTML] trimmed];
 }
+ */
 
-
+/* TODO convert to ARC
 - (NSString *)stringByEscapingHTMLUsingTable:(HTMLEscapeMap*)table 
                                           ofSize:(NSUInteger)size 
                                  escapingUnicode:(BOOL)escapeUnicode {  
@@ -797,6 +802,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    return finalString;
 }
 
+*/
 
 - (NSString *)withWhitespaceCollapsed {
 	return [self stringByReplacingOccurrencesOfRegex:@"[ \\t]+" withString:@" "];
@@ -810,6 +816,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 	return [self length] ? self : nil;
 }
 
+/* TODO convert to ARC
 - (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding {
 	NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(
 															   NULL,
@@ -819,7 +826,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 															   CFStringConvertNSStringEncodingToEncoding(encoding));	
    return [result autorelease];
 }
-
+*/
 
 @end
 

@@ -20,7 +20,6 @@
 }
 
 +(SQLiteConnectionAdapter *)defaultInstance; 
-+(void)releaseDefaultInstance;
 +(void)setReadOnly:(BOOL)isReadOnly;
 
 - (void) beginTransaction;

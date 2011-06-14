@@ -21,7 +21,11 @@
 @property (nonatomic, retain) NSString *resourceName;
 @property (nonatomic, retain) NSFileHandle *fileHandle;
 
++ (DTWordList *) sowpodsFull;
++ (DTWordList *) sowpodsPartial;
 + (DTWordList *) wordListForResourceName: (NSString *) resourceName;
++ (void) resetLists;
+
 - (id) initWithResourceName: (NSString *) resourceName;
 
 - (BOOL) containsWord: (NSString *) word;

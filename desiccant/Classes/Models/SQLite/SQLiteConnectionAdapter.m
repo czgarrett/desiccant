@@ -33,13 +33,6 @@ static BOOL readOnly;
 	return defaultInstance;
 }
 
-+(void)releaseDefaultInstance
-{
-   if (defaultInstance) {
-      [defaultInstance release];      
-   }
-}
-
 +(void)setReadOnly: (BOOL) isReadOnly {
    readOnly = isReadOnly;
 }
@@ -96,8 +89,6 @@ static BOOL readOnly;
 
 - (void) dealloc
 {
-	[preparedStatements release];
-	[tables release];
     if (sqlite3_close(connection) != SQLITE_OK) {
 		DTLog(@"Failed to close database connection with message %s", sqlite3_errmsg(connection));
     }
@@ -105,7 +96,6 @@ static BOOL readOnly;
 	if (self == defaultInstance) {
 		defaultInstance = nil;
 	}
-   [super dealloc];
 }
 
 -(SQLiteTable *)tableNamed:(NSString *)tableName
@@ -114,7 +104,6 @@ static BOOL readOnly;
 	if (!result) {
 		result = [[SQLiteTable alloc] initWithName: tableName];		
 		[tables setObject: result forKey: tableName];
-		[result release];
 	}
 	return result;
 }
@@ -125,7 +114,6 @@ static BOOL readOnly;
 	if (![preparedStatements objectForKey: sql]) {
 		SQLitePreparedStatement *statement = [[SQLitePreparedStatement alloc] initWithConnection: connection sql: sql];
 		[preparedStatements setObject: statement forKey: sql];
-		[statement release];		
 	}
 	SQLitePreparedStatement *stmt = (SQLitePreparedStatement *) [preparedStatements objectForKey: sql];
    return stmt;

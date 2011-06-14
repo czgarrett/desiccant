@@ -45,7 +45,7 @@
 + (NSString *) stringWithInteger:(NSInteger)integer;
 + (NSString *) stringWithData: (NSData *) data encoding: (NSStringEncoding) encoding;
 
-+ (NSString *) stringWithGUID;
+//+ (NSString *) stringWithGUID;
 
 - (NSString *) stringByPrependingString:(NSString *)prefix;
 - (NSString *) stringByAppendingNewLine:(NSString *)line;
@@ -73,7 +73,8 @@
 
 - (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set;
 - (BOOL)isEmpty;
-- (NSString *)stringByRemovingMarkupTags;
+// TODO convert to ARC
+//- (NSString *)stringByRemovingMarkupTags;
 // Returns a range with index 0 and length = [self length]
 - (NSRange) range;
 
@@ -91,7 +92,8 @@
 //  Returns:
 //    Autoreleased NSString
 //
-- (NSString *)stringByEscapingForHTML;
+// TODO convert to ARC
+//- (NSString *)stringByEscapingForHTML;
 
 /// Get a string where internal characters that need escaping for HTML are escaped 
 //
@@ -107,7 +109,8 @@
 //  Returns:
 //    Autoreleased NSString
 //
-- (NSString *)stringByEscapingForAsciiHTML;
+// TODO convert to ARC
+//- (NSString *)stringByEscapingForAsciiHTML;
 
 /// Get a string where internal characters that are escaped for HTML are unescaped 
 //
@@ -117,11 +120,13 @@
 //  Returns:
 //    Autoreleased NSString
 //
-- (NSString *)stringByUnescapingFromHTML;
+// TODO convert to ARC
+//- (NSString *)stringByUnescapingFromHTML;
 
 // Escapes the usual characters, plus legal URL characters.  Useful when
 // passing a URL as a GET parameter.
-- (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
+// TODO convert to ARC
+//- (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
 
 - (NSString *) pluralize;
 

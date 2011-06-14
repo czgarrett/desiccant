@@ -11,7 +11,7 @@
 @implementation UIImageView(Zest)
 
 + (id)viewWithImage:(UIImage *)theImage {
-	return [[(UIImageView *)[self alloc] initWithImage:theImage] autorelease];
+	return [(UIImageView *)[self alloc] initWithImage:theImage];
 }
 
 + (id)viewWithImageNamed: (NSString *) imageName {

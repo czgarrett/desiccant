@@ -19,7 +19,7 @@
 }
 
 + (UILabel *)labelWithText:(NSString *)text {
-    return [[[self alloc] initWithText:text] autorelease];
+    return [[self alloc] initWithText:text];
 }
 
 - (CGFloat)heightToFitText {

@@ -27,7 +27,7 @@
 	NSURLConnection *connection;
 	NSURLResponse *response;
 	NSString *userResponse;
-	NSMutableData *newHTMLData;
+	NSMutableData *HTMLData;
 	DTGoogleCaptcha *replacementCaptcha;
 }
 

@@ -15,12 +15,11 @@
     NSURLConnection *connection;
     NSMutableData *data;
     IBOutlet UIImage *defaultImage;
-    IBOutlet NSObject <DTImageViewDelegate> *delegate;
     BOOL alwaysCacheToDisk;
 }
 
 @property (nonatomic, retain) UIImage *defaultImage;
-@property (nonatomic, assign) IBOutlet NSObject <DTImageViewDelegate> *delegate;
+@property (nonatomic, weak) IBOutlet NSObject <DTImageViewDelegate> *delegate;
 @property (nonatomic) BOOL alwaysCacheToDisk;
 
 - (void)loadFromURL:(NSURL *)url;

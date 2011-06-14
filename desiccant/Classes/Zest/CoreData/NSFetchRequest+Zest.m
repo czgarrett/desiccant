@@ -12,7 +12,7 @@
 @implementation NSFetchRequest (Zest)
 
 + (NSFetchRequest *) fetchRequest {
-   return [[[NSFetchRequest alloc] init] autorelease];
+   return [[NSFetchRequest alloc] init];
 }
 
 + (NSFetchRequest *) fetchRequestFor: (NSString *) entityName inManagedObjectContext: (NSManagedObjectContext *) moc {

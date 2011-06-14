@@ -49,7 +49,6 @@ typedef void(^DTTableCellBlock)(DTCustomTableViewCell *);
 	UILabel *dtTextLabel;
 	UILabel *dtDetailTextLabel;
 	UIImageView *dtImageView;
-	id <DTCustomTableViewCellDelegate> delegate;
 	NSDictionary *dtData;
 }
 
@@ -77,7 +76,7 @@ typedef void(^DTTableCellBlock)(DTCustomTableViewCell *);
 @property(nonatomic, retain) IBOutlet UIImageView *imageView;
 
 // Set the delegate if you want to use the default setData: method
-@property (nonatomic, assign) IBOutlet id <DTCustomTableViewCellDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id <DTCustomTableViewCellDelegate> delegate;
 
 // The default setter uses derives a title, subtitle, and image from
 // the delegate if one is set.  Otherwise it does nothing.

@@ -19,12 +19,6 @@
 
 - (void)dealloc {
     [connection cancel];
-    self.connection = nil;
-    self.data = nil;
-    self.defaultImage = nil;
-    self.delegate = nil;
-    
-    [super dealloc];
 }
 
 - (id)initWithImage:(UIImage *)image {
@@ -43,7 +37,7 @@
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else if ([url isCached]) {
-         self.data = [[[url cachedData] mutableCopy] autorelease];
+         self.data = [[url cachedData] mutableCopy];
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else {
@@ -69,7 +63,7 @@
                                                  data:cachedResponse.data
                                              userInfo:cachedResponse.userInfo
                                         storagePolicy:NSURLCacheStorageAllowed];
-        return [memOnlyCachedResponse autorelease];
+        return memOnlyCachedResponse;
     }
     else {
         return cachedResponse;

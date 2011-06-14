@@ -11,17 +11,39 @@
 #define MAX_WORD_LENGTH 15
 #define NEWLINE_LENGTH 2
 
+static DTWordList *sowpodsFull;
+static DTWordList *sowpodsPartial;
+
 @implementation DTWordList
 
 @synthesize resourceName, fileHandle;
 
++ (void) resetLists {
+   sowpodsFull = nil;
+   sowpodsPartial = nil;
+}
+
++ (DTWordList *) sowpodsFull {
+   if (!sowpodsFull) {
+      sowpodsFull = [[DTWordList alloc] initWithResourceName: @"sowpods_unix"];
+   }
+   return sowpodsFull;
+}
+
++ (DTWordList *) sowpodsPartial {
+   if (!sowpodsPartial) {
+      sowpodsPartial = [[DTWordList alloc] initWithResourceName: @"sowpods_parts"];
+   }
+   return sowpodsPartial;
+}
+
 // resourceName should be the name of a file containing a sorted list of capitalized words.
 + (DTWordList *) wordListForResourceName: (NSString *) resourceName {
-   return [[[DTWordList alloc] initWithResourceName: (NSString *) resourceName] autorelease];
+   return [[DTWordList alloc] initWithResourceName: (NSString *) resourceName];
 }
 
 - (id) initWithResourceName: (NSString *) myResourceName {
-   if (self == [super init]) {
+   if ((self = [super init])) {
       self.resourceName = myResourceName;
    }
    return self;
@@ -94,23 +116,17 @@
    wordRange.length = wordEnd - wordStart;
    wordRange.location = wordStart;
    NSString *result =  [words substringWithRange: wordRange];
-   [words release];
    return result;
 }
 
 
 - (NSFileHandle *) fileHandle {
    if (!fileHandle) {
-      fileHandle = [NSFileHandle fileHandleForReadingAtPath: [[NSBundle mainBundle] pathForResource: self.resourceName ofType: @"txt"]];
-      [fileHandle retain];
+      NSString *path = [[NSBundle mainBundle] pathForResource: self.resourceName ofType: @"txt"];
+      NSAssert(path != nil, @"Bundle doesn't contain word list.");
+      fileHandle = [NSFileHandle fileHandleForReadingAtPath: path];
    }
    return fileHandle;
-}
-
-- (void) dealloc {
-   [super dealloc];
-   self.resourceName = nil;
-   self.fileHandle = nil;
 }
 
 @end

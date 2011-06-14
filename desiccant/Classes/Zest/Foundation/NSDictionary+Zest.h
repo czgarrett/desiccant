@@ -31,7 +31,8 @@
 - (BOOL)hasValueForKey:(id)key;
 - (void)appendString:(NSString *)string toMutableStringWithKey:(id)key;
 - (NSDictionary *)dictionaryWithLowercaseKeys;
-- (NSString *)toQueryString;
+// TODO convert to ARC
+//- (NSString *)toQueryString;
 // Returns the first key it can find.  Useful for a dictionary that has only one key.
 - (id) anyKey;
 

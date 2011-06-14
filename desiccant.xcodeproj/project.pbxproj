@@ -99,6 +99,7 @@
 		8309AB1F130C2287007AFCC8 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546597130ABF84002A1947 /* ISO8601DateFormatter.m */; };
 		831E07A91381B2BC005A30A5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831E07A81381B2BC005A30A5 /* CoreMedia.framework */; };
 		831E07AA1381B2C4005A30A5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831E07A81381B2BC005A30A5 /* CoreMedia.framework */; };
+		832A8736139EF71900111354 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 832A8735139EF71900111354 /* libz.1.2.5.dylib */; };
 		8337F58913608F9B00A29D49 /* NSDateFormatter+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */; };
 		8337F58A13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */; };
 		8337F58B13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */; };
@@ -484,6 +485,9 @@
 		83546A29130AC20F002A1947 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A1E130AC20E002A1947 /* QuartzCore.framework */; };
 		83546A2C130AC20F002A1947 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A21130AC20E002A1947 /* UIKit.framework */; };
 		83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A3D130B0590002A1947 /* AudioToolbox.framework */; };
+		83596F57139FC486008E22F0 /* NSString+DTWordList.h in Headers */ = {isa = PBXBuildFile; fileRef = 83596F55139FC486008E22F0 /* NSString+DTWordList.h */; };
+		83596F58139FC486008E22F0 /* NSString+DTWordList.m in Sources */ = {isa = PBXBuildFile; fileRef = 83596F56139FC486008E22F0 /* NSString+DTWordList.m */; };
+		83596F59139FC486008E22F0 /* NSString+DTWordList.m in Sources */ = {isa = PBXBuildFile; fileRef = 83596F56139FC486008E22F0 /* NSString+DTWordList.m */; };
 		83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83725230132957D200555ADD /* libcocoa-bucks.a */; };
 		839D91931344CD08001FF554 /* DTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354652A130ABF84002A1947 /* DTViewController.m */; };
 		839D91951344CD34001FF554 /* DTReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354664E130ABF84002A1947 /* DTReachability.m */; };
@@ -492,7 +496,6 @@
 		83C75D0B1337BB17006AD83A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB0E130C2231007AFCC8 /* AddressBookUI.framework */; };
 		83C75D0C1337BB1D006AD83A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB10130C2232007AFCC8 /* CoreData.framework */; };
 		83C75D0D1337BB28006AD83A /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB11130C2232007AFCC8 /* libxml2.2.dylib */; };
-		83C75D0E1337BB28006AD83A /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB12130C2232007AFCC8 /* libz.1.2.3.dylib */; };
 		83C75D0F1337BB34006AD83A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB14130C2233007AFCC8 /* Security.framework */; };
 		83C75D101337BB34006AD83A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */; };
 		83C75D121337BB3D006AD83A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A18130AC20E002A1947 /* CoreLocation.framework */; };
@@ -506,6 +509,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		832A872C139EEA4700111354 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 832A8724139EEA4600111354 /* cocoa-bucks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 837251F31329522A00555ADD;
+			remoteInfo = "cocoa-bucks";
+		};
+		832A872E139EEA4700111354 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 832A8724139EEA4600111354 /* cocoa-bucks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 837252001329522A00555ADD;
+			remoteInfo = "cocoa-bucksTests";
+		};
 		83546478130ABBEB002A1947 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8354645C130ABBEB002A1947 /* Project object */;
@@ -608,6 +625,8 @@
 		8309AB14130C2233007AFCC8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8309AB15130C2233007AFCC8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		831E07A81381B2BC005A30A5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		832A8724139EEA4600111354 /* cocoa-bucks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "cocoa-bucks.xcodeproj"; path = "../cocoa-bucks/cocoa-bucks.xcodeproj"; sourceTree = "<group>"; };
+		832A8735139EF71900111354 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		8337F58713608F9B00A29D49 /* NSDateFormatter+Zest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Zest.h"; sourceTree = "<group>"; };
 		8337F58813608F9B00A29D49 /* NSDateFormatter+Zest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Zest.m"; sourceTree = "<group>"; };
 		83546465130ABBEB002A1947 /* libdesiccant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdesiccant.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1018,6 +1037,8 @@
 		83546A1E130AC20E002A1947 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83546A21130AC20E002A1947 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83546A3D130B0590002A1947 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		83596F55139FC486008E22F0 /* NSString+DTWordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DTWordList.h"; sourceTree = "<group>"; };
+		83596F56139FC486008E22F0 /* NSString+DTWordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DTWordList.m"; sourceTree = "<group>"; };
 		83725230132957D200555ADD /* libcocoa-bucks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libcocoa-bucks.a"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -1026,6 +1047,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				832A8736139EF71900111354 /* libz.1.2.5.dylib in Frameworks */,
 				831E07A91381B2BC005A30A5 /* CoreMedia.framework in Frameworks */,
 				83725231132957D200555ADD /* libcocoa-bucks.a in Frameworks */,
 				83546A3F130B0591002A1947 /* AudioToolbox.framework in Frameworks */,
@@ -1042,7 +1064,6 @@
 				83C75D0B1337BB17006AD83A /* AddressBookUI.framework in Frameworks */,
 				83C75D0C1337BB1D006AD83A /* CoreData.framework in Frameworks */,
 				83C75D0D1337BB28006AD83A /* libxml2.2.dylib in Frameworks */,
-				83C75D0E1337BB28006AD83A /* libz.1.2.3.dylib in Frameworks */,
 				83C75D0F1337BB34006AD83A /* Security.framework in Frameworks */,
 				83C75D101337BB34006AD83A /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -1214,9 +1235,20 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		832A8725139EEA4600111354 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				832A872D139EEA4700111354 /* libcocoa-bucks.a */,
+				832A872F139EEA4700111354 /* cocoa-bucksTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8354645A130ABBEB002A1947 = {
 			isa = PBXGroup;
 			children = (
+				832A8735139EF71900111354 /* libz.1.2.5.dylib */,
+				832A8724139EEA4600111354 /* cocoa-bucks.xcodeproj */,
 				8354646A130ABBEB002A1947 /* desiccant */,
 				8354647B130ABBEB002A1947 /* desiccantTests */,
 				83546467130ABBEB002A1947 /* Frameworks */,
@@ -1838,6 +1870,8 @@
 			children = (
 				8354664A130ABF84002A1947 /* DTWordList.h */,
 				8354664B130ABF84002A1947 /* DTWordList.m */,
+				83596F55139FC486008E22F0 /* NSString+DTWordList.h */,
+				83596F56139FC486008E22F0 /* NSString+DTWordList.m */,
 			);
 			path = WordList;
 			sourceTree = "<group>";
@@ -2249,6 +2283,7 @@
 				83546969130ABF85002A1947 /* UITableViewCellFixed.h in Headers */,
 				615D44661349D64E00CDD0C2 /* DTAudioStreamer.h in Headers */,
 				8337F58913608F9B00A29D49 /* NSDateFormatter+Zest.h in Headers */,
+				83596F57139FC486008E22F0 /* NSString+DTWordList.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2297,6 +2332,7 @@
 		8354645C130ABBEB002A1947 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "ZWorkbench, Inc.";
 			};
 			buildConfigurationList = 8354645F130ABBEB002A1947 /* Build configuration list for PBXProject "desiccant" */;
@@ -2309,6 +2345,12 @@
 			mainGroup = 8354645A130ABBEB002A1947;
 			productRefGroup = 83546466130ABBEB002A1947 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 832A8725139EEA4600111354 /* Products */;
+					ProjectRef = 832A8724139EEA4600111354 /* cocoa-bucks.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				83546464130ABBEB002A1947 /* desiccant */,
@@ -2316,6 +2358,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		832A872D139EEA4700111354 /* libcocoa-bucks.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libcocoa-bucks.a";
+			remoteRef = 832A872C139EEA4700111354 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		832A872F139EEA4700111354 /* cocoa-bucksTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "cocoa-bucksTests.octest";
+			remoteRef = 832A872E139EEA4700111354 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8354646F130ABBEB002A1947 /* Resources */ = {
@@ -2562,6 +2621,7 @@
 				8354696A130ABF85002A1947 /* UITableViewCellFixed.m in Sources */,
 				615D44671349D64E00CDD0C2 /* DTAudioStreamer.m in Sources */,
 				8337F58A13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */,
+				83596F58139FC486008E22F0 /* NSString+DTWordList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2613,6 +2673,7 @@
 				839D91931344CD08001FF554 /* DTViewController.m in Sources */,
 				839D91951344CD34001FF554 /* DTReachability.m in Sources */,
 				8337F58B13608F9B00A29D49 /* NSDateFormatter+Zest.m in Sources */,
+				83596F59139FC486008E22F0 /* NSString+DTWordList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2645,7 +2706,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2666,7 +2728,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

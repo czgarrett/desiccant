@@ -12,7 +12,7 @@
 @implementation NSSortDescriptor (Zest)
 
 + (NSSortDescriptor *) sortAscending: (NSString *) key {
-   return [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];   
+   return [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];   
 }
 
 @end

@@ -31,6 +31,21 @@
     return self;
 }
 
+- (void) setTitle:(NSString *) newTitle {
+   [title autorelease];
+   title = [newTitle copy];
+}
+- (void) setSubtitle:(NSString *) newSubtitle {
+   [subtitle autorelease];
+   subtitle = [newSubtitle copy];
+}
+
+- (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate {
+   coordinate.latitude = newCoordinate.latitude;
+   coordinate.longitude = newCoordinate.longitude;
+}
+
+
 + (DTMapAnnotation *)annotationWithTitle:(NSString *)theTitle subtitle:(NSString *)theSubtitle latitude:(CLLocationDegrees)theLatitude longitude:(CLLocationDegrees)theLongitude {
     return [[[self alloc] initWithTitle:theTitle subtitle:theSubtitle latitude:theLatitude longitude:theLongitude] autorelease];
 }

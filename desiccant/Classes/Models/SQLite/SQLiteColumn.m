@@ -15,16 +15,11 @@
 
 - (id)initWithName: (NSString *)newName typeName:(NSString *) sqliteType
 {
-	self.name = newName;
-	self.typeName = sqliteType;
+   if ((self = [super init])) {
+      self.name = newName;
+      self.typeName = sqliteType;
+   }
 	return self;
-}
-
-- (void)dealloc
-{
-   self.name = nil;
-   self.typeName = nil;
-   [super dealloc];
 }
 
 @end

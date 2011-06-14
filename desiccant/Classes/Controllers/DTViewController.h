@@ -12,13 +12,10 @@
 #import "UIViewController+Zest.h"
 
 @interface DTViewController : UIViewController <DTActsAsChildViewController> {
-	UIViewController *dtContainerViewController;
-	UIView *dtWindowOverlay;
 	BOOL shouldAutorotateToPortrait;
 	BOOL shouldAutorotateToLandscape;
 	BOOL shouldAutorotateUpsideDown;
 	BOOL hasAppeared;
-	DTActivityIndicatorView *dtActivityIndicator;
 }
 
 // Returns this controller's container controller or nil if it doesn't have one.
@@ -58,12 +55,6 @@
 //- (void) afterView:(UIView *)theTableView willDisappear:(BOOL)animated;
 //- (void) beforeView:(UIView *)theTableView didDisappear:(BOOL)animated;
 //- (void) afterView:(UIView *)theTableView didDisappear:(BOOL)animated;
-
-// Because you're supposed to release retained subviews in viewDidUnload, as well as in dealloc,
-// you will often end up nilling out or releasing views in two places.  This method gets called in both
-// viewDidUnload and dealloc, so you only need to release those views once in subclasses.  Override
-// this method and put your statements here.  
-- (void) releaseRetainedSubviews;
 
 
 @end

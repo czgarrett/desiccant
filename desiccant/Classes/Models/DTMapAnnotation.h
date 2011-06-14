@@ -16,9 +16,9 @@
     CLLocationCoordinate2D coordinate;
 }
 
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *subtitle;
-@property (nonatomic) CLLocationCoordinate2D coordinate;
+- (void) setTitle:(NSString *)title;
+- (void) setSubtitle:(NSString *)subtitle;
+- (void) setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
 - (id)initWithTitle:(NSString *)theTitle subtitle:(NSString *)theSubtitle latitude:(CLLocationDegrees)theLatitude longitude:(CLLocationDegrees)theLongitude;
 + (DTMapAnnotation *)annotationWithTitle:(NSString *)theTitle subtitle:(NSString *)theSubtitle latitude:(CLLocationDegrees)theLatitude longitude:(CLLocationDegrees)theLongitude;

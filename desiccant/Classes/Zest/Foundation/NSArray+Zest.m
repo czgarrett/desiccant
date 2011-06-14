@@ -12,7 +12,7 @@
 @implementation NSArray ( Zest )
 
 - (NSMutableArray *) shuffledArray {
-   NSMutableArray *result = [[[NSMutableArray alloc] initWithArray: self] autorelease];
+   NSMutableArray *result = [[NSMutableArray alloc] initWithArray: self];
    for (int i=0; i< [result count] * 10; i++) {
       int index1 = i % [result count]; 
       int index2 = rand() % [result count];
@@ -128,7 +128,7 @@
 		[copy removeObjectIdenticalTo:object];
 		[copy addObject:object];
 	}
-	return [copy autorelease];
+	return copy;
 }
 
 - (NSArray *) unionWithArray: (NSArray *) anArray
@@ -144,7 +144,6 @@
 		if (![anArray containsObject:object])
 			[copy removeObjectIdenticalTo:object];
 	NSArray *intersection = [copy uniqueMembers];
-	[copy release];
 	return intersection;
 }
 
@@ -235,7 +234,7 @@
 }
 
 - (void)perform:(SEL)selector {
-	NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+	NSEnumerator* e = [[self copy] objectEnumerator];
 	for (id delegate; (delegate = [e nextObject]); ) {
 		if ([delegate respondsToSelector:selector]) {
 			[delegate performSelector:selector];
@@ -244,7 +243,7 @@
 }
 
 - (void)perform:(SEL)selector withObject:(id)p1 {
-	NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+	NSEnumerator* e = [[self copy] objectEnumerator];
 	for (id delegate; (delegate = [e nextObject]); ) {
 		if ([delegate respondsToSelector:selector]) {
 			NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];
@@ -258,7 +257,7 @@
 }
 
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2 {
-	NSEnumerator* e = [[[self copy] autorelease] objectEnumerator];
+	NSEnumerator* e = [[self copy] objectEnumerator];
 	for (id delegate; (delegate = [e nextObject]); ) {
 		if ([delegate respondsToSelector:selector]) {
 			NSMethodSignature *sig = [delegate methodSignatureForSelector:selector];

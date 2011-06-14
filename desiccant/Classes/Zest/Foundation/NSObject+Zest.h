@@ -56,14 +56,16 @@
 - (id) valueByPerformingSelector:(SEL)selector;
 
 // Access to object essentials for run-time checks. Stored by class in dictionary.
+/* TODO fix after ARC is more stable
 @property (readonly) NSDictionary *selectors;
 @property (readonly) NSDictionary *properties;
 @property (readonly) NSDictionary *ivars;
 @property (readonly) NSDictionary *protocols;
-
+ - (BOOL) hasProperty: (NSString *) propertyName;
+ - (BOOL) hasIvar: (NSString *) ivarName;
+*/
+ 
 // Check for properties, ivar. Use respondsToSelector: and conformsToProtocol: as well
-- (BOOL) hasProperty: (NSString *) propertyName;
-- (BOOL) hasIvar: (NSString *) ivarName;
 + (BOOL) classExists: (NSString *) className;
 + (id) instanceOfClassNamed: (NSString *) className;
 

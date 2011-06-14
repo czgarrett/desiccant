@@ -89,7 +89,6 @@
 			break;
 	}
 	[self.view addSubview: label];
-	[label autorelease];
 	return label;
 		
 }
@@ -98,7 +97,6 @@
 {
 	UIImageView *result = [[UIImageView alloc] initWithImage: [UIImage imageNamed: imageName]];
 	[self.view addSubview: result];
-	[result autorelease];
 	return result;
 }
 
@@ -109,7 +107,6 @@
 	activityIndicator.hidesWhenStopped = YES;
 	activityIndicator.center = CGPointMake(160.0, [self nextViewTop] + kPadding + 20.0);
 	[self.view addSubview: activityIndicator];
-	[activityIndicator autorelease];
 	return activityIndicator;
 }
 
@@ -121,7 +118,6 @@
 	contentView.backgroundColor = [UIColor colorWithName: @"gray"];
 	contentView.autoresizesSubviews = YES;
 	self.view = contentView;	
-	[contentView release];	
 }
 
 -(UITextField *)addTextFieldWithPlaceholder:(NSString *)placeholderText
@@ -133,7 +129,6 @@
 	result.delegate = (id <UITextFieldDelegate>) self;
 	result.returnKeyType =  UIReturnKeyDone;
 	[self.view addSubview: result];
-	[result release];
 	return result;
 }
 
@@ -158,7 +153,6 @@
                                          cancelButtonTitle: @"Ok" 
                                          otherButtonTitles: nil];
    [alert show];
-   [alert release];
 }
 
 
@@ -265,7 +259,6 @@
                                          cancelButtonTitle: @"Ok" 
                                          otherButtonTitles: nil];
    [alert show];
-   [alert autorelease];   
 }
 
 - (void)confirmationWithTitle: (NSString *)title message: (NSString *)message {
@@ -275,7 +268,6 @@
                                          cancelButtonTitle: @"Cancel" 
                                          otherButtonTitles: @"Ok", nil];
    [alert show];
-   [alert autorelease];   
 }
 
 - (void) showAlertWithTitle: (NSString *) title message: (NSString *) message {
@@ -285,7 +277,6 @@
                                                  cancelButtonTitle: @"Ok" 
                                                  otherButtonTitles: nil];
     [alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
-    [alert autorelease];                                                
 }
 
 - (void)willPopOffOfNavigationStack {}

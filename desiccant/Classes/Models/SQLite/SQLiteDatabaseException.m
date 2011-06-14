@@ -13,7 +13,7 @@
 + (SQLiteDatabaseException *)exceptionFromSQLite: (sqlite3 *)connection
 {
 	NSString *errorMessage = [NSString stringWithFormat: @"Database Error '%s'.", sqlite3_errmsg(connection)];
-	SQLiteDatabaseException *result = [[[SQLiteDatabaseException alloc] initWithName: @"DatabaseException" reason: errorMessage userInfo: nil] autorelease];
+	SQLiteDatabaseException *result = [[SQLiteDatabaseException alloc] initWithName: @"DatabaseException" reason: errorMessage userInfo: nil];
 	return result;
 }
 

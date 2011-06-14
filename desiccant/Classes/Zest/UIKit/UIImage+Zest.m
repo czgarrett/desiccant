@@ -23,7 +23,6 @@
 		if (tempImage && [tempImage respondsToSelector:@selector(initWithCGImage:scale:orientation:)]) {
 			image = [[UIImage alloc] initWithCGImage:tempImage.CGImage scale:2.0 orientation:tempImage.imageOrientation];
 		}
-		[tempImage release];
 	}
 #endif
 	if (!image)  {

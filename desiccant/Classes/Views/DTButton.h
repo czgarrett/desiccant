@@ -13,12 +13,12 @@
    BOOL dependsOnReachability;
 }
 
-@property (assign) BOOL shiny;
-@property (assign) BOOL shadow;
-@property (assign) CGFloat cornerRadius;
-@property (assign) CGFloat borderWidth;
+@property (nonatomic, assign) BOOL shiny;
+@property (nonatomic, assign) BOOL shadow;
+@property (nonatomic, assign) CGFloat cornerRadius;
+@property (nonatomic, assign) CGFloat borderWidth;
 // Value should be 0-1.0.
-@property (assign) CGFloat disabledShadingLevel;
+@property (nonatomic, assign) CGFloat disabledShadingLevel;
 
 - (void) highlight;
 
