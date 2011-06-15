@@ -58,7 +58,7 @@
     if ((self = [super init])) {
         [self clear];
         self.delegate = newDelegate;
-        [self.operationQueue = [[NSOperationQueue alloc] init] autorelease];
+        self.operationQueue = [[[NSOperationQueue alloc] init] autorelease];
         [self clearRowTransformers];
         [self clearRowFilters];
     }

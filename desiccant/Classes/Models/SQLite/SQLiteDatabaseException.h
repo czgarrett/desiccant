@@ -10,7 +10,7 @@
 #import <sqlite3.h>
 
 
-@interface SQLiteDatabaseException : NSObject {
+@interface SQLiteDatabaseException : NSError {
 
 }
 + (SQLiteDatabaseException *)exceptionFromSQLite: (sqlite3 *)connection;

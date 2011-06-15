@@ -33,7 +33,7 @@ typedef enum {
 - (BOOL)isAnimating;
 
 @property (nonatomic) BOOL hidesWhenStopped;
-@property UIActivityIndicatorViewStyle activityIndicatorViewStyle;
-@property DTActivityIndicatorStyle dtActivityIndicatorStyle;
+@property (nonatomic, assign) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
+@property (nonatomic, assign) DTActivityIndicatorStyle dtActivityIndicatorStyle;
 
 @end

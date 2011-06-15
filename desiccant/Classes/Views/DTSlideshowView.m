@@ -120,7 +120,7 @@ static const CGFloat kDefaultMaxZoomFactor = 1.25;
 		nextIndex == index) 
 	{
 		self.nextImage = image;
-		[self.nextImageView = [[UIImageView alloc] initWithImage:image] release];
+		self.nextImageView = [[[UIImageView alloc] initWithImage:image] autorelease];
 		
 		if (state == DTSlideshowViewStateWaitingForFirstImage) {
 			state = DTSlideshowViewStateAnimating;
