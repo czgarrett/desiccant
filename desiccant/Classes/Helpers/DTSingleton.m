@@ -45,11 +45,6 @@
     return NSUIntegerMax;  //denotes an object that cannot be released
 }
 
-- (oneway void)release NS_AUTOMATED_REFCOUNT_UNAVAILABLE
-{
-    //do nothing
-}
-
 - (id)autorelease
 {
     return self;
