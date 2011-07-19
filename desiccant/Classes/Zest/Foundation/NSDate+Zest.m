@@ -311,6 +311,22 @@
 	return [CURRENT_CALENDAR dateFromComponents:components];   
 }
 
+- (NSDate *) dateAtNextFiveMinuteMark {
+   return [[self dateAtPreviousFiveMinuteMark] dateByAddingMinutes: 5];
+}
+
+- (NSDate *) dateAtPreviousFiveMinuteMark {
+	NSDateComponents *components = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];
+   [components setYear: [components year]];
+   [components setMonth: [components month]];
+   [components setDay: [components day]];
+	[components setHour: [components hour]];
+	[components setMinute: ([components minute]/5) * 5]; // rounds down to nearest quarter
+	[components setSecond:0];
+	return [CURRENT_CALENDAR dateFromComponents:components];   
+}
+
+
 
 - (NSDateComponents *) componentsWithOffsetFromDate: (NSDate *) aDate
 {
