@@ -52,6 +52,8 @@
 - (NSArray *) reject: (SEL) selector withObject: (id) object1;
 - (NSArray *) reject: (SEL) selector;
 
+- (id) randomObject;
+
 - (void)perform:(SEL)selector;
 - (void)perform:(SEL)selector withObject:(id)p1;
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2;

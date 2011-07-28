@@ -47,6 +47,14 @@
    return result;
 }
 
+- (id) randomObject {
+   if ([self count] > 0) {
+      return [self objectAtIndex: random() % [self count]];
+   }
+   return nil;
+}
+
+
 - (NSArray *) arrayByRemovingObjectAtIndex: (NSInteger) indexToRemove {
    NSMutableArray *result = [NSMutableArray array];
    NSInteger index = 0;

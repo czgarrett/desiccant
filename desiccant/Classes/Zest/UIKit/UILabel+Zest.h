@@ -18,6 +18,8 @@
 - (NSInteger)numberOfLinesToFitText;
 - (CGFloat)maxHeight;
 - (void) alignTop;
+// For single line labels
+- (CGFloat) currentTextWidth;
 
 
 @end
