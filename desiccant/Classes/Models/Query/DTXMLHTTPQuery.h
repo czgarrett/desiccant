@@ -12,7 +12,6 @@
 
 @class DTHTTPXMLQueryOperation;
 
-// TODO: Refactor this to subclass DTHTTPQuery
 @interface DTXMLHTTPQuery : DTAsyncQuery {
     NSURL *url;
     DTXMLParser *parser;

@@ -64,8 +64,6 @@
 		NSString *urlString = [[[request URL] absoluteString] stringByMatching:@"^app://push/.*?/.*?/(.*)" capture:1];
 		NSURL *nextURL = [NSURL URLWithString:urlString relativeToURL:[request URL]];
 		if (self.webViewController.navigationController) {
-			// TODO: get the nextController from a delegate rather than constructing one here.
-			// The problem is that this new controller doesn't have any link controllers set.
 			self.nextController = [DTWebViewController controllerWithTitle:title];
 			[nextController.webView loadRequest:nextURL.to_request];
 			[self.webViewController.navigationController pushViewController:nextController animated:YES];

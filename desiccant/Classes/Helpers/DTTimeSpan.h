@@ -6,6 +6,8 @@
 //  Copyright 2011 ZWorkbench, Inc. All rights reserved.
 //
 
+// Note:  A Time Span with nil end is considered to have an end far in the future.  
+
 #import <Foundation/Foundation.h>
 
 @interface DTTimeSpan : NSObject
@@ -24,7 +26,13 @@
 
 + (DTTimeSpan *) timeSpanWithStart: (NSDate *) start end: (NSDate *) end;
 
+// Returns YES if the start time or end time of other is in the range of the receiver.
+// If the receiver has a nil end, then returns YES if the start or end time of other occurs after the
+// start time of the receiver.
 - (BOOL) intersects: (DTTimeSpan *) other;
+
+// Returns YES if the given date is between the receiver's start and end times.  If the receiver's end time is nil,
+// returns YES if the given date comes after the receiver's start date.
 - (BOOL) includes: (NSDate *) date;
 
 // Returns a new autoreleased time span object with the receiver's start and end times adjusted

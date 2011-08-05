@@ -58,6 +58,10 @@
 // Returns a copy of self if its length length is shorter than the given length. 
 - (NSString *) stringTruncatedToLength: (NSInteger)length;
 
+// returns YES if the receiver's uppercase string is equal to YES, TRUE, 1, or ON
+// returns NO if the receiver's uppercase string is equal to NO, FALSE, 0, OFF, or empty string
+- (BOOL) boolValue;
+
 @property(readonly) BOOL vowel;
 @property(readonly) BOOL consonant;
 // Returns true if this string is the file extension of an image that can be handled by UIImage

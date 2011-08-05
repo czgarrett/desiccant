@@ -11,7 +11,6 @@
 @implementation UIScreen(Zest)
 
 - (CGPoint)center {
-	// TODO: Test this in landscape mode
 	return CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
 }
 

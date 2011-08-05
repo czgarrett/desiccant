@@ -46,12 +46,25 @@
 }
 
 - (BOOL) intersects:(DTTimeSpan *)other {
-   return ([other.start isEarlierThanDate: self.end] && [other.start isLaterThanDate: self.start]) ||
-   ([other.end isEarlierThanDate: self.end] && [other.end isLaterThanDate: self.start]);
+   if (self.start && self.end) {
+      return ([other.start isEarlierThanDate: self.end] && [other.start isLaterThanDate: self.start]) ||
+      ([other.end isEarlierThanDate: self.end] && [other.end isLaterThanDate: self.start]);
+   } else if (self.start) { // Start but no end
+      return [other.start isLaterThanDate: self.start] || (other.end && [other.end isLaterThanDate: self.start]);
+   } else {
+      return NO;
+   }
 }
 
 - (BOOL) includes: (NSDate *)date  {
-   return (self.end && self.start) && [self.start isEarlierThanDate: date] && [self.end isLaterThanDate: date];
+   if (date == nil) return NO;
+   if (self.end && self.start) {
+      return [self.start isEarlierThanDate: date] && [self.end isLaterThanDate: date];
+   } else if (self.start) {
+      return [self.start isEarlierThanDate: date];
+   } else {
+      return NO;
+   }
 }
 
 @end

@@ -479,9 +479,6 @@
 	Protocol * const *protocols = class_copyProtocolList(self, &num);
 	for (int i = 0; i < num; i++)
 		[protocolNames addObject:[NSString stringWithCString:protocol_getName(protocols[i]) encoding:NSUTF8StringEncoding]];
-   // TODO not sure if this is correct, compiler gave warning because
-   // it discards the const modifier.
-	//free(protocols);
 	return protocolNames;
 }
 

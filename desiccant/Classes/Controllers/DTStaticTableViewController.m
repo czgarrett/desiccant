@@ -62,8 +62,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	// TODO: Someday optimize this for tables without variable row height, and add support for tables with 
-	// variable height rows.
 	DTTableViewRow *row = [self tableView:tableView rowAtIndexPath:indexPath];
 	self.cell = row.cell;
 	if (!cell) {

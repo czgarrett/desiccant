@@ -543,6 +543,15 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    return !self.vowel;
 }
 
+// returns YES if the receiver's uppercase string is equal to YES, TRUE, 1, or ON
+// returns NO for all other values
+- (BOOL) boolValue {
+   NSString *caps = [self uppercaseString];
+   return   [caps isEqualToString: @"YES"] || [caps isEqualToString: @"TRUE"] ||
+            [caps isEqualToString: @"1"]   || [caps isEqualToString: @"ON"];
+}
+
+
 - (BOOL) isImageExtension {
     return 
     [self isEqual:@"jpg"] ||
