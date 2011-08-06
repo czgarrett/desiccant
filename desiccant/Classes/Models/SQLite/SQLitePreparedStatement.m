@@ -50,7 +50,7 @@
    NSObject *binding;
    NSInteger bindingCount = [self bindingCount];
    for (int column=0; column < bindingCount; column++) {
-      binding = va_arg(bindings, NSObject *);
+      binding = (__bridge NSObject *)va_arg(bindings, void *);
       [self bindValue: binding toColumn: column];
    }
    va_end(bindings);      

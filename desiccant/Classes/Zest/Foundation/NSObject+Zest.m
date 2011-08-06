@@ -97,7 +97,7 @@
 		// printf("[%s] %d of %d\n", [NSStringFromSelector(selector) UTF8String], argcount, totalArgs); // debug
 		if (strcmp(argtype, @encode(id)) == 0)
 		{
-			id argument = va_arg(arguments, id);
+			id argument = (__bridge id)va_arg(arguments, void *);
 			[inv setArgument:&argument atIndex:argcount++];
 		}
 		else if (
@@ -138,7 +138,7 @@
 		}
 		else if (strcmp(argtype, @encode(Class)) == 0)
 		{
-			Class c = va_arg(arguments, Class);
+			Class c = (__bridge Class)va_arg(arguments, void *);
 			[inv setArgument:&c atIndex:argcount++];
 		}
 		else if (strcmp(argtype, @encode(SEL)) == 0)

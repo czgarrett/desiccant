@@ -19,7 +19,7 @@
 }
 
 @property (nonatomic, retain) UIImage *defaultImage;
-@property (nonatomic, weak) IBOutlet NSObject <DTImageViewDelegate> *delegate;
+@property (nonatomic, assign) IBOutlet NSObject <DTImageViewDelegate> *delegate;
 @property (nonatomic) BOOL alwaysCacheToDisk;
 
 - (void)loadFromURL:(NSURL *)url;

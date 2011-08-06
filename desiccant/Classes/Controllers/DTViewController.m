@@ -10,7 +10,7 @@
 #import "DTCompositeViewController.h"
 
 @interface DTViewController()
-@property (nonatomic, weak) UIViewController *dtContainerViewController;
+@property (nonatomic, assign) UIViewController *dtContainerViewController;
 @property (nonatomic, retain) UIView *dtWindowOverlay;
 @property (nonatomic, retain) DTActivityIndicatorView *dtActivityIndicator;
 @end

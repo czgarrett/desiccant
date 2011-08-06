@@ -25,7 +25,7 @@
 	do
 	{
 		[self addObject:obj];
-		obj = va_arg(objects, id);
+		obj = (__bridge id)va_arg(objects, void *);
 	} while (obj);
 	va_end(objects);
 	return self;
@@ -94,6 +94,11 @@
 - (BOOL) isMutable {
    return YES;
 }
+
+- (void) addCGPointValueWithX: (CGFloat) x y: (CGFloat) y {
+   [self addObject: [NSValue valueWithCGPoint: CGPointMake(x,y)]];
+}
+
 
 
 @end

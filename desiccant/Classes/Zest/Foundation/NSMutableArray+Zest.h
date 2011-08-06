@@ -20,6 +20,8 @@
 - (id) popObject;
 - (id) pullObject;
 
+- (void) addCGPointValueWithX: (CGFloat) x y: (CGFloat) y;
+
 // Synonyms for traditional use
 - (NSMutableArray *)push:(id)object;
 - (id) pop;
