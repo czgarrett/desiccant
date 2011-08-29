@@ -226,15 +226,6 @@
 	}
 }
 
-- (UIViewController *)parentViewController {
-	if ([self.containerViewController respondsToSelector:@selector(parentViewController)]) {
-		return self.containerViewController.parentViewController;
-	}
-	else {
-		return super.parentViewController;
-	}
-}
-
 //- (UIView *)view {
 //	if (self.containerViewController) {
 //		??? // Figure out what to return here

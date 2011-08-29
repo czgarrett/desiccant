@@ -308,15 +308,6 @@ shouldAdjustViewOnKeyboardShow;
 	}
 }
 
-- (UIViewController *)parentViewController {
-	if ([self.containerViewController respondsToSelector:@selector(parentViewController)]) {
-		return self.containerViewController.parentViewController;
-	}
-	else {
-		return super.parentViewController;
-	}
-}
-
 - (UITableView *)tableView {
 	if ([self.containerTableViewController respondsToSelector:@selector(tableView)]) {
 		return self.containerTableViewController.tableView;
