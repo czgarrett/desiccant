@@ -27,7 +27,7 @@
    UIColor *shadowStartColor = [UIColor colorWithWhite: 0.0 alpha: 0.6];
    UIView *topShadowView = [[[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x, 
                                                                       self.bounds.origin.y, 
-                                                                      self.bounds.size.width, 
+                                                                      1024, // to support resizing, all the way up to ipad full width 
                                                                       INNER_SHADOW_HEIGHT)] autorelease];
    topShadowView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
    CAGradientLayer *topGradient = [[[CAGradientLayer alloc] init] autorelease];
@@ -40,7 +40,7 @@
 
    UIView *bottomShadowView = [[[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x, 
                                                                       self.bounds.origin.y + self.bounds.size.height - INNER_SHADOW_HEIGHT, 
-                                                                      self.bounds.size.width, 
+                                                                         1024, // to support resizing, all the way up to ipad full width 
                                                                       INNER_SHADOW_HEIGHT)] autorelease];
    bottomShadowView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
    CAGradientLayer *bottomGradient = [[[CAGradientLayer alloc] init] autorelease];
@@ -55,6 +55,7 @@
    UIView *shadowView = [[[UIView alloc] initWithFrame: self.frame] autorelease];
    shadowView.userInteractionEnabled = NO;
    shadowView.autoresizingMask = self.autoresizingMask;
+   shadowView.clipsToBounds = YES;
    [shadowView addSubview: topShadowView];
    [shadowView addSubview: bottomShadowView];
    //shadowView.backgroundColor = [UIColor colorWithRed: 1.0 green: 1.0 blue: 0.0 alpha: 0.2];
