@@ -556,6 +556,7 @@ static NSLock *crayolaNameCacheLock;
 	return crayolaNameCache;
 }
 
+/*
 + (UIColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha {
 	// Convert hsb to rgb
 	CGFloat r,g,b;
@@ -564,6 +565,7 @@ static NSLock *crayolaNameCacheLock;
 	// Create a color with rgb
 	return [self colorWithRed:r green:g blue:b alpha:alpha];
 }
+ */
 
 
 #pragma mark Color Space Conversions
