@@ -27,6 +27,12 @@
 	return [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(self.bounds.size.width, [self maxHeight]) lineBreakMode:self.lineBreakMode].height;
 }
 
+- (CGFloat) currentTextWidth {
+   NSAssert(self.numberOfLines == 1, @"This method should only be called on a label with one line of text");
+   return [self.text sizeWithFont: self.font constrainedToSize: CGSizeMake(1000,1000) lineBreakMode: self.lineBreakMode].width;
+}
+
+
 - (void) alignTop {
    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, [self heightToFitText]);
 }

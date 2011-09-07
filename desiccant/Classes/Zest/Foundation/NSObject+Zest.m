@@ -553,6 +553,7 @@
 	return NULL;
 }
 
+/* TODO:  ARC gives a warning here.  We should probably just remove these methods and replace with block methods
 // Perform the selector if possible, returning any return value. Otherwise return nil.
 - (id) tryPerformSelector: (SEL) aSelector withObject: (id) object1 withObject: (id) object2
 {
@@ -566,6 +567,7 @@
 {
 	return [self tryPerformSelector:aSelector withObject:nil withObject:nil];
 }
+ */
 
 // Create an archiver and encode the object into NSData.
 - (NSData *) encodeIntoData {

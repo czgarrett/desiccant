@@ -70,9 +70,11 @@
 + (id) instanceOfClassNamed: (NSString *) className;
 
 // Attempt selector if possible
+/* TODO:  ARC gives a warning on implementation of these methods.  We should probably just remove these methods and replace with block methods
 - (id) tryPerformSelector: (SEL) aSelector withObject: (id) object1 withObject: (id) object2;
 - (id) tryPerformSelector: (SEL) aSelector withObject: (id) object1;
 - (id) tryPerformSelector: (SEL) aSelector;
+ */
 
 // Choose the first selector that the object responds to
 - (SEL) chooseSelector: (SEL) aSelector, ...;

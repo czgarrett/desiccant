@@ -19,7 +19,10 @@
 - (NSArray *) arrayByRemovingObject: (id) object;
 - (NSArray *) arrayByRemovingObjectAtIndex: (NSInteger) indexToRemove;
 
+/* TODO:  ARC gives a warning for this implementation.  We should probably just remove these methods and replace with block methods
 - (NSMutableArray *) collectWithSelector: (SEL) selector;
+ - (void)perform:(SEL)selector;
+ */
 
 - (BOOL) empty;
 // Returns a new array with the contents of this array reversed
@@ -52,7 +55,6 @@
 - (NSArray *) reject: (SEL) selector withObject: (id) object1;
 - (NSArray *) reject: (SEL) selector;
 
-- (void)perform:(SEL)selector;
 - (void)perform:(SEL)selector withObject:(id)p1;
 - (void)perform:(SEL)selector withObject:(id)p1 withObject:(id)p2;
 

@@ -19,5 +19,6 @@
 - (CGFloat)maxHeight;
 - (void) alignTop;
 
+- (CGFloat) currentTextWidth;
 
 @end

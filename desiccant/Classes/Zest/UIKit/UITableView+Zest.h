@@ -10,4 +10,6 @@
 @interface UITableView (Zest)
 - (NSInteger) numberOfRowsAcrossAllSections;
 - (CGFloat) cellWidth;
+- (void) addInnerShadow;
+
 @end

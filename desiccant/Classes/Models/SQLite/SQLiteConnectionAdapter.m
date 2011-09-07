@@ -43,12 +43,15 @@ static BOOL readOnly;
 
 - (id) init
 {
-	tables = [[NSMutableDictionary alloc] init];
-	preparedStatements = [[NSMutableDictionary alloc] init];
-   if (readOnly) {
-      [self createReadOnlyConnection];
-   } else {
-      [self createWriteableConnection];
+   self = [super init];
+   if (self) {
+      tables = [[NSMutableDictionary alloc] init];
+      preparedStatements = [[NSMutableDictionary alloc] init];
+      if (readOnly) {
+         [self createReadOnlyConnection];
+      } else {
+         [self createWriteableConnection];
+      }
    }
 	return self;
 }

@@ -59,6 +59,7 @@
    return result;
 }
 
+/* TODO:  ARC gives a warning here.  We should probably just remove these methods and replace with block methods
 - (NSMutableArray *) collectWithSelector: (SEL) selector {
    NSMutableArray *result = [NSMutableArray array];
    for (NSObject *object in self) {
@@ -66,6 +67,18 @@
    }
    return result;
 }
+ 
+ - (void)perform:(SEL)selector {
+ NSEnumerator* e = [[self copy] objectEnumerator];
+ for (id delegate; (delegate = [e nextObject]); ) {
+ if ([delegate respondsToSelector:selector]) {
+ [delegate performSelector:selector];
+ }
+ }
+ }
+
+ 
+*/
 
 - (BOOL) isMutable {
    return NO;
@@ -231,15 +244,6 @@
 - (NSArray *) reject: (SEL) selector
 {
 	return [self reject:selector withObject:nil withObject:nil];
-}
-
-- (void)perform:(SEL)selector {
-	NSEnumerator* e = [[self copy] objectEnumerator];
-	for (id delegate; (delegate = [e nextObject]); ) {
-		if ([delegate respondsToSelector:selector]) {
-			[delegate performSelector:selector];
-		}
-	}
 }
 
 - (void)perform:(SEL)selector withObject:(id)p1 {
