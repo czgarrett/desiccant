@@ -34,6 +34,11 @@
    return result;
 }
 
++ (DTTimeSpan *) timeSpanWithStart: (NSDate *) start length: (NSTimeInterval) length {
+   return [DTTimeSpan timeSpanWithStart: start end: [start dateByAddingTimeInterval: length]];
+}
+
+
 - (DTTimeSpan *) timeSpanByAddingTimeInterval: (NSTimeInterval) interval {
    return [DTTimeSpan timeSpanWithStart: [self.start dateByAddingTimeInterval: interval] 
                                     end: [self.end dateByAddingTimeInterval: interval]];

@@ -25,6 +25,7 @@
 + (DTTimeSpan *) timeSpanForFifteenMinutesThatInclude: (NSDate *) date;
 
 + (DTTimeSpan *) timeSpanWithStart: (NSDate *) start end: (NSDate *) end;
++ (DTTimeSpan *) timeSpanWithStart: (NSDate *) start length: (NSTimeInterval) length;
 
 // Returns YES if the start time or end time of other is in the range of the receiver.
 // If the receiver has a nil end, then returns YES if the start or end time of other occurs after the
