@@ -8,6 +8,7 @@
 
 #import "DTTimeSpan.h"
 #import "NSDate+Zest.h"
+#import "CBucks.h"
 
 @implementation DTTimeSpan
 
@@ -42,6 +43,19 @@
 - (DTTimeSpan *) timeSpanByAddingTimeInterval: (NSTimeInterval) interval {
    return [DTTimeSpan timeSpanWithStart: [self.start dateByAddingTimeInterval: interval] 
                                     end: [self.end dateByAddingTimeInterval: interval]];
+}
+
+- (NSString *) description {
+   return $S(@"%@ - %@: %@", self.start, self.end, [self timeIntervalString]);
+}
+
+- (NSString *) timeIntervalString {
+   NSTimeInterval interval = self.interval;
+   int days = (int) (interval/(60*60*24));
+   int hours = ((int) (interval/(60*60))) % 24;
+   int minutes = ((int) (interval/(60))) % 60;
+   float seconds = interval - 60*((int) (interval/(60))); 
+   return $S(@"%dd %dh %dm %fs", days, hours, minutes, seconds);
 }
 
 

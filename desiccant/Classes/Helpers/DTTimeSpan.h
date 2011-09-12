@@ -36,6 +36,10 @@
 // returns YES if the given date comes after the receiver's start date.
 - (BOOL) includes: (NSDate *) date;
 
+// Returns time interval in the format 12d 4h 23m 23.243s
+- (NSString *) timeIntervalString;
+
+
 // Returns a new autoreleased time span object with the receiver's start and end times adjusted
 // by the given interval
 - (DTTimeSpan *) timeSpanByAddingTimeInterval: (NSTimeInterval) interval;
