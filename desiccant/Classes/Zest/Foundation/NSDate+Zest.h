@@ -52,8 +52,11 @@
 - (BOOL) isThisYear;
 - (BOOL) isNextYear;
 - (BOOL) isLastYear;
+// Returns YES if aDate is earlier than or equal to the receiver
 - (BOOL) isEarlierThanDate: (NSDate *) aDate;
+// Returns YES if aDate is later than or equal to the receiver
 - (BOOL) isLaterThanDate: (NSDate *) aDate;
+- (BOOL) isLaterThanAndNotEqualToDate: (NSDate *) aDate;
 - (BOOL) isEarlierThanNow;
 - (BOOL) isLaterThanNow;
 

@@ -150,6 +150,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 }
 
 - (BOOL) isReachable {
+   //return YES;
    DTNetworkStatus currentStatus = [self currentReachabilityStatus];
    return currentStatus != DTNetworkStatusNotReachable;
 }

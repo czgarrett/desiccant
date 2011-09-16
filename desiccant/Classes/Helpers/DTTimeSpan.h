@@ -34,6 +34,8 @@
 
 // Returns YES if the given date is between the receiver's start and end times.  If the receiver's end time is nil,
 // returns YES if the given date comes after the receiver's start date.
+// Returns YES if the given date is equal to the receiver's start time, but NO if the given date is equal to the receiver's end time.
+// This is so that contiguous time spans will only return YES for one time span.
 - (BOOL) includes: (NSDate *) date;
 
 // Returns time interval in the format 12d 4h 23m 23.243s

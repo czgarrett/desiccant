@@ -240,6 +240,11 @@
 	return ([self laterDate:aDate] == self);
 }
 
+- (BOOL) isLaterThanAndNotEqualToDate: (NSDate *) aDate
+{
+	return ([self laterDate:aDate] == self) && ![self isEqualToDate: aDate];
+}
+
 - (BOOL) isEarlierThanNow {
    return [self isEarlierThanDate: [NSDate date]];
 }

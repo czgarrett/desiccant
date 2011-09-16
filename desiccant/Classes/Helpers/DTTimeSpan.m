@@ -67,7 +67,7 @@
 - (BOOL) intersects:(DTTimeSpan *)other {
    if (self.start && self.end) {
       return ([other.start isEarlierThanDate: self.end] && [other.start isLaterThanDate: self.start]) ||
-      ([other.end isEarlierThanDate: self.end] && [other.end isLaterThanDate: self.start]);
+             ([other.end isEarlierThanDate: self.end] && [other.end isLaterThanDate: self.start]);
    } else if (self.start) { // Start but no end
       return [other.start isLaterThanDate: self.start] || (other.end && [other.end isLaterThanDate: self.start]);
    } else {
@@ -78,9 +78,9 @@
 - (BOOL) includes: (NSDate *)date  {
    if (date == nil) return NO;
    if (self.end && self.start) {
-      return [self.start isEarlierThanDate: date] && [self.end isLaterThanDate: date];
+      return ([self.start isEarlierThanDate: date] && [self.end isLaterThanDate: date]) && ![self.end isEqualToDate: date];
    } else if (self.start) {
-      return [self.start isEarlierThanDate: date];
+      return [self.start isEarlierThanDate: date] || [self.start isEqualToDate: date];
    } else {
       return NO;
    }
