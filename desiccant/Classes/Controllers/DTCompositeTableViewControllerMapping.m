@@ -6,7 +6,7 @@
 //
 
 #import "DTCompositeTableViewControllerMapping.h"
-#import "Zest.h"
+#import "NSIndexPath+Zest.h"
 
 @interface DTCompositeTableViewControllerMapping()
 - (NSIndexPath *)expandedRelativeIndexPathForFlattenedAbsoluteIndexPath:(NSIndexPath *)absoluteIndexPath withBaseSection:(NSUInteger)baseSection andBaseRow:(NSUInteger)baseRow;

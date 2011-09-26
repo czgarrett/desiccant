@@ -47,6 +47,10 @@
    }
 }
 
+- (UIViewController <ACModelObjectController> *)  newItemController {
+   return newItemController;
+}
+
 #pragma mark Editing Methods
 
 

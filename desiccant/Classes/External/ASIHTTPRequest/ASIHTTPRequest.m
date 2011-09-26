@@ -22,7 +22,6 @@
 #import "ASIInputStream.h"
 #import "ASIDataDecompressor.h"
 #import "ASIDataCompressor.h"
-#import "desiccant.h"
 
 // Automatically set on build
 NSString *ASIHTTPRequestVersion = @"v1.8-33 2011-01-06";

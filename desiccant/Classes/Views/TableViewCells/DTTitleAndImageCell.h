@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
+
+#import "DTCustomTableViewCell.h"
 
 
 @interface DTTitleAndImageCell : DTCustomTableViewCell {

@@ -6,7 +6,8 @@
 //
 
 #import "DTGoogleAJAXSearchAPIParser.h"
-#import "Zest.h"
+#import "NSDictionary+Zest.h"
+#import "NSArray+Zest.h"
 
 @interface DTGoogleAJAXSearchAPIParser()
 @end

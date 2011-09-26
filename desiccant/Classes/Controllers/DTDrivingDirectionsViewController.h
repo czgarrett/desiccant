@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
+#import <MapKit/MapKit.h>
+#import "DTStaticTableViewController.h"
+
+@class DTCustomTableViewCell;
 
 
 @interface DTDrivingDirectionsViewController : DTStaticTableViewController {

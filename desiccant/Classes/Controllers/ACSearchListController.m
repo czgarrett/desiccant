@@ -54,6 +54,10 @@
 	[super dealloc];
 }
 
+- (Class) newControllerClass {
+   return newControllerClass;
+}
+
 - (void)loadView
 {
 	[super loadView];

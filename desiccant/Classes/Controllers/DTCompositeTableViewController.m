@@ -8,7 +8,6 @@
 #import "DTCompositeTableViewController.h"
 #import "DTCompositeTableViewControllerMapping.h"
 #import "DTTableViewProxy.h"
-#import "Zest.h"
 
 @interface DTCompositeTableViewController()
 @property (nonatomic, retain) NSMutableArray *controllerMappings;

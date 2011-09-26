@@ -290,8 +290,8 @@
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSArray *indexes;
-    if (indexes = [query groupIndexes])  {
+    NSArray *indexes = [query groupIndexes];
+    if (indexes)  {
         if ([self hasHeaders]) {
             NSMutableArray *tempArray = [NSMutableArray arrayWithArray:indexes];
             [tempArray insertObject:@"" atIndex:0];
