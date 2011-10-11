@@ -46,4 +46,8 @@
 // by the given interval
 - (DTTimeSpan *) timeSpanByAddingTimeInterval: (NSTimeInterval) interval;
 
+// Returns YES if the start date is in the future
+
+- (BOOL) startsInFuture;
+
 @end

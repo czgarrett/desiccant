@@ -86,4 +86,9 @@
    }
 }
 
+- (BOOL) startsInFuture {
+   return [self.start isLaterThanNow];
+}
+
+
 @end
