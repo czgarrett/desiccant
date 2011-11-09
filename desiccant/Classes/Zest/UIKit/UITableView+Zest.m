@@ -7,7 +7,7 @@
 
 #import "UITableView+Zest.h"
 #import <QuartzCore/QuartzCore.h>
-#define INNER_SHADOW_HEIGHT 10.0
+#define INNER_SHADOW_HEIGHT 6.0
 
 @implementation UITableView(Zest)
 
