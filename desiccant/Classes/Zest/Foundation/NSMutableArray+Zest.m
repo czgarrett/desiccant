@@ -46,6 +46,13 @@
    }
 }
 
+- (void) addObjectIfMissing: (NSObject *) object {
+   if (![self containsObject: object]) {
+      [self addObject: object];
+   }
+}
+
+
 - (id) pull
 {
 	return [self pullObject];
