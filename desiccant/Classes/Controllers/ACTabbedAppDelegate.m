@@ -1,8 +1,6 @@
 
 #import "ACTabbedAppDelegate.h"
-#import "SQLiteConnectionAdapter.h"
 #import "UITabBarControllerRotating.h"
-#import "Zest.h"
 
 @implementation ACTabbedAppDelegate 
 
@@ -55,7 +53,7 @@
    [self setUpTabBarController];
    [window addSubview: tabBarController.view];
    [window makeKeyAndVisible]; 
-   [self setUpSplash];     
+   //[self setUpSplash];     
 }
 
 - (void) setUpTabBarController {
@@ -74,10 +72,8 @@
 }
 
 - (void) setUpSplash {
-   UIImage *splashImage = [UIImage imageNamed: @"splash.png"];
-   unless (splashImage) {
-      splashImage = [UIImage imageNamed: @"Default.png"];
-   }
+   UIImage *splashImage = [UIImage imageNamed: @"Default.png"];
+
    if (splashImage) {
       tabBarController.view.alpha = 0.0;
       self.splashView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)] autorelease];
@@ -88,7 +84,7 @@
       if (!self.hasSeenContinueButton && okButton) {
          [self.splashView addSubview: okButton];
       } else {
-         [NSTimer scheduledTimerWithTimeInterval: 0.5 
+         [NSTimer scheduledTimerWithTimeInterval: 0.001 
                                           target:self 
                                         selector:@selector(hideSplash) 
                                         userInfo:nil 
@@ -96,7 +92,7 @@
       }
       [window addSubview:self.splashView];	
       [window bringSubviewToFront:self.splashView];
-   }   
+   }
 }
 
 - (void) hideSplash {
@@ -136,7 +132,6 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-   [SQLiteConnectionAdapter releaseDefaultInstance];
 }
 
 // Subclasses can override this to provide a button to click the first time they see the app

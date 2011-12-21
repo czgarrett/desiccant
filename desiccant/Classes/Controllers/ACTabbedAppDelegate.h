@@ -1,5 +1,6 @@
 
 #import <UIKit/UIKit.h>
+#import "Zest.h"
 
 @interface ACTabbedAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UITabBarDelegate> {
    IBOutlet UIWindow *window;

@@ -75,6 +75,29 @@
 	return [NSURL URLWithString:urlString];
 }
 
++ (NSURL *)urlForDrivingDirectionsFromCurrentLocationTo:(CLLocation *)to forceTitle:(NSString *)forcedToTitle {
+	if (!to) return nil;
+	NSMutableString *urlString = [NSMutableString stringWithString:@"http://maps.google.com/maps"];
+	NSString *nextDelimiter = @"?";
+	
+   [urlString appendFormat:@"%@saddr=Current+Location", nextDelimiter];
+   nextDelimiter = @"&";
+	
+	if (to) {
+		[urlString appendFormat:@"%@daddr=%1.6f,%1.6f",
+		 nextDelimiter,
+		 to.coordinate.latitude, 
+		 to.coordinate.longitude];
+		if (forcedToTitle) {
+			[urlString appendFormat:@"+(%@)", 
+			 [forcedToTitle stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		}
+	}
+	
+	return [NSURL URLWithString:urlString];
+}
+
+
 +(NSURL *) URLWithFormat: (NSString *) format, ... {
    va_list args;
    va_start(args, format);          // Start scanning for arguments after firstObject.

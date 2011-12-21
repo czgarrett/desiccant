@@ -16,6 +16,7 @@
 // Returns the file URL for the main bundle's resource path
 + (NSURL *)resourceURL;
 + (NSURL *)urlForDrivingDirectionsFrom:(CLLocation *)from forceTitle:(NSString *)forcedFromTitle to:(CLLocation *)to forceTitle:(NSString *)forcedToTitle;
++ (NSURL *)urlForDrivingDirectionsFromCurrentLocationTo:(CLLocation *)to forceTitle:(NSString *)forcedToTitle;
 + (NSURL *)URLWithFormat: (NSString *) format, ...;
 
 // Tests for network reachability for this URL's host

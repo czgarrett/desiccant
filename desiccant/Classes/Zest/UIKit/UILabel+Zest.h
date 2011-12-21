@@ -20,6 +20,6 @@
 - (void) alignTop;
 // For single line labels
 - (CGFloat) currentTextWidth;
-
+- (void) adjustHeightToFitCurrentWidth;
 
 @end

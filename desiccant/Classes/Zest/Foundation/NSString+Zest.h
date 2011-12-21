@@ -134,5 +134,7 @@
 
 - (NSNumber *) integerNumber;
 
+// Strips out dollar sign if it exists, then converts to float
+- (float) priceFloatValue;
 
 @end

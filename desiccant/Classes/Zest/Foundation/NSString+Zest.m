@@ -462,6 +462,11 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
+- (float) priceFloatValue {
+   NSString *noCurrency = [self stringByTrimmingCharactersInSet: [NSCharacterSet symbolCharacterSet]];
+   return [noCurrency floatValue];
+}
+
 - (NSString *)to_resource_path {
     return [self withResourcePathPrepended];
 }
