@@ -46,10 +46,12 @@
    }
 }
 
-- (void) addObjectIfMissing: (NSObject *) object {
+- (BOOL) addObjectIfMissing: (NSObject *) object {
    if (![self containsObject: object]) {
       [self addObject: object];
+      return YES;
    }
+   return NO;
 }
 
 

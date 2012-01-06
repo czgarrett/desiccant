@@ -230,19 +230,24 @@
 	return ([components1 year] == ([components2 year] - 1));
 }
 
-- (BOOL) isEarlierThanDate: (NSDate *) aDate
+- (BOOL) isEarlierThanOrEqualToDate: (NSDate *) aDate
 {
 	return ([self earlierDate:aDate] == self);
 }
 
-- (BOOL) isLaterThanDate: (NSDate *) aDate
+- (BOOL) isLaterThanOrEqualToDate: (NSDate *) aDate
 {
 	return ([self laterDate:aDate] == self);
 }
 
-- (BOOL) isLaterThanAndNotEqualToDate: (NSDate *) aDate
+- (BOOL) isLaterThanDate: (NSDate *) aDate
 {
 	return ([self laterDate:aDate] == self) && ![self isEqualToDate: aDate];
+}
+
+- (BOOL) isEarlierThanDate: (NSDate *) aDate
+{
+	return ([self earlierDate:aDate] == self) && ![self isEqualToDate: aDate];
 }
 
 - (BOOL) isEarlierThanNow {

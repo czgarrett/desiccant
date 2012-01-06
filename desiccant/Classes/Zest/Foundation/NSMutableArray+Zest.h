@@ -11,7 +11,8 @@
 @interface NSMutableArray ( Zest )
 
 - (void) addObjectUnlessNil: (NSObject *) object;
-- (void) addObjectIfMissing: (NSObject *) object;
+// returns YES if the object was added
+- (BOOL) addObjectIfMissing: (NSObject *) object;
 - (NSMutableArray *) removeFirstObject;
 - (NSMutableArray *) reverse;
 - (NSMutableArray *) scramble;
