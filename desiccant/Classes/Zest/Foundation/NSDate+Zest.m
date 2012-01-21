@@ -140,6 +140,12 @@
 
 #pragma mark Comparing Dates
 
+- (BOOL) isWithinInterval: (NSTimeInterval) maxInterval ofDate: (NSDate *) date {
+   NSTimeInterval interval = [self timeIntervalSinceDate: date];
+   return ABS(interval) <= maxInterval;
+}
+
+
 - (BOOL) isEqualToDateIgnoringTime: (NSDate *) aDate
 {
 	NSDateComponents *components1 = [CURRENT_CALENDAR components:DATE_COMPONENTS fromDate:self];

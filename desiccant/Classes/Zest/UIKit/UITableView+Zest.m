@@ -7,7 +7,6 @@
 
 #import "UITableView+Zest.h"
 #import <QuartzCore/QuartzCore.h>
-#define INNER_SHADOW_HEIGHT 10.0
 
 @implementation UITableView(Zest)
 
@@ -25,12 +24,12 @@
 
 
 - (void) addInnerShadow {
-   UIColor *shadowStartColor = [UIColor colorWithWhite: 0.0 alpha: 0.6];
+   UIColor *shadowStartColor = [UIColor colorWithWhite: 0.0 alpha: 0.2];
    UIView *topShadowView = [[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x, 
                                                                       self.bounds.origin.y, 
                                                                       1024,  // to support resizing all the way up to ipad
-                                                                      INNER_SHADOW_HEIGHT)];
-   topShadowView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+                                                                      self.bounds.size.height/2)];
+   topShadowView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight;
    CAGradientLayer *topGradient = [[CAGradientLayer alloc] init];
    NSMutableArray *colors = [NSMutableArray array];
    [colors addObject: (id)shadowStartColor.CGColor];
@@ -40,10 +39,10 @@
    [topShadowView.layer addSublayer: topGradient];
    
    UIView *bottomShadowView = [[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x, 
-                                                                         self.bounds.origin.y + self.bounds.size.height - INNER_SHADOW_HEIGHT, 
+                                                                         self.bounds.origin.y + self.bounds.size.height - self.bounds.size.height/2, 
                                                                          1024, 
-                                                                         INNER_SHADOW_HEIGHT)];
-   bottomShadowView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+                                                                         self.bounds.size.height/2)];
+   bottomShadowView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
    CAGradientLayer *bottomGradient = [[CAGradientLayer alloc] init];
    [colors removeAllObjects];
    [colors addObject: (id)[UIColor clearColor].CGColor];
@@ -52,14 +51,12 @@
    bottomGradient.frame = bottomShadowView.bounds;
    [bottomShadowView.layer addSublayer: bottomGradient];
    
-   
    UIView *shadowView = [[UIView alloc] initWithFrame: self.frame];
    shadowView.userInteractionEnabled = NO;
    shadowView.autoresizingMask = self.autoresizingMask;
    shadowView.clipsToBounds = YES;
    [shadowView addSubview: topShadowView];
    [shadowView addSubview: bottomShadowView];
-   //shadowView.backgroundColor = [UIColor colorWithRed: 1.0 green: 1.0 blue: 0.0 alpha: 0.2];
    [[self superview] addSubview: shadowView];
 }
 

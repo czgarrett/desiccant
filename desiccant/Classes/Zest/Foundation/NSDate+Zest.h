@@ -56,6 +56,7 @@
 - (BOOL) isLaterThanDate: (NSDate *) aDate;
 - (BOOL) isEarlierThanNow;
 - (BOOL) isLaterThanNow;
+- (BOOL) isWithinInterval: (NSTimeInterval) interval ofDate: (NSDate *) date;
 
 // Adjusting dates
 - (NSDate *) dateByAddingDays: (NSInteger) dDays;
