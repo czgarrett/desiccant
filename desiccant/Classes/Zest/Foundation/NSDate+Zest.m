@@ -232,12 +232,12 @@
 
 - (BOOL) isEarlierThanOrEqualToDate: (NSDate *) aDate
 {
-	return ([self earlierDate:aDate] == self);
+	return ([self earlierDate:aDate] == self || [self isEqualToDate: aDate]);
 }
 
 - (BOOL) isLaterThanOrEqualToDate: (NSDate *) aDate
 {
-	return ([self laterDate:aDate] == self);
+	return ([self laterDate:aDate] == self || [self isEqualToDate: aDate]);
 }
 
 - (BOOL) isLaterThanDate: (NSDate *) aDate
