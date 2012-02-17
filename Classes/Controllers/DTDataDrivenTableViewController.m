@@ -9,6 +9,7 @@
 #import "DTDataDrivenTableViewController.h"
 #import "DTSpinner.h"
 #import "Zest.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface DTDataDrivenTableViewController()
 - (DTCustomTableViewCell *)prototypeCell;
@@ -301,10 +302,14 @@
 			else {
 				NSURL *mediaURL = [self mediaURLFor:[query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
 				if (mediaURL) {
-					self.mediaWebView = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
-					mediaWebView.delegate = self;
-					[self.activityIndicator startAnimating];
-					[mediaWebView loadRequest:mediaURL.to_request];
+///					self.mediaWebView = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
+///					mediaWebView.delegate = self;
+///					[self.activityIndicator startAnimating];
+///					[mediaWebView loadRequest:mediaURL.to_request];
+                    
+                    // MPMoviePlayer plays both Audio and Video so I'm guessing this will be ok for now
+                    MPMoviePlayerViewController *moviePlayerViewController = [[[MPMoviePlayerViewController alloc] initWithContentURL:mediaURL] autorelease];
+                    [self.tabBarController presentMoviePlayerViewControllerAnimated: moviePlayerViewController];
 				}
 				[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 			}
