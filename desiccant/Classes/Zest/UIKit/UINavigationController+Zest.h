@@ -14,6 +14,7 @@
 - (NSArray *)popToViewControllerWithClass:(Class)searchClass animated:(BOOL)animated;
 - (UIViewController *) firstViewControllerWithClass: (Class) searchClass;
 - (void)showOrHideToolbarForViewController:(UIViewController *)controller;
+- (void) popViewControllerAnimateForward;
 
 @property (readonly) UIViewController *rootViewController;
 

@@ -7,7 +7,7 @@
 //
 
 #import "UINavigationController+Zest.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UINavigationController (Zest)
 
@@ -35,6 +35,16 @@
    return [self.viewControllers objectAtIndex: 0];
 }
 
+- (void) popViewControllerAnimateForward {
+   CATransition *transition = [CATransition animation];
+   transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+   transition.type = kCATransitionPush;
+   transition.subtype = kCATransitionFromRight;
+   transition.delegate = self;
+   [self.view.layer addAnimation:transition forKey:nil];
+   
+   [self popViewControllerAnimated: NO];
+}
 
 @end
 
