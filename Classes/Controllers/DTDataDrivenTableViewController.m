@@ -10,6 +10,8 @@
 #import "DTSpinner.h"
 #import "Zest.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "IJVideoWebViewController.h"
+#import "IJPodcastWebViewController.h"
 
 @interface DTDataDrivenTableViewController()
 - (DTCustomTableViewCell *)prototypeCell;
@@ -295,21 +297,28 @@
     unless ([self indexPathIsHeader:indexPath]) {
         indexPath = [self adjustIndexPathForHeaders:indexPath];
 		unless ([self indexPathIsMoreResultsCell:indexPath]) {
-			UIViewController *viewController = [self detailViewControllerFor:[query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
+            NSDictionary *dataDict = [query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section];
+			UIViewController *viewController = [self detailViewControllerFor:dataDict];
 			if (viewController) {
 				[[self navigationControllerToReceivePush] pushViewController:viewController animated:YES];
 			}
 			else {
-				NSURL *mediaURL = [self mediaURLFor:[query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
+				NSURL *mediaURL = [self mediaURLFor:dataDict];
 				if (mediaURL) {
 ///					self.mediaWebView = [[[UIWebView alloc] initWithFrame:CGRectZero] autorelease];
 ///					mediaWebView.delegate = self;
 ///					[self.activityIndicator startAnimating];
 ///					[mediaWebView loadRequest:mediaURL.to_request];
                     
-                    // MPMoviePlayer plays both Audio and Video so I'm guessing this will be ok for now
-                    MPMoviePlayerViewController *moviePlayerViewController = [[[MPMoviePlayerViewController alloc] initWithContentURL:mediaURL] autorelease];
-                    [self.tabBarController presentMoviePlayerViewControllerAnimated: moviePlayerViewController];
+                    IJWebViewController *webViewController;
+                    if ([[mediaURL description] hasSuffix:@"mp4"]) { // Possibly fragile
+                        webViewController = [[IJVideoWebViewController alloc] initWithRowData:dataDict];
+                    } else {
+                        webViewController = [[IJPodcastWebViewController alloc] initWithRowData:dataDict];
+                    }
+                    
+                    [self.navigationController pushViewController:webViewController animated:YES];
+                    [webViewController release];
 				}
 				[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 			}
