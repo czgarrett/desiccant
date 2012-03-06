@@ -12,6 +12,7 @@
 @interface NSMutableAttributedString (Zest)
 
 + (id)mutableAttributedStringWithString:(NSString *)string font:(UIFont *)font color:(UIColor *)color alignment:(CTTextAlignment)alignment;
++ (id)mutableAttributedStringWithString:(NSString *)string font:(UIFont *)font color:(UIColor *)color alignment:(CTTextAlignment)alignment firstLineIndent:(CGFloat)firstLineIndent hangingIndent:(CGFloat)hangingIndent;
 
 - (CGFloat)boundingWidthForHeight:(CGFloat)inHeight;
 - (CGFloat)boundingHeightForWidth:(CGFloat)inWidth;
