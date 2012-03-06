@@ -37,12 +37,18 @@
 
 - (void) setup {
    self.clipsToBounds = NO;
-   
 }
 
 - (void) dealloc {
-   CFRelease(attributedString);
+   [attributedString release];
    [super dealloc];
+}
+
+- (void) setAttributedString:(NSMutableAttributedString *)aAttributedString {
+   [attributedString autorelease];
+   attributedString = [aAttributedString retain];
+   
+   [self setNeedsDisplay];
 }
 
 // Only override drawRect: if you perform custom drawing.
