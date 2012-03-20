@@ -73,8 +73,12 @@
 
 - (NSMutableArray *) scramble
 {
-	for (int i=0; i<([self count]-2) && i>=0; i++)
-		[self exchangeObjectAtIndex:i withObjectAtIndex:(i+(random()%([self count]-i)))];
+   if ([self count] > 1) {
+      for (int i=0; i<(((int)[self count])-2); i++) {
+         int other = (i+(random()%([self count]-i)));
+         [self exchangeObjectAtIndex:i withObjectAtIndex: other];
+      }
+   }
 	return self;
 }
 
