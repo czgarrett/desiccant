@@ -11,5 +11,12 @@
 @interface DTActivityIndicatorWithBackground : UIView
 
 @property (nonatomic, copy) NSString *text;
+@property (nonatomic, retain) UIImage *iconImage;
+
+- (void)showActivity;
+- (void)showActivityWithText:(NSString *)text;
+- (void)showIconImage;
+- (void)showIconImageWithText:(NSString *)text;
+- (void)hide;
 
 @end
