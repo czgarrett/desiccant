@@ -8,6 +8,9 @@
 
 #import "DTActivityIndicatorWithBackground.h"
 
+#define HEIGHT_BETWEEN_ACTIVITY_AND_TITLE 20.0
+#define VERTICAL_OFFSET_WHEN_SHOWING_TITLE 10.0
+
 @interface DTActivityIndicatorWithBackground () {
 @private
     UIActivityIndicatorView *_systemIndicator;
@@ -106,12 +109,12 @@
     if ([_titleLabel.text length]) {
         _systemIndicator.frame = CGRectMake(
                 self.bounds.origin.x + floorf((self.bounds.size.width - _systemIndicator.frame.size.width) / 2.0),
-                self.bounds.origin.y + floorf((self.bounds.size.height - _systemIndicator.frame.size.height - _titleLabel.frame.size.height) / 2.0),
+                self.bounds.origin.y + VERTICAL_OFFSET_WHEN_SHOWING_TITLE + floorf((self.bounds.size.height - _systemIndicator.frame.size.height - HEIGHT_BETWEEN_ACTIVITY_AND_TITLE - _titleLabel.frame.size.height) / 2.0),
                 _systemIndicator.frame.size.width,
                 _systemIndicator.frame.size.height);
         _titleLabel.frame = CGRectMake(
                 self.bounds.origin.x + floorf((self.bounds.size.width - _titleLabel.frame.size.width) / 2.0),
-                _systemIndicator.frame.origin.x + _systemIndicator.frame.size.height,
+                _systemIndicator.frame.origin.y + _systemIndicator.frame.size.height + HEIGHT_BETWEEN_ACTIVITY_AND_TITLE,
                 _titleLabel.frame.size.width,
                 _titleLabel.frame.size.height);
     } else {
