@@ -328,12 +328,14 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 			
 			NSArray *keys = [[[NSArray alloc] initWithObjects: (NSString *) kSecClass,
 							  kSecAttrService,
+                       kSecAttrAccessible,
 							  kSecAttrLabel,
 							  kSecAttrAccount,
 							  nil] autorelease];
 			
 			NSArray *objects = [[[NSArray alloc] initWithObjects: (NSString *) kSecClassGenericPassword,
 								 serviceName,
+                         kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
 								 serviceName,
 								 username,
 								 nil] autorelease];
@@ -350,6 +352,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		NSArray *keys = [[[NSArray alloc] initWithObjects: (NSString *) kSecClass,
 						  kSecAttrService,
 						  kSecAttrLabel,
+                    kSecAttrAccessible,
 						  kSecAttrAccount,
 						  kSecValueData,
 						  nil] autorelease];
@@ -357,6 +360,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		NSArray *objects = [[[NSArray alloc] initWithObjects: (NSString *) kSecClassGenericPassword,
 							 serviceName,
 							 serviceName,
+                      kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
 							 username,
 							 [password dataUsingEncoding: NSUTF8StringEncoding],
 							 nil] autorelease];
