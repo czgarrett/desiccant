@@ -9,8 +9,8 @@
 	CAGradientLayer *highlightedGradient;
 	CAGradientLayer *disabledGradient;
 	CAGradientLayer *selectedGradient;
-   
-   BOOL dependsOnReachability;
+    BOOL shiny;
+    BOOL dependsOnReachability;
 }
 
 @property (assign) BOOL shiny;

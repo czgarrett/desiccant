@@ -17,18 +17,6 @@
 @end
 
 @interface DTGoogleCaptcha : NSObject {
-	NSURL *baseURL;
-	NSString *formActionURLString;
-	NSString *imageURLString;
-	NSMutableDictionary *parameters;
-	id <DTGoogleCaptchaDelegate> delegate;
-	BOOL isPostingResponse;
-	BOOL isCancelled;
-	NSURLConnection *connection;
-	NSURLResponse *response;
-	NSString *userResponse;
-	NSMutableData *newHTMLData;
-	DTGoogleCaptcha *replacementCaptcha;
 }
 
 @property (nonatomic, retain) NSURL *baseURL;

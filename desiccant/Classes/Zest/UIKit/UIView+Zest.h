@@ -37,7 +37,6 @@
 // Recursively searches the view hierarchy for the first responder
 - (UIView *)findFirstResponder;
 
-
 - (void)removeAllSubviews;
 
 @end

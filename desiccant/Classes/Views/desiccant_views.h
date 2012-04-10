@@ -26,3 +26,4 @@
 #import "DTActivityIndicatorView.h"
 #import "DTButton.h"
 #import "DTGaugeView.h"
+#import "DTGradientView.h"

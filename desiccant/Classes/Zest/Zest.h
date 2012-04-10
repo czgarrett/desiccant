@@ -71,6 +71,7 @@
 #import "UIKit/UIScreen+Zest.h"
 #import "UIKit/UIApplication+Zest.h"
 #import "UIKit/UIScrollView+Zest.h"
+#import "UIKit/CAGradientLayer+Zest.h"
 
 #import "CoreData/NSManagedObject+Zest.h"
 #import "NSManagedObjectContext+Zest.h"

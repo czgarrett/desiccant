@@ -14,7 +14,7 @@
 @end
 
 @implementation DTButton
-@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, shiny, disabledShadingLevel;
+@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, disabledShadingLevel;
 
 - (void)dealloc {
    if (dependsOnReachability) {
@@ -264,6 +264,10 @@
 - (void) setShiny: (BOOL) newShiny {
    shiny = newShiny;
    [self configure];
+}
+
+- (BOOL)shiny {
+    return shiny;
 }
 
 #pragma mark Private
