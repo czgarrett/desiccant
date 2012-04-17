@@ -23,6 +23,7 @@
 
 + (DTWordList *) sowpodsFull;
 + (DTWordList *) sowpodsPartial;
++ (DTWordList *) powerWords;
 + (DTWordList *) wordListForResourceName: (NSString *) resourceName;
 + (void) resetLists;
 

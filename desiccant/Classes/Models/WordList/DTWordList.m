@@ -13,6 +13,7 @@
 
 static DTWordList *sowpodsFull;
 static DTWordList *sowpodsPartial;
+static DTWordList *powerWords;
 
 @implementation DTWordList
 
@@ -37,6 +38,13 @@ static DTWordList *sowpodsPartial;
    return sowpodsPartial;
 }
 
++ (DTWordList *) powerWords {
+   if (!powerWords) {
+      powerWords = [[DTWordList alloc] initWithResourceName: @"power"];
+   }
+   return powerWords;
+}
+
 // resourceName should be the name of a file containing a sorted list of capitalized words.
 + (DTWordList *) wordListForResourceName: (NSString *) resourceName {
    return [[DTWordList alloc] initWithResourceName: (NSString *) resourceName];
@@ -50,6 +58,7 @@ static DTWordList *sowpodsPartial;
 }
 
 - (BOOL) containsWord: (NSString *) word {
+   if (!word || [word length] == 0) return NO;
    unsigned long long maxFilePosition = [self.fileHandle seekToEndOfFile];
 	unsigned long long minFilePosition = 0;
    unsigned long long midFilePosition;
