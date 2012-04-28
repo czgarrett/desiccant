@@ -45,7 +45,7 @@
         [parentController.navigationController pushViewController:imageViewerController animated:YES];
     }
     else {
-        // TODO: Support usage without navigation controller by presenting modal
+        // TODO-LATER: Support usage without navigation controller by presenting modal
         NSAssert (0, @"Currently DTImageViewerLinkController requires its parent view controller to have a navigation controller.");
     }
     

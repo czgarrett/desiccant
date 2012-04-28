@@ -92,7 +92,7 @@
     
     EditableCell *editableCell = (EditableCell *) [aTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (editableCell == nil) {
-        editableCell = [[[EditableCell alloc] initWithFrame: CGRectZero reuseIdentifier: CellIdentifier] autorelease];
+        editableCell = [[[EditableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: CellIdentifier] autorelease];
     }
 	if ([[self itemsInSection: indexPath.section] count] != indexPath.row) {
 		editableCell.textField.text = [self itemForIndexPath: indexPath];      

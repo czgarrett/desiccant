@@ -15,7 +15,7 @@
 @implementation ACSearchListController
 
 @synthesize tableView, searchField, dataSource, editControllerClass, 
-            newControllerClass, showControllerClass, activeRecordClass, queryColumn, searchFieldBarStyle, startWithKeyboardVisible, hideKeyboardWhenSearchButtonClicked,
+            createControllerClass, showControllerClass, activeRecordClass, queryColumn, searchFieldBarStyle, startWithKeyboardVisible, hideKeyboardWhenSearchButtonClicked,
             searchLimit, condition, orderColumn, resultsColumn, tableViewCellAccessoryType, stripDashesFromInput, stripSpacesFromInput;
 
 
@@ -138,7 +138,7 @@
 - (void)addAction:(id)sender
 {
 	// create an EventChooserController. This controller will display form for logging in
-	UIViewController *newViewController = [[[newControllerClass class] alloc] init];
+	UIViewController *newViewController = [[[createControllerClass class] alloc] init];
 	
 	// push the controller onto the navigation stack to display it
 	[[self navigationController] pushViewController: newViewController animated:YES];

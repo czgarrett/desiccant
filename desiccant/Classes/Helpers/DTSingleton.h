@@ -45,9 +45,9 @@
 
 // Lazy-loads the singleton if necessary and returns its value.  Call this from your factory class method and 
 // return its value. 
-+ (NSObject *)loadedSingleton;
++ (id)loadedSingleton;
 
 // Subclasses must implement this and return a pointer to the static variable that references the singleton instance.
-+ (NSObject **)staticSingleton;
++ (id *)staticSingleton;
 
 @end

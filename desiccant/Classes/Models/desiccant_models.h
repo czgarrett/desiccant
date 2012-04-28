@@ -9,8 +9,6 @@
 #import "DTGoogleCaptcha.h"
 #import "ARObject.h"
 #import "DTURLDownload.h"
-#import "DTAsyncQuery.h"
-#import "DTAsyncQueryOperation.h"
 #import "DTAsyncQueryOperationDelegate.h"
 #import "DTFiltersUntypedData.h"
 #import "DTGroupsUntypedData.h"

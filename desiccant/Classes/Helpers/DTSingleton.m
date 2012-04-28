@@ -13,7 +13,7 @@
 
 @implementation DTSingleton
 
-+ (NSObject *)loadedSingleton {
++ (id)loadedSingleton {
 	NSObject **staticSingletonAddress = [self staticSingleton];
 	if (*staticSingletonAddress == nil) {
 		*staticSingletonAddress = [[super allocWithZone:NULL] init];
@@ -21,7 +21,7 @@
 	return *staticSingletonAddress;
 }
 
-+ (NSObject **)staticSingleton {
++ (id *)staticSingleton {
 	DTAbstractMethod
 	return NULL;
 }

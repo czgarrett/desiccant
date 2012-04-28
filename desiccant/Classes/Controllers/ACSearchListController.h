@@ -40,7 +40,7 @@
 	BOOL stripSpacesFromInput;
 	
 	Class editControllerClass;
-	Class newControllerClass;
+	Class createControllerClass;
    Class showControllerClass;
 }
 
@@ -64,7 +64,7 @@
 @property (nonatomic, assign) BOOL stripSpacesFromInput;
 
 @property (nonatomic, assign) Class editControllerClass;
-@property (nonatomic, assign) Class newControllerClass;
+@property (nonatomic, assign) Class createControllerClass;
 @property (nonatomic, assign) Class showControllerClass;
 
 - (void) filterTextChanged: (NSString *)filterText;

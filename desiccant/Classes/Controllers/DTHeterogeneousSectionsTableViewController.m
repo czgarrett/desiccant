@@ -60,7 +60,7 @@
 
 // Subclasses can override this to return a custom subclass of DTCustomTableViewCell with retain count 0 (autoreleased)
 - (DTCustomTableViewCell *)constructCellForIndexPath: (NSIndexPath *)indexPath {
-   return [[[DTCustomTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier: [self cellIdentifierForIndexPath: indexPath]] autorelease];
+   return [[[DTCustomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: [self cellIdentifierForIndexPath: indexPath]] autorelease];
 }
 
 #pragma mark TableViewDataSource methods

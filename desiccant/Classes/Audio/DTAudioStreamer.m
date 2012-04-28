@@ -60,7 +60,7 @@ static const NSString *ItemStatusContext;
 
 #pragma mark DTSingleton
 
-+ (NSObject **)staticSingleton {
++ (id *)staticSingleton {
 	return &loadedStreamer;
 }
 
