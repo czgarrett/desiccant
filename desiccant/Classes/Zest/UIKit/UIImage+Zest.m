@@ -65,6 +65,15 @@
    return newImage;
 }
 
+- (void) drawInRect: (CGRect) rect clippedToRect: (CGRect) clipRect {
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    CGContextClipToRect(ctx, clipRect);
+    [self drawInRect: rect];
+    CGContextRestoreGState(ctx);
+}
+
+
 - (UIImage *) imageCroppedToRect: (CGRect) rect {
    UIGraphicsBeginImageContext(CGSizeMake(rect.size.width, rect.size.height));
    [self drawInRect: CGRectMake(-rect.origin.x, -rect.origin.y, self.size.width, self.size.height)];

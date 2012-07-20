@@ -19,4 +19,6 @@ typedef void(^ImageBlock)(UIImage *);
 - (UIImage *) imageScaledToMaxWidth: (CGFloat) width;
 - (UIImage *) imageCroppedToRect: (CGRect) rect;
 
+- (void) drawInRect: (CGRect) rect clippedToRect: (CGRect) clipRect;
+
 @end
