@@ -648,6 +648,8 @@ static NSLock *crayolaNameCacheLock;
 #pragma mark UIColor_Expanded initialization
 
 + (void)load {
+    colorNameCacheLock = nil;
+    crayolaNameCacheLock = nil;
 	colorNameCacheLock = [[NSLock alloc] init];
 	crayolaNameCacheLock = [[NSLock alloc] init];
 }
