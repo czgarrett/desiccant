@@ -24,7 +24,7 @@
       return @"less than a minute ago";
    } else if (time < 3600) {
       int diff = round(time / 60);
-      if (diff == 1) 
+      if (diff == 1)
          return @"1 minute ago";
       return [NSString stringWithFormat:@"%d minutes ago", diff];
    } else if (time < 86400) {
@@ -34,9 +34,9 @@
       return [NSString stringWithFormat:@"%d hours ago", diff];
    } else if (time < 604800) {
       int diff = round(time / 60 / 60 / 24);
-      if (diff == 1) 
+      if (diff == 1)
          return @"yesterday";
-      if (diff == 7) 
+      if (diff == 7)
          return @"last week";
       return[NSString stringWithFormat:@"%d days ago", diff];
    } else {
