@@ -90,5 +90,10 @@
    return [self.start isLaterThanNow];
 }
 
+- (void)dealloc {
+    [start release];
+    [end release];
+    [super dealloc];
+}
 
 @end
