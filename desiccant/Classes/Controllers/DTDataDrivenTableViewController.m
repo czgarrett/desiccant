@@ -202,7 +202,7 @@
 	newCell.textLabel.text = message;
 	newCell.frame = CGRectMake(0, 0, [[UIScreen mainScreen] applicationFrame].size.width, 44.0f);
 	newCell.textLabel.numberOfLines = 0;
-	newCell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+	newCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	newCell.textLabel.adjustsFontSizeToFitWidth = YES;
 	newCell.textLabel.font = [UIFont boldSystemFontOfSize:17.0];
 	newCell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -236,7 +236,7 @@
     DTCustomTableViewCell *newCell = [[[DTCustomTableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:moreResultsCellIdentifier] autorelease];
 	newCell.textLabel.text = @"more";
 	newCell.textLabel.textColor = [UIColor grayColor];
-	newCell.textLabel.textAlignment = UITextAlignmentRight;
+	newCell.textLabel.textAlignment = NSTextAlignmentRight;
 	newCell.textLabel.font = [UIFont boldSystemFontOfSize:17.0];
 	newCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	return newCell;

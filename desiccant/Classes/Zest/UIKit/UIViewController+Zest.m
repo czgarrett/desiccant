@@ -60,7 +60,7 @@
 {
 	UILabel *label = [[UILabel alloc] initWithFrame: CGRectZero];
 	label.text = text;
-	label.textAlignment = UITextAlignmentCenter;
+	label.textAlignment = NSTextAlignmentCenter;
 	label.textColor = kLabelInfoColor;
 	label.backgroundColor = [UIColor clearColor];
 	switch (usage) {

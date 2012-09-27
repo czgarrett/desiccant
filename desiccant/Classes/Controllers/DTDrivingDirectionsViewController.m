@@ -74,7 +74,7 @@
 	newCell.textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
 	newCell.textLabel.textColor = [UIColor colorWithRed:0.427f green:0.518f blue:0.635f alpha:1.0f];
 	newCell.textLabel.text = text;
-	newCell.textLabel.textAlignment = UITextAlignmentCenter;
+	newCell.textLabel.textAlignment = NSTextAlignmentCenter;
 	return newCell;
 }
 
