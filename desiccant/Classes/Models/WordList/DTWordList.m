@@ -13,7 +13,6 @@
 
 static DTWordList *sowpodsFull;
 static DTWordList *sowpodsPartial;
-static DTWordList *powerWords;
 
 @implementation DTWordList
 
@@ -36,13 +35,6 @@ static DTWordList *powerWords;
       sowpodsPartial = [[DTWordList alloc] initWithResourceName: @"sowpods_parts"];
    }
    return sowpodsPartial;
-}
-
-+ (DTWordList *) powerWords {
-   if (!powerWords) {
-      powerWords = [[DTWordList alloc] initWithResourceName: @"power"];
-   }
-   return powerWords;
 }
 
 // resourceName should be the name of a file containing a sorted list of capitalized words.
