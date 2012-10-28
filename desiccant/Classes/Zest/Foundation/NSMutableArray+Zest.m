@@ -103,6 +103,23 @@
    [self addObject: [NSValue valueWithCGPoint: CGPointMake(x,y)]];
 }
 
++ (id)mutableArrayUsingWeakReferences
+{
+    return [self mutableArrayUsingWeakReferencesWithCapacity:0];
+}
+
+
+
++ (id)mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity
+{
+    // The two NULLs are for the CFArrayRetainCallBack and CFArrayReleaseCallBack methods.  Since they are
+    // NULL no retain or releases sill be done.
+    //
+    CFArrayCallBacks callbacks = {0, NULL, NULL, CFCopyDescription, CFEqual};
+    
+    // We create a weak reference array
+    return (__bridge id)(CFArrayCreateMutable(0, capacity, &callbacks));
+}
 
 
 @end

@@ -10,6 +10,9 @@
 
 @interface NSMutableArray ( Zest )
 
++ (id)mutableArrayUsingWeakReferences;
++ (id)mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity;
+
 - (void) addObjectUnlessNil: (NSObject *) object;
 - (NSMutableArray *) removeFirstObject;
 - (NSMutableArray *) reverse;
