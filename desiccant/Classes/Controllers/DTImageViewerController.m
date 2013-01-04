@@ -110,7 +110,11 @@
 }
 
 - (void)imageView:(DTImageView *)imageView didFailLoadingWithError:(NSError *)error {
-    [[[[UIAlertView alloc] initWithTitle:@"Error" message:@"Image failed to load" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+    [[[[UIAlertView alloc] initWithTitle:@"Error"
+                                 message:@"Image failed to load"
+                                delegate:nil
+                       cancelButtonTitle:@"Ok"
+                       otherButtonTitles:nil] autorelease] show];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
