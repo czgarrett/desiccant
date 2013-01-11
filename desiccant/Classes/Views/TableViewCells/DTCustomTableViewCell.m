@@ -39,7 +39,6 @@
    self.deleteBlock = nil;
 	
 	[super dealloc];
-   DTLog(@"Cell dealloced");
 }
 
 #pragma mark Public methods
@@ -113,12 +112,18 @@
 		NSAssert (0, @"To adjust the height of a label, it must have one flexible top or bottom margin, and one fixed.");
 	}
 	
-	CGRect newBounds = self.bounds;
-	newBounds.size.height = newCellHeight;
-	newBounds.origin.y = 0;
+//	CGRect newBounds = self.bounds;
+//	newBounds.size.height = newCellHeight;
+//	newBounds.origin.y = 0;
+//	UIViewAutoresizing oldContentViewAutoresizing = self.contentView.autoresizingMask;
+//	self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//	self.bounds = newBounds;
+	CGRect newFrame = self.frame;
+	newFrame.size.height = newCellHeight;
+	newFrame.origin.y = 0;
 	UIViewAutoresizing oldContentViewAutoresizing = self.contentView.autoresizingMask;
 	self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.bounds = newBounds;
+	self.frame = newFrame;
 	self.contentView.autoresizingMask = oldContentViewAutoresizing;
 	label.frame = CGRectMake(label.frame.origin.x, newLabelY, label.frame.size.width, newLabelHeight);
 //	if ([label.text isEqual:@"DC-eye: 2COOLVK"]) {

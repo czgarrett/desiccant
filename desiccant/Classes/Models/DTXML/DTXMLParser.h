@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTXMLParserDelegate.h"
+
+@class DTXMLParserDelegate;
 
 @interface DTXMLParser : NSObject {
     DTXMLParserDelegate *parserDelegate;

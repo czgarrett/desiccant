@@ -36,19 +36,19 @@
 
 
 - (NSString *)stringForKey:(id)key {
-    return ((NSObject *)[self objectForKey:key]).to_s;
+    return ((NSObject *)[self objectForKey:key]).toS;
 }
 
 - (NSURL *)urlForKey:(id)key {
-    return ((NSObject *)[self objectForKey:key]).to_url;
+    return ((NSObject *)[self objectForKey:key]).toURL;
 }
 
 - (NSInteger)integerForKey:(id)key {
-    return ((NSObject *)[self objectForKey:key]).to_i;
+    return ((NSObject *)[self objectForKey:key]).toI;
 }
 
 - (NSNumber *)numberForKey:(id)key {
-    return ((NSObject *)[self objectForKey:key]).to_n;
+    return ((NSObject *)[self objectForKey:key]).toN;
 }
 
 - (double)doubleForKey:(id)key {
@@ -60,7 +60,7 @@
 }
 
 - (NSDate *)dateForKey:(id)key {
-    return ((NSObject *)[self objectForKey:key]).to_date;
+    return ((NSObject *)[self objectForKey:key]).toDate;
 }
 
 - (NSMutableString *)mutableStringForKey:(id)key {

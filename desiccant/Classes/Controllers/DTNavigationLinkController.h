@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ACWebLinkController.h"
-#import "DTWebViewController.h"
+
+@class DTWebViewController;
 
 @interface DTNavigationLinkController : NSObject <ACWebLinkController> {
 	DTWebViewController *webViewController;

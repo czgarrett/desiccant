@@ -7,13 +7,14 @@
 //
 
 #import "DTTableViewRow.h"
+#import "DTCustomTableViewCell.h"
 
 @interface DTTableViewRow()
 @end
 
 
 @implementation DTTableViewRow
-@synthesize cell, detailViewController, dataDictionary, dataInjector, reuseIdentifier, nibName;
+@synthesize cell, detailViewController, dataDictionary, dataInjector, reuseIdentifier, nibName, originalFrame;
 
 - (void)dealloc {
 	self.cell = nil;
@@ -28,6 +29,12 @@
 - (id)initWithCell:(DTCustomTableViewCell *)theCell nibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier {
 	if ((self = [super init])) {
 		self.cell = theCell;
+        if (theCell) {
+            self.originalFrame = theCell.frame;
+        }
+        else {
+            self.originalFrame = CGRectZero;
+        }
 		self.nibName = theNibName;
 		self.dataDictionary = theRowData;
 		self.detailViewController = theDetailViewController;

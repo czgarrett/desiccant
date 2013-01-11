@@ -9,6 +9,9 @@
 #import "ARObject.h"
 #import "SQLiteConnectionAdapter.h"
 #import "Zest.h"
+#import "QueryRow.h"
+#import "SQLiteTable.h"
+#import "QueryResult.h"
 
 @implementation ARObject
 
@@ -178,7 +181,7 @@
    NSEnumerator *rowEnum = [queryResult rowEnumerator];
    QueryRow *row;
    ARObject *newObject;
-   while (row = (QueryRow *)[rowEnum nextObject]) {
+   while ((row = (QueryRow *)[rowEnum nextObject])) {
       newObject = [[[self class] alloc] initWithAttributes: [row columnValues] newRecord: NO];
       [result addObject: newObject];
       [newObject release];
@@ -192,7 +195,7 @@
 	NSEnumerator *columnEnum = [[attributes allKeys] objectEnumerator];
 	NSString *columnName;
 	int index = 0;
-	while (columnName = (NSString *)[columnEnum nextObject]) {
+	while ((columnName = (NSString *)[columnEnum nextObject])) {
       [statement bindValue: [attributes objectForKey: columnName] toColumn: index];
 		index++;
 	}	

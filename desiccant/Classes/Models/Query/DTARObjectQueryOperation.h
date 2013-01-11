@@ -6,8 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTAsyncQueryOperationDelegate.h"
-#import "ARObject.h"
+#import "DTAsyncQueryOperation.h"
+
+@class ARObject;
 
 @interface DTARObjectQueryOperation : DTAsyncQueryOperation {
 	Class arObjectClass;

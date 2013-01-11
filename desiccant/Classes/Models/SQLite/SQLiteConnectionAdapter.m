@@ -9,6 +9,9 @@
 #import "SQLiteConnectionAdapter.h"
 #import "SQLiteDatabaseException.h"
 #import "Zest.h"
+#import "SQLitePreparedStatement.h"
+#import "QueryResult.h"
+#import "SQLiteTable.h"
 
 #define kDefaultDBFile @"app.db"
 

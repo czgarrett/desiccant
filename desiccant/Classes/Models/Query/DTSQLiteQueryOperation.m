@@ -8,6 +8,7 @@
 
 #import "DTSQLiteQueryOperation.h"
 #import "QueryResult.h"
+#import "QueryRow.h"
 #import "SQLiteConnectionAdapter.h"
 
 @interface DTSQLiteQueryOperation()

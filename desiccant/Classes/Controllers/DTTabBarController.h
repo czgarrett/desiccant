@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTActivityIndicatorView.h"
+
+@class DTActivityIndicatorView;
 
 @interface DTTabBarController : UITabBarController <UITabBarControllerDelegate> {
 	id <UITabBarControllerDelegate> secondaryDelegate;

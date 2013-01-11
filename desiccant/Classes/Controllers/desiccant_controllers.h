@@ -29,21 +29,6 @@
 #import "DTCoreDataMultiSelectionViewController.h"
 
 
-
-#import "ACWebShowController.h"
-#import "ACWebLinkController.h"
-#import "ACTableViewController.h"
-#import "ACTabbedAppDelegate.h"
-#import "ACShowController.h"
-#import "ACSearchListController.h"
-#import "ACSearchListDataSource.h"
-#import "ACPlainTableViewController.h"
-#import "ACNavigationAppDelegate.h"
-#import "ACModelObjectController.h"
-#import "ACModelObjectController.h"
-#import "ACGroupedTableViewController.h"
-#import "ACDictionaryTableController.h"
-#import "ACAboutViewController.h"
 #import "DTPagedWebViewController.h"
 #import "DTImageViewerLinkController.h"
 #import "DTImageViewerController.h"
@@ -65,4 +50,4 @@
 #import "DTTabBarController.h"
 #import "DTAdViewController.h"
 #import "DTOpenXAdLoader.h"
-
+#import "DTModalNavigationController.h"

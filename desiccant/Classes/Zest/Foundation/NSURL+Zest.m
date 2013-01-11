@@ -83,11 +83,11 @@
 }
 
 
-- (NSString *) to_s {
+- (NSString *) toS {
     return [self absoluteString];
 }
 
-- (NSURL *) to_url {
+- (NSURL *) toURL {
     return self;
 }
 
@@ -110,6 +110,10 @@
 }
 
 - (NSURLRequest *) to_request {
+    return [self toRequest];
+}
+
+- (NSURLRequest *) toRequest {
     return [NSURLRequest requestWithURL:self];
 }
 
@@ -118,7 +122,7 @@
 }
 
 - (NSData *) cachedData {
-    return [[[NSURLCache sharedURLCache] cachedResponseForRequest:self.to_request] data];
+    return [[[NSURLCache sharedURLCache] cachedResponseForRequest:self.toRequest] data];
 } 
 
 - (NSString *)pathExtension {

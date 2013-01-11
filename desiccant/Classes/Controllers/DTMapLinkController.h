@@ -6,8 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTMapLinkControllerDelegate.h"
 #import "ACWebLinkController.h"
+
+@protocol DTMapLinkControllerDelegate;
 
 @interface DTMapLinkController : NSObject <ACWebLinkController> {
     id <DTMapLinkControllerDelegate> delegate;

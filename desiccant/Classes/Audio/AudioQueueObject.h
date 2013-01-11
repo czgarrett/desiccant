@@ -5,9 +5,10 @@
 
 #import <UIKit/UIKit.h>
 #include <AudioToolbox/AudioToolbox.h>
-#include "AudioQueueObjectDelegate.h"
 
 #define kNumberAudioDataBuffers	3
+
+@protocol AudioQueueObjectDelegate;
 
 @interface AudioQueueObject : NSObject {
 

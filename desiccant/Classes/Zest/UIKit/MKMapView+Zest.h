@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MapKit/MKMapView.h"
+#import <MapKit/MapKit.h>
 
 @interface MKMapView (Zest)
 @property (nonatomic, readonly) BOOL hasActiveUserLocation;

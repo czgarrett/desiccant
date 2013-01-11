@@ -7,6 +7,7 @@
 
 #import "DTHTTPStructuredResponseQueryOperation.h"
 #import "Zest.h"
+#import "DTResultObjectParser.h"
 
 @interface DTHTTPStructuredResponseQueryOperation()
 @property (nonatomic, retain, readonly) NSObject *parsedResultObject;

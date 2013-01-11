@@ -8,6 +8,7 @@
 
 #import "DTTabBarController.h"
 #import "Zest.h"
+#import "DTActivityIndicatorView.h"
 
 @interface DTTabBarController()
 @property (nonatomic, assign) id <UITabBarControllerDelegate> secondaryDelegate;
@@ -64,10 +65,14 @@
 	}
 }
 
+
 #pragma mark Dynamic properties
 
 - (void)setWindowOverlay:(UIView *)theView {
 	self.dtWindowOverlay = theView;
+    if ([[[[UIApplication sharedApplication] keyWindow] subviews] count] >= 1) {
+        self.dtWindowOverlay.transform = [(UIView *)[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] transform];
+    }
 	theView.center = [[UIScreen mainScreen] center];
 	[[[UIApplication sharedApplication] keyWindow] addSubview:theView];
 }
@@ -104,6 +109,24 @@
 	[super viewDidAppear:animated];
 	if (self.shouldFadeDefaultPNG) [self fadeWindowOverlay];
 }
+
+- (void)presentModalViewController:(UIViewController *)theViewController animated:(BOOL)animated {
+    if ([theViewController respondsToSelector:@selector(setModalPresenter:)]) {
+        [theViewController performSelector:@selector(setModalPresenter:) withObject:self];
+    }
+    
+    if ([theViewController respondsToSelector:@selector(viewControllerToPresentModally)]) {
+        UIViewController *wrapper = [theViewController performSelector:@selector(viewControllerToPresentModally)];
+        if ([wrapper respondsToSelector:@selector(setModalPresenter:)]) {
+            [wrapper performSelector:@selector(setModalPresenter:) withObject:self];
+        }
+        [super presentModalViewController:wrapper animated:animated];
+    }
+    else {
+        [super presentModalViewController:theViewController animated:animated];
+    }
+}
+
 
 #pragma mark UITabBarController methods
 -(void)setDelegate:(id <UITabBarControllerDelegate>)theDelegate {

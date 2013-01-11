@@ -8,8 +8,8 @@
 #import <UIKit/UIKit.h>
 
 #import "DTActsAsChildViewController.h"
-#import "DTActivityIndicatorView.h"
-#import "UIViewController+Zest.h"
+
+@class DTActivityIndicatorView;
 
 @interface DTViewController : UIViewController <DTActsAsChildViewController> {
 	UIViewController *dtContainerViewController;
@@ -19,6 +19,7 @@
 	BOOL shouldAutorotateUpsideDown;
 	BOOL hasAppeared;
 	DTActivityIndicatorView *dtActivityIndicator;
+    UIViewController *modalPresenter;
 }
 
 // Returns this controller's container controller or nil if it doesn't have one.
@@ -32,6 +33,7 @@
 @property (nonatomic) BOOL shouldAutorotateUpsideDown;
 @property (nonatomic) BOOL hasAppeared;
 @property (nonatomic, retain, readonly) DTActivityIndicatorView *activityIndicator;
+@property (nonatomic, assign) UIViewController *modalPresenter;
 
 // Called before the first viewWillAppear:
 - (void)viewWillFirstAppear:(BOOL)animated;
@@ -64,6 +66,12 @@
 // viewDidUnload and dealloc, so you only need to release those views once in subclasses.  Override
 // this method and put your statements here.  
 - (void) releaseRetainedSubviews;
+
+// If a subclass overrides this and returns a wrapper view controller
+// (e.g. DTModalNavigationController), that view controller will be presented when this
+// controller is passed to desiccant controller's implementation of 
+// presentModalViewController:animated:.
+- (UIViewController *)viewControllerToPresentModally;
 
 
 @end

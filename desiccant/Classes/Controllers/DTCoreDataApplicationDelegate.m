@@ -83,7 +83,6 @@
    }
 	
 	NSString *docPath = [self defaultDocumentPath];
-   DTLog(@"Opening file at %@", docPath);
    NSURL *storeUrl = [NSURL fileURLWithPath: docPath];
 	
 	NSError *error;

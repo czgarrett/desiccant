@@ -28,6 +28,7 @@
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.query.delegate = nil;
     self.query = nil;
     self.prototype = nil;
 //    self.activityIndicator = nil;
@@ -80,15 +81,13 @@
 
 - (void)viewDidFirstAppear:(BOOL)animated {
 	[super viewDidFirstAppear:animated];
-	[[NSNotificationCenter defaultCenter] removeObserver: self name: UIWindowDidBecomeVisibleNotification object: self.view.window];
-	[[NSNotificationCenter defaultCenter] removeObserver: self name: UIWindowDidBecomeHiddenNotification object: self.view.window];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeVisible:) name:UIWindowDidBecomeVisibleNotification object:self.view.window];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeHidden:) name:UIWindowDidBecomeHiddenNotification object:self.view.window];
+	[[NSNotificationCenter defaultCenter] replaceObserver:self selector:@selector(windowDidBecomeVisible:) name:UIWindowDidBecomeVisibleNotification object:self.view.window];
+	[[NSNotificationCenter defaultCenter] replaceObserver:self selector:@selector(windowDidBecomeHidden:) name:UIWindowDidBecomeHiddenNotification object:self.view.window];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-//	[[UIApplication sharedApplication] setStatusBarHidden:statusBarHiddenBeforeMedia animated:NO];
+    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -97,14 +96,14 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (query && !query.loaded && self.loadQueryOnViewDidAppear) {
+    if (query && !query.loaded && !query.updating && self.loadQueryOnViewDidAppear) {
         [query refresh];
     }
 	[super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	if (query && query.updating) {
+	if (query && query.updating && [self cancelQueryOnDisappear]) {
 		[query cancel];
 	}
 	
@@ -120,7 +119,16 @@
     }
 }
 
+- (void)dismissModalViewControllerAnimated:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    [super dismissModalViewControllerAnimated:animated];
+}
+
 #pragma mark Public methods
+
+- (BOOL)cancelQueryOnDisappear {
+    return YES;
+}
 
 - (void)windowDidBecomeVisible:(NSNotification *)notification {
 //	[[UIApplication sharedApplication] setStatusBarOrientation:[self interfaceOrientation]];
@@ -223,6 +231,10 @@
 	return self.noResultsCell.height;
 }
 
+- (BOOL)shouldPresentDetailViewControllerModally {
+    return NO;
+}
+
 #pragma mark Public methods to be overridden
 
 // Subclasses must implement this to return a header cell if headerRows > 0
@@ -291,7 +303,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     NSArray *indexes;
-    if (indexes = [query groupIndexes])  {
+    if ((indexes = [query groupIndexes]))  {
         if ([self hasHeaders]) {
             NSMutableArray *tempArray = [NSMutableArray arrayWithArray:indexes];
             [tempArray insertObject:@"" atIndex:0];
@@ -372,7 +384,15 @@
 		unless ([self indexPathIsMoreResultsCell:indexPath]) {
 			UIViewController *viewController = [self detailViewControllerFor:[query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
 			if (viewController) {
-				[[self navigationControllerToReceivePush] pushViewController:viewController animated:YES];
+                if (self.splitViewController && ([self.splitViewController.viewControllers objectAtIndex:0] == self || [self.splitViewController.viewControllers objectAtIndex:0] == self.navigationController)) {
+                    self.splitViewController.viewControllers = $A([self.splitViewController.viewControllers objectAtIndex:0], viewController);
+                }
+                else if ([self shouldPresentDetailViewControllerModally]) {
+                    [self presentModalViewController:viewController animated:YES];
+                }
+                else {
+                    [[self navigationControllerToReceivePush] pushViewController:viewController animated:YES];
+                }
 			}
 			else {
 				NSURL *mediaURL = [self mediaURLFor:[query itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section]];
@@ -383,7 +403,7 @@
 					statusBarHiddenBeforeMedia = [UIApplication sharedApplication].statusBarHidden;
 //					UIView *rootView = [[[self.view.window.subviews objectAtIndex:0] subviews] objectAtIndex:0];
 					[[UIApplication sharedApplication] bcompat_setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-					[mediaWebView loadRequest:mediaURL.to_request];
+					[mediaWebView loadRequest:mediaURL.toRequest];
 				}
 				[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 			}
@@ -429,16 +449,26 @@
    [self.activityIndicator startAnimating];
 }
 
-
 - (void)queryDidFinishLoading:(DTAsyncQuery *)theQuery {
     [self.activityIndicator stopAnimating];
-    [self.tableView reloadData];
-    [self hideErrorForFailedQuery];
+    if (theQuery == self.query) {
+        [self.tableView reloadData];
+        [self hideErrorForFailedQuery];
+    }
+}
+
+- (void)queryDidCancelLoading:(DTAsyncQuery *)theQuery {
+    if (theQuery == self.query) {
+        [self.tableView reloadData];
+    }
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)queryDidFailLoading:(DTAsyncQuery *)theQuery {
     [self.activityIndicator stopAnimating];
-    [self showErrorForFailedQuery:theQuery];
+    if (theQuery == self.query) {
+        [self showErrorForFailedQuery:theQuery];
+    }
 }
 
 - (void)queryWillStartLoadingMoreResults:(DTAsyncQuery *)theQuery {
@@ -446,7 +476,9 @@
 }
 
 - (void)queryDidFinishLoadingMoreResults:(DTAsyncQuery *)theQuery {
-	[self.tableView reloadData];
+    if (theQuery == self.query) {
+        [self.tableView reloadData];
+    }
 	[self.activityIndicator stopAnimating];
 }
 
@@ -456,7 +488,9 @@
 
 - (void)queryDidFailLoadingMoreResults:(DTAsyncQuery *)theQuery {
 	[self.activityIndicator stopAnimating];
-	[self showErrorForFailedQuery:theQuery];
+    if (theQuery == self.query) {
+        [self showErrorForFailedQuery:theQuery];
+    }
 }
 
 #pragma mark Dynamic properties

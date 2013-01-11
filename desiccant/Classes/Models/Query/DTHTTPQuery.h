@@ -7,8 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DTAsyncQuery.h"
-#import "DTResultObjectParser.h"
-#import "DTHTTPQueryOperation.h"
 
 @protocol DTResultObjectParser;
 
@@ -23,7 +21,6 @@
 	NSString *postFilePath;
 	NSString *username;
 	NSString *password;
-//	DTHTTPQueryOperation *operation;	
 }
 
 @property (nonatomic, retain) NSURL *url;
@@ -36,8 +33,6 @@
 @property (nonatomic, retain) NSString *postFilePath;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *password;
-
-//@property (nonatomic, retain) DTHTTPQueryOperation *operation;	
 
 - (id)initWithURL:(NSURL *)newURL queryDelegate:(NSObject <DTAsyncQueryDelegate> *)newDelegate resultObjectParser:(NSObject <DTResultObjectParser> *)parser;
 + (id)queryWithURL:(NSURL *)url queryDelegate:(NSObject <DTAsyncQueryDelegate> *)delegate resultObjectParser:(NSObject <DTResultObjectParser> *)parser;

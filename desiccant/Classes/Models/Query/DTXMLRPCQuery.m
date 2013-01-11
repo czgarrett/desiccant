@@ -17,6 +17,7 @@
 @interface NSObject(xmlrpc)
 @property (nonatomic, retain, readonly) NSString *to_xmlrpc_value;
 @end
+
 @implementation NSObject(xmlrpc)
 - (NSString *)to_xmlrpc_value {
     return [NSString stringWithFormat:@"<value><string>%@</string></value>", [self description]];
@@ -333,7 +334,7 @@
         for (NSDictionary *member in [[data dictionaryForKey:@"fault"] arrayForKey:@"struct"]) {
             if ([[member stringForKey:@"name"] isEqual:@"faultCode"]) {
                 [data setValue:[[member dictionaryForKey:@"value"] stringForKey:@"int"] forKey:@"faultCode"];
-                self.faultCode = [data stringForKey:@"faultCode"].to_i;
+                self.faultCode = [data stringForKey:@"faultCode"].toI;
             }
             else if ([[member stringForKey:@"name"] isEqual:@"faultString"]) {
                 [data setValue:[[member dictionaryForKey:@"value"] stringForKey:@"string"] forKey:@"faultString"];

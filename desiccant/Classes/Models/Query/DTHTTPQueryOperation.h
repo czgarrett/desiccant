@@ -7,7 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DTAsyncQueryOperation.h"
-#import "ASIFormDataRequest.h"
+
+@class ASIHTTPRequest;
 
 @interface DTHTTPQueryOperation : DTAsyncQueryOperation {
 	NSURL *url;

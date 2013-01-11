@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTCompositeTableViewControllerMapping.h"
+
+@class DTCompositeTableViewControllerMapping;
 
 @interface DTTableViewProxy : UITableView {
 	UITableView *containerTableView;

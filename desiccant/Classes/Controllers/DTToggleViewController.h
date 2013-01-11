@@ -6,8 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTActsAsChildViewController.h"
 #import "DTViewController.h"
+
+@protocol DTActsAsChildViewController;
 
 @class DTToggleViewController;
 

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "ZestUtilities.h"
 
 @interface NSURL ( Zest )
 
-@property (nonatomic, retain, readonly) NSURLRequest *to_request;
+@property (nonatomic, retain, readonly) NSURLRequest *to_request ZEST_DEPRECATED;  // Use toRequest instead
+@property (nonatomic, retain, readonly) NSURLRequest *toRequest;
 
 // Returns the file URL for the main bundle's resource path
 + (NSURL *)resourceURL;

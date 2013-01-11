@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTResultObjectParser.h"
 #import "DTHTTPQueryOperation.h"
 
 @protocol DTResultObjectParser;

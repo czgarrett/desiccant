@@ -6,8 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTGoogleCaptcha.h"
 #import "DTViewController.h"
+#import "DTGoogleCaptcha.h"
 #import "DTImageViewDelegate.h"
 
 // Errors

@@ -7,6 +7,7 @@
 //
 
 #import "SQLitePreparedStatement.h"
+#import "QueryResult.h"
 
 
 @implementation SQLitePreparedStatement

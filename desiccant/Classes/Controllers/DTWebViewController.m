@@ -8,6 +8,7 @@
 
 #import "DTWebViewController.h"
 #import "DTSpinner.h"
+#import "ACWebLinkController.h"
 
 @interface DTWebViewController()
 @property (nonatomic, retain) NSMutableArray *dtLinkControllerChain;
@@ -31,6 +32,10 @@
 	self.javascriptOnLoad = nil;
 	self.webView.delegate = nil;
     self.webView = nil;
+    while (spinnerDepth > 0) {
+        [DTSpinner hide];
+        spinnerDepth--;
+    }
 	self.view = nil;
     
     [super dealloc];
@@ -84,10 +89,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	if (spinning) {
-		spinning = NO;
-		[DTSpinner hide];
-	}
+//	if (self.webView.loading) {
+//		[DTSpinner hide];
+//	}
 }
 
 // Subclasses should implement this to show/load HTML content as appropriate
@@ -127,24 +131,28 @@
     }
 }
 
+- (BOOL)shouldShowSpinnerWhileLoading {
+    return YES;
+}
+
 - (void)webViewDidStartLoad:(UIWebView *)loadingWebView {
-	if (loadingWebView.request && ![loadingWebView.request.URL isFileURL]) {
-		[DTSpinner show];
-		spinning = YES;
-	}
+    if ([self shouldShowSpinnerWhileLoading]) {
+        spinnerDepth++;
+        [DTSpinner show];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)loadingWebView {
-	if (spinning) {
+    if ([self shouldShowSpinnerWhileLoading]) {
+        spinnerDepth--;
 		[DTSpinner hide];
-		spinning = NO;
 	}
 }
 
 - (void)webView:(UIWebView *)loadingWebView didFailLoadWithError:(NSError *)error {
-	if (spinning) {
+    if ([self shouldShowSpinnerWhileLoading]) {
+        spinnerDepth--;
 		[DTSpinner hide];
-		spinning = NO;
 	}
 }
 

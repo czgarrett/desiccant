@@ -16,7 +16,7 @@
 	return [[NSMutableData dataWithData:self] terminateWithNull];
 }
 
-- (NSString *)to_s {
+- (NSString *)toS {
 	NSString *response = [NSString stringWithData:self encoding:NSUTF8StringEncoding];
 	if (!response) response = [NSString stringWithData:self encoding:NSISOLatin1StringEncoding];
 	if (!response) response = $S(@"%@ (Could not be parsed as UTF-8 or Latin1.)", [super description]);

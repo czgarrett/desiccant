@@ -9,7 +9,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface NSManagedObjectContext ( Zest ) 
+@interface NSManagedObjectContext (Zest) 
 
 - (NSManagedObject *) objectWithStringID: (NSString *) url;
 

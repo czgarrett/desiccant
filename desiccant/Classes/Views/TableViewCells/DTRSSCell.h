@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "DTCustomTableViewCell.h"
-#import "DTImageView.h"
+
+@class DTImageView;
 
 @interface DTRSSCell : DTCustomTableViewCell {
     IBOutlet UILabel* titleLabel;

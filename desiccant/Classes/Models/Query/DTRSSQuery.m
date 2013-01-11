@@ -11,6 +11,7 @@
 #import "DTXMLObjectParserDelegate.h"
 #import "DTXMLValueParserDelegate.h"
 #import "DTXMLAttributeParserDelegate.h"
+#import "DTXMLParser.h"
 #import "Zest.h"
 
 @implementation DTRSSQuery
@@ -52,7 +53,7 @@
 }
 
 - (void)transform:(NSMutableDictionary *)data {
-    [data setValue:[data stringForKey:@"pubDateString"].to_date forKey:@"pubDate"];
+    [data setValue:[data stringForKey:@"pubDateString"].toDate forKey:@"pubDate"];
 }
 
 @end

@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Zest.h"
 #import "DTAdViewController.h"
 #import "DTAsyncQuery.h"
 #import "DTImageViewDelegate.h"
-#import "DTXMLRPCQuery.h"
+
+@class DTXMLRPCQuery;
 
 @interface DTOpenXAdLoader : NSObject <DTAdLoader, DTAsyncQueryDelegate, DTImageViewDelegate> {
 	UIView *placeholderView;

@@ -8,7 +8,8 @@
 
 #ifdef __IPHONE_3_0
 #import "NSManagedObjectContext+Zest.h"
-#import "Zest.h"
+#import "ZestUtilities.h"
+#import "CBucks.h"
 
 @implementation NSManagedObjectContext ( Zest )
 

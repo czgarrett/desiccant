@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "DTViewController.h"
-#import "MediaPlayer/MPMoviePlayerController.h"
+
+@class MPMoviePlayerController;
 
 @interface DTMoviePlayerViewController : DTViewController {
 	MPMoviePlayerController *mp;

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "DTAsyncQuery.h"
-#import "DTHTTPXMLQueryOperation.h"
 
 @class DTHTTPXMLQueryOperation;
+@class DTXMLParser;
 
 // TODO: Refactor this to subclass DTHTTPQuery
 @interface DTXMLHTTPQuery : DTAsyncQuery {

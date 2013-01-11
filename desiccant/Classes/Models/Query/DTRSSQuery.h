@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DTXMLHTTPQuery.h"
+#import "DTTransformsUntypedData.h"
 
 @interface DTRSSQuery : DTXMLHTTPQuery <DTTransformsUntypedData> {
 }

@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTTableViewController.h"
+
+@class DTTableViewController;
 
 @interface DTCompositeTableViewControllerMapping : NSObject {
 	BOOL startsSection;

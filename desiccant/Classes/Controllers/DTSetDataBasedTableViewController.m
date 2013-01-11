@@ -58,7 +58,7 @@
 // Returns a URL constructed using the value for the key "image_url" by default.  
 // Subclasses can override this to use something else for the cell's image URL.
 - (NSURL *)cell:(DTCustomTableViewCell *)theCell imageURLFromData:(NSDictionary *)data {
-	return [data stringForKey:[self imageURLKey]].to_url;
+	return [data stringForKey:[self imageURLKey]].toURL;
 }
 
 // Returns the value for the key "image_name" by default.  Subclasses can override

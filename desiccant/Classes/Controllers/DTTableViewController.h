@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTCustomTableViewCell.h"
 #import "DTActsAsChildViewController.h"
-#import "DTActivityIndicatorView.h"
+
+@class DTCustomTableViewCell;
+@class DTActivityIndicatorView;
 
 @interface DTTableViewController : UITableViewController <DTActsAsChildViewController> {
    IBOutlet UIView *headerView;
@@ -25,6 +26,7 @@
    
    BOOL keyboardVisible;
    CGFloat keyboardAdjustment;
+    UIViewController *modalPresenter;
 }
 
 @property (nonatomic, assign) UIViewController *containerViewController;
@@ -48,6 +50,7 @@
 @property (nonatomic) BOOL shouldAutorotateUpsideDown;
 @property (nonatomic) BOOL hasAppeared;
 @property (nonatomic, retain, readonly) DTActivityIndicatorView *activityIndicator;
+@property (nonatomic, assign) UIViewController *modalPresenter;
 
 // Called before the first viewWillAppear:
 - (void)viewWillFirstAppear:(BOOL)animated;
@@ -92,6 +95,12 @@
 - (void) releaseRetainedSubviews;
 
 - (NSInteger)numberOfRowsAcrossAllSectionsInTableView:(UITableView*)theTableView;
+
+// If a subclass overrides this and returns a wrapper view controller
+// (e.g. DTModalNavigationController), that view controller will be presented when this
+// controller is passed to desiccant controller's implementation of 
+// presentModalViewController:animated:.
+- (UIViewController *)viewControllerToPresentModally;
 
 
 @end

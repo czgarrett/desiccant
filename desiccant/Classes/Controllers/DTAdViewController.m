@@ -7,6 +7,7 @@
 
 #import "DTAdViewController.h"
 #import "Zest.h"
+#import "DTViewController.h"
 
 @interface DTAdViewController()
 @property (nonatomic, retain) NSObject <DTAdLoader> *dtAdLoader;

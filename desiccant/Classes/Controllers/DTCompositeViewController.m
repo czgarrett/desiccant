@@ -55,6 +55,16 @@
 	[super viewDidDisappear:animated];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    BOOL shouldAutorotate = YES;
+    for (UIViewController *controller in subviewControllers) {
+        if (![controller shouldAutorotateToInterfaceOrientation:toInterfaceOrientation]) {
+            shouldAutorotate = NO;
+        }
+    }
+    return shouldAutorotate;
+}
+
 #pragma mark Public methods
 
 - (void)addSubviewController:(id <DTActsAsChildViewController>)subviewController {

@@ -6,8 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTQueryBuilderElement.h"
-#import "DTQueryBuilderCell.h"
 
 @class DTQueryBuilder;
 @protocol DTQueryBuilderCell;

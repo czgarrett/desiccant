@@ -7,16 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ZestUtilities.h"
 
 @interface NSObject (Zest) 
 
-@property (nonatomic, retain, readonly) NSString *to_s;
-@property (nonatomic, assign, readonly) NSInteger to_i;
-@property (nonatomic, retain, readonly) NSURL *to_url;
-@property (nonatomic, retain, readonly) NSDate *to_date;
-@property (nonatomic, retain, readonly) NSNumber *to_n;
+@property (nonatomic, retain, readonly) NSString *to_s ZEST_DEPRECATED; // Use toS
+@property (nonatomic, retain, readonly) NSString *toS;
+
+@property (nonatomic, assign, readonly) NSInteger to_i ZEST_DEPRECATED; // Use toI
+@property (nonatomic, assign, readonly) NSInteger toI;
+
+@property (nonatomic, retain, readonly) NSURL *to_url ZEST_DEPRECATED; // Use toURL
+@property (nonatomic, retain, readonly) NSURL *toURL;
+
+@property (nonatomic, retain, readonly) NSDate *to_date ZEST_DEPRECATED; // Use toDate
 @property (nonatomic, retain, readonly) NSDate *toDate;
+
+@property (nonatomic, retain, readonly) NSNumber *to_n ZEST_DEPRECATED; // Use toN
+@property (nonatomic, retain, readonly) NSNumber *toN;
 
 // Easy way to deserialize objects from NIBs.
 // Deserializes all objects from the specified NIB and returns the first object

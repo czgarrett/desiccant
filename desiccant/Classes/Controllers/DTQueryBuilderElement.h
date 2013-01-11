@@ -7,8 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DTQueryBuilderElementType.h"
-@protocol DTQueryBuilderElementType;
 
+@protocol DTQueryBuilderElementType;
 
 @protocol DTQueryBuilderElement
 @property (nonatomic, retain) NSObject <DTQueryBuilderElementType> *type;

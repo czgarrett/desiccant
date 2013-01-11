@@ -9,8 +9,9 @@
 
 
 @interface DTNavigationController : UINavigationController {
-
+    UIViewController *modalPresenter;
 }
 
+@property (nonatomic, assign) UIViewController *modalPresenter;
 
 @end

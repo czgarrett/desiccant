@@ -7,6 +7,7 @@
 //
 
 #import "DTXMLParserContext.h"
+#import "DTXMLParserDelegate.h"
 
 @implementation DTXMLParserContext
 @synthesize insideTargetElement, parent, delegate, attributes, targetElementDepth, parsingDepth;

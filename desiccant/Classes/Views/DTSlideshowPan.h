@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTSlideshowPanPoint.h"
+
+@class DTSlideshowPanPoint;
 
 @interface DTSlideshowPan : NSObject {
 	DTSlideshowPanPoint *startPoint;

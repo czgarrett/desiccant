@@ -6,7 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTCompositeTableViewControllerMapping.h"
+#import "DTTableViewController.h"
+
+@class DTCompositeTableViewControllerMapping;
 
 @interface DTCompositeTableViewController : DTTableViewController {
 	NSMutableArray *controllerMappings;

@@ -9,6 +9,8 @@
 #import "DTTableViewController.h"
 #import "Zest.h"
 #import "DTCompositeViewController.h"
+#import "DTCustomTableViewCell.h"
+#import "DTActivityIndicatorView.h"
 
 @interface DTTableViewController()
 @property (nonatomic, assign) UIViewController *dtContainerViewController;
@@ -18,7 +20,7 @@
 
 @implementation DTTableViewController
 @synthesize hasAppeared, cell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator,
-shouldAdjustViewOnKeyboardShow;
+shouldAdjustViewOnKeyboardShow, modalPresenter;
 
 #pragma mark Memory management
 
@@ -28,6 +30,7 @@ shouldAdjustViewOnKeyboardShow;
 	self.dtActivityIndicator = nil;
 	self.headerView = nil;
 	self.footerView = nil;
+    self.modalPresenter = nil;
 }
 
 
@@ -119,7 +122,8 @@ shouldAdjustViewOnKeyboardShow;
 - (void) viewDidUnload {
    [super viewDidUnload];
    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-   [nc removeObserver: self];
+   [nc removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [nc removeObserver:self name:UIKeyboardWillHideNotification object:nil];
    [self releaseRetainedSubviews];
 }
 
@@ -130,8 +134,8 @@ shouldAdjustViewOnKeyboardShow;
    keyboardAdjustment = 0.0;
    if (self.shouldAdjustViewOnKeyboardShow) {
       NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-      [nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
-      [nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
+      [nc replaceObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+      [nc replaceObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
    }
 }
 
@@ -154,6 +158,9 @@ shouldAdjustViewOnKeyboardShow;
 
 - (void)setWindowOverlay:(UIView *)theView {
 	self.dtWindowOverlay = theView;
+    if ([[[[UIApplication sharedApplication] keyWindow] subviews] count] >= 1) {
+        self.dtWindowOverlay.transform = [(UIView *)[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] transform];
+    }
 	theView.center = [[UIScreen mainScreen] center];
 	[[[UIApplication sharedApplication] keyWindow] addSubview:theView];
 }
@@ -179,7 +186,28 @@ shouldAdjustViewOnKeyboardShow;
 	self.shouldAutorotateUpsideDown = NO;
 }
 
+- (void)presentModalViewController:(UIViewController *)theViewController animated:(BOOL)animated {
+    if ([theViewController respondsToSelector:@selector(setModalPresenter:)]) {
+        [theViewController performSelector:@selector(setModalPresenter:) withObject:self];
+    }
+    
+    if ([theViewController respondsToSelector:@selector(viewControllerToPresentModally)]) {
+        UIViewController *wrapper = [theViewController performSelector:@selector(viewControllerToPresentModally)];
+        if ([wrapper respondsToSelector:@selector(setModalPresenter:)]) {
+            [wrapper performSelector:@selector(setModalPresenter:) withObject:self];
+        }
+        [super presentModalViewController:wrapper animated:animated];
+    }
+    else {
+        [super presentModalViewController:theViewController animated:animated];
+    }
+}
+
 #pragma mark Public methods
+
+- (UIViewController *)viewControllerToPresentModally {
+    return self;
+}
 
 - (void)viewWillFirstAppear:(BOOL)animated {
 }
@@ -267,12 +295,16 @@ shouldAdjustViewOnKeyboardShow;
 
 - (void) viewWillAppear:(BOOL)animated {
 	unless (self.hasAppeared) [self viewWillFirstAppear:animated];
+    NSIndexPath *indexPathBeforeWillAppear = [self.tableView indexPathForSelectedRow];
 	if (!self.containerViewController) [super viewWillAppear:animated];
+    if (indexPathBeforeWillAppear) {
+        [self.tableView selectRowAtIndexPath:indexPathBeforeWillAppear animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 - (void) viewDidAppear:(BOOL)animated {
 	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-	if (indexPath) {
+	if (indexPath && UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
 		[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 	unless (self.hasAppeared) {
@@ -359,7 +391,7 @@ shouldAdjustViewOnKeyboardShow;
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-	[self.tableView reloadData];
+    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionNone animated:NO];
 }
 
 

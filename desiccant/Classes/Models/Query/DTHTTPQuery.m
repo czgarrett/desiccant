@@ -6,6 +6,8 @@
 //
 
 #import "DTHTTPQuery.h"
+#import "DTResultObjectParser.h"
+#import "DTHTTPQueryOperation.h"
 
 
 @interface DTHTTPQuery()

@@ -11,23 +11,23 @@
 
 @implementation NSNull (Zest)
 
-- (NSString *)to_s {
+- (NSString *)toS {
     return nil;
 }
 
-- (NSInteger)to_i {
+- (NSInteger)toI {
     return 0;
 }
 
-- (NSURL *)to_url {
+- (NSURL *)toURL {
     return nil;
 }
 
-- (NSDate *)to_date {
+- (NSDate *)toDate {
     return nil;
 }
 
-- (NSNumber *)to_n {
+- (NSNumber *)toN {
     return nil;
 }
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SQLiteColumn.h"
+
+@class SQLiteColumn;
 
 @interface SQLiteTable : NSObject {
 	NSString *name;

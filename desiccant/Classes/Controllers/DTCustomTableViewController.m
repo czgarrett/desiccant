@@ -8,6 +8,7 @@
 
 #import "DTCustomTableViewController.h"
 #import "Zest.h"
+#import "DTTableViewController.h"
 
 @interface DTCustomTableViewController()
 @end
@@ -18,7 +19,6 @@
 - (void)dealloc {
    self.cellNibName = nil;
    self.cellIdentifier = nil;
-   DTLog(@"DTCustomTableViewController dealloc");
    [super dealloc];
 }
 

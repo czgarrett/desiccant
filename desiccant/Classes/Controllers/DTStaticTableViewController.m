@@ -57,7 +57,7 @@
 			NSAssert (row.dataDictionary, @"Selector provided for data injector, but no data provided.");
 			[row.detailViewController performSelector:row.dataInjector withObject:row.dataDictionary];
 		}
-        [[self navigationControllerToReceivePush] pushViewController:row.detailViewController animated:YES];
+        [self presentDetailViewController:row.detailViewController];
     }
 }
 
@@ -68,8 +68,13 @@
 	self.cell = row.cell;
 	if (!cell) {
 		self.cell = [self prototypeCellForNibNamed:row.nibName];
+        if (row.originalFrame.size.height == 0.0) {
+            row.originalFrame = self.cell.frame;
+        }
 	}
-	self.cell.width = self.tableView.cellWidth;
+    CGRect newFrame = row.originalFrame;
+    newFrame.size.width = self.tableView.cellWidth;
+    self.cell.frame = newFrame;
 	if (row && row.dataDictionary) {
 		[cell setData:row.dataDictionary];
 	}
@@ -80,6 +85,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	DTTableViewRow *row = [self tableView:tableView rowAtIndexPath:indexPath];
+    
 	if (row.cell) {
 		return row.cell;
 	}
@@ -90,12 +96,15 @@
 			if (!cell) {
 				[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
 			}
+            cell.width = self.tableView.cellWidth;
 			[cell setData:row.dataDictionary];
 		}
 		else {
 			[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
+            cell.width = self.tableView.cellWidth;
 			[cell setData:row.dataDictionary];
 			row.cell = cell;
+            row.originalFrame = cell.frame;
 		}
 		return cell;
 	}
@@ -246,6 +255,10 @@
 
 - (NSDictionary *)dataDictionaryForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return [[self tableView:nil rowAtIndexPath:indexPath] dataDictionary];
+}
+
+- (void)presentDetailViewController:(UIViewController *)theViewController {
+    [[self navigationControllerToReceivePush] pushViewController:theViewController animated:YES];
 }
 
 #pragma mark Private methods

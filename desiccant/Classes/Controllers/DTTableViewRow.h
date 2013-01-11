@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTCustomTableViewCell.h"
+
+@class DTCustomTableViewCell;
 
 @interface DTTableViewRow : NSObject {
     DTCustomTableViewCell *cell;
@@ -24,6 +25,7 @@
 @property (nonatomic) SEL dataInjector;
 @property (nonatomic, retain) NSString *reuseIdentifier;
 @property (nonatomic, retain) NSString *nibName;
+@property (nonatomic) CGRect originalFrame;
 
 - (id)initWithCell:(DTCustomTableViewCell *)theCell nibNamed:(NSString *)theNibName data:(NSDictionary *)theRowData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector reuseIdentifier:(NSString *)theReuseIdentifier;
 - (id)initWithCell:(DTCustomTableViewCell *)theCell data:(NSDictionary *)theData detailViewController:(UIViewController *)theDetailViewController dataInjector:(SEL)theDataInjector;

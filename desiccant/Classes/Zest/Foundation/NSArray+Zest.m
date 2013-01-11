@@ -7,9 +7,10 @@
 //
 
 #import "NSArray+Zest.h"
-#import "Zest.h"
+#import "ZestUtilities.h"
+#import "NSObject+Zest.h"
 
-@implementation NSArray ( Zest )
+@implementation NSArray (Zest)
 
 - (NSMutableArray *) shuffledArray {
    NSMutableArray *result = [[[NSMutableArray alloc] initWithArray: self] autorelease];

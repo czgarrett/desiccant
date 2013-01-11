@@ -8,6 +8,7 @@
 
 #import "DTRSSCell.h"
 #import "Zest.h"
+#import "DTImageView.h"
 
 @implementation DTRSSCell
 @synthesize titleLabel, descriptionLabel, shortAgeLabel, imageEnclosureView;
@@ -38,7 +39,7 @@
 		NSString *shortAge = [[data dateForKey:@"pubDate"] shortAgeString];
 		if (shortAge) shortAgeLabel.text = shortAge;
 	}
-    if (imageEnclosureView && [data stringForKey:@"image_url"]) [imageEnclosureView loadFromURL:[data stringForKey:@"image_url"].to_url];
+    if (imageEnclosureView && [data stringForKey:@"image_url"]) [imageEnclosureView loadFromURL:[data stringForKey:@"image_url"].toURL];
 	
 	if (descriptionLabel) {
 		[self adjustHeightForLabel:descriptionLabel];

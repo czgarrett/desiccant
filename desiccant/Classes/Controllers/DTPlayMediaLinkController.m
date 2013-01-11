@@ -9,6 +9,7 @@
 #import "DTPlayMediaLinkController.h"
 #import "Zest.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "DTWebViewController.h"
 
 @interface DTPlayMediaLinkController()
 @end
@@ -62,7 +63,7 @@
 }
 
 - (NSURL *)mediaURLFromURLParameter:(NSURL *)appURL {
-	return [[[appURL queryParameters] stringForKey:@"url"] to_url];
+	return [[[appURL queryParameters] stringForKey:@"url"] toURL];
 }
 
 //#pragma mark UIWebViewDelegate methods

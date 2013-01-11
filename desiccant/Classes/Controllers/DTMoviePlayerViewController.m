@@ -8,6 +8,7 @@
 
 #import "DTMoviePlayerViewController.h"
 #import "Zest.h"
+#import "MediaPlayer/MPMoviePlayerController.h"
 
 @interface DTMoviePlayerViewController()
 @property (nonatomic, retain) NSURL  *movieURL;
@@ -29,7 +30,7 @@
 
 - (id)initWithURL:(NSURL *)theURL {
 	// Initialize and create movie URL
-	if (self = [super init])
+	if ((self = [super init]))
 	{
 		self.movieURL = theURL;
 		self.mp =  [[[MPMoviePlayerController alloc] initWithContentURL:movieURL] autorelease];
@@ -82,7 +83,7 @@
 		[mp prepareToPlay];
 		
 		// Register that the load state changed (movie is ready)
-		[[NSNotificationCenter defaultCenter] addObserver:self 
+		[[NSNotificationCenter defaultCenter] replaceObserver:self 
 												 selector:@selector(moviePlayerLoadStateChanged:) 
 													 name:MPMoviePlayerLoadStateDidChangeNotification 
 												   object:nil];
@@ -90,14 +91,14 @@
 	else
 	{
 		// Register to receive a notification when the movie is in memory and ready to play.
-		[[NSNotificationCenter defaultCenter] addObserver:self 
+		[[NSNotificationCenter defaultCenter] replaceObserver:self 
 												 selector:@selector(moviePreloadDidFinish:) 
 													 name:MPMoviePlayerContentPreloadDidFinishNotification 
 												   object:nil];
 	}
 	
 	// Register to receive a notification when the movie has finished playing. 
-	[[NSNotificationCenter defaultCenter] addObserver:self 
+	[[NSNotificationCenter defaultCenter] replaceObserver:self 
 											 selector:@selector(moviePlayBackDidFinish:) 
 												 name:MPMoviePlayerPlaybackDidFinishNotification 
 											   object:nil];

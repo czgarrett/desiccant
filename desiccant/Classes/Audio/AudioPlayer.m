@@ -7,6 +7,7 @@
 #include <AudioToolbox/AudioToolbox.h>
 #import "AudioQueueObject.h"
 #import "AudioPlayer.h"
+#include "AudioQueueObjectDelegate.h"
 
 
 static void playbackCallback (

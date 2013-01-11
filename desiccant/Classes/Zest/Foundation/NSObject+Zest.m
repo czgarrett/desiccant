@@ -32,26 +32,42 @@
 
 
 - (NSString *)to_s {
+    return [self toS];
+}
+
+- (NSString *)toS {
     return [self description];
 }
 
 - (NSInteger)to_i {
+    return [self toI];
+}
+
+- (NSInteger)toI {
     return 0;
 }
 
 - (NSURL *)to_url {
+    return [self toURL];
+}
+
+- (NSURL *)toURL {
     return nil;
 }
 
 - (NSDate *)to_date {
-    return nil;
+    return [self toDate];
 }
 
 - (NSDate *) toDate {
-   return [self to_date];
+   return nil;
 }
 
 - (NSNumber *)to_n {
+    return [self toN];
+}
+
+- (NSNumber *)toN {
     return nil;
 }
 

@@ -7,7 +7,9 @@
 //
 
 #import "UIApplication+Zest.h"
-#import "../../desiccant.h"
+#import "ZestUtilities.h"
+#import "NSObject+Zest.h"
+#import "NSDictionary+Zest.h"
 
 @implementation UIApplication(Zest)
 

@@ -6,6 +6,7 @@
 //
 
 #import "DTTableViewProxy.h"
+#import "DTCompositeTableViewControllerMapping.h"
 
 
 @interface DTTableViewProxy()

@@ -10,10 +10,10 @@
 #import "Zest.h"
 
 @implementation DTTitleOnlyCell
-@synthesize title, dataDictionary;
+@synthesize titleLabel, dataDictionary;
 
 - (void)dealloc {
-    self.title = nil;
+    self.titleLabel = nil;
 	self.dataDictionary = nil;
     [super dealloc];
 }
@@ -21,9 +21,9 @@
 // Subclasses can override this to set fields given an untyped data object
 - (void)setData:(NSDictionary *)theData {
 	self.dataDictionary = theData;
-    self.title.text = [theData stringForKey:@"title"];
+    self.titleLabel.text = [theData stringForKey:@"title"];
 	if ([self hasDynamicHeight]) {
-		[self adjustHeightForLabel:self.title];
+		[self adjustHeightForLabel:self.titleLabel];
 	}
 }
 

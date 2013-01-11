@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
-#import "QueryResult.h"
+
+@class QueryResult;
 
 @interface SQLitePreparedStatement : NSObject {
 	sqlite3_stmt *statement;

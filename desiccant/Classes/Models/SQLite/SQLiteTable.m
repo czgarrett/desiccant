@@ -9,6 +9,8 @@
 #import "SQLiteTable.h"
 #import "SQLiteConnectionAdapter.h"
 #import "SQLiteColumn.h"
+#import "QueryRow.h"
+#import "QueryResult.h"
 
 @implementation SQLiteTable
 - (id) initWithName:(NSString *)myName
@@ -24,7 +26,7 @@
 	NSString *columnName;
 	SQLiteColumn *column;
 	NSEnumerator *rowEnum = [result rowEnumerator];
-	while (row = (QueryRow *)[rowEnum nextObject]) {
+	while ((row = (QueryRow *)[rowEnum nextObject])) {
 		columnName = [row stringValueForColumn: @"name"];
 		column = [[SQLiteColumn alloc] initWithName: columnName typeName: [row stringValueForColumn: @"type"]];
 		[columns setObject: column forKey: columnName];

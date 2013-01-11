@@ -8,6 +8,7 @@
 
 #import "DTCoreDataListSelectionViewController.h"
 #import "Zest.h"
+#import "DTActivityIndicatorView.h"
 
 @implementation DTCoreDataListSelectionViewController
 

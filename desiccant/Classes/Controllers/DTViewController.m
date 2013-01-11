@@ -8,6 +8,7 @@
 #import "DTViewController.h"
 #import "Zest.h"
 #import "DTCompositeViewController.h"
+#import "DTActivityIndicatorView.h"
 
 @interface DTViewController()
 @property (nonatomic, assign) UIViewController *dtContainerViewController;
@@ -17,12 +18,13 @@
 
 
 @implementation DTViewController
-@synthesize hasAppeared, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
+@synthesize hasAppeared, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator, modalPresenter;
 
 #pragma mark Memory management
 
 - (void) dealloc {
 	self.dtContainerViewController = nil;
+    self.modalPresenter = nil;
    [self releaseRetainedSubviews];
 	[super dealloc];
 }
@@ -58,6 +60,10 @@
 
 #pragma mark Public methods
 
+- (UIViewController *)viewControllerToPresentModally {
+    return self;
+}
+
 - (void)viewWillFirstAppear:(BOOL)animated {
 }
 
@@ -66,6 +72,9 @@
 
 - (void)setWindowOverlay:(UIView *)theView {
 	self.dtWindowOverlay = theView;
+    if ([[[[UIApplication sharedApplication] keyWindow] subviews] count] >= 1) {
+        self.dtWindowOverlay.transform = [(UIView *)[[[[UIApplication sharedApplication] keyWindow] subviews] objectAtIndex:0] transform];
+    }
 	theView.center = [[UIScreen mainScreen] center];
 	[[[UIApplication sharedApplication] keyWindow] addSubview:theView];
 }
@@ -90,6 +99,24 @@
 	self.shouldAutorotateToLandscape = NO;
 	self.shouldAutorotateUpsideDown = NO;
 }
+
+- (void)presentModalViewController:(UIViewController *)theViewController animated:(BOOL)animated {
+    if ([theViewController respondsToSelector:@selector(setModalPresenter:)]) {
+        [theViewController performSelector:@selector(setModalPresenter:) withObject:self];
+    }
+    
+    if ([theViewController respondsToSelector:@selector(viewControllerToPresentModally)]) {
+        UIViewController *wrapper = [theViewController performSelector:@selector(viewControllerToPresentModally)];
+        if ([wrapper respondsToSelector:@selector(setModalPresenter:)]) {
+            [wrapper performSelector:@selector(setModalPresenter:) withObject:self];
+        }
+        [super presentModalViewController:wrapper animated:animated];
+    }
+    else {
+        [super presentModalViewController:theViewController animated:animated];
+    }
+}
+
 
 #pragma mark Dynamic properties
 

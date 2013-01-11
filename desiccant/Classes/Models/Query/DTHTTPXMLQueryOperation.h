@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTAsyncQueryOperation.h"
-#import "DTXMLParser.h"
 #import "DTHTTPQueryOperation.h"
 
 @protocol DTAsyncQueryOperationDelegate;
+@class DTXMLParser;
 
 @interface DTHTTPXMLQueryOperation : DTHTTPQueryOperation {
     DTXMLParser *parser;
@@ -26,4 +25,3 @@
 
 @end
 
-#import "DTAsyncQueryOperationDelegate.h"

@@ -7,6 +7,7 @@
 
 #import "DTGoogleCaptchaViewController.h"
 #import "Zest.h"
+#import "DTImageView.h"
 
 @interface DTGoogleCaptchaViewController()
 - (void)refreshCaptcha;

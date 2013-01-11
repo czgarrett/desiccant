@@ -7,8 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		615D44661349D64E00CDD0C2 /* DTAudioStreamer.h in Headers */ = {isa = PBXBuildFile; fileRef = 615D44641349D64E00CDD0C2 /* DTAudioStreamer.h */; };
+		615591071393E2F60013FBFA /* NSNotificationCenter+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 615591051393E2F60013FBFA /* NSNotificationCenter+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		615591081393E2F60013FBFA /* NSNotificationCenter+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 615591061393E2F60013FBFA /* NSNotificationCenter+Zest.m */; };
+		615D44661349D64E00CDD0C2 /* DTAudioStreamer.h in Headers */ = {isa = PBXBuildFile; fileRef = 615D44641349D64E00CDD0C2 /* DTAudioStreamer.h */; settings = {ATTRIBUTES = (); }; };
 		615D44671349D64E00CDD0C2 /* DTAudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 615D44651349D64E00CDD0C2 /* DTAudioStreamer.m */; };
+		61A6260713A89AF200217FF6 /* NSFetchRequest+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AA95130C2173007AFCC8 /* NSFetchRequest+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260813A89AF200217FF6 /* NSManagedObject+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AA97130C2173007AFCC8 /* NSManagedObject+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260913A89AF200217FF6 /* NSSortDescriptor+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AA99130C2173007AFCC8 /* NSSortDescriptor+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260A13A89AF200217FF6 /* NSArray+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AA9C130C2173007AFCC8 /* NSArray+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260B13A89AF200217FF6 /* NSData+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AA9E130C2173007AFCC8 /* NSData+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260C13A89AF200217FF6 /* NSDate+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAA0130C2173007AFCC8 /* NSDate+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260D13A89AF200217FF6 /* NSDictionary+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAA2130C2173007AFCC8 /* NSDictionary+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260E13A89AF200217FF6 /* NSHTTPURLResponse+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAA4130C2173007AFCC8 /* NSHTTPURLResponse+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6260F13A89AF200217FF6 /* NSIndexPath+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAA6130C2173007AFCC8 /* NSIndexPath+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261013A89AF200217FF6 /* NSMutableArray+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAA8130C2173007AFCC8 /* NSMutableArray+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261113A89AF200217FF6 /* NSMutableData+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAAA130C2173007AFCC8 /* NSMutableData+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261213A89AF200217FF6 /* NSMutableDictionary+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAAC130C2173007AFCC8 /* NSMutableDictionary+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261313A89AF200217FF6 /* NSMutableString+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAAE130C2173007AFCC8 /* NSMutableString+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261413A89AF200217FF6 /* NSMutableURLRequest+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAB0130C2173007AFCC8 /* NSMutableURLRequest+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261513A89AF200217FF6 /* NSNull+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAB2130C2173007AFCC8 /* NSNull+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261613A89AF200217FF6 /* NSNumber+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAB4130C2173007AFCC8 /* NSNumber+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261713A89AF200217FF6 /* NSObject+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAB6130C2173007AFCC8 /* NSObject+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261813A89AF200217FF6 /* NSSet+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAB8130C2173007AFCC8 /* NSSet+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261913A89AF200217FF6 /* NSString+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AABA130C2173007AFCC8 /* NSString+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261A13A89AF200217FF6 /* NSURL+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AABC130C2173007AFCC8 /* NSURL+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261B13A89AF200217FF6 /* NSURLResponse+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AABE130C2173007AFCC8 /* NSURLResponse+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261C13A89AF200217FF6 /* NSUserDefaults+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAC0130C2173007AFCC8 /* NSUserDefaults+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261D13A89AF200217FF6 /* NSManagedObjectContext+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAC2130C2173007AFCC8 /* NSManagedObjectContext+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261E13A89AF200217FF6 /* MKMapView+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAC5130C2173007AFCC8 /* MKMapView+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6261F13A89AF200217FF6 /* UIApplication+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAC7130C2173007AFCC8 /* UIApplication+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262013A89AF200217FF6 /* UIBarButtonItem+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAC9130C2173007AFCC8 /* UIBarButtonItem+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262113A89AF200217FF6 /* UIButton+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AACB130C2173007AFCC8 /* UIButton+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262213A89AF200217FF6 /* UIColor+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AACD130C2173007AFCC8 /* UIColor+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262313A89AF300217FF6 /* UIImage+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AACF130C2173007AFCC8 /* UIImage+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262413A89AF300217FF6 /* UIImageView+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAD1130C2173007AFCC8 /* UIImageView+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262513A89AF300217FF6 /* UILabel+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAD3130C2173007AFCC8 /* UILabel+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262613A89AF300217FF6 /* UINavigationController+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAD5130C2173007AFCC8 /* UINavigationController+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262713A89AF300217FF6 /* UIScreen+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAD7130C2173007AFCC8 /* UIScreen+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262813A89AF300217FF6 /* UIScrollView+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAD9130C2173007AFCC8 /* UIScrollView+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262913A89AF300217FF6 /* UITabBarItem+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AADB130C2173007AFCC8 /* UITabBarItem+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262A13A89AF300217FF6 /* UITableView+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AADD130C2173007AFCC8 /* UITableView+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262B13A89AF300217FF6 /* UIView+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AADF130C2173007AFCC8 /* UIView+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262C13A89AF300217FF6 /* UIViewController+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAE1130C2173007AFCC8 /* UIViewController+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262D13A89AF300217FF6 /* UIWebView+Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAE3130C2173007AFCC8 /* UIWebView+Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6262E13A89AF300217FF6 /* Zest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309AAE5130C2173007AFCC8 /* Zest.h */; settings = {ATTRIBUTES = (); }; };
+		61A6263213A89D6E00217FF6 /* ACWebLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A6263113A89D6E00217FF6 /* ACWebLinkController.h */; settings = {ATTRIBUTES = (); }; };
 		61BDB7D6133CE1AD0086DC2C /* NSFetchRequest+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA96130C2173007AFCC8 /* NSFetchRequest+Zest.m */; };
 		61BDB7D8133CE1AD0086DC2C /* NSManagedObject+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA98130C2173007AFCC8 /* NSManagedObject+Zest.m */; };
 		61BDB7DA133CE1AE0086DC2C /* NSSortDescriptor+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA9A130C2173007AFCC8 /* NSSortDescriptor+Zest.m */; };
@@ -48,6 +91,9 @@
 		61BDB81E133CE1C70086DC2C /* UIView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAE0130C2173007AFCC8 /* UIView+Zest.m */; };
 		61BDB820133CE1C80086DC2C /* UIViewController+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAE2130C2173007AFCC8 /* UIViewController+Zest.m */; };
 		61BDB822133CE1C90086DC2C /* UIWebView+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AAE4130C2173007AFCC8 /* UIWebView+Zest.m */; };
+		61CCA96D13744BEA00FE5292 /* DTModalNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 61CCA96B13744BE900FE5292 /* DTModalNavigationController.h */; settings = {ATTRIBUTES = (); }; };
+		61CCA96E13744BEA00FE5292 /* DTModalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CCA96C13744BEA00FE5292 /* DTModalNavigationController.m */; };
+		61DC73D913A867A90073E879 /* ZestUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 61DC73D813A867A80073E879 /* ZestUtilities.h */; settings = {ATTRIBUTES = (); }; };
 		8309AA40130B0EF6007AFCC8 /* NSString+ZestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA3F130B0EF6007AFCC8 /* NSString+ZestTests.m */; };
 		8309AAE6130C2173007AFCC8 /* NSFetchRequest+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA96130C2173007AFCC8 /* NSFetchRequest+Zest.m */; };
 		8309AAE7130C2173007AFCC8 /* NSManagedObject+Zest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8309AA98130C2173007AFCC8 /* NSManagedObject+Zest.m */; };
@@ -103,375 +149,375 @@
 		83546475130ABBEB002A1947 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546468130ABBEB002A1947 /* Foundation.framework */; };
 		83546477130ABBEB002A1947 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546476130ABBEB002A1947 /* CoreGraphics.framework */; };
 		83546480130ABBEB002A1947 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8354647E130ABBEB002A1947 /* InfoPlist.strings */; };
-		835466DC130ABF84002A1947 /* DTAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464A9130ABF84002A1947 /* DTAnalytics.h */; };
+		835466DC130ABF84002A1947 /* DTAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464A9130ABF84002A1947 /* DTAnalytics.h */; settings = {ATTRIBUTES = (); }; };
 		835466DD130ABF84002A1947 /* DTAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464AA130ABF84002A1947 /* DTAnalytics.m */; };
-		835466DF130ABF84002A1947 /* AudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464AC130ABF84002A1947 /* AudioManager.h */; };
+		835466DF130ABF84002A1947 /* AudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464AC130ABF84002A1947 /* AudioManager.h */; settings = {ATTRIBUTES = (); }; };
 		835466E0130ABF84002A1947 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464AD130ABF84002A1947 /* AudioManager.m */; };
-		835466E2130ABF84002A1947 /* AudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464AE130ABF84002A1947 /* AudioPlayer.h */; };
+		835466E2130ABF84002A1947 /* AudioPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464AE130ABF84002A1947 /* AudioPlayer.h */; settings = {ATTRIBUTES = (); }; };
 		835466E3130ABF84002A1947 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464AF130ABF84002A1947 /* AudioPlayer.m */; };
-		835466E5130ABF84002A1947 /* AudioQueueObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B0130ABF84002A1947 /* AudioQueueObject.h */; };
+		835466E5130ABF84002A1947 /* AudioQueueObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B0130ABF84002A1947 /* AudioQueueObject.h */; settings = {ATTRIBUTES = (); }; };
 		835466E6130ABF84002A1947 /* AudioQueueObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464B1130ABF84002A1947 /* AudioQueueObject.m */; };
-		835466E8130ABF84002A1947 /* AudioQueueObjectDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B2130ABF84002A1947 /* AudioQueueObjectDelegate.h */; };
-		835466E9130ABF84002A1947 /* AudioRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B3130ABF84002A1947 /* AudioRecorder.h */; };
+		835466E8130ABF84002A1947 /* AudioQueueObjectDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B2130ABF84002A1947 /* AudioQueueObjectDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		835466E9130ABF84002A1947 /* AudioRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464B3130ABF84002A1947 /* AudioRecorder.h */; settings = {ATTRIBUTES = (); }; };
 		835466EA130ABF84002A1947 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464B4130ABF84002A1947 /* AudioRecorder.m */; };
-		83546719130ABF84002A1947 /* desiccant_controllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D5130ABF84002A1947 /* desiccant_controllers.h */; };
-		8354671A130ABF84002A1947 /* DTActsAsChildViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D6130ABF84002A1947 /* DTActsAsChildViewController.h */; };
-		8354671B130ABF84002A1947 /* DTAdViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D7130ABF84002A1947 /* DTAdViewController.h */; };
+		83546719130ABF84002A1947 /* desiccant_controllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D5130ABF84002A1947 /* desiccant_controllers.h */; settings = {ATTRIBUTES = (); }; };
+		8354671A130ABF84002A1947 /* DTActsAsChildViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D6130ABF84002A1947 /* DTActsAsChildViewController.h */; settings = {ATTRIBUTES = (); }; };
+		8354671B130ABF84002A1947 /* DTAdViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D7130ABF84002A1947 /* DTAdViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354671C130ABF84002A1947 /* DTAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464D8130ABF84002A1947 /* DTAdViewController.m */; };
-		8354671E130ABF84002A1947 /* DTCompositeTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D9130ABF84002A1947 /* DTCompositeTableViewController.h */; };
+		8354671E130ABF84002A1947 /* DTCompositeTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464D9130ABF84002A1947 /* DTCompositeTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354671F130ABF84002A1947 /* DTCompositeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464DA130ABF84002A1947 /* DTCompositeTableViewController.m */; };
-		83546721130ABF84002A1947 /* DTCompositeTableViewControllerMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464DB130ABF84002A1947 /* DTCompositeTableViewControllerMapping.h */; };
+		83546721130ABF84002A1947 /* DTCompositeTableViewControllerMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464DB130ABF84002A1947 /* DTCompositeTableViewControllerMapping.h */; settings = {ATTRIBUTES = (); }; };
 		83546722130ABF84002A1947 /* DTCompositeTableViewControllerMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464DC130ABF84002A1947 /* DTCompositeTableViewControllerMapping.m */; };
-		83546724130ABF84002A1947 /* DTCompositeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464DD130ABF84002A1947 /* DTCompositeViewController.h */; };
+		83546724130ABF84002A1947 /* DTCompositeViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464DD130ABF84002A1947 /* DTCompositeViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546725130ABF84002A1947 /* DTCompositeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464DE130ABF84002A1947 /* DTCompositeViewController.m */; };
-		83546727130ABF84002A1947 /* DTCoreDataApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464DF130ABF84002A1947 /* DTCoreDataApplicationDelegate.h */; };
+		83546727130ABF84002A1947 /* DTCoreDataApplicationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464DF130ABF84002A1947 /* DTCoreDataApplicationDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		83546728130ABF84002A1947 /* DTCoreDataApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464E0130ABF84002A1947 /* DTCoreDataApplicationDelegate.m */; };
-		8354672A130ABF84002A1947 /* DTCoreDataListSelectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E1130ABF84002A1947 /* DTCoreDataListSelectionViewController.h */; };
+		8354672A130ABF84002A1947 /* DTCoreDataListSelectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E1130ABF84002A1947 /* DTCoreDataListSelectionViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354672B130ABF84002A1947 /* DTCoreDataListSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464E2130ABF84002A1947 /* DTCoreDataListSelectionViewController.m */; };
-		8354672D130ABF84002A1947 /* DTCoreDataMultiSelectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E3130ABF84002A1947 /* DTCoreDataMultiSelectionViewController.h */; };
+		8354672D130ABF84002A1947 /* DTCoreDataMultiSelectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E3130ABF84002A1947 /* DTCoreDataMultiSelectionViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354672E130ABF84002A1947 /* DTCoreDataMultiSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464E4130ABF84002A1947 /* DTCoreDataMultiSelectionViewController.m */; };
-		83546730130ABF84002A1947 /* DTCoreDataTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E5130ABF84002A1947 /* DTCoreDataTableViewController.h */; };
+		83546730130ABF84002A1947 /* DTCoreDataTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E5130ABF84002A1947 /* DTCoreDataTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546731130ABF84002A1947 /* DTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464E6130ABF84002A1947 /* DTCoreDataTableViewController.m */; };
-		83546733130ABF84002A1947 /* DTCustomTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E7130ABF84002A1947 /* DTCustomTableViewController.h */; };
+		83546733130ABF84002A1947 /* DTCustomTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E7130ABF84002A1947 /* DTCustomTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546734130ABF84002A1947 /* DTCustomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464E8130ABF84002A1947 /* DTCustomTableViewController.m */; };
-		83546736130ABF85002A1947 /* DTDataDrivenTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E9130ABF84002A1947 /* DTDataDrivenTableViewController.h */; };
+		83546736130ABF85002A1947 /* DTDataDrivenTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464E9130ABF84002A1947 /* DTDataDrivenTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546737130ABF85002A1947 /* DTDataDrivenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464EA130ABF84002A1947 /* DTDataDrivenTableViewController.m */; };
-		83546739130ABF85002A1947 /* DTDrivingDirectionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464EB130ABF84002A1947 /* DTDrivingDirectionsViewController.h */; };
+		83546739130ABF85002A1947 /* DTDrivingDirectionsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464EB130ABF84002A1947 /* DTDrivingDirectionsViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354673A130ABF85002A1947 /* DTDrivingDirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464EC130ABF84002A1947 /* DTDrivingDirectionsViewController.m */; };
-		8354673C130ABF85002A1947 /* DTGoogleCaptchaViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464ED130ABF84002A1947 /* DTGoogleCaptchaViewController.h */; };
+		8354673C130ABF85002A1947 /* DTGoogleCaptchaViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464ED130ABF84002A1947 /* DTGoogleCaptchaViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354673D130ABF85002A1947 /* DTGoogleCaptchaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464EE130ABF84002A1947 /* DTGoogleCaptchaViewController.m */; };
-		8354673F130ABF85002A1947 /* DTHeterogeneousSectionsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464EF130ABF84002A1947 /* DTHeterogeneousSectionsTableViewController.h */; };
+		8354673F130ABF85002A1947 /* DTHeterogeneousSectionsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464EF130ABF84002A1947 /* DTHeterogeneousSectionsTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546740130ABF85002A1947 /* DTHeterogeneousSectionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464F0130ABF84002A1947 /* DTHeterogeneousSectionsTableViewController.m */; };
-		83546742130ABF85002A1947 /* DTImageViewerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F1130ABF84002A1947 /* DTImageViewerController.h */; };
+		83546742130ABF85002A1947 /* DTImageViewerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F1130ABF84002A1947 /* DTImageViewerController.h */; settings = {ATTRIBUTES = (); }; };
 		83546743130ABF85002A1947 /* DTImageViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464F2130ABF84002A1947 /* DTImageViewerController.m */; };
-		83546745130ABF85002A1947 /* DTImageViewerLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F3130ABF84002A1947 /* DTImageViewerLinkController.h */; };
+		83546745130ABF85002A1947 /* DTImageViewerLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F3130ABF84002A1947 /* DTImageViewerLinkController.h */; settings = {ATTRIBUTES = (); }; };
 		83546746130ABF85002A1947 /* DTImageViewerLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464F4130ABF84002A1947 /* DTImageViewerLinkController.m */; };
-		83546748130ABF85002A1947 /* DTLinkAwayExternalWebLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F5130ABF84002A1947 /* DTLinkAwayExternalWebLinkController.h */; };
+		83546748130ABF85002A1947 /* DTLinkAwayExternalWebLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F5130ABF84002A1947 /* DTLinkAwayExternalWebLinkController.h */; settings = {ATTRIBUTES = (); }; };
 		83546749130ABF85002A1947 /* DTLinkAwayExternalWebLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464F6130ABF84002A1947 /* DTLinkAwayExternalWebLinkController.m */; };
-		8354674B130ABF85002A1947 /* DTMapLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F7130ABF84002A1947 /* DTMapLinkController.h */; };
+		8354674B130ABF85002A1947 /* DTMapLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F7130ABF84002A1947 /* DTMapLinkController.h */; settings = {ATTRIBUTES = (); }; };
 		8354674C130ABF85002A1947 /* DTMapLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464F8130ABF84002A1947 /* DTMapLinkController.m */; };
-		8354674E130ABF85002A1947 /* DTMapLinkControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F9130ABF84002A1947 /* DTMapLinkControllerDelegate.h */; };
-		8354674F130ABF85002A1947 /* DTMapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464FA130ABF84002A1947 /* DTMapViewController.h */; };
+		8354674E130ABF85002A1947 /* DTMapLinkControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464F9130ABF84002A1947 /* DTMapLinkControllerDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		8354674F130ABF85002A1947 /* DTMapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464FA130ABF84002A1947 /* DTMapViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546750130ABF85002A1947 /* DTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464FB130ABF84002A1947 /* DTMapViewController.m */; };
-		83546752130ABF85002A1947 /* DTMoviePlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464FC130ABF84002A1947 /* DTMoviePlayerViewController.h */; };
+		83546752130ABF85002A1947 /* DTMoviePlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464FC130ABF84002A1947 /* DTMoviePlayerViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546753130ABF85002A1947 /* DTMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464FD130ABF84002A1947 /* DTMoviePlayerViewController.m */; };
-		83546755130ABF85002A1947 /* DTNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464FE130ABF84002A1947 /* DTNavigationController.h */; };
+		83546755130ABF85002A1947 /* DTNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 835464FE130ABF84002A1947 /* DTNavigationController.h */; settings = {ATTRIBUTES = (); }; };
 		83546756130ABF85002A1947 /* DTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835464FF130ABF84002A1947 /* DTNavigationController.m */; };
-		83546758130ABF85002A1947 /* DTNavigationControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546500130ABF84002A1947 /* DTNavigationControllerDelegate.h */; };
+		83546758130ABF85002A1947 /* DTNavigationControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546500130ABF84002A1947 /* DTNavigationControllerDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		83546759130ABF85002A1947 /* DTNavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546501130ABF84002A1947 /* DTNavigationControllerDelegate.m */; };
-		8354675B130ABF85002A1947 /* DTNavigationLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546502130ABF84002A1947 /* DTNavigationLinkController.h */; };
+		8354675B130ABF85002A1947 /* DTNavigationLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546502130ABF84002A1947 /* DTNavigationLinkController.h */; settings = {ATTRIBUTES = (); }; };
 		8354675C130ABF85002A1947 /* DTNavigationLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546503130ABF84002A1947 /* DTNavigationLinkController.m */; };
-		8354675E130ABF85002A1947 /* DTOpenXAdLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546504130ABF84002A1947 /* DTOpenXAdLoader.h */; };
+		8354675E130ABF85002A1947 /* DTOpenXAdLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546504130ABF84002A1947 /* DTOpenXAdLoader.h */; settings = {ATTRIBUTES = (); }; };
 		8354675F130ABF85002A1947 /* DTOpenXAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546505130ABF84002A1947 /* DTOpenXAdLoader.m */; };
-		83546761130ABF85002A1947 /* DTPageBrowserController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546506130ABF84002A1947 /* DTPageBrowserController.h */; };
+		83546761130ABF85002A1947 /* DTPageBrowserController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546506130ABF84002A1947 /* DTPageBrowserController.h */; settings = {ATTRIBUTES = (); }; };
 		83546762130ABF85002A1947 /* DTPageBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546507130ABF84002A1947 /* DTPageBrowserController.m */; };
-		83546764130ABF85002A1947 /* DTPagedWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546508130ABF84002A1947 /* DTPagedWebViewController.h */; };
+		83546764130ABF85002A1947 /* DTPagedWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546508130ABF84002A1947 /* DTPagedWebViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546765130ABF85002A1947 /* DTPagedWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546509130ABF84002A1947 /* DTPagedWebViewController.m */; };
-		83546767130ABF85002A1947 /* DTPlayMediaLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354650A130ABF84002A1947 /* DTPlayMediaLinkController.h */; };
+		83546767130ABF85002A1947 /* DTPlayMediaLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354650A130ABF84002A1947 /* DTPlayMediaLinkController.h */; settings = {ATTRIBUTES = (); }; };
 		83546768130ABF85002A1947 /* DTPlayMediaLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354650B130ABF84002A1947 /* DTPlayMediaLinkController.m */; };
-		8354676A130ABF85002A1947 /* DTPlayVideoLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354650C130ABF84002A1947 /* DTPlayVideoLinkController.h */; };
+		8354676A130ABF85002A1947 /* DTPlayVideoLinkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354650C130ABF84002A1947 /* DTPlayVideoLinkController.h */; settings = {ATTRIBUTES = (); }; };
 		8354676B130ABF85002A1947 /* DTPlayVideoLinkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354650D130ABF84002A1947 /* DTPlayVideoLinkController.m */; };
-		8354676D130ABF85002A1947 /* DTQueryBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354650E130ABF84002A1947 /* DTQueryBuilder.h */; };
+		8354676D130ABF85002A1947 /* DTQueryBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354650E130ABF84002A1947 /* DTQueryBuilder.h */; settings = {ATTRIBUTES = (); }; };
 		8354676E130ABF85002A1947 /* DTQueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354650F130ABF84002A1947 /* DTQueryBuilder.m */; };
-		83546770130ABF85002A1947 /* DTQueryBuilderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546510130ABF84002A1947 /* DTQueryBuilderDelegate.h */; };
-		83546771130ABF85002A1947 /* DTQueryBuilderElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546511130ABF84002A1947 /* DTQueryBuilderElement.h */; };
+		83546770130ABF85002A1947 /* DTQueryBuilderDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546510130ABF84002A1947 /* DTQueryBuilderDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		83546771130ABF85002A1947 /* DTQueryBuilderElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546511130ABF84002A1947 /* DTQueryBuilderElement.h */; settings = {ATTRIBUTES = (); }; };
 		83546772130ABF85002A1947 /* DTQueryBuilderElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546512130ABF84002A1947 /* DTQueryBuilderElement.m */; };
-		83546774130ABF85002A1947 /* DTQueryBuilderElementType.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546513130ABF84002A1947 /* DTQueryBuilderElementType.h */; };
+		83546774130ABF85002A1947 /* DTQueryBuilderElementType.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546513130ABF84002A1947 /* DTQueryBuilderElementType.h */; settings = {ATTRIBUTES = (); }; };
 		83546775130ABF85002A1947 /* DTQueryBuilderElementType.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546514130ABF84002A1947 /* DTQueryBuilderElementType.m */; };
-		83546777130ABF85002A1947 /* DTRemoteWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546515130ABF84002A1947 /* DTRemoteWebViewController.h */; };
+		83546777130ABF85002A1947 /* DTRemoteWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546515130ABF84002A1947 /* DTRemoteWebViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546778130ABF85002A1947 /* DTRemoteWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546516130ABF84002A1947 /* DTRemoteWebViewController.m */; };
-		8354677A130ABF85002A1947 /* DTSetDataBasedTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546517130ABF84002A1947 /* DTSetDataBasedTableViewController.h */; };
+		8354677A130ABF85002A1947 /* DTSetDataBasedTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546517130ABF84002A1947 /* DTSetDataBasedTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354677B130ABF85002A1947 /* DTSetDataBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546518130ABF84002A1947 /* DTSetDataBasedTableViewController.m */; };
-		8354677D130ABF85002A1947 /* DTSingleDateFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546519130ABF84002A1947 /* DTSingleDateFieldEditorViewController.h */; };
+		8354677D130ABF85002A1947 /* DTSingleDateFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546519130ABF84002A1947 /* DTSingleDateFieldEditorViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354677E130ABF85002A1947 /* DTSingleDateFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354651A130ABF84002A1947 /* DTSingleDateFieldEditorViewController.m */; };
-		83546780130ABF85002A1947 /* DTSingleTextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354651B130ABF84002A1947 /* DTSingleTextFieldEditorViewController.h */; };
+		83546780130ABF85002A1947 /* DTSingleTextFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354651B130ABF84002A1947 /* DTSingleTextFieldEditorViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546781130ABF85002A1947 /* DTSingleTextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354651C130ABF84002A1947 /* DTSingleTextFieldEditorViewController.m */; };
-		83546783130ABF85002A1947 /* DTSingleTextViewEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354651D130ABF84002A1947 /* DTSingleTextViewEditorViewController.h */; };
+		83546783130ABF85002A1947 /* DTSingleTextViewEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354651D130ABF84002A1947 /* DTSingleTextViewEditorViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546784130ABF85002A1947 /* DTSingleTextViewEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354651E130ABF84002A1947 /* DTSingleTextViewEditorViewController.m */; };
-		83546786130ABF85002A1947 /* DTStaticTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354651F130ABF84002A1947 /* DTStaticTableViewController.h */; };
+		83546786130ABF85002A1947 /* DTStaticTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354651F130ABF84002A1947 /* DTStaticTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546787130ABF85002A1947 /* DTStaticTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546520130ABF84002A1947 /* DTStaticTableViewController.m */; };
-		83546789130ABF85002A1947 /* DTTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546521130ABF84002A1947 /* DTTabBarController.h */; };
+		83546789130ABF85002A1947 /* DTTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546521130ABF84002A1947 /* DTTabBarController.h */; settings = {ATTRIBUTES = (); }; };
 		8354678A130ABF85002A1947 /* DTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546522130ABF84002A1947 /* DTTabBarController.m */; };
-		8354678C130ABF85002A1947 /* DTTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546523130ABF84002A1947 /* DTTableViewController.h */; };
+		8354678C130ABF85002A1947 /* DTTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546523130ABF84002A1947 /* DTTableViewController.h */; settings = {ATTRIBUTES = (); }; };
 		8354678D130ABF85002A1947 /* DTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546524130ABF84002A1947 /* DTTableViewController.m */; };
-		8354678F130ABF85002A1947 /* DTTableViewRow.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546525130ABF84002A1947 /* DTTableViewRow.h */; };
+		8354678F130ABF85002A1947 /* DTTableViewRow.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546525130ABF84002A1947 /* DTTableViewRow.h */; settings = {ATTRIBUTES = (); }; };
 		83546790130ABF85002A1947 /* DTTableViewRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546526130ABF84002A1947 /* DTTableViewRow.m */; };
-		83546792130ABF85002A1947 /* DTToggleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546527130ABF84002A1947 /* DTToggleViewController.h */; };
+		83546792130ABF85002A1947 /* DTToggleViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546527130ABF84002A1947 /* DTToggleViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546793130ABF85002A1947 /* DTToggleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546528130ABF84002A1947 /* DTToggleViewController.m */; };
-		83546795130ABF85002A1947 /* DTViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546529130ABF84002A1947 /* DTViewController.h */; };
+		83546795130ABF85002A1947 /* DTViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546529130ABF84002A1947 /* DTViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546796130ABF85002A1947 /* DTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354652A130ABF84002A1947 /* DTViewController.m */; };
-		83546798130ABF85002A1947 /* DTWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354652B130ABF84002A1947 /* DTWebViewController.h */; };
+		83546798130ABF85002A1947 /* DTWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354652B130ABF84002A1947 /* DTWebViewController.h */; settings = {ATTRIBUTES = (); }; };
 		83546799130ABF85002A1947 /* DTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354652C130ABF84002A1947 /* DTWebViewController.m */; };
-		8354679B130ABF85002A1947 /* TableViewDataSourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354652D130ABF84002A1947 /* TableViewDataSourceDelegate.h */; };
-		8354679C130ABF85002A1947 /* UITabBarControllerRotating.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354652E130ABF84002A1947 /* UITabBarControllerRotating.h */; };
+		8354679B130ABF85002A1947 /* TableViewDataSourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354652D130ABF84002A1947 /* TableViewDataSourceDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		8354679C130ABF85002A1947 /* UITabBarControllerRotating.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354652E130ABF84002A1947 /* UITabBarControllerRotating.h */; settings = {ATTRIBUTES = (); }; };
 		8354679D130ABF85002A1947 /* UITabBarControllerRotating.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354652F130ABF84002A1947 /* UITabBarControllerRotating.m */; };
-		8354679F130ABF85002A1947 /* desiccant.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546530130ABF84002A1947 /* desiccant.h */; };
-		835467A0130ABF85002A1947 /* ABContact.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546533130ABF84002A1947 /* ABContact.h */; };
+		8354679F130ABF85002A1947 /* desiccant.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546530130ABF84002A1947 /* desiccant.h */; settings = {ATTRIBUTES = (); }; };
+		835467A0130ABF85002A1947 /* ABContact.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546533130ABF84002A1947 /* ABContact.h */; settings = {ATTRIBUTES = (); }; };
 		835467A1130ABF85002A1947 /* ABContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546534130ABF84002A1947 /* ABContact.m */; };
-		835467A3130ABF85002A1947 /* ABContactsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546535130ABF84002A1947 /* ABContactsHelper.h */; };
+		835467A3130ABF85002A1947 /* ABContactsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546535130ABF84002A1947 /* ABContactsHelper.h */; settings = {ATTRIBUTES = (); }; };
 		835467A4130ABF85002A1947 /* ABContactsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546536130ABF84002A1947 /* ABContactsHelper.m */; };
-		835467A6130ABF85002A1947 /* ABGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546537130ABF84002A1947 /* ABGroup.h */; };
+		835467A6130ABF85002A1947 /* ABGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546537130ABF84002A1947 /* ABGroup.h */; settings = {ATTRIBUTES = (); }; };
 		835467A7130ABF85002A1947 /* ABGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546538130ABF84002A1947 /* ABGroup.m */; };
-		835467A9130ABF85002A1947 /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653A130ABF84002A1947 /* ASIAuthenticationDialog.h */; };
+		835467A9130ABF85002A1947 /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653A130ABF84002A1947 /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (); }; };
 		835467AA130ABF85002A1947 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354653B130ABF84002A1947 /* ASIAuthenticationDialog.m */; };
-		835467AC130ABF85002A1947 /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653C130ABF84002A1947 /* ASICacheDelegate.h */; };
-		835467AD130ABF85002A1947 /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653D130ABF84002A1947 /* ASIDataCompressor.h */; };
+		835467AC130ABF85002A1947 /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653C130ABF84002A1947 /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		835467AD130ABF85002A1947 /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653D130ABF84002A1947 /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (); }; };
 		835467AE130ABF85002A1947 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354653E130ABF84002A1947 /* ASIDataCompressor.m */; };
-		835467B0130ABF85002A1947 /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653F130ABF84002A1947 /* ASIDataDecompressor.h */; };
+		835467B0130ABF85002A1947 /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354653F130ABF84002A1947 /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (); }; };
 		835467B1130ABF85002A1947 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546540130ABF84002A1947 /* ASIDataDecompressor.m */; };
-		835467B3130ABF85002A1947 /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546541130ABF84002A1947 /* ASIDownloadCache.h */; };
+		835467B3130ABF85002A1947 /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546541130ABF84002A1947 /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (); }; };
 		835467B4130ABF85002A1947 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546542130ABF84002A1947 /* ASIDownloadCache.m */; };
-		835467B6130ABF85002A1947 /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546543130ABF84002A1947 /* ASIFormDataRequest.h */; };
+		835467B6130ABF85002A1947 /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546543130ABF84002A1947 /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467B7130ABF85002A1947 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546544130ABF84002A1947 /* ASIFormDataRequest.m */; };
-		835467B9130ABF85002A1947 /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546545130ABF84002A1947 /* ASIHTTPRequest.h */; };
+		835467B9130ABF85002A1947 /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546545130ABF84002A1947 /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467BA130ABF85002A1947 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546546130ABF84002A1947 /* ASIHTTPRequest.m */; };
-		835467BC130ABF85002A1947 /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546547130ABF84002A1947 /* ASIHTTPRequestConfig.h */; };
-		835467BD130ABF85002A1947 /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546548130ABF84002A1947 /* ASIHTTPRequestDelegate.h */; };
-		835467BE130ABF85002A1947 /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546549130ABF84002A1947 /* ASIInputStream.h */; };
+		835467BC130ABF85002A1947 /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546547130ABF84002A1947 /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (); }; };
+		835467BD130ABF85002A1947 /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546548130ABF84002A1947 /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		835467BE130ABF85002A1947 /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546549130ABF84002A1947 /* ASIInputStream.h */; settings = {ATTRIBUTES = (); }; };
 		835467BF130ABF85002A1947 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354654A130ABF84002A1947 /* ASIInputStream.m */; };
-		835467C1130ABF85002A1947 /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354654B130ABF84002A1947 /* ASINetworkQueue.h */; };
+		835467C1130ABF85002A1947 /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354654B130ABF84002A1947 /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (); }; };
 		835467C2130ABF85002A1947 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354654C130ABF84002A1947 /* ASINetworkQueue.m */; };
-		835467C4130ABF85002A1947 /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354654D130ABF84002A1947 /* ASIProgressDelegate.h */; };
-		835467C5130ABF85002A1947 /* ASIWebPageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354654F130ABF84002A1947 /* ASIWebPageRequest.h */; };
+		835467C4130ABF85002A1947 /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354654D130ABF84002A1947 /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		835467C5130ABF85002A1947 /* ASIWebPageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354654F130ABF84002A1947 /* ASIWebPageRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467C6130ABF85002A1947 /* ASIWebPageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546550130ABF84002A1947 /* ASIWebPageRequest.m */; };
-		835467C8130ABF85002A1947 /* ASICloudFilesCDNRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546552130ABF84002A1947 /* ASICloudFilesCDNRequest.h */; };
+		835467C8130ABF85002A1947 /* ASICloudFilesCDNRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546552130ABF84002A1947 /* ASICloudFilesCDNRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467C9130ABF85002A1947 /* ASICloudFilesCDNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546553130ABF84002A1947 /* ASICloudFilesCDNRequest.m */; };
-		835467CB130ABF85002A1947 /* ASICloudFilesContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546554130ABF84002A1947 /* ASICloudFilesContainer.h */; };
+		835467CB130ABF85002A1947 /* ASICloudFilesContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546554130ABF84002A1947 /* ASICloudFilesContainer.h */; settings = {ATTRIBUTES = (); }; };
 		835467CC130ABF85002A1947 /* ASICloudFilesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546555130ABF84002A1947 /* ASICloudFilesContainer.m */; };
-		835467CE130ABF85002A1947 /* ASICloudFilesContainerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546556130ABF84002A1947 /* ASICloudFilesContainerRequest.h */; };
+		835467CE130ABF85002A1947 /* ASICloudFilesContainerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546556130ABF84002A1947 /* ASICloudFilesContainerRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467CF130ABF85002A1947 /* ASICloudFilesContainerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546557130ABF84002A1947 /* ASICloudFilesContainerRequest.m */; };
-		835467D1130ABF85002A1947 /* ASICloudFilesContainerXMLParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546558130ABF84002A1947 /* ASICloudFilesContainerXMLParserDelegate.h */; };
+		835467D1130ABF85002A1947 /* ASICloudFilesContainerXMLParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546558130ABF84002A1947 /* ASICloudFilesContainerXMLParserDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		835467D2130ABF85002A1947 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546559130ABF84002A1947 /* ASICloudFilesContainerXMLParserDelegate.m */; };
-		835467D4130ABF85002A1947 /* ASICloudFilesObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354655A130ABF84002A1947 /* ASICloudFilesObject.h */; };
+		835467D4130ABF85002A1947 /* ASICloudFilesObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354655A130ABF84002A1947 /* ASICloudFilesObject.h */; settings = {ATTRIBUTES = (); }; };
 		835467D5130ABF85002A1947 /* ASICloudFilesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354655B130ABF84002A1947 /* ASICloudFilesObject.m */; };
-		835467D7130ABF85002A1947 /* ASICloudFilesObjectRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354655C130ABF84002A1947 /* ASICloudFilesObjectRequest.h */; };
+		835467D7130ABF85002A1947 /* ASICloudFilesObjectRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354655C130ABF84002A1947 /* ASICloudFilesObjectRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467D8130ABF85002A1947 /* ASICloudFilesObjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354655D130ABF84002A1947 /* ASICloudFilesObjectRequest.m */; };
-		835467DA130ABF85002A1947 /* ASICloudFilesRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354655E130ABF84002A1947 /* ASICloudFilesRequest.h */; };
+		835467DA130ABF85002A1947 /* ASICloudFilesRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354655E130ABF84002A1947 /* ASICloudFilesRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467DB130ABF85002A1947 /* ASICloudFilesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354655F130ABF84002A1947 /* ASICloudFilesRequest.m */; };
-		835467DD130ABF85002A1947 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546560130ABF84002A1947 /* Reachability.h */; };
+		835467DD130ABF85002A1947 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546560130ABF84002A1947 /* Reachability.h */; settings = {ATTRIBUTES = (); }; };
 		835467DE130ABF85002A1947 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546561130ABF84002A1947 /* Reachability.m */; };
-		835467E0130ABF85002A1947 /* ASINSXMLParserCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546563130ABF84002A1947 /* ASINSXMLParserCompat.h */; };
-		835467E1130ABF85002A1947 /* ASIS3Bucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546564130ABF84002A1947 /* ASIS3Bucket.h */; };
+		835467E0130ABF85002A1947 /* ASINSXMLParserCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546563130ABF84002A1947 /* ASINSXMLParserCompat.h */; settings = {ATTRIBUTES = (); }; };
+		835467E1130ABF85002A1947 /* ASIS3Bucket.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546564130ABF84002A1947 /* ASIS3Bucket.h */; settings = {ATTRIBUTES = (); }; };
 		835467E2130ABF85002A1947 /* ASIS3Bucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546565130ABF84002A1947 /* ASIS3Bucket.m */; };
-		835467E4130ABF85002A1947 /* ASIS3BucketObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546566130ABF84002A1947 /* ASIS3BucketObject.h */; };
+		835467E4130ABF85002A1947 /* ASIS3BucketObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546566130ABF84002A1947 /* ASIS3BucketObject.h */; settings = {ATTRIBUTES = (); }; };
 		835467E5130ABF85002A1947 /* ASIS3BucketObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546567130ABF84002A1947 /* ASIS3BucketObject.m */; };
-		835467E7130ABF85002A1947 /* ASIS3BucketRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546568130ABF84002A1947 /* ASIS3BucketRequest.h */; };
+		835467E7130ABF85002A1947 /* ASIS3BucketRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546568130ABF84002A1947 /* ASIS3BucketRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467E8130ABF85002A1947 /* ASIS3BucketRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546569130ABF84002A1947 /* ASIS3BucketRequest.m */; };
-		835467EA130ABF85002A1947 /* ASIS3ObjectRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354656A130ABF84002A1947 /* ASIS3ObjectRequest.h */; };
+		835467EA130ABF85002A1947 /* ASIS3ObjectRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354656A130ABF84002A1947 /* ASIS3ObjectRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467EB130ABF85002A1947 /* ASIS3ObjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354656B130ABF84002A1947 /* ASIS3ObjectRequest.m */; };
-		835467ED130ABF85002A1947 /* ASIS3Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354656C130ABF84002A1947 /* ASIS3Request.h */; };
+		835467ED130ABF85002A1947 /* ASIS3Request.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354656C130ABF84002A1947 /* ASIS3Request.h */; settings = {ATTRIBUTES = (); }; };
 		835467EE130ABF85002A1947 /* ASIS3Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354656D130ABF84002A1947 /* ASIS3Request.m */; };
-		835467F0130ABF85002A1947 /* ASIS3ServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354656E130ABF84002A1947 /* ASIS3ServiceRequest.h */; };
+		835467F0130ABF85002A1947 /* ASIS3ServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354656E130ABF84002A1947 /* ASIS3ServiceRequest.h */; settings = {ATTRIBUTES = (); }; };
 		835467F1130ABF85002A1947 /* ASIS3ServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354656F130ABF84002A1947 /* ASIS3ServiceRequest.m */; };
-		8354681F130ABF85002A1947 /* GANTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354658F130ABF84002A1947 /* GANTracker.h */; };
-		83546820130ABF85002A1947 /* GTMNSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546592130ABF84002A1947 /* GTMNSString+HTML.h */; };
+		8354681F130ABF85002A1947 /* GANTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354658F130ABF84002A1947 /* GANTracker.h */; settings = {ATTRIBUTES = (); }; };
+		83546820130ABF85002A1947 /* GTMNSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546592130ABF84002A1947 /* GTMNSString+HTML.h */; settings = {ATTRIBUTES = (); }; };
 		83546821130ABF85002A1947 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546593130ABF84002A1947 /* GTMNSString+HTML.m */; };
-		83546823130ABF85002A1947 /* GTMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546594130ABF84002A1947 /* GTMDefines.h */; };
-		83546824130ABF85002A1947 /* ISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546596130ABF84002A1947 /* ISO8601DateFormatter.h */; };
+		83546823130ABF85002A1947 /* GTMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546594130ABF84002A1947 /* GTMDefines.h */; settings = {ATTRIBUTES = (); }; };
+		83546824130ABF85002A1947 /* ISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546596130ABF84002A1947 /* ISO8601DateFormatter.h */; settings = {ATTRIBUTES = (); }; };
 		83546825130ABF85002A1947 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546597130ABF84002A1947 /* ISO8601DateFormatter.m */; };
-		83546828130ABF85002A1947 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659A130ABF84002A1947 /* JSON.h */; };
-		83546829130ABF85002A1947 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659B130ABF84002A1947 /* NSObject+SBJSON.h */; };
+		83546828130ABF85002A1947 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659A130ABF84002A1947 /* JSON.h */; settings = {ATTRIBUTES = (); }; };
+		83546829130ABF85002A1947 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659B130ABF84002A1947 /* NSObject+SBJSON.h */; settings = {ATTRIBUTES = (); }; };
 		8354682A130ABF85002A1947 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354659C130ABF84002A1947 /* NSObject+SBJSON.m */; };
-		8354682C130ABF85002A1947 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659D130ABF84002A1947 /* NSString+SBJSON.h */; };
+		8354682C130ABF85002A1947 /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659D130ABF84002A1947 /* NSString+SBJSON.h */; settings = {ATTRIBUTES = (); }; };
 		8354682D130ABF85002A1947 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354659E130ABF84002A1947 /* NSString+SBJSON.m */; };
-		8354682F130ABF85002A1947 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659F130ABF84002A1947 /* SBJSON.h */; };
+		8354682F130ABF85002A1947 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354659F130ABF84002A1947 /* SBJSON.h */; settings = {ATTRIBUTES = (); }; };
 		83546830130ABF85002A1947 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A0130ABF84002A1947 /* SBJSON.m */; };
-		83546832130ABF85002A1947 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A1130ABF84002A1947 /* SBJsonBase.h */; };
+		83546832130ABF85002A1947 /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A1130ABF84002A1947 /* SBJsonBase.h */; settings = {ATTRIBUTES = (); }; };
 		83546833130ABF85002A1947 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A2130ABF84002A1947 /* SBJsonBase.m */; };
-		83546835130ABF85002A1947 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A3130ABF84002A1947 /* SBJsonParser.h */; };
+		83546835130ABF85002A1947 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A3130ABF84002A1947 /* SBJsonParser.h */; settings = {ATTRIBUTES = (); }; };
 		83546836130ABF85002A1947 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A4130ABF84002A1947 /* SBJsonParser.m */; };
-		83546838130ABF85002A1947 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A5130ABF84002A1947 /* SBJsonWriter.h */; };
+		83546838130ABF85002A1947 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A5130ABF84002A1947 /* SBJsonWriter.h */; settings = {ATTRIBUTES = (); }; };
 		83546839130ABF85002A1947 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A6130ABF84002A1947 /* SBJsonWriter.m */; };
-		8354683B130ABF85002A1947 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A8130ABF84002A1947 /* NSData+Base64.h */; };
+		8354683B130ABF85002A1947 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465A8130ABF84002A1947 /* NSData+Base64.h */; settings = {ATTRIBUTES = (); }; };
 		8354683C130ABF85002A1947 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465A9130ABF84002A1947 /* NSData+Base64.m */; };
-		83546844130ABF85002A1947 /* SDURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B0130ABF84002A1947 /* SDURLCache.h */; };
+		83546844130ABF85002A1947 /* SDURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B0130ABF84002A1947 /* SDURLCache.h */; settings = {ATTRIBUTES = (); }; };
 		83546845130ABF85002A1947 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465B1130ABF84002A1947 /* SDURLCache.m */; };
-		83546847130ABF85002A1947 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B3130ABF84002A1947 /* SFHFKeychainUtils.h */; };
+		83546847130ABF85002A1947 /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B3130ABF84002A1947 /* SFHFKeychainUtils.h */; settings = {ATTRIBUTES = (); }; };
 		83546848130ABF85002A1947 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465B4130ABF84002A1947 /* SFHFKeychainUtils.m */; };
-		8354684A130ABF85002A1947 /* CXMLDocument_CreationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B7130ABF84002A1947 /* CXMLDocument_CreationExtensions.h */; };
+		8354684A130ABF85002A1947 /* CXMLDocument_CreationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B7130ABF84002A1947 /* CXMLDocument_CreationExtensions.h */; settings = {ATTRIBUTES = (); }; };
 		8354684B130ABF85002A1947 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465B8130ABF84002A1947 /* CXMLDocument_CreationExtensions.m */; };
-		8354684D130ABF85002A1947 /* CXMLNode_CreationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B9130ABF84002A1947 /* CXMLNode_CreationExtensions.h */; };
+		8354684D130ABF85002A1947 /* CXMLNode_CreationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465B9130ABF84002A1947 /* CXMLNode_CreationExtensions.h */; settings = {ATTRIBUTES = (); }; };
 		8354684E130ABF85002A1947 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465BA130ABF84002A1947 /* CXMLNode_CreationExtensions.m */; };
-		83546850130ABF85002A1947 /* CXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465BB130ABF84002A1947 /* CXMLDocument.h */; };
+		83546850130ABF85002A1947 /* CXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465BB130ABF84002A1947 /* CXMLDocument.h */; settings = {ATTRIBUTES = (); }; };
 		83546851130ABF85002A1947 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465BC130ABF84002A1947 /* CXMLDocument.m */; };
-		83546853130ABF85002A1947 /* CXMLDocument_PrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465BD130ABF84002A1947 /* CXMLDocument_PrivateExtensions.h */; };
+		83546853130ABF85002A1947 /* CXMLDocument_PrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465BD130ABF84002A1947 /* CXMLDocument_PrivateExtensions.h */; settings = {ATTRIBUTES = (); }; };
 		83546854130ABF85002A1947 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465BE130ABF84002A1947 /* CXMLDocument_PrivateExtensions.m */; };
-		83546856130ABF85002A1947 /* CXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465BF130ABF84002A1947 /* CXMLElement.h */; };
+		83546856130ABF85002A1947 /* CXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465BF130ABF84002A1947 /* CXMLElement.h */; settings = {ATTRIBUTES = (); }; };
 		83546857130ABF85002A1947 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465C0130ABF84002A1947 /* CXMLElement.m */; };
-		83546859130ABF85002A1947 /* CXMLElement_CreationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C1130ABF84002A1947 /* CXMLElement_CreationExtensions.h */; };
+		83546859130ABF85002A1947 /* CXMLElement_CreationExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C1130ABF84002A1947 /* CXMLElement_CreationExtensions.h */; settings = {ATTRIBUTES = (); }; };
 		8354685A130ABF85002A1947 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465C2130ABF84002A1947 /* CXMLElement_CreationExtensions.m */; };
-		8354685C130ABF85002A1947 /* CXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C3130ABF84002A1947 /* CXMLNode.h */; };
+		8354685C130ABF85002A1947 /* CXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C3130ABF84002A1947 /* CXMLNode.h */; settings = {ATTRIBUTES = (); }; };
 		8354685D130ABF85002A1947 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465C4130ABF84002A1947 /* CXMLNode.m */; };
-		8354685F130ABF85002A1947 /* CXMLNode_PrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C5130ABF84002A1947 /* CXMLNode_PrivateExtensions.h */; };
+		8354685F130ABF85002A1947 /* CXMLNode_PrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C5130ABF84002A1947 /* CXMLNode_PrivateExtensions.h */; settings = {ATTRIBUTES = (); }; };
 		83546860130ABF85002A1947 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465C6130ABF84002A1947 /* CXMLNode_PrivateExtensions.m */; };
-		83546862130ABF85002A1947 /* CXMLNode_XPathExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C7130ABF84002A1947 /* CXMLNode_XPathExtensions.h */; };
+		83546862130ABF85002A1947 /* CXMLNode_XPathExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465C7130ABF84002A1947 /* CXMLNode_XPathExtensions.h */; settings = {ATTRIBUTES = (); }; };
 		83546863130ABF85002A1947 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465C8130ABF84002A1947 /* CXMLNode_XPathExtensions.m */; };
-		83546865130ABF85002A1947 /* CTidy.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465CA130ABF84002A1947 /* CTidy.h */; };
+		83546865130ABF85002A1947 /* CTidy.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465CA130ABF84002A1947 /* CTidy.h */; settings = {ATTRIBUTES = (); }; };
 		83546866130ABF85002A1947 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465CB130ABF84002A1947 /* CTidy.m */; };
-		83546868130ABF85002A1947 /* TouchXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465CC130ABF84002A1947 /* TouchXML.h */; };
-		83546869130ABF85002A1947 /* XPathQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465CE130ABF84002A1947 /* XPathQuery.h */; };
+		83546868130ABF85002A1947 /* TouchXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465CC130ABF84002A1947 /* TouchXML.h */; settings = {ATTRIBUTES = (); }; };
+		83546869130ABF85002A1947 /* XPathQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465CE130ABF84002A1947 /* XPathQuery.h */; settings = {ATTRIBUTES = (); }; };
 		8354686A130ABF85002A1947 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465CF130ABF84002A1947 /* XPathQuery.m */; };
-		8354686C130ABF85002A1947 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D1130ABF84002A1947 /* Constants.h */; };
-		8354686D130ABF85002A1947 /* DTSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D2130ABF84002A1947 /* DTSingleton.h */; };
+		8354686C130ABF85002A1947 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D1130ABF84002A1947 /* Constants.h */; settings = {ATTRIBUTES = (); }; };
+		8354686D130ABF85002A1947 /* DTSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465D2130ABF84002A1947 /* DTSingleton.h */; settings = {ATTRIBUTES = (); }; };
 		8354686E130ABF85002A1947 /* DTSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465D3130ABF84002A1947 /* DTSingleton.m */; };
-		83546880130ABF85002A1947 /* ARObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E0130ABF84002A1947 /* ARObject.h */; };
+		83546880130ABF85002A1947 /* ARObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E0130ABF84002A1947 /* ARObject.h */; settings = {ATTRIBUTES = (); }; };
 		83546881130ABF85002A1947 /* ARObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465E1130ABF84002A1947 /* ARObject.m */; };
-		83546883130ABF85002A1947 /* desiccant_models.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E2130ABF84002A1947 /* desiccant_models.h */; };
-		83546884130ABF85002A1947 /* DTAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E3130ABF84002A1947 /* DTAddress.h */; };
+		83546883130ABF85002A1947 /* desiccant_models.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E2130ABF84002A1947 /* desiccant_models.h */; settings = {ATTRIBUTES = (); }; };
+		83546884130ABF85002A1947 /* DTAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E3130ABF84002A1947 /* DTAddress.h */; settings = {ATTRIBUTES = (); }; };
 		83546885130ABF85002A1947 /* DTAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465E4130ABF84002A1947 /* DTAddress.m */; };
-		83546887130ABF85002A1947 /* DTGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E5130ABF84002A1947 /* DTGeocoder.h */; };
+		83546887130ABF85002A1947 /* DTGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E5130ABF84002A1947 /* DTGeocoder.h */; settings = {ATTRIBUTES = (); }; };
 		83546888130ABF85002A1947 /* DTGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465E6130ABF84002A1947 /* DTGeocoder.m */; };
-		8354688A130ABF85002A1947 /* DTGoogleCaptcha.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E7130ABF84002A1947 /* DTGoogleCaptcha.h */; };
+		8354688A130ABF85002A1947 /* DTGoogleCaptcha.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E7130ABF84002A1947 /* DTGoogleCaptcha.h */; settings = {ATTRIBUTES = (); }; };
 		8354688B130ABF85002A1947 /* DTGoogleCaptcha.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465E8130ABF84002A1947 /* DTGoogleCaptcha.m */; };
-		8354688D130ABF85002A1947 /* DTKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E9130ABF84002A1947 /* DTKeychain.h */; };
+		8354688D130ABF85002A1947 /* DTKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465E9130ABF84002A1947 /* DTKeychain.h */; settings = {ATTRIBUTES = (); }; };
 		8354688E130ABF85002A1947 /* DTKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465EA130ABF84002A1947 /* DTKeychain.m */; };
-		83546890130ABF85002A1947 /* DTMapAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465EB130ABF84002A1947 /* DTMapAnnotation.h */; };
+		83546890130ABF85002A1947 /* DTMapAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465EB130ABF84002A1947 /* DTMapAnnotation.h */; settings = {ATTRIBUTES = (); }; };
 		83546891130ABF85002A1947 /* DTMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465EC130ABF84002A1947 /* DTMapAnnotation.m */; };
-		83546893130ABF85002A1947 /* DTMarkupDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465ED130ABF84002A1947 /* DTMarkupDocument.h */; };
+		83546893130ABF85002A1947 /* DTMarkupDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465ED130ABF84002A1947 /* DTMarkupDocument.h */; settings = {ATTRIBUTES = (); }; };
 		83546894130ABF85002A1947 /* DTMarkupDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465EE130ABF84002A1947 /* DTMarkupDocument.m */; };
-		83546896130ABF85002A1947 /* DTURLDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465EF130ABF84002A1947 /* DTURLDownload.h */; };
+		83546896130ABF85002A1947 /* DTURLDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465EF130ABF84002A1947 /* DTURLDownload.h */; settings = {ATTRIBUTES = (); }; };
 		83546897130ABF85002A1947 /* DTURLDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465F0130ABF84002A1947 /* DTURLDownload.m */; };
-		83546899130ABF85002A1947 /* DTXMLAttributeParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F2130ABF84002A1947 /* DTXMLAttributeParserDelegate.h */; };
+		83546899130ABF85002A1947 /* DTXMLAttributeParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F2130ABF84002A1947 /* DTXMLAttributeParserDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		8354689A130ABF85002A1947 /* DTXMLAttributeParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465F3130ABF84002A1947 /* DTXMLAttributeParserDelegate.m */; };
-		8354689C130ABF85002A1947 /* DTXMLCollectionParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F4130ABF84002A1947 /* DTXMLCollectionParserContext.h */; };
+		8354689C130ABF85002A1947 /* DTXMLCollectionParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F4130ABF84002A1947 /* DTXMLCollectionParserContext.h */; settings = {ATTRIBUTES = (); }; };
 		8354689D130ABF85002A1947 /* DTXMLCollectionParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465F5130ABF84002A1947 /* DTXMLCollectionParserContext.m */; };
-		8354689F130ABF85002A1947 /* DTXMLCollectionParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F6130ABF84002A1947 /* DTXMLCollectionParserDelegate.h */; };
+		8354689F130ABF85002A1947 /* DTXMLCollectionParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F6130ABF84002A1947 /* DTXMLCollectionParserDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		835468A0130ABF85002A1947 /* DTXMLCollectionParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465F7130ABF84002A1947 /* DTXMLCollectionParserDelegate.m */; };
-		835468A2130ABF85002A1947 /* DTXMLObjectParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F8130ABF84002A1947 /* DTXMLObjectParserContext.h */; };
+		835468A2130ABF85002A1947 /* DTXMLObjectParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465F8130ABF84002A1947 /* DTXMLObjectParserContext.h */; settings = {ATTRIBUTES = (); }; };
 		835468A3130ABF85002A1947 /* DTXMLObjectParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465F9130ABF84002A1947 /* DTXMLObjectParserContext.m */; };
-		835468A5130ABF85002A1947 /* DTXMLObjectParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465FA130ABF84002A1947 /* DTXMLObjectParserDelegate.h */; };
+		835468A5130ABF85002A1947 /* DTXMLObjectParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465FA130ABF84002A1947 /* DTXMLObjectParserDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		835468A6130ABF85002A1947 /* DTXMLObjectParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465FB130ABF84002A1947 /* DTXMLObjectParserDelegate.m */; };
-		835468A8130ABF85002A1947 /* DTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465FC130ABF84002A1947 /* DTXMLParser.h */; };
+		835468A8130ABF85002A1947 /* DTXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465FC130ABF84002A1947 /* DTXMLParser.h */; settings = {ATTRIBUTES = (); }; };
 		835468A9130ABF85002A1947 /* DTXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465FD130ABF84002A1947 /* DTXMLParser.m */; };
-		835468AB130ABF85002A1947 /* DTXMLParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465FE130ABF84002A1947 /* DTXMLParserContext.h */; };
+		835468AB130ABF85002A1947 /* DTXMLParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 835465FE130ABF84002A1947 /* DTXMLParserContext.h */; settings = {ATTRIBUTES = (); }; };
 		835468AC130ABF85002A1947 /* DTXMLParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 835465FF130ABF84002A1947 /* DTXMLParserContext.m */; };
-		835468AE130ABF85002A1947 /* DTXMLParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546600130ABF84002A1947 /* DTXMLParserDelegate.h */; };
+		835468AE130ABF85002A1947 /* DTXMLParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546600130ABF84002A1947 /* DTXMLParserDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		835468AF130ABF85002A1947 /* DTXMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546601130ABF84002A1947 /* DTXMLParserDelegate.m */; };
-		835468B1130ABF85002A1947 /* DTXMLValueParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546602130ABF84002A1947 /* DTXMLValueParserContext.h */; };
+		835468B1130ABF85002A1947 /* DTXMLValueParserContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546602130ABF84002A1947 /* DTXMLValueParserContext.h */; settings = {ATTRIBUTES = (); }; };
 		835468B2130ABF85002A1947 /* DTXMLValueParserContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546603130ABF84002A1947 /* DTXMLValueParserContext.m */; };
-		835468B4130ABF85002A1947 /* DTXMLValueParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546604130ABF84002A1947 /* DTXMLValueParserDelegate.h */; };
+		835468B4130ABF85002A1947 /* DTXMLValueParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546604130ABF84002A1947 /* DTXMLValueParserDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		835468B5130ABF85002A1947 /* DTXMLValueParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546605130ABF84002A1947 /* DTXMLValueParserDelegate.m */; };
-		835468B7130ABF85002A1947 /* DTARObjectQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546607130ABF84002A1947 /* DTARObjectQuery.h */; };
+		835468B7130ABF85002A1947 /* DTARObjectQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546607130ABF84002A1947 /* DTARObjectQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468B8130ABF85002A1947 /* DTARObjectQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546608130ABF84002A1947 /* DTARObjectQuery.m */; };
-		835468BA130ABF85002A1947 /* DTARObjectQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546609130ABF84002A1947 /* DTARObjectQueryOperation.h */; };
+		835468BA130ABF85002A1947 /* DTARObjectQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546609130ABF84002A1947 /* DTARObjectQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468BB130ABF85002A1947 /* DTARObjectQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354660A130ABF84002A1947 /* DTARObjectQueryOperation.m */; };
-		835468BD130ABF85002A1947 /* DTAsyncQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354660B130ABF84002A1947 /* DTAsyncQuery.h */; };
+		835468BD130ABF85002A1947 /* DTAsyncQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354660B130ABF84002A1947 /* DTAsyncQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468BE130ABF85002A1947 /* DTAsyncQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354660C130ABF84002A1947 /* DTAsyncQuery.m */; };
-		835468C0130ABF85002A1947 /* DTAsyncQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354660D130ABF84002A1947 /* DTAsyncQueryOperation.h */; };
+		835468C0130ABF85002A1947 /* DTAsyncQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354660D130ABF84002A1947 /* DTAsyncQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468C1130ABF85002A1947 /* DTAsyncQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354660E130ABF84002A1947 /* DTAsyncQueryOperation.m */; };
-		835468C3130ABF85002A1947 /* DTAsyncQueryOperationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354660F130ABF84002A1947 /* DTAsyncQueryOperationDelegate.h */; };
-		835468C4130ABF85002A1947 /* DTFiltersUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546610130ABF84002A1947 /* DTFiltersUntypedData.h */; };
-		835468C5130ABF85002A1947 /* DTGoogleAJAXSearchAPIParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546611130ABF84002A1947 /* DTGoogleAJAXSearchAPIParser.h */; };
+		835468C3130ABF85002A1947 /* DTAsyncQueryOperationDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354660F130ABF84002A1947 /* DTAsyncQueryOperationDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		835468C4130ABF85002A1947 /* DTFiltersUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546610130ABF84002A1947 /* DTFiltersUntypedData.h */; settings = {ATTRIBUTES = (); }; };
+		835468C5130ABF85002A1947 /* DTGoogleAJAXSearchAPIParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546611130ABF84002A1947 /* DTGoogleAJAXSearchAPIParser.h */; settings = {ATTRIBUTES = (); }; };
 		835468C6130ABF85002A1947 /* DTGoogleAJAXSearchAPIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546612130ABF84002A1947 /* DTGoogleAJAXSearchAPIParser.m */; };
-		835468C8130ABF85002A1947 /* DTGoogleAJAXSearchAPIQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546613130ABF84002A1947 /* DTGoogleAJAXSearchAPIQuery.h */; };
+		835468C8130ABF85002A1947 /* DTGoogleAJAXSearchAPIQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546613130ABF84002A1947 /* DTGoogleAJAXSearchAPIQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468C9130ABF85002A1947 /* DTGoogleAJAXSearchAPIQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546614130ABF84002A1947 /* DTGoogleAJAXSearchAPIQuery.m */; };
-		835468CB130ABF85002A1947 /* DTGoogleAJAXSearchAPIQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546615130ABF84002A1947 /* DTGoogleAJAXSearchAPIQueryOperation.h */; };
+		835468CB130ABF85002A1947 /* DTGoogleAJAXSearchAPIQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546615130ABF84002A1947 /* DTGoogleAJAXSearchAPIQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468CC130ABF85002A1947 /* DTGoogleAJAXSearchAPIQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546616130ABF84002A1947 /* DTGoogleAJAXSearchAPIQueryOperation.m */; };
-		835468CE130ABF85002A1947 /* DTGroupsUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546617130ABF84002A1947 /* DTGroupsUntypedData.h */; };
-		835468CF130ABF85002A1947 /* DTHTTPPListQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546618130ABF84002A1947 /* DTHTTPPListQuery.h */; };
+		835468CE130ABF85002A1947 /* DTGroupsUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546617130ABF84002A1947 /* DTGroupsUntypedData.h */; settings = {ATTRIBUTES = (); }; };
+		835468CF130ABF85002A1947 /* DTHTTPPListQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546618130ABF84002A1947 /* DTHTTPPListQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468D0130ABF85002A1947 /* DTHTTPPListQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546619130ABF84002A1947 /* DTHTTPPListQuery.m */; };
-		835468D2130ABF85002A1947 /* DTHTTPPListQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354661A130ABF84002A1947 /* DTHTTPPListQueryOperation.h */; };
+		835468D2130ABF85002A1947 /* DTHTTPPListQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354661A130ABF84002A1947 /* DTHTTPPListQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468D3130ABF85002A1947 /* DTHTTPPListQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354661B130ABF84002A1947 /* DTHTTPPListQueryOperation.m */; };
-		835468D5130ABF85002A1947 /* DTHTTPQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354661C130ABF84002A1947 /* DTHTTPQuery.h */; };
+		835468D5130ABF85002A1947 /* DTHTTPQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354661C130ABF84002A1947 /* DTHTTPQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468D6130ABF85002A1947 /* DTHTTPQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354661D130ABF84002A1947 /* DTHTTPQuery.m */; };
-		835468D8130ABF85002A1947 /* DTHTTPQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354661E130ABF84002A1947 /* DTHTTPQueryOperation.h */; };
+		835468D8130ABF85002A1947 /* DTHTTPQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354661E130ABF84002A1947 /* DTHTTPQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468D9130ABF85002A1947 /* DTHTTPQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354661F130ABF84002A1947 /* DTHTTPQueryOperation.m */; };
-		835468DB130ABF85002A1947 /* DTHTTPStructuredResponseQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546620130ABF84002A1947 /* DTHTTPStructuredResponseQueryOperation.h */; };
+		835468DB130ABF85002A1947 /* DTHTTPStructuredResponseQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546620130ABF84002A1947 /* DTHTTPStructuredResponseQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468DC130ABF85002A1947 /* DTHTTPStructuredResponseQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546621130ABF84002A1947 /* DTHTTPStructuredResponseQueryOperation.m */; };
-		835468DE130ABF85002A1947 /* DTHTTPXMLQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546622130ABF84002A1947 /* DTHTTPXMLQueryOperation.h */; };
+		835468DE130ABF85002A1947 /* DTHTTPXMLQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546622130ABF84002A1947 /* DTHTTPXMLQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468DF130ABF85002A1947 /* DTHTTPXMLQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546623130ABF84002A1947 /* DTHTTPXMLQueryOperation.m */; };
-		835468E1130ABF85002A1947 /* DTJSONQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546624130ABF84002A1947 /* DTJSONQuery.h */; };
+		835468E1130ABF85002A1947 /* DTJSONQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546624130ABF84002A1947 /* DTJSONQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468E2130ABF85002A1947 /* DTJSONQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546625130ABF84002A1947 /* DTJSONQuery.m */; };
-		835468E4130ABF85002A1947 /* DTJSONQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546626130ABF84002A1947 /* DTJSONQueryOperation.h */; };
+		835468E4130ABF85002A1947 /* DTJSONQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546626130ABF84002A1947 /* DTJSONQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468E5130ABF85002A1947 /* DTJSONQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546627130ABF84002A1947 /* DTJSONQueryOperation.m */; };
-		835468E7130ABF85002A1947 /* DTPListQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546628130ABF84002A1947 /* DTPListQuery.h */; };
+		835468E7130ABF85002A1947 /* DTPListQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546628130ABF84002A1947 /* DTPListQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468E8130ABF85002A1947 /* DTPListQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546629130ABF84002A1947 /* DTPListQuery.m */; };
-		835468EA130ABF85002A1947 /* DTPListQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354662A130ABF84002A1947 /* DTPListQueryOperation.h */; };
+		835468EA130ABF85002A1947 /* DTPListQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354662A130ABF84002A1947 /* DTPListQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468EB130ABF85002A1947 /* DTPListQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354662B130ABF84002A1947 /* DTPListQueryOperation.m */; };
-		835468ED130ABF85002A1947 /* DTResultObjectParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354662C130ABF84002A1947 /* DTResultObjectParser.h */; };
+		835468ED130ABF85002A1947 /* DTResultObjectParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354662C130ABF84002A1947 /* DTResultObjectParser.h */; settings = {ATTRIBUTES = (); }; };
 		835468EE130ABF85002A1947 /* DTResultObjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354662D130ABF84002A1947 /* DTResultObjectParser.m */; };
-		835468F0130ABF85002A1947 /* DTRSSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354662E130ABF84002A1947 /* DTRSSQuery.h */; };
+		835468F0130ABF85002A1947 /* DTRSSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354662E130ABF84002A1947 /* DTRSSQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468F1130ABF85002A1947 /* DTRSSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354662F130ABF84002A1947 /* DTRSSQuery.m */; };
-		835468F3130ABF85002A1947 /* DTSortsUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546630130ABF84002A1947 /* DTSortsUntypedData.h */; };
-		835468F4130ABF85002A1947 /* DTSQLiteQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546631130ABF84002A1947 /* DTSQLiteQuery.h */; };
+		835468F3130ABF85002A1947 /* DTSortsUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546630130ABF84002A1947 /* DTSortsUntypedData.h */; settings = {ATTRIBUTES = (); }; };
+		835468F4130ABF85002A1947 /* DTSQLiteQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546631130ABF84002A1947 /* DTSQLiteQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468F5130ABF85002A1947 /* DTSQLiteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546632130ABF84002A1947 /* DTSQLiteQuery.m */; };
-		835468F7130ABF85002A1947 /* DTSQLiteQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546633130ABF84002A1947 /* DTSQLiteQueryOperation.h */; };
+		835468F7130ABF85002A1947 /* DTSQLiteQueryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546633130ABF84002A1947 /* DTSQLiteQueryOperation.h */; settings = {ATTRIBUTES = (); }; };
 		835468F8130ABF85002A1947 /* DTSQLiteQueryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546634130ABF84002A1947 /* DTSQLiteQueryOperation.m */; };
-		835468FA130ABF85002A1947 /* DTTransformsUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546635130ABF84002A1947 /* DTTransformsUntypedData.h */; };
-		835468FB130ABF85002A1947 /* DTXMLHTTPQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546636130ABF84002A1947 /* DTXMLHTTPQuery.h */; };
+		835468FA130ABF85002A1947 /* DTTransformsUntypedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546635130ABF84002A1947 /* DTTransformsUntypedData.h */; settings = {ATTRIBUTES = (); }; };
+		835468FB130ABF85002A1947 /* DTXMLHTTPQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546636130ABF84002A1947 /* DTXMLHTTPQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468FC130ABF85002A1947 /* DTXMLHTTPQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546637130ABF84002A1947 /* DTXMLHTTPQuery.m */; };
-		835468FE130ABF85002A1947 /* DTXMLRPCQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546638130ABF84002A1947 /* DTXMLRPCQuery.h */; };
+		835468FE130ABF85002A1947 /* DTXMLRPCQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546638130ABF84002A1947 /* DTXMLRPCQuery.h */; settings = {ATTRIBUTES = (); }; };
 		835468FF130ABF85002A1947 /* DTXMLRPCQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546639130ABF84002A1947 /* DTXMLRPCQuery.m */; };
-		83546901130ABF85002A1947 /* QueryResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354663B130ABF84002A1947 /* QueryResult.h */; };
+		83546901130ABF85002A1947 /* QueryResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354663B130ABF84002A1947 /* QueryResult.h */; settings = {ATTRIBUTES = (); }; };
 		83546902130ABF85002A1947 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354663C130ABF84002A1947 /* QueryResult.m */; };
-		83546904130ABF85002A1947 /* QueryRow.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354663D130ABF84002A1947 /* QueryRow.h */; };
+		83546904130ABF85002A1947 /* QueryRow.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354663D130ABF84002A1947 /* QueryRow.h */; settings = {ATTRIBUTES = (); }; };
 		83546905130ABF85002A1947 /* QueryRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354663E130ABF84002A1947 /* QueryRow.m */; };
-		83546907130ABF85002A1947 /* SQLiteColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354663F130ABF84002A1947 /* SQLiteColumn.h */; };
+		83546907130ABF85002A1947 /* SQLiteColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354663F130ABF84002A1947 /* SQLiteColumn.h */; settings = {ATTRIBUTES = (); }; };
 		83546908130ABF85002A1947 /* SQLiteColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546640130ABF84002A1947 /* SQLiteColumn.m */; };
-		8354690A130ABF85002A1947 /* SQLiteConnectionAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546641130ABF84002A1947 /* SQLiteConnectionAdapter.h */; };
+		8354690A130ABF85002A1947 /* SQLiteConnectionAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546641130ABF84002A1947 /* SQLiteConnectionAdapter.h */; settings = {ATTRIBUTES = (); }; };
 		8354690B130ABF85002A1947 /* SQLiteConnectionAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546642130ABF84002A1947 /* SQLiteConnectionAdapter.m */; };
-		8354690D130ABF85002A1947 /* SQLiteDatabaseException.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546643130ABF84002A1947 /* SQLiteDatabaseException.h */; };
+		8354690D130ABF85002A1947 /* SQLiteDatabaseException.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546643130ABF84002A1947 /* SQLiteDatabaseException.h */; settings = {ATTRIBUTES = (); }; };
 		8354690E130ABF85002A1947 /* SQLiteDatabaseException.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546644130ABF84002A1947 /* SQLiteDatabaseException.m */; };
-		83546910130ABF85002A1947 /* SQLitePreparedStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546645130ABF84002A1947 /* SQLitePreparedStatement.h */; };
+		83546910130ABF85002A1947 /* SQLitePreparedStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546645130ABF84002A1947 /* SQLitePreparedStatement.h */; settings = {ATTRIBUTES = (); }; };
 		83546911130ABF85002A1947 /* SQLitePreparedStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546646130ABF84002A1947 /* SQLitePreparedStatement.m */; };
-		83546913130ABF85002A1947 /* SQLiteTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546647130ABF84002A1947 /* SQLiteTable.h */; };
+		83546913130ABF85002A1947 /* SQLiteTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546647130ABF84002A1947 /* SQLiteTable.h */; settings = {ATTRIBUTES = (); }; };
 		83546914130ABF85002A1947 /* SQLiteTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546648130ABF84002A1947 /* SQLiteTable.m */; };
-		83546916130ABF85002A1947 /* DTWordList.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354664A130ABF84002A1947 /* DTWordList.h */; };
+		83546916130ABF85002A1947 /* DTWordList.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354664A130ABF84002A1947 /* DTWordList.h */; settings = {ATTRIBUTES = (); }; };
 		83546917130ABF85002A1947 /* DTWordList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354664B130ABF84002A1947 /* DTWordList.m */; };
-		83546919130ABF85002A1947 /* DTReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354664D130ABF84002A1947 /* DTReachability.h */; };
+		83546919130ABF85002A1947 /* DTReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354664D130ABF84002A1947 /* DTReachability.h */; settings = {ATTRIBUTES = (); }; };
 		8354691A130ABF85002A1947 /* DTReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354664E130ABF84002A1947 /* DTReachability.m */; };
-		8354691C130ABF85002A1947 /* DTRestfulService.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546650130ABF84002A1947 /* DTRestfulService.h */; };
+		8354691C130ABF85002A1947 /* DTRestfulService.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546650130ABF84002A1947 /* DTRestfulService.h */; settings = {ATTRIBUTES = (); }; };
 		8354691D130ABF85002A1947 /* DTRestfulService.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546651130ABF84002A1947 /* DTRestfulService.m */; };
-		83546921130ABF85002A1947 /* desiccant_views.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546655130ABF84002A1947 /* desiccant_views.h */; };
-		83546922130ABF85002A1947 /* DTActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546656130ABF84002A1947 /* DTActivityIndicatorView.h */; };
+		83546921130ABF85002A1947 /* desiccant_views.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546655130ABF84002A1947 /* desiccant_views.h */; settings = {ATTRIBUTES = (); }; };
+		83546922130ABF85002A1947 /* DTActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546656130ABF84002A1947 /* DTActivityIndicatorView.h */; settings = {ATTRIBUTES = (); }; };
 		83546923130ABF85002A1947 /* DTActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546657130ABF84002A1947 /* DTActivityIndicatorView.m */; };
-		83546925130ABF85002A1947 /* DTButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546658130ABF84002A1947 /* DTButton.h */; };
+		83546925130ABF85002A1947 /* DTButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546658130ABF84002A1947 /* DTButton.h */; settings = {ATTRIBUTES = (); }; };
 		83546926130ABF85002A1947 /* DTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546659130ABF84002A1947 /* DTButton.m */; };
-		83546928130ABF85002A1947 /* DTGaugeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665A130ABF84002A1947 /* DTGaugeView.h */; };
+		83546928130ABF85002A1947 /* DTGaugeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665A130ABF84002A1947 /* DTGaugeView.h */; settings = {ATTRIBUTES = (); }; };
 		83546929130ABF85002A1947 /* DTGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354665B130ABF84002A1947 /* DTGaugeView.m */; };
-		8354692B130ABF85002A1947 /* DTImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665C130ABF84002A1947 /* DTImageView.h */; };
+		8354692B130ABF85002A1947 /* DTImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665C130ABF84002A1947 /* DTImageView.h */; settings = {ATTRIBUTES = (); }; };
 		8354692C130ABF85002A1947 /* DTImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354665D130ABF84002A1947 /* DTImageView.m */; };
-		8354692E130ABF85002A1947 /* DTImageViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665E130ABF84002A1947 /* DTImageViewDelegate.h */; };
-		8354692F130ABF85002A1947 /* DTPagedScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665F130ABF84002A1947 /* DTPagedScrollView.h */; };
+		8354692E130ABF85002A1947 /* DTImageViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665E130ABF84002A1947 /* DTImageViewDelegate.h */; settings = {ATTRIBUTES = (); }; };
+		8354692F130ABF85002A1947 /* DTPagedScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354665F130ABF84002A1947 /* DTPagedScrollView.h */; settings = {ATTRIBUTES = (); }; };
 		83546930130ABF85002A1947 /* DTPagedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546660130ABF84002A1947 /* DTPagedScrollView.m */; };
-		83546932130ABF85002A1947 /* DTPagedScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546661130ABF84002A1947 /* DTPagedScrollViewDataSource.h */; };
-		83546933130ABF85002A1947 /* DTSlideshowPan.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546662130ABF84002A1947 /* DTSlideshowPan.h */; };
+		83546932130ABF85002A1947 /* DTPagedScrollViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546661130ABF84002A1947 /* DTPagedScrollViewDataSource.h */; settings = {ATTRIBUTES = (); }; };
+		83546933130ABF85002A1947 /* DTSlideshowPan.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546662130ABF84002A1947 /* DTSlideshowPan.h */; settings = {ATTRIBUTES = (); }; };
 		83546934130ABF85002A1947 /* DTSlideshowPan.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546663130ABF84002A1947 /* DTSlideshowPan.m */; };
-		83546936130ABF85002A1947 /* DTSlideshowPanPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546664130ABF84002A1947 /* DTSlideshowPanPoint.h */; };
+		83546936130ABF85002A1947 /* DTSlideshowPanPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546664130ABF84002A1947 /* DTSlideshowPanPoint.h */; settings = {ATTRIBUTES = (); }; };
 		83546937130ABF85002A1947 /* DTSlideshowPanPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546665130ABF84002A1947 /* DTSlideshowPanPoint.m */; };
-		83546939130ABF85002A1947 /* DTSlideshowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546666130ABF84002A1947 /* DTSlideshowView.h */; };
+		83546939130ABF85002A1947 /* DTSlideshowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546666130ABF84002A1947 /* DTSlideshowView.h */; settings = {ATTRIBUTES = (); }; };
 		8354693A130ABF85002A1947 /* DTSlideshowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546667130ABF84002A1947 /* DTSlideshowView.m */; };
-		8354693C130ABF85002A1947 /* DTSpinner.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546668130ABF84002A1947 /* DTSpinner.h */; };
+		8354693C130ABF85002A1947 /* DTSpinner.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546668130ABF84002A1947 /* DTSpinner.h */; settings = {ATTRIBUTES = (); }; };
 		8354693D130ABF85002A1947 /* DTSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546669130ABF84002A1947 /* DTSpinner.m */; };
-		8354693F130ABF85002A1947 /* DTTableViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354666A130ABF84002A1947 /* DTTableViewProxy.h */; };
+		8354693F130ABF85002A1947 /* DTTableViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354666A130ABF84002A1947 /* DTTableViewProxy.h */; settings = {ATTRIBUTES = (); }; };
 		83546940130ABF85002A1947 /* DTTableViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354666B130ABF84002A1947 /* DTTableViewProxy.m */; };
-		83546942130ABF85002A1947 /* DTUnderlinedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354666C130ABF84002A1947 /* DTUnderlinedLabel.h */; };
+		83546942130ABF85002A1947 /* DTUnderlinedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354666C130ABF84002A1947 /* DTUnderlinedLabel.h */; settings = {ATTRIBUTES = (); }; };
 		83546943130ABF85002A1947 /* DTUnderlinedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354666D130ABF84002A1947 /* DTUnderlinedLabel.m */; };
-		83546945130ABF85002A1947 /* DTCustomTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354666F130ABF84002A1947 /* DTCustomTableViewCell.h */; };
+		83546945130ABF85002A1947 /* DTCustomTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354666F130ABF84002A1947 /* DTCustomTableViewCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546946130ABF85002A1947 /* DTCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546670130ABF84002A1947 /* DTCustomTableViewCell.m */; };
-		83546948130ABF85002A1947 /* DTDatedEventCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546671130ABF84002A1947 /* DTDatedEventCell.h */; };
+		83546948130ABF85002A1947 /* DTDatedEventCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546671130ABF84002A1947 /* DTDatedEventCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546949130ABF85002A1947 /* DTDatedEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546672130ABF84002A1947 /* DTDatedEventCell.m */; };
-		8354694B130ABF85002A1947 /* DTDescriptionCellWithImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546673130ABF84002A1947 /* DTDescriptionCellWithImageView.h */; };
+		8354694B130ABF85002A1947 /* DTDescriptionCellWithImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546673130ABF84002A1947 /* DTDescriptionCellWithImageView.h */; settings = {ATTRIBUTES = (); }; };
 		8354694C130ABF85002A1947 /* DTDescriptionCellWithImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546674130ABF84002A1947 /* DTDescriptionCellWithImageView.m */; };
-		8354694E130ABF85002A1947 /* DTQueryBuilderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546675130ABF84002A1947 /* DTQueryBuilderCell.h */; };
+		8354694E130ABF85002A1947 /* DTQueryBuilderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546675130ABF84002A1947 /* DTQueryBuilderCell.h */; settings = {ATTRIBUTES = (); }; };
 		8354694F130ABF85002A1947 /* DTQueryBuilderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546676130ABF84002A1947 /* DTQueryBuilderCell.m */; };
-		83546951130ABF85002A1947 /* DTRSSCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546677130ABF84002A1947 /* DTRSSCell.h */; };
+		83546951130ABF85002A1947 /* DTRSSCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546677130ABF84002A1947 /* DTRSSCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546952130ABF85002A1947 /* DTRSSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546678130ABF84002A1947 /* DTRSSCell.m */; };
-		83546954130ABF85002A1947 /* DTTextEditorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546679130ABF84002A1947 /* DTTextEditorCell.h */; };
+		83546954130ABF85002A1947 /* DTTextEditorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546679130ABF84002A1947 /* DTTextEditorCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546955130ABF85002A1947 /* DTTextEditorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354667A130ABF84002A1947 /* DTTextEditorCell.m */; };
-		83546957130ABF85002A1947 /* DTTitleAndImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354667B130ABF84002A1947 /* DTTitleAndImageCell.h */; };
+		83546957130ABF85002A1947 /* DTTitleAndImageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354667B130ABF84002A1947 /* DTTitleAndImageCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546958130ABF85002A1947 /* DTTitleAndImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354667C130ABF84002A1947 /* DTTitleAndImageCell.m */; };
-		8354695A130ABF85002A1947 /* DTTitleOnlyCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354667D130ABF84002A1947 /* DTTitleOnlyCell.h */; };
+		8354695A130ABF85002A1947 /* DTTitleOnlyCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354667D130ABF84002A1947 /* DTTitleOnlyCell.h */; settings = {ATTRIBUTES = (); }; };
 		8354695B130ABF85002A1947 /* DTTitleOnlyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354667E130ABF84002A1947 /* DTTitleOnlyCell.m */; };
-		8354695D130ABF85002A1947 /* DTTitleRemoteImageAgeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354667F130ABF84002A1947 /* DTTitleRemoteImageAgeCell.h */; };
+		8354695D130ABF85002A1947 /* DTTitleRemoteImageAgeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 8354667F130ABF84002A1947 /* DTTitleRemoteImageAgeCell.h */; settings = {ATTRIBUTES = (); }; };
 		8354695E130ABF85002A1947 /* DTTitleRemoteImageAgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546680130ABF84002A1947 /* DTTitleRemoteImageAgeCell.m */; };
-		83546960130ABF85002A1947 /* DTTitleSubtitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546681130ABF84002A1947 /* DTTitleSubtitleCell.h */; };
+		83546960130ABF85002A1947 /* DTTitleSubtitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546681130ABF84002A1947 /* DTTitleSubtitleCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546961130ABF85002A1947 /* DTTitleSubtitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546682130ABF84002A1947 /* DTTitleSubtitleCell.m */; };
-		83546963130ABF85002A1947 /* DTWebTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546683130ABF84002A1947 /* DTWebTableViewCell.h */; };
+		83546963130ABF85002A1947 /* DTWebTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546683130ABF84002A1947 /* DTWebTableViewCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546964130ABF85002A1947 /* DTWebTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546684130ABF84002A1947 /* DTWebTableViewCell.m */; };
-		83546966130ABF85002A1947 /* EditableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546685130ABF84002A1947 /* EditableCell.h */; };
+		83546966130ABF85002A1947 /* EditableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546685130ABF84002A1947 /* EditableCell.h */; settings = {ATTRIBUTES = (); }; };
 		83546967130ABF85002A1947 /* EditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546686130ABF84002A1947 /* EditableCell.m */; };
-		83546969130ABF85002A1947 /* UITableViewCellFixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546687130ABF84002A1947 /* UITableViewCellFixed.h */; };
+		83546969130ABF85002A1947 /* UITableViewCellFixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 83546687130ABF84002A1947 /* UITableViewCellFixed.h */; settings = {ATTRIBUTES = (); }; };
 		8354696A130ABF85002A1947 /* UITableViewCellFixed.m in Sources */ = {isa = PBXBuildFile; fileRef = 83546688130ABF84002A1947 /* UITableViewCellFixed.m */; };
 		83546A16130AC162002A1947 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A15130AC162002A1947 /* CoreGraphics.framework */; };
 		83546A22130AC20E002A1947 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83546A17130AC20E002A1947 /* CoreData.framework */; };
@@ -506,8 +552,14 @@
 
 /* Begin PBXFileReference section */
 		612D48B1132ADD5B00105FEB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		615591051393E2F60013FBFA /* NSNotificationCenter+Zest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Zest.h"; sourceTree = "<group>"; };
+		615591061393E2F60013FBFA /* NSNotificationCenter+Zest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Zest.m"; sourceTree = "<group>"; };
 		615D44641349D64E00CDD0C2 /* DTAudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTAudioStreamer.h; sourceTree = "<group>"; };
 		615D44651349D64E00CDD0C2 /* DTAudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTAudioStreamer.m; sourceTree = "<group>"; };
+		61A6263113A89D6E00217FF6 /* ACWebLinkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACWebLinkController.h; sourceTree = "<group>"; };
+		61CCA96B13744BE900FE5292 /* DTModalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTModalNavigationController.h; sourceTree = "<group>"; };
+		61CCA96C13744BEA00FE5292 /* DTModalNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTModalNavigationController.m; sourceTree = "<group>"; };
+		61DC73D813A867A80073E879 /* ZestUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZestUtilities.h; sourceTree = "<group>"; };
 		8309AA3E130B0EF6007AFCC8 /* NSString+ZestTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZestTests.h"; sourceTree = "<group>"; };
 		8309AA3F130B0EF6007AFCC8 /* NSString+ZestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZestTests.m"; sourceTree = "<group>"; };
 		8309AA95130C2173007AFCC8 /* NSFetchRequest+Zest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+Zest.h"; sourceTree = "<group>"; };
@@ -1102,6 +1154,7 @@
 				8309AAC3130C2173007AFCC8 /* NSManagedObjectContext+Zest.m */,
 				8309AAC4130C2173007AFCC8 /* UIKit */,
 				8309AAE5130C2173007AFCC8 /* Zest.h */,
+				61DC73D813A867A80073E879 /* ZestUtilities.h */,
 			);
 			path = Zest;
 			sourceTree = "<group>";
@@ -1160,6 +1213,8 @@
 				8309AABF130C2173007AFCC8 /* NSURLResponse+Zest.m */,
 				8309AAC0130C2173007AFCC8 /* NSUserDefaults+Zest.h */,
 				8309AAC1130C2173007AFCC8 /* NSUserDefaults+Zest.m */,
+				615591051393E2F60013FBFA /* NSNotificationCenter+Zest.h */,
+				615591061393E2F60013FBFA /* NSNotificationCenter+Zest.m */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1346,6 +1401,7 @@
 		835464B5130ABF84002A1947 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				61A6263113A89D6E00217FF6 /* ACWebLinkController.h */,
 				835464D5130ABF84002A1947 /* desiccant_controllers.h */,
 				835464D6130ABF84002A1947 /* DTActsAsChildViewController.h */,
 				835464D7130ABF84002A1947 /* DTAdViewController.h */,
@@ -1437,6 +1493,8 @@
 				8354652D130ABF84002A1947 /* TableViewDataSourceDelegate.h */,
 				8354652E130ABF84002A1947 /* UITabBarControllerRotating.h */,
 				8354652F130ABF84002A1947 /* UITabBarControllerRotating.m */,
+				61CCA96B13744BE900FE5292 /* DTModalNavigationController.h */,
+				61CCA96C13744BEA00FE5292 /* DTModalNavigationController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2249,6 +2307,50 @@
 				83546966130ABF85002A1947 /* EditableCell.h in Headers */,
 				83546969130ABF85002A1947 /* UITableViewCellFixed.h in Headers */,
 				615D44661349D64E00CDD0C2 /* DTAudioStreamer.h in Headers */,
+				61CCA96D13744BEA00FE5292 /* DTModalNavigationController.h in Headers */,
+				615591071393E2F60013FBFA /* NSNotificationCenter+Zest.h in Headers */,
+				61A6260713A89AF200217FF6 /* NSFetchRequest+Zest.h in Headers */,
+				61A6260813A89AF200217FF6 /* NSManagedObject+Zest.h in Headers */,
+				61A6260913A89AF200217FF6 /* NSSortDescriptor+Zest.h in Headers */,
+				61A6260A13A89AF200217FF6 /* NSArray+Zest.h in Headers */,
+				61A6260B13A89AF200217FF6 /* NSData+Zest.h in Headers */,
+				61A6260C13A89AF200217FF6 /* NSDate+Zest.h in Headers */,
+				61A6260D13A89AF200217FF6 /* NSDictionary+Zest.h in Headers */,
+				61A6260E13A89AF200217FF6 /* NSHTTPURLResponse+Zest.h in Headers */,
+				61A6260F13A89AF200217FF6 /* NSIndexPath+Zest.h in Headers */,
+				61A6261013A89AF200217FF6 /* NSMutableArray+Zest.h in Headers */,
+				61A6261113A89AF200217FF6 /* NSMutableData+Zest.h in Headers */,
+				61A6261213A89AF200217FF6 /* NSMutableDictionary+Zest.h in Headers */,
+				61A6261313A89AF200217FF6 /* NSMutableString+Zest.h in Headers */,
+				61A6261413A89AF200217FF6 /* NSMutableURLRequest+Zest.h in Headers */,
+				61A6261513A89AF200217FF6 /* NSNull+Zest.h in Headers */,
+				61A6261613A89AF200217FF6 /* NSNumber+Zest.h in Headers */,
+				61A6261713A89AF200217FF6 /* NSObject+Zest.h in Headers */,
+				61A6261813A89AF200217FF6 /* NSSet+Zest.h in Headers */,
+				61A6261913A89AF200217FF6 /* NSString+Zest.h in Headers */,
+				61A6261A13A89AF200217FF6 /* NSURL+Zest.h in Headers */,
+				61A6261B13A89AF200217FF6 /* NSURLResponse+Zest.h in Headers */,
+				61A6261C13A89AF200217FF6 /* NSUserDefaults+Zest.h in Headers */,
+				61A6261D13A89AF200217FF6 /* NSManagedObjectContext+Zest.h in Headers */,
+				61A6261E13A89AF200217FF6 /* MKMapView+Zest.h in Headers */,
+				61A6261F13A89AF200217FF6 /* UIApplication+Zest.h in Headers */,
+				61A6262013A89AF200217FF6 /* UIBarButtonItem+Zest.h in Headers */,
+				61A6262113A89AF200217FF6 /* UIButton+Zest.h in Headers */,
+				61A6262213A89AF200217FF6 /* UIColor+Zest.h in Headers */,
+				61A6262313A89AF300217FF6 /* UIImage+Zest.h in Headers */,
+				61A6262413A89AF300217FF6 /* UIImageView+Zest.h in Headers */,
+				61A6262513A89AF300217FF6 /* UILabel+Zest.h in Headers */,
+				61A6262613A89AF300217FF6 /* UINavigationController+Zest.h in Headers */,
+				61A6262713A89AF300217FF6 /* UIScreen+Zest.h in Headers */,
+				61A6262813A89AF300217FF6 /* UIScrollView+Zest.h in Headers */,
+				61A6262913A89AF300217FF6 /* UITabBarItem+Zest.h in Headers */,
+				61A6262A13A89AF300217FF6 /* UITableView+Zest.h in Headers */,
+				61A6263213A89D6E00217FF6 /* ACWebLinkController.h in Headers */,
+				61A6262B13A89AF300217FF6 /* UIView+Zest.h in Headers */,
+				61A6262C13A89AF300217FF6 /* UIViewController+Zest.h in Headers */,
+				61A6262D13A89AF300217FF6 /* UIWebView+Zest.h in Headers */,
+				61A6262E13A89AF300217FF6 /* Zest.h in Headers */,
+				61DC73D913A867A90073E879 /* ZestUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2561,6 +2663,8 @@
 				83546967130ABF85002A1947 /* EditableCell.m in Sources */,
 				8354696A130ABF85002A1947 /* UITableViewCellFixed.m in Sources */,
 				615D44671349D64E00CDD0C2 /* DTAudioStreamer.m in Sources */,
+				61CCA96E13744BEA00FE5292 /* DTModalNavigationController.m in Sources */,
+				615591081393E2F60013FBFA /* NSNotificationCenter+Zest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2639,7 +2743,10 @@
 		83546486130ABBEB002A1947 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -2662,7 +2769,10 @@
 		83546487130ABBEB002A1947 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

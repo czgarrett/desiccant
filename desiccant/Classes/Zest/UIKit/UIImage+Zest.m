@@ -7,7 +7,7 @@
 //
 
 #import "UIImage+Zest.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIImage(Zest)
 
@@ -44,6 +44,13 @@
    dispatch_release(image_queue);
 }
 
++ (id)imageByCapturingView:(UIView *)view {
+    UIGraphicsBeginImageContext(view.frame.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image; 
+}
 
 - (UIImage *) imageScaledAndCroppedToMaxSize: (CGSize) maxSize {
    float hfactor = self.size.width / maxSize.width;

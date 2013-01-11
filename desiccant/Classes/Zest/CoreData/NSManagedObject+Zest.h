@@ -6,9 +6,10 @@
 //  Copyright 2009 ZWorkbench, Inc.. All rights reserved.
 //
 #ifdef __IPHONE_3_0
-#import "Zest.h"
 
-@interface NSManagedObject ( Zest ) 
+#import <CoreData/CoreData.h>
+
+@interface NSManagedObject (Zest) 
 
 @property(readonly) NSString *stringID;
 @property(readonly) NSString *urlParam;

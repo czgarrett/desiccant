@@ -57,7 +57,7 @@
 
 - (NSString *)description {
 	return [[[[[NSString string] 
-			  stringByAppendingString:name] 
+			  stringByAppendingStringOrNil:name] 
 			 stringByAppendingNewLine:address1.unlessEmpty] 
 			stringByAppendingNewLine:address2.unlessEmpty] 
 			stringByAppendingNewLine:[self cityStateZipLine].unlessEmpty];
@@ -66,19 +66,19 @@
 - (NSString *)cityStateZipLine {
 	NSString *line = [NSString string];
 	if (city) {
-		line = [line stringByAppendingString:city];
+		line = [line stringByAppendingStringOrNil:city];
 	}
 	if ([line length] > 0 && state) {
-		line = [line stringByAppendingString:@", "];
+		line = [line stringByAppendingStringOrNil:@", "];
 	}
 	if (state) {
-		line = [line stringByAppendingString:state];
+		line = [line stringByAppendingStringOrNil:state];
 	}
 	if ([line length] > 0 && zip) {
-		line = [line stringByAppendingString:@" "];
+		line = [line stringByAppendingStringOrNil:@" "];
 	}
 	if (zip) {
-		line = [line stringByAppendingString:zip];
+		line = [line stringByAppendingStringOrNil:zip];
 	}
 	return line;
 }

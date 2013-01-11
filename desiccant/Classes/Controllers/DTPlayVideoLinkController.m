@@ -6,7 +6,7 @@
 //
 
 #import "DTPlayVideoLinkController.h"
-#import "zest.h"
+#import "Zest.h"
 #import "DTMoviePlayerViewController.h"
 
 @interface DTPlayVideoLinkController()
@@ -33,7 +33,7 @@
 }
 
 - (BOOL)canHandleRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	return ([[request URL].to_s startsWith:@"app://video?url="] && [self mediaURLFromURLParameter:[request URL]] != nil);
+	return ([[request URL].toS startsWith:@"app://video?url="] && [self mediaURLFromURLParameter:[request URL]] != nil);
 }
 
 // Return YES if the controller chain should continue processing the link after this runs.  Return NO to abort link processing.
@@ -44,7 +44,7 @@
 }
 
 - (NSURL *)mediaURLFromURLParameter:(NSURL *)appURL {
-	return [[[appURL queryParameters] stringForKey:@"url"] to_url];
+	return [[[appURL queryParameters] stringForKey:@"url"] toURL];
 }
 
 @end

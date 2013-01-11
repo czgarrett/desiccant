@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AudioQueueObject.h"
+
 #define kSecondsPerBuffer	0.5
 
 @interface AudioPlayer : AudioQueueObject {

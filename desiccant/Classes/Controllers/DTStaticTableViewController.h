@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTCustomTableViewController.h"
+#import "DTSetDataBasedTableViewController.h"
 
 @interface DTStaticTableViewController : DTSetDataBasedTableViewController {
     NSMutableArray *sections;
@@ -129,4 +129,9 @@
 - (id)cellWithNibNamed:(NSString *)nibName;
 
 - (NSDictionary *)dataDictionaryForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+// Subclasses can override this to customize the way a detail view controller will get presented.  By default this
+// just pushes to a navigation controller.
+- (void)presentDetailViewController:(UIViewController *)theViewController;
+
 @end

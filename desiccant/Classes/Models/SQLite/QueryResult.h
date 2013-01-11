@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
-#import "QueryRow.h"
+
+@class QueryRow;
+@class QueryResult;
 
 @interface QueryResult : NSObject {
 	NSMutableArray *rows;

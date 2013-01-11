@@ -6,7 +6,7 @@
 //
 
 #import "DTImageViewerController.h"
-
+#import "DTImageView.h"
 
 @interface DTImageViewerController()
 @property (nonatomic, retain) NSURL *_url;
@@ -41,10 +41,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.scrollView setCanCancelContentTouches:NO];
+    self.scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    self.scrollView.autoresizesSubviews = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.translucent = YES;
     if (!imageView) self.imageView = [[[DTImageView alloc] initWithImage:nil] autorelease];
     imageView.delegate = self;
     if (_url) [imageView loadFromURL:_url];
+    [self.activityIndicator startAnimating];
     if (!scrollView) self.scrollView = [[[UIScrollView alloc] initWithFrame:self.view.bounds] autorelease];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     scrollView.delegate = self;
     scrollView.bouncesZoom = YES;
     scrollView.bounces = YES;
@@ -63,6 +70,7 @@
     self._url = theURL;
     if (imageView && theURL) {
         [imageView loadFromURL:theURL];
+        [self.activityIndicator startAnimating];
     }
 }
 
@@ -71,34 +79,36 @@
 }
 
 - (void)imageViewDidFinishLoading:(DTImageView *)theImageView {
-    if (imageView.superview) [imageView removeFromSuperview];
-    CGRect newFrame = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
-//    newFrame.size.width = imageView.image.size.width;
-//    newFrame.size.height = imageView.image.size.height;
-//    newFrame.origin.x = (self.view.frame.size.width - imageView.image.size.width) / 2;
-//    newFrame.origin.y = (self.view.frame.size.height - imageView.image.size.height) / 2;
-////    newFrame.origin.x = 0;
-////    newFrame.origin.y = 0;
-    imageView.frame = newFrame;
-    scrollView.contentSize = imageView.image.size;
-    scrollView.maximumZoomScale = 2.0;
-    scrollView.minimumZoomScale = MIN(self.view.frame.size.width / imageView.image.size.width,  self.view.frame.size.height / imageView.image.size.height);
-    [scrollView zoomToRect:imageView.frame animated:NO];
+    [self.activityIndicator stopAnimating];
     [self adjustContentSizeAndFrameForZoom];
-    [scrollView addSubview:imageView];
 }
 
 - (void)adjustContentSizeAndFrameForZoom {
+    if (imageView.superview) [imageView removeFromSuperview];
+    CGRect newFrame = CGRectMake(0, 0, imageView.image.size.width, imageView.image.size.height);
+    imageView.frame = newFrame;
+    scrollView.contentSize = imageView.image.size;
+    scrollView.maximumZoomScale = 2.0;
+    scrollView.minimumZoomScale = MIN(self.view.bounds.size.width / imageView.image.size.width,  self.view.bounds.size.height / imageView.image.size.height);
+    [scrollView zoomToRect:imageView.frame animated:NO];
+
     CGSize newContentSize;
     CGRect newImageViewFrame = imageView.frame;
 
-    newContentSize.height = MAX(self.view.frame.size.height, imageView.frame.size.height);
+    newContentSize.height = MAX(self.view.bounds.size.height, imageView.frame.size.height);
     newImageViewFrame.origin.y = (newContentSize.height - imageView.frame.size.height) / 2;
-    newContentSize.width = MAX(self.view.frame.size.width, imageView.frame.size.width);
+    newContentSize.width = MAX(self.view.bounds.size.width, imageView.frame.size.width);
     newImageViewFrame.origin.x = (newContentSize.width - imageView.frame.size.width) / 2;
     
     scrollView.contentSize = newContentSize;
     imageView.frame = newImageViewFrame;
+//    imageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [scrollView addSubview:imageView];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self adjustContentSizeAndFrameForZoom];
 }
 
 - (BOOL)imageViewHasNorthSouthMargins {

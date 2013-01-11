@@ -25,7 +25,7 @@
     self.title.text = [data stringForKey:@"title"];
     self.age.text = [[data dateForKey:@"pubDate"] shortAgeString];
 	NSAssert ([self.imageView isKindOfClass:DTImageView.class], @"imageView must be a DTImageView when used with DTTitleRemoteImageAgeCell");
-    [(DTImageView *)self.imageView loadFromURL:[data stringForKey:@"image_url"].to_url];
+    [(DTImageView *)self.imageView loadFromURL:[data stringForKey:@"image_url"].toURL];
 }
 
 @end

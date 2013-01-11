@@ -7,6 +7,7 @@
 //
 
 #import "AudioManager.h"
+#import "AudioPlayer.h"
 
 static AudioManager *audioManager;
 

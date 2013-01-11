@@ -6,9 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTHTTPQuery.h"
 
-@class DTHTTPQuery;
+#import "DTHTTPQuery.h"
 
 @interface DTJSONQuery : DTHTTPQuery {
 }

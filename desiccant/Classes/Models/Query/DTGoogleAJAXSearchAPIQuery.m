@@ -57,6 +57,7 @@
 }
 
 - (void)loadMoreResultsQuery {
+    self.moreResultsQuery.delegate = nil;
 	self.moreResultsQuery = nil;
 	if ([self.googleParser hasMoreResults]) {
 		self.moreResultsQuery = [DTGoogleAJAXSearchAPIQuery queryWithType:queryType paramString:paramString fragment:queryFragment startIndex:[self.googleParser nextStartIndex] queryDelegate:self];
@@ -68,7 +69,7 @@
 - (NSURL *)urlWithType:(NSString *)theType paramString:(NSString *)theParamString fragment:(NSString *)theQueryFragment startIndex:(NSInteger)theStartIndex {
 	NSString *startParameter = theStartIndex == 0 ? @"" : [NSString stringWithFormat:@"&start=%d", theStartIndex];
 	NSMutableString *urlString = [NSMutableString stringWithFormat:@"http://ajax.googleapis.com/ajax/services/search/%@?v=1.0&rsz=large%@%@&q=%@", theType, theParamString, startParameter, theQueryFragment];
-	return urlString.to_url;
+	return urlString.toURL;
 }
 
 #pragma mark Private dynamic properties

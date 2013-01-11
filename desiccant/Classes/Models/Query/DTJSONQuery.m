@@ -9,7 +9,6 @@
 #import "DTJSONQuery.h"
 #import "DTJSONQueryOperation.h"
 
-
 @interface DTJSONQuery()
 @end
 

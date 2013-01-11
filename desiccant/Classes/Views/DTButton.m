@@ -2,6 +2,8 @@
 
 #import "DTButton.h"
 #import "Zest.h"
+//#import "ZestUtilities.h"
+//#import "NSNotificationCenter+Zest.h"
 #import "DTReachability.h"
 
 @interface DTButton()
@@ -14,31 +16,31 @@
 @end
 
 @implementation DTButton
-@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, shiny, disabledShadingLevel;
+@synthesize normalGradient, highlightedGradient, disabledGradient, selectedGradient, disabledShadingLevel;
 
 - (void)dealloc {
-   if (dependsOnReachability) {
-      [[NSNotificationCenter defaultCenter] removeObserver: self];
-   }
+    if (dependsOnReachability) {
+        [[NSNotificationCenter defaultCenter] removeObserver: self];
+    }
 	self.normalGradient = nil;
 	self.highlightedGradient = nil;
-   self.disabledGradient = nil;
-   self.selectedGradient = nil;
+    self.disabledGradient = nil;
+    self.selectedGradient = nil;
 	[super dealloc];
 }
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
-   shiny = YES;
-   self.disabledShadingLevel = 0.5;
+    shiny = YES;
+    self.disabledShadingLevel = 0.5;
     [self configure];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-       shiny = YES;
-       self.disabledShadingLevel = 0.5;
-       [self configure];
+        shiny = YES;
+        self.disabledShadingLevel = 0.5;
+        [self configure];
     }
     return self;
 }
@@ -124,7 +126,7 @@
 
 - (void) dependsOnReachability: (DTReachability *) reachability {
    dependsOnReachability = YES;
-   [[NSNotificationCenter defaultCenter] addObserver: self 
+   [[NSNotificationCenter defaultCenter] replaceObserver: self 
                                             selector: @selector(reachabilityChanged:) 
                                                 name: kReachabilityChangedNotification 
                                               object: reachability];
@@ -259,6 +261,10 @@
 
 - (CGFloat) borderWidth {
    return self.layer.borderWidth;
+}
+
+- (BOOL)shiny {
+    return shiny;
 }
 
 - (void) setShiny: (BOOL) newShiny {

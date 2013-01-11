@@ -7,6 +7,7 @@
 
 #import "DTHTTPQueryOperation.h"
 #import "Zest.h"
+#import "ASIFormDataRequest.h"
 
 #define LOG_HTTP_RESPONSES YES
 
@@ -119,13 +120,13 @@
 	self.responseData = theRequest.responseData;
     if (LOG_HTTP_RESPONSES) {
         NSString *responseBodyText = [NSString stringWithCString:[[responseData nullTerminated] bytes] encoding:NSUTF8StringEncoding];
-        DTLog(@"%@ %@\n\n%@", self.method, self.url.to_s, responseBodyText);
+        DTLog(@"%@ %@\n\n%@", self.method, self.url.toS, responseBodyText);
     }
 	BOOL errorOccurredWhileParsing = ![self parseResponseData];
 	if (errorOccurredWhileParsing) {
 		DTLog(@"Error parsing response from URL: %@", url);
 		DTLog(@"Response body:");
-		DTLog(@"%@", self.responseData.to_s);
+		DTLog(@"%@", self.responseData.toS);
 	}
 	[self completeOperationWithError:errorOccurredWhileParsing];
    [self release];

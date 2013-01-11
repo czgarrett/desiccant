@@ -417,7 +417,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    return [self stringByAppendingString: @"s"];
 }
 
-- (NSString *) to_s {
+- (NSString *) toS {
     return self;
 }
 
@@ -426,15 +426,15 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 }
 
 
-- (NSInteger) to_i {
-    return [[self to_n] integerValue];
+- (NSInteger) toI {
+    return [[self toN] integerValue];
 }
 
-- (NSURL *) to_url {
-    return [NSURL URLWithString:self];
+- (NSURL *) toURL {
+    return (NSURL *)[NSURL URLWithString:self];
 }
 
-- (NSNumber *) to_n {
+- (NSNumber *) toN {
     NSScanner *scanner = [NSScanner scannerWithString:[self stringByReplacingOccurrencesOfString:@"," withString:@""]];
     double doubleValue;
     NSInteger integerValue;
@@ -450,7 +450,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 }
 
 - (double) to_double {
-    return [[self to_n] doubleValue];
+    return [[self toN] doubleValue];
 }
 
 - (NSNumber *) integerNumber {
@@ -480,6 +480,15 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 	}
 }
 
+- (NSString *) stringByAppendingStringOrNil:(NSString *)string {
+    if (string) {
+        return [self stringByAppendingString:string];
+    }
+    else {
+        return self;
+    }
+}
+
 - (NSString *)stringByPrependingString:(NSString *)prefix {
 	return [prefix stringByAppendingString:self];
 }
@@ -504,7 +513,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 	return [NSURL fileURLWithPath:self];
 }
 
-- (NSDate *) to_date {
+- (NSDate *) toDate {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss Z"];
     NSDate *date = [dateFormatter dateFromString:self];

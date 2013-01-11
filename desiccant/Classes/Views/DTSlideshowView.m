@@ -7,6 +7,7 @@
 
 #import "DTSlideshowView.h"
 #import "Zest.h"
+#import "DTSlideshowPan.h"
 
 static const CGFloat kDefaultMaxZoomFactor = 1.25;
 

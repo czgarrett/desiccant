@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTAsyncQuery.h"
 
 @class DTAsyncQuery;
 @protocol DTAsyncQueryOperationDelegate;

@@ -58,6 +58,7 @@
 - (MKCoordinateRegion)annotationBoundingRegion:(BOOL)includeUserLocation;
 - (void)centerMapAroundAnnotationsAnimated:(BOOL)animated includeUserLocation:(BOOL)includeUserLocation;
 - (IBAction)currentLocationButtonClicked:(id)sender;
+
 @end
 
 #endif

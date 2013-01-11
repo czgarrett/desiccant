@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
-
+#import <MapKit/MapKit.h>
+#import "DTStaticTableViewController.h"
 
 @interface DTDrivingDirectionsViewController : DTStaticTableViewController {
 	id <MKAnnotation> annotation;

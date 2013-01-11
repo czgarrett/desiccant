@@ -6,6 +6,7 @@
 //
 
 #import "DTSlideshowPan.h"
+#import "DTSlideshowPanPoint.h"
 
 
 @interface DTSlideshowPan()

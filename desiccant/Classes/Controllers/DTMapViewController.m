@@ -15,17 +15,22 @@
 static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 
 @interface DTMapViewController()
+@property (nonatomic, retain) NSArray *savedAnnotations;
+@property (nonatomic, retain) MKMapView *mapViewReference;
 @end
 
 @implementation DTMapViewController
-@synthesize defaultLatitude, defaultLongitude, defaultLatitudeDelta, defaultLongitudeDelta, currentLocationButton, defaultMapType, annotationBoundingRegionScalingFactor, hideDisclosureButtons;
+@synthesize defaultLatitude, defaultLongitude, defaultLatitudeDelta, defaultLongitudeDelta, currentLocationButton, defaultMapType, annotationBoundingRegionScalingFactor, hideDisclosureButtons, savedAnnotations, mapViewReference;
 
 #pragma mark Memory Management
 
 - (void)dealloc 
 {
+    self.mapView.delegate = nil;
     self.mapView = nil;
 	self.currentLocationButton = nil;
+    self.savedAnnotations = nil;
+    self.mapViewReference = nil;
 
     [super dealloc];
 }
@@ -64,16 +69,28 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 	self.mapView.delegate = self;
 
 	self.currentLocationButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reticle.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(currentLocationButtonClicked:)] autorelease];
-//	self.currentLocationButton = [[[UIBarButtonItem alloc] initWithTitle:@"L" style:UIBarButtonItemStyleBordered target:self action:@selector(currentLocationButtonClicked:)] autorelease];
 }
 
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.savedAnnotations) {
+        for (id<MKAnnotation> annotation in self.savedAnnotations) {
+            [self.mapView addAnnotation:annotation];
+        }
+        self.savedAnnotations = nil;
+    }
+    self.mapViewReference = self.mapView;
 	self.navigationItem.backBarButtonItem = [UIBarButtonItem itemWithTitle:@"Map"];
     [self.mapView setRegion:self.defaultRegion animated:NO];
 	[self setToolbarItems:[NSArray arrayWithObject:self.currentLocationButton]];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    self.savedAnnotations = [NSArray arrayWithArray:self.mapViewReference.annotations];
+    self.mapViewReference = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated 
@@ -92,6 +109,7 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+	self.mapView.showsUserLocation = NO;
 	[super viewWillDisappear:animated];
 	// This works around an Apple bug.
 	// See: http://omegadelta.net/2009/11/02/mkdotbounceanimation-animationdidstop-bug/
@@ -102,7 +120,6 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
-	self.mapView.showsUserLocation = NO;
 }
 
 #pragma mark Dynamic properties
@@ -216,7 +233,11 @@ static const float kDefaultAnnotationBoundingRegionScalingFactor = 1.05;
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-	[self.navigationController pushViewController:[DTDrivingDirectionsViewController controllerWithAnnotation:view.annotation userLocation:self.mapView.userLocation] animated:YES];
+    DTDrivingDirectionsViewController *directionsController = [DTDrivingDirectionsViewController controllerWithAnnotation:view.annotation userLocation:self.mapView.userLocation];
+    directionsController.shouldAutorotateToPortrait = self.shouldAutorotateToPortrait;
+    directionsController.shouldAutorotateToLandscape = self.shouldAutorotateToLandscape;
+    directionsController.shouldAutorotateUpsideDown = self.shouldAutorotateUpsideDown;
+    [self.navigationController pushViewController:directionsController animated:YES];
 }
 
 @end

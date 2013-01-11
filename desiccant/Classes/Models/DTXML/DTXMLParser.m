@@ -8,6 +8,7 @@
 
 #import "DTXMLParser.h"
 #import "Zest.h"
+#import "DTXMLParserDelegate.h"
 
 @interface DTXMLParser()
 @property (nonatomic, retain) DTXMLParserDelegate *parserDelegate;

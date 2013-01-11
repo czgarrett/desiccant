@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "DTCompositeViewController.h"
-#import "DTViewController.h"
 
 @class DTAdViewController;
 @protocol DTAdLoaderDelegate;

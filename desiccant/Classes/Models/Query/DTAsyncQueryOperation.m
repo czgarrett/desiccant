@@ -8,6 +8,7 @@
 
 #import "DTAsyncQueryOperation.h"
 #import "Zest.h"
+#import "DTAsyncQuery.h"
 
 #pragma mark Private Interface
 @interface DTAsyncQueryOperation()

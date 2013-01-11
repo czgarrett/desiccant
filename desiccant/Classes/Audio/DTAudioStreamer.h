@@ -20,6 +20,8 @@ extern NSString * const DTAudioStreamerItemStatusReadyToPlay;
 extern NSString * const DTAudioStreamerItemStatusFailed;
 extern NSString * const DTAudioStreamerItemStatusUnknown;
 extern NSString * const DTAudioStreamerCurrentTimeDidChange;
+extern NSString * const DTAudioStreamerDidStartPlaying;
+extern NSString * const DTAudioStreamerDidPause;
 
 @interface DTAudioStreamer : DTSingleton {
 }
@@ -32,6 +34,7 @@ extern NSString * const DTAudioStreamerCurrentTimeDidChange;
 @property (nonatomic, retain) NSError *error;
 @property (nonatomic) float rate;
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic) BOOL supportRemoteControls;
 
 + (DTAudioStreamer *)sharedStreamer;
 - (void)loadURL:(NSURL *)url;

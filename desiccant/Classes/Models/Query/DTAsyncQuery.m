@@ -9,6 +9,10 @@
 
 #import "DTAsyncQuery.h"
 #import "Zest.h"
+#import "DTTransformsUntypedData.h"
+#import "DTFiltersUntypedData.h"
+#import "DTGroupsUntypedData.h"
+#import "DTSortsUntypedData.h"
 
 #pragma mark Private Interface
 @interface DTAsyncQuery()
@@ -106,10 +110,20 @@
 
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)rowIndex inGroupWithIndex:(NSUInteger)groupIndex {
    if (self.grouper) {
-      return (NSMutableDictionary *)[(NSMutableArray *)[self.groups objectAtIndex:groupIndex] objectAtIndex:rowIndex];
+       if (self.groups && [self groupCount] > groupIndex && [self rowCountForGroupWithIndex:groupIndex] > rowIndex) {
+           return (NSMutableDictionary *)[(NSMutableArray *)[self.groups objectAtIndex:groupIndex] objectAtIndex:rowIndex];
+       }
+       else {
+           return nil;
+       }
    } else {
       return [self itemAtIndex:rowIndex];      
    }
+}
+
+- (NSMutableDictionary *)itemAtIndexPath:(NSIndexPath *)indexPath {
+    if (!indexPath) return nil;
+    return [self itemAtIndex:indexPath.row inGroupWithIndex:indexPath.section];
 }
 
 - (void)deleteItemAtIndex:(NSUInteger)index {

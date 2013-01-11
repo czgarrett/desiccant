@@ -9,6 +9,10 @@
 #import "DTHTTPXMLQueryOperation.h"
 #import "NSString+Zest.h"
 #import "Zest.h"
+#import "ASIHTTPRequest.h"
+#import "DTAsyncQueryOperation.h"
+#import "DTXMLParser.h"
+#import "DTAsyncQueryOperationDelegate.h"
 
 #pragma mark Private Interface
 @interface DTHTTPXMLQueryOperation()

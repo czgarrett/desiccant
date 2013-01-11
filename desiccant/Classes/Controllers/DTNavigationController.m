@@ -13,10 +13,12 @@
 @end
 
 @implementation DTNavigationController
+@synthesize modalPresenter;
 
-//- (void)dealloc {
-//    [super dealloc];
-//}
+- (void)dealloc {
+    self.modalPresenter = nil;
+    [super dealloc];
+}
 
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated {
 	if ([self.viewControllers count] > 1) {
@@ -92,6 +94,23 @@
 	
 	[self.topViewController didGetPushedOntoNavigationStack];
 	[self.topViewController.previousControllerInNavigationStack controllerDidGetPushedOntoNavigationStack:self.topViewController];
+}
+
+- (void)presentModalViewController:(UIViewController *)theViewController animated:(BOOL)animated {
+    if ([theViewController respondsToSelector:@selector(setModalPresenter:)]) {
+        [theViewController performSelector:@selector(setModalPresenter:) withObject:self];
+    }
+    
+    if ([theViewController respondsToSelector:@selector(viewControllerToPresentModally)]) {
+        UIViewController *wrapper = [theViewController performSelector:@selector(viewControllerToPresentModally)];
+        if ([wrapper respondsToSelector:@selector(setModalPresenter:)]) {
+            [wrapper performSelector:@selector(setModalPresenter:) withObject:self];
+        }
+        [super presentModalViewController:wrapper animated:animated];
+    }
+    else {
+        [super presentModalViewController:theViewController animated:animated];
+    }
 }
 
 #pragma mark Private methods

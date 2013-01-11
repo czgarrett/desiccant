@@ -11,19 +11,19 @@
 
 @implementation NSNumber(Zest)
 
-- (NSString *)to_s {
+- (NSString *)toS {
     return [self stringValue];
 }
 
-- (NSInteger) to_i {
+- (NSInteger)toI {
     return [self integerValue];
 }
 
-- (NSDate *)to_date {
+- (NSDate *)toDate {
     return [NSDate dateWithTimeIntervalSince1970:[self integerValue]];
 }
 
-- (NSNumber *)to_n {
+- (NSNumber *)toN {
     return self;
 }
 

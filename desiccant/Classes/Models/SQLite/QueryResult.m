@@ -9,6 +9,7 @@
 #import "QueryResult.h"
 #import "SQLiteConnectionAdapter.h"
 #import "Zest.h"
+#import "QueryRow.h"
 
 @implementation QueryResult
 

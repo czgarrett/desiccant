@@ -7,6 +7,10 @@
 
 #import "DTQueryBuilder.h"
 #import "Zest.h"
+#import "DTQueryBuilderDelegate.h"
+#import "DTQueryBuilderElement.h"
+#import "DTQueryBuilderElementType.h"
+#import "DTQueryBuilderCell.h"
 
 @interface DTQueryBuilder()
 - (BOOL)presentsNewInputCellAtIndexPath:(NSIndexPath *)indexPath;
@@ -68,8 +72,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] replaceObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
 	[super viewWillAppear:animated];
 }
 

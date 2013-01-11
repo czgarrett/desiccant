@@ -6,7 +6,6 @@
 //
 
 #import "MKMapView+Zest.h"
-#import <MapKit/MapKit.h>
 
 @implementation MKMapView(Zest)
 

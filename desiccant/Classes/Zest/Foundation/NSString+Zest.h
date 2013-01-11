@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZestUtilities.h"
 
 #define nss(s) ((NSString *)(s))
 #define nssWithFormat(...) ((NSString *)[NSString stringWithFormat:__VA_ARGS__])
 
 @interface NSString ( Zest )
 
-@property (nonatomic, retain, readonly) NSString *to_resource_path;
+@property (nonatomic, retain, readonly) NSString *to_resource_path ZEST_DEPRECATED; // Use withResourcePathPrepended instead
 @property(readonly) BOOL empty;
 @property (nonatomic, retain, readonly) NSString *trimmed;
 @property (nonatomic, retain, readonly) NSString *withResourcePathPrepended;
@@ -47,6 +48,7 @@
 
 + (NSString *) stringWithGUID;
 
+- (NSString *) stringByAppendingStringOrNil:(NSString *)string;
 - (NSString *) stringByPrependingString:(NSString *)prefix;
 - (NSString *) stringByAppendingNewLine:(NSString *)line;
 - (BOOL)fileExists;

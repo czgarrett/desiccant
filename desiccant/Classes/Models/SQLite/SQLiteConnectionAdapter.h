@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
-#import "SQLitePreparedStatement.h"
-#import "QueryResult.h"
-#import "SQLiteTable.h"
 
+@class SQLitePreparedStatement;
+@class QueryResult;
+@class SQLiteTable;
 
 @interface SQLiteConnectionAdapter : NSObject {
    sqlite3 *connection;

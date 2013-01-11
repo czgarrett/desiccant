@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTSlideshowPan.h"
+
+@class DTSlideshowPan;
 
 typedef enum {
 	DTSlideshowViewStateStopped,

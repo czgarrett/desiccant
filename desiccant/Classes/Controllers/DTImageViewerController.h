@@ -7,10 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DTImageViewDelegate.h"
+#import "DTViewController.h"
 
 @protocol DTImageViewDelegate;
 
-@interface DTImageViewerController : UIViewController <DTImageViewDelegate, UIScrollViewDelegate> {
+@interface DTImageViewerController : DTViewController <DTImageViewDelegate, UIScrollViewDelegate> {
     IBOutlet DTImageView *imageView;
     IBOutlet UIScrollView *scrollView;
     NSURL *_url;

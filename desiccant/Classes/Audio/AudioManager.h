@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AudioPlayer.h"
 
+@class AudioPlayer;
 
 @interface AudioManager : NSObject {
    NSMutableDictionary *players;

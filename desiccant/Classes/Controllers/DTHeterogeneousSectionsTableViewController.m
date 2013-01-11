@@ -7,6 +7,7 @@
 //
 
 #import "DTHeterogeneousSectionsTableViewController.h"
+#import "DTCustomTableViewCell.h"
 
 
 @implementation DTHeterogeneousSectionsTableViewController

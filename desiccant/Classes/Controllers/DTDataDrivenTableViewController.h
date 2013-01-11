@@ -10,6 +10,8 @@
 #import "DTCustomTableViewController.h"
 #import "DTAsyncQuery.h"
 
+@class DTCustomTableViewCell;
+
 @interface DTDataDrivenTableViewController : DTCustomTableViewController <DTAsyncQueryDelegate, UIWebViewDelegate> {
     DTAsyncQuery * query;
     DTCustomTableViewCell *prototype;
@@ -22,6 +24,8 @@
 	BOOL statusBarHiddenBeforeMedia;
 }
 
+// Subclasses can override this and return NO to allow queries to continue in the background on disappear.
+- (BOOL)cancelQueryOnDisappear;
 // Subclasses can implement this to display a detail view for the associated data
 - (UIViewController *)detailViewControllerFor:(NSDictionary *)data;
 // Subclasses can implement this to stream audio or video from a URL for the associated data
@@ -68,6 +72,9 @@
 // cell it returns.  Subclasses may want to override this method if they've
 // overridden noResultsCell to return a dynamic cell.
 - (CGFloat)heightForNoResultsCell;
+
+// Subclasses can return YES if they want the detail view controller to be presented modally.
+- (BOOL)shouldPresentDetailViewControllerModally;
 
 // If hasNoResultsCell returns YES, and the query returns no results, the controller
 // will check this property and display the cell if it is non-nil.  You may set

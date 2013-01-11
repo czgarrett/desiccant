@@ -14,6 +14,7 @@ typedef void(^ImageBlock)(UIImage *);
 
 + (UIImage *)newImageFromResource:(NSString *)resource ofType:(NSString *)type;
 + (void) loadImageFromURL: (NSURL *) url completion: (ImageBlock) block;
++ (id)imageByCapturingView:(UIView *)view;
 
 - (UIImage *) imageScaledAndCroppedToMaxSize: (CGSize) maxSize;
 - (UIImage *) imageScaledToMaxWidth: (CGFloat) width;

@@ -7,6 +7,7 @@
 //
 
 #import "DTXMLHTTPQuery.h"
+#import "DTHTTPXMLQueryOperation.h"
 
 #pragma mark Private Interface
 @interface DTXMLHTTPQuery ()

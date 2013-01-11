@@ -7,6 +7,7 @@
 #include <AudioToolbox/AudioToolbox.h>
 #import "AudioQueueObject.h"
 #import "AudioRecorder.h"
+#include "AudioQueueObjectDelegate.h"
 
 static void recordingCallback (
 	void								*inUserData,

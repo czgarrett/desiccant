@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTMapViewController.h"
+
+@class DTMapViewController;
 
 @protocol DTMapLinkControllerDelegate <NSObject>
 

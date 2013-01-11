@@ -6,7 +6,7 @@
 //
 
 #import "DTDrivingDirectionsViewController.h"
-
+#import "Zest.h"
 
 @interface DTDrivingDirectionsViewController()
 - (void)openDirectionsToHere;
@@ -30,6 +30,7 @@
 	if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
 		self.annotation = theAnnotation;
 		self.userLocation = theUserLocation;
+        self.modalPresentationStyle = UIModalPresentationFormSheet;
 	}
 	return self;
 }

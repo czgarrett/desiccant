@@ -9,6 +9,8 @@
 #import "MapKit/MapKit.h"
 #import "Zest.h"
 #import "DTMapAnnotation.h"
+#import "DTMapLinkControllerDelegate.h"
+#import "DTMapViewController.h"
 
 @interface DTMapLinkController()
 - (CLLocationDegrees) latitudeFromURLString:(NSString *)urlString;

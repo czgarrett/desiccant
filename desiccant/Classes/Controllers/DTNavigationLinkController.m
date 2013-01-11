@@ -8,6 +8,7 @@
 
 #import "DTNavigationLinkController.h"
 #import "Zest.h"
+#import "DTWebViewController.h"
 
 @interface DTNavigationLinkController()
 @end
@@ -67,12 +68,12 @@
 			// TODO: get the nextController from a delegate rather than constructing one here.
 			// The problem is that this new controller doesn't have any link controllers set.
 			self.nextController = [DTWebViewController controllerWithTitle:title];
-			[nextController.webView loadRequest:nextURL.to_request];
+			[nextController.webView loadRequest:nextURL.toRequest];
 			[self.webViewController.navigationController pushViewController:nextController animated:YES];
 			return NO;
 		}
 		else {
-			[self.webViewController.webView loadRequest:nextURL.to_request];
+			[self.webViewController.webView loadRequest:nextURL.toRequest];
 			return NO;
 		}
 	}

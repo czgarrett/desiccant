@@ -2,15 +2,16 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
-#import "DTReachability.h"
+
+@class DTReachability;
 
 @interface DTButton : UIButton {
 	CAGradientLayer *normalGradient;
 	CAGradientLayer *highlightedGradient;
 	CAGradientLayer *disabledGradient;
 	CAGradientLayer *selectedGradient;
-   
-   BOOL dependsOnReachability;
+    BOOL shiny;
+    BOOL dependsOnReachability;
 }
 
 @property (assign) BOOL shiny;

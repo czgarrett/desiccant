@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTXMLParserContext.h"
 
 @class DTXMLParserContext;
 

@@ -6,6 +6,7 @@
 //
 
 #import "DTARObjectQueryOperation.h"
+#import "DTAsyncQueryOperationDelegate.h"
 #import "ARObject.h"
 
 @interface DTARObjectQueryOperation()

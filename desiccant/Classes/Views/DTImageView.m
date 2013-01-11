@@ -51,7 +51,7 @@
          self.data = [NSMutableData data];
          NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
          [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
-         self.connection = [NSURLConnection connectionWithRequest:url.to_request delegate:self];
+         self.connection = [NSURLConnection connectionWithRequest:url.toRequest delegate:self];
       }      
    }
 }

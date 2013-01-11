@@ -7,6 +7,7 @@
 //
 #import "DTXMLParserDelegate.h"
 #import "Zest.h"
+#import "DTXMLParserContext.h"
 
 @interface DTXMLParserDelegate()
 @property (nonatomic, copy) NSString *key;

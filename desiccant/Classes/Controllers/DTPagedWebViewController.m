@@ -7,6 +7,7 @@
 //
 
 #import "DTPagedWebViewController.h"
+#import "DTPagedScrollView.h"
 
 @interface DTPagedWebViewController()
 @property (nonatomic, retain) NSMutableArray *unusedWebViews;

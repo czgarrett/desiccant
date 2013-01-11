@@ -7,7 +7,9 @@
 
 #import "DTOpenXAdLoader.h"
 #import "CBucks.h"
-
+#import "Zest.h"
+#import "DTXMLRPCQuery.h"
+#import "DTImageView.h"
 
 @interface DTOpenXAdLoader()
 - (void)logAdImpression;
@@ -130,7 +132,7 @@
 
 - (void)queryDidFinishLoading:(DTAsyncQuery *)theQuery {
     if (!query.faultCode) {
-		NSURL *bannerContentURL = [query.dictionaryResponse stringForKey:@"bannerContent"].to_url;
+		NSURL *bannerContentURL = [query.dictionaryResponse stringForKey:@"bannerContent"].toURL;
 		if (bannerContentURL) {
 			adView.delegate = nil;
 			[self.adView = [[DTImageView alloc] initWithFrame:CGRectZero] release];
@@ -164,7 +166,7 @@
 #pragma mark Private methods
 
 - (void)logAdImpression {
-    NSURL *impressionURL = [query.dictionaryResponse stringForKey:@"logUrl"].to_url;
+    NSURL *impressionURL = [query.dictionaryResponse stringForKey:@"logUrl"].toURL;
     if (impressionURL) {
         NSMutableURLRequest *logUrlRequest = [NSMutableURLRequest requestWithURL:impressionURL];
         if (logUrlRequest) {
@@ -181,7 +183,7 @@
 }
 
 - (void)handleAdClick {
-    NSURL *clickURL = [query.dictionaryResponse stringForKey:@"clickUrl"].to_url;
+    NSURL *clickURL = [query.dictionaryResponse stringForKey:@"clickUrl"].toURL;
     if (clickURL) {
         [[UIApplication sharedApplication] openURL:clickURL];
     }

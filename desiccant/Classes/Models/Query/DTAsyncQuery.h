@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "DTAsyncQueryOperationDelegate.h"
-#import "DTTransformsUntypedData.h"
-#import "DTFiltersUntypedData.h"
-#import "DTGroupsUntypedData.h"
-#import "DTSortsUntypedData.h"
+
+@protocol DTTransformsUntypedData;
+@protocol DTFiltersUntypedData;
+@protocol DTGroupsUntypedData;
+@protocol DTSortsUntypedData;
 
 @class DTAsyncQuery, DTAsyncQueryOperation;
 @protocol DTAsyncQueryDelegate
@@ -78,6 +79,7 @@
 - (NSUInteger)rowCountForGroupWithIndex:(NSUInteger)index;
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)index;
 - (NSMutableDictionary *)itemAtIndex:(NSUInteger)rowIndex inGroupWithIndex:(NSUInteger)groupIndex;
+- (NSMutableDictionary *)itemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)deleteItemAtIndex:(NSUInteger)index;
 - (void)deleteItemAtIndex:(NSUInteger)index inGroupWithIndex:(NSUInteger)groupIndex;
 - (void)cancel;
@@ -85,7 +87,7 @@
 - (BOOL)hasMoreResults;
 - (void)fetchMoreResults;
 
-@property (retain) NSObject <DTAsyncQueryDelegate> *delegate;
+@property (nonatomic, assign) NSObject <DTAsyncQueryDelegate> *delegate;
 // If not nil, rowSorter will be called to sort transformed/filtered rows
 // Retains.  Release manually to prevent circular references if necessaqry.
 @property (nonatomic, retain) NSObject <DTSortsUntypedData> *rowSorter;

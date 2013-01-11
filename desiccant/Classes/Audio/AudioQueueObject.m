@@ -6,6 +6,7 @@
 
 #include <AudioToolbox/AudioToolbox.h>
 #import "AudioQueueObject.h"
+#include "AudioQueueObjectDelegate.h"
 
 
 @implementation AudioQueueObject
