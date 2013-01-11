@@ -35,6 +35,21 @@
 	else return [self.superview ancestorWithClass:ancestorClass];
 }
 
+- (UIView *) descendentWithClass:(Class)descendentClass {
+    for (UIView *view in [self subviews]) {
+        if ([view isKindOfClass: descendentClass]) {
+            return view;
+        } else {
+            UIView *descendent = [view descendentWithClass: descendentClass];
+            if (descendent) {
+                return descendent;
+            }
+        }
+    }
+    NSLog(@"%@ is not a %@", [self class], descendentClass);
+    return nil;
+}
+
 - (UIView *)findFirstResponder { 
    if ([self isFirstResponder]) { 
       return self; 

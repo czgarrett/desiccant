@@ -7,7 +7,7 @@
 //
 
 #import "UIApplication+Zest.h"
-#import "../../desiccant.h"
+
 
 @implementation UIApplication(Zest)
 

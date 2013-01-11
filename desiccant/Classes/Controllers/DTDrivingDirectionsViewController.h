@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "desiccant.h"
+#import "DTStaticTableViewController.h"
+#import "DTCustomTableViewCell.h"
 
 
 @interface DTDrivingDirectionsViewController : DTStaticTableViewController {
