@@ -226,7 +226,7 @@
 // Returning objects by performing selectors
 - (id) objectByPerformingSelectorWithArguments: (SEL) selector, ...
 {
-	id result;
+	id result = nil;
 	va_list arglist;
 	va_start(arglist, selector);
 	[self performSelector:selector withReturnValue:&result andArguments:arglist];
