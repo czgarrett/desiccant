@@ -66,8 +66,7 @@
 
 - (BOOL) intersects:(DTTimeSpan *)other {
    if (self.start && self.end) {
-      return ([other.start isEarlierThanOrEqualToDate: self.end] && [other.start isLaterThanOrEqualToDate: self.start]) ||
-             ([other.end isEarlierThanOrEqualToDate: self.end] && [other.end isLaterThanOrEqualToDate: self.start]);
+       return [self includes: other.start] || [self includes: other.end] || [other includes: self.start] || [other includes: self.end];
    } else if (self.start) { // Start but no end
       return [other.start isLaterThanOrEqualToDate: self.start] || (other.end && [other.end isLaterThanOrEqualToDate: self.start]);
    } else {
@@ -88,6 +87,10 @@
 
 - (BOOL) startsInFuture {
    return [self.start isLaterThanNow];
+}
+
+- (id) copyWithZone:(NSZone *)zone {
+    return [[DTTimeSpan timeSpanWithStart: self.start end: self.end] retain];
 }
 
 - (void)dealloc {

@@ -10,10 +10,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DTTimeSpan : NSObject
+@interface DTTimeSpan : NSObject <NSCopying>
 
-@property (nonatomic, retain) NSDate *start;
-@property (nonatomic, retain) NSDate *end;
+@property (nonatomic, copy) NSDate *start;
+@property (nonatomic, copy) NSDate *end;
 @property (nonatomic, readonly) NSTimeInterval interval;
 
 // Returns a time span that begins at the five minute mark before date and ends at the five minute mark
