@@ -89,6 +89,11 @@
    return [self.start isLaterThanNow];
 }
 
+- (BOOL) startsWithinTimeIntervalFromNow: (NSTimeInterval) interval {
+    return [[self.start dateByAddingTimeInterval: -interval] isLaterThanNow];
+}
+
+
 - (id) copyWithZone:(NSZone *)zone {
     return [[DTTimeSpan timeSpanWithStart: self.start end: self.end] retain];
 }

@@ -49,5 +49,6 @@
 // Returns YES if the start date is in the future
 
 - (BOOL) startsInFuture;
+- (BOOL) startsWithinTimeIntervalFromNow: (NSTimeInterval) interval;
 
 @end
