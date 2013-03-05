@@ -89,7 +89,7 @@
    return [self.start isLaterThanNow];
 }
 
-- (BOOL) startsWithinTimeIntervalFromNow: (NSTimeInterval) interval {
+- (BOOL) startsLaterThanTimeIntervalFromNow: (NSTimeInterval) interval {
     return [[self.start dateByAddingTimeInterval: -interval] isLaterThanNow];
 }
 
