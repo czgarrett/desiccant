@@ -63,6 +63,7 @@
 // Returns true if this string is the file extension of an image that can be handled by UIImage
 - (BOOL) isImageExtension;
 - (BOOL) startsWith:(NSString *)prefix;
+- (BOOL) endsWith:(NSString *)prefix;
 - (BOOL)contains:(NSString *)substring;
 
 // Regex helpers

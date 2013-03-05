@@ -564,6 +564,11 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
     return [self hasPrefix:prefix];
 }
 
+- (BOOL) endsWith:(NSString *)suffix {
+    return [self hasSuffix: suffix];
+}
+
+
 - (BOOL)contains:(NSString *)substring {
 	return [self rangeOfString:substring].location != NSNotFound;
 }
