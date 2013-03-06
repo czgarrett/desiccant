@@ -42,7 +42,6 @@
 // Subclasses can implement this to override the default data cell row height
 - (CGFloat)tableView:(UITableView *)tableView heightForDataRowAtIndexPath:(NSIndexPath *)indexPath;
 // Subclasses can implement this to display an error when the query fails.  Does nothing by default.
-- (UITableViewCell *)headerRowForIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)indexPathIsHeader:(NSIndexPath *)indexPath;
 - (BOOL)hasHeaders;
 - (NSInteger)adjustSectionForHeaders:(NSInteger)section;
