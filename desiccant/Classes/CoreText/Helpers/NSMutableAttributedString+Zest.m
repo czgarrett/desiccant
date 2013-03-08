@@ -89,6 +89,8 @@
     CFAttributedStringSetAttribute(attrString, CFRangeMake(0, CFAttributedStringGetLength(attrString)), kCTParagraphStyleAttributeName, paragraphStyle);
     CFRelease(paragraphStyle);
     
+    CFRelease(tabStops);
+    
     NSMutableAttributedString *ret = (NSMutableAttributedString *)attrString;
     
     return [ret autorelease];
