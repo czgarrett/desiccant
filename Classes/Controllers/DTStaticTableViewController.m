@@ -90,10 +90,12 @@
 				[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
 			}
 			[cell setData:row.dataDictionary];
+            [cell prepareForDisplay];
 		}
 		else {
 			[[NSBundle mainBundle] loadNibNamed:row.nibName owner:self options:nil];
 			[cell setData:row.dataDictionary];
+            [cell prepareForDisplay];
 			row.cell = cell;
 		}
 		return cell;

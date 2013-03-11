@@ -105,6 +105,27 @@
 	if (self.shouldFadeDefaultPNG) [self fadeWindowOverlay];
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    if (self.selectedViewController) {
+        return [self.selectedViewController supportedInterfaceOrientations];
+    }
+    else {
+        return [super supportedInterfaceOrientations];
+    }
+}
+
+- (BOOL) shouldAutorotate
+{
+    if (self.selectedViewController) {
+        return [self.selectedViewController shouldAutorotate];
+    }
+    else {
+        return YES;
+    }
+}
+
+
 #pragma mark UITabBarController methods
 -(void)setDelegate:(id <UITabBarControllerDelegate>)theDelegate {
 	self.secondaryDelegate = theDelegate;

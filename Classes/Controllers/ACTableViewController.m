@@ -10,7 +10,7 @@
 
 @implementation ACTableViewController
 
-@synthesize items, sections, modelObject, newItemController, editController, showController, filterControl, sectionIndexTitles, editable;
+@synthesize items, sections, modelObject, createItemController, editController, showController, filterControl, sectionIndexTitles, editable;
 
 #pragma mark Initialization
 
@@ -40,7 +40,7 @@
       // "Edit" and "Done" and updates the view controller's state accordingly.
       self.navigationItem.rightBarButtonItem = self.editButtonItem;
       self.tableView.allowsSelectionDuringEditing = YES;
-   } else if (self.newItemController) {
+   } else if (self.createItemController) {
       self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd 
                                                                                               target: self 
                                                                                               action: @selector(addButtonPressed)] autorelease];
@@ -57,8 +57,8 @@
 }
 
 - (void) addButtonPressed {
-   [self.newItemController setModelObject: nil];
-   [self.navigationController pushViewController: self.newItemController animated: YES];
+   [self.createItemController setModelObject: nil];
+   [self.navigationController pushViewController: self.createItemController animated: YES];
 }
 
 
@@ -121,7 +121,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 #pragma mark Item Accessors
 
-- (void) setItems:(NSArray *)sectionItems forSection:(NSObject *)section {
+- (void) setItems:(NSArray *)sectionItems forSection:(id <NSCopying>)section {
    [self.items setObject: sectionItems forKey: section];
 }
 

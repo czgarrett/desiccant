@@ -17,6 +17,25 @@
 //- (void)dealloc {
 //    [super dealloc];
 //}
+- (NSUInteger) supportedInterfaceOrientations
+{
+    if (self.topViewController) {
+        return [self.topViewController supportedInterfaceOrientations];
+    }
+    else {
+        return [super supportedInterfaceOrientations];
+    }
+}
+
+- (BOOL) shouldAutorotate
+{
+    if (self.topViewController) {
+        return [self.topViewController shouldAutorotate];
+    }
+    else {
+        return YES;
+    }
+}
 
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated {
 	if ([self.viewControllers count] > 1) {

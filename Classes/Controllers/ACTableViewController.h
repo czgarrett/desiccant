@@ -21,7 +21,7 @@
    NSMutableArray *sectionIndexTitles;
    
    ARObject *modelObject;   
-   UIViewController <ACModelObjectController> *newItemController;
+   UIViewController <ACModelObjectController> *createItemController;
    UIViewController <ACModelObjectController> *editController;
    UIViewController <ACModelObjectController> *showController;
 
@@ -34,7 +34,7 @@
 @property(nonatomic, retain) NSMutableDictionary *items;
 @property(nonatomic, retain) NSMutableArray *sections;
 @property(nonatomic, retain) NSMutableArray *sectionIndexTitles;
-@property(nonatomic, retain) UIViewController <ACModelObjectController> *newItemController;
+@property(nonatomic, retain) UIViewController <ACModelObjectController> *createItemController;
 @property(nonatomic, retain) UIViewController <ACModelObjectController> *editController;
 @property(nonatomic, retain) UIViewController <ACModelObjectController> *showController;
 @property(nonatomic, retain) UISegmentedControl *filterControl;
@@ -49,7 +49,7 @@
 
 - (NSMutableArray *)itemsInSection:(NSInteger)section;
 - (NSObject *)itemForIndexPath: (NSIndexPath *) indexPath;
-- (void) setItems:(NSArray *)items forSection:(NSObject *)section;
+- (void) setItems:(NSArray *)items forSection:(id <NSCopying>)section;
 - (BOOL) hasOneSection;
 - (void) configureCell:(UITableViewCell *)cell;
 - (void) populateCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;

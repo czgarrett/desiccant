@@ -72,7 +72,9 @@
 		[query refresh];
 	}
 	else {
+#ifndef RENDER_DEFAULT_PNG_INTERFACES
 		[delegate adLoader:self didFinishLoadingView:adView withAdData:nil];
+#endif
 		[self logAdImpression];
 	}
 }
@@ -154,7 +156,9 @@
 - (void)imageViewDidFinishLoading:(DTImageView *)imageView {
 	if (adView.image) {
 		adView.frame = CGRectMake(0.0f, 0.0f, adView.image.size.width, adView.image.size.height);
+#ifndef RENDER_DEFAULT_PNG_INTERFACES
 		[delegate adLoader:self didFinishLoadingView:adView withAdData:nil];
+#endif
 		[self logAdImpression];
 	}
 }

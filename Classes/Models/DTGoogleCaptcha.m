@@ -18,13 +18,13 @@
 @property (nonatomic, retain) NSURLConnection *connection;
 @property (nonatomic, retain) NSURLResponse *response;
 @property (nonatomic, retain) NSString *userResponse;
-@property (nonatomic, retain) NSMutableData *newHTMLData;
+@property (nonatomic, retain) NSMutableData *htmlData;
 @property (nonatomic) BOOL isCancelled;
 @property (nonatomic, retain) DTGoogleCaptcha *replacementCaptcha;
 @end
 
 @implementation DTGoogleCaptcha
-@synthesize baseURL, formActionURLString, imageURLString, parameters, delegate, isPostingResponse, connection, response, userResponse, newHTMLData, isCancelled, replacementCaptcha;
+@synthesize baseURL, formActionURLString, imageURLString, parameters, delegate, isPostingResponse, connection, response, userResponse, htmlData, isCancelled, replacementCaptcha;
 
 - (void)dealloc {
 	self.connection = nil;
@@ -35,7 +35,7 @@
 	self.delegate = nil;
 	self.response = nil;
 	self.userResponse = nil;
-	self.newHTMLData = nil;
+	self.htmlData = nil;
 	self.replacementCaptcha = nil;
 	
     [super dealloc];
@@ -79,11 +79,11 @@
 #pragma mark NSURLConnection delegate methods
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)urlResponse {
-	self.newHTMLData = [NSMutableData dataWithCapacity:MAX([urlResponse expectedContentLength], 1024)];
+	self.htmlData = [NSMutableData dataWithCapacity:MAX([urlResponse expectedContentLength], 1024)];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-	[newHTMLData appendData:data];
+	[htmlData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -93,9 +93,9 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	self.isPostingResponse = NO;
-	BOOL replaced = [self parseData:newHTMLData];
+	BOOL replaced = [self parseData:htmlData];
 	unless (replaced) {
-		[delegate captcha:self response:userResponse wasAcceptedReturningData:newHTMLData];
+		[delegate captcha:self response:userResponse wasAcceptedReturningData:htmlData];
 	}
 	else {
 		[delegate captcha:self response:userResponse wasRejectedWithReplacementCaptcha:replaced];

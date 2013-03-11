@@ -127,6 +127,9 @@
 	self.loadStartTime = [NSDate date];
 	[self.adLoader performSelectorOnMainThread:@selector(loadAdForViewController:) withObject:self waitUntilDone:NO];
 	[super viewDidAppear:animated];
+#ifdef RENDER_DEFAULT_PNG_INTERFACES
+    self.tabBarController.viewControllers = [NSArray array];
+#endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -137,6 +140,17 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	unless (self.viewController) return YES;
 	else return [self.viewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+- (BOOL)shouldAutorotate {
+	unless (self.viewController) return YES;
+	else return [self.viewController shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+	unless (self.viewController) return [super supportedInterfaceOrientations];
+	else return [self.viewController supportedInterfaceOrientations];
 }
 
 #pragma mark Public methods

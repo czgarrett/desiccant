@@ -57,14 +57,6 @@
 			
 			UIImage *theHighlightedImage = [delegate cell:self highlightedImageFromData:theData];
 			self.imageView.highlightedImage = theHighlightedImage;
-			
-			NSURL *imageURL = [delegate cell:self imageURLFromData:theData];
-			if (imageURL) {
-				NSAssert ([self.imageView respondsToSelector:@selector(loadFromURL:)],
-						  @"Can't load image URL asynchronously unless imageView is a DTImageView");
-				[(DTImageView *)self.imageView setDefaultImage:self.imageView.image];
-				[(DTImageView *)self.imageView loadFromURL:imageURL];
-			}
 		}
 		
 		if ([delegate cellShouldResizeTitle:self]) [self adjustHeightForLabel:self.textLabel];
@@ -76,7 +68,20 @@
 	return self.dtData;
 }
 
-// Subclasses can call this in setData after setting the contents of a label.  
+- (void)prepareForDisplay
+{
+    if (self.delegate && self.imageView) {
+        NSURL *imageURL = [delegate cell:self imageURLFromData:self.dtData];
+        if (imageURL) {
+            NSAssert ([self.imageView respondsToSelector:@selector(loadFromURL:)],
+                      @"Can't load image URL asynchronously unless imageView is a DTImageView");
+            [(DTImageView *)self.imageView setDefaultImage:self.imageView.image];
+            [(DTImageView *)self.imageView loadFromURL:imageURL];
+        }
+    }
+}
+
+// Subclasses can call this in setData after setting the contents of a label.
 // It will adjust the height of the label and the cell to fit the text based on
 // the current width of the label.  If you're going to use this in setData, make 
 // sure you also override hasDynamicHeight and return YES.

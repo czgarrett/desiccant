@@ -186,7 +186,7 @@
 #pragma mark Keyboard Notification methods
 - (void) keyboardWillShow:(NSNotification *)notification {
 	CGRect keyboardBounds;
-	[[[notification userInfo] valueForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+	[[[notification userInfo] valueForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardBounds];
 	CGRect textEditFrame = textEditView.frame;
 	textEditFrame.origin.y = pickerView.bounds.size.height;
 	textEditFrame.size.height = 480.0 - keyboardBounds.size.height - pickerView.bounds.size.height;

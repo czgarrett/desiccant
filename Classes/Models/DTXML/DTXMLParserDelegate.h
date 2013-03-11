@@ -11,7 +11,7 @@
 
 @class DTXMLParserContext;
 
-@interface DTXMLParserDelegate : NSObject {    
+@interface DTXMLParserDelegate : NSObject <NSXMLParserDelegate> {
     NSString *key;
     NSString *element;
     NSDictionary *matchingAttributes;  

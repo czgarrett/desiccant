@@ -15,7 +15,7 @@
 @implementation ACSearchListController
 
 @synthesize tableView, searchField, dataSource, editControllerClass, 
-            newControllerClass, showControllerClass, activeRecordClass, queryColumn, searchFieldBarStyle, startWithKeyboardVisible, hideKeyboardWhenSearchButtonClicked,
+            createControllerClass, showControllerClass, activeRecordClass, queryColumn, searchFieldBarStyle, startWithKeyboardVisible, hideKeyboardWhenSearchButtonClicked,
             searchLimit, condition, orderColumn, resultsColumn, tableViewCellAccessoryType, stripDashesFromInput, stripSpacesFromInput;
 
 

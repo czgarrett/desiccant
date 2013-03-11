@@ -197,6 +197,39 @@
 	}
 }
 
+- (BOOL)shouldAutorotate {
+	if (self.tabBarController &&
+		self.tabBarController.selectedViewController != [self topContainerViewController] &&
+		self.tabBarController.selectedViewController != self.navigationController) {
+		return [self.tabBarController.selectedViewController shouldAutorotate];
+	}
+	else if (self.navigationController && self.navigationController.topViewController != [self topContainerViewController]) {
+		return [self.navigationController.topViewController shouldAutorotate];
+	}
+	else {
+        return YES;
+	}
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+	if (self.tabBarController &&
+		self.tabBarController.selectedViewController != [self topContainerViewController] &&
+		self.tabBarController.selectedViewController != self.navigationController) {
+		return [self.tabBarController.selectedViewController supportedInterfaceOrientations];
+	}
+	else if (self.navigationController && self.navigationController.topViewController != [self topContainerViewController]) {
+		return [self.navigationController.topViewController supportedInterfaceOrientations];
+	}
+	else {
+        NSUInteger orientations = 0;
+        if (self.shouldAutorotateToPortrait) orientations |= UIInterfaceOrientationMaskPortrait;
+        if (self.shouldAutorotateToLandscape) orientations |= UIInterfaceOrientationMaskLandscape;
+        if (self.shouldAutorotateUpsideDown) orientations |= UIInterfaceOrientationMaskPortraitUpsideDown;
+        return orientations;
+	}
+}
+
 - (void) viewWillAppear:(BOOL)animated {
 	unless (self.hasAppeared) [self viewWillFirstAppear:animated];
 	if (!self.containerViewController) [super viewWillAppear:animated];

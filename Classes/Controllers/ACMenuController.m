@@ -12,7 +12,8 @@
       self.fileMenuItem = myFileMenuItem;
       self.items = [NSMutableArray array];
       NSFileManager *fileMgr = [NSFileManager defaultManager];
-      NSEnumerator *dirEnum = [[fileMgr directoryContentsAtPath: self.fileMenuItem.path] objectEnumerator];
+      NSError *error = nil;
+      NSEnumerator *dirEnum = [[fileMgr contentsOfDirectoryAtPath:self.fileMenuItem.path error:&error] objectEnumerator];
       NSString *file;
       while (file = [dirEnum nextObject]) {
          FileMenuItem *menuItem = [[FileMenuItem alloc] initWithPath: [self.fileMenuItem.path stringByAppendingPathComponent: file]];

@@ -410,7 +410,7 @@ static NSLock *crayolaNameCacheLock;
 }
 
 - (NSString *)hexStringFromColor {
-	return [NSString stringWithFormat:@"%0.6X", self.rgbHex];
+	return [NSString stringWithFormat:@"%0.6X", (unsigned int)self.rgbHex];
 }
 
 - (NSString *)closestColorNameFor: (const char *) aColorDatabase {
@@ -549,14 +549,14 @@ static NSLock *crayolaNameCacheLock;
 	return crayolaNameCache;
 }
 
-+ (UIColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha {
-	// Convert hsb to rgb
-	CGFloat r,g,b;
-	[self hue:hue saturation:saturation brightness:brightness toRed:&r green:&g blue:&b];
-	
-	// Create a color with rgb
-	return [self colorWithRed:r green:g blue:b alpha:alpha];
-}
+//+ (UIColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha {
+//	// Convert hsb to rgb
+//	CGFloat r,g,b;
+//	[self hue:hue saturation:saturation brightness:brightness toRed:&r green:&g blue:&b];
+//	
+//	// Create a color with rgb
+//	return [self colorWithRed:r green:g blue:b alpha:alpha];
+//}
 
 
 #pragma mark Color Space Conversions
@@ -749,7 +749,7 @@ static const char *crayolaNameDB = ","
 + (void)populateColorNameCache {
 	NSAssert(colorNameCache == nil, @"+pouplateColorNameCache was called when colorNameCache was not nil");
 	NSMutableDictionary *cache = [NSMutableDictionary dictionary];
-	for (const char* entry = colorNameDB; entry = strchr(entry, ','); ) {
+	for (const char* entry = colorNameDB; (entry = strchr(entry, ',')); ) {
 		
 		// Step forward to the start of the name
 		++entry;
@@ -779,7 +779,7 @@ static const char *crayolaNameDB = ","
 + (void)populateCrayolaNameCache {
 	NSAssert(crayolaNameCache == nil, @"+pouplateCrayolaNameCache was called when crayolaNameCache was not nil");
 	NSMutableDictionary *cache = [NSMutableDictionary dictionary];
-	for (const char* entry = crayolaNameDB; entry = strchr(entry, ','); ) {
+	for (const char* entry = crayolaNameDB; (entry = strchr(entry, ',')); ) {
 		
 		// Step forward to the start of the name
 		++entry;

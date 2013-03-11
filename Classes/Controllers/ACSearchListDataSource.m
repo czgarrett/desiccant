@@ -134,7 +134,7 @@
 							  [[self.activeRecordClass class] tableName], 
 							  self.queryColumn, 
 							  self.orderColumn, 
-							  (long) rowIndex];
+							  rowIndex];
 		
       ARObject *result =  [[activeRecordClass class] findFirstByCondition: sql, searchFilter];
 		return result;
@@ -178,7 +178,7 @@
 	UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier: @"SearchResult"];
 	if (!cell) {
 		// Since the cell will be sized automatically, we can pass the zero rect for the frame
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier: @"SearchResult"] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SearchResult"] autorelease];
       cell.opaque = YES;
       
       nameLabel = [[[UILabel alloc] initWithFrame: CGRectMake(35.0, 0.0, 320.0, 40.0)] autorelease];

@@ -75,6 +75,13 @@
 // the default.
 @property (nonatomic, retain) NSDictionary * data;
 
+// Subclasses may implement this if they need to do something after setData: but before
+// display.  This is needed because setData: also gets called in tableView:heightForRowAtIndexPath:
+// on cells with dynamic heights.  If a cell does something expensive like load a remote image,
+// you don't want to do that on every row when you're just measuring heights.  So just save the
+// URL in setData: and load the image here in prepareForDisplay.
+- (void)prepareForDisplay;
+
 // Subclasses should override this method and return YES if they manually modify 
 // the height of the cell in setData.  The default implementation returns YES if
 // a delegate is set and cellShouldResizeTitle: or cellShouldResizeSubitle:
