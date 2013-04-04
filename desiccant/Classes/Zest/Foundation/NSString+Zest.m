@@ -589,7 +589,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 - (NSString *) stringByMatching: (NSString *) regexString capture: (NSInteger) captureGroup {
    NSError *error = NULL;
    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: regexString
-                                                                          options: NSRegularExpressionSearch
+                                                                          options: NSRegularExpressionCaseInsensitive
                                                                             error: &error];
    if (!error) {
       NSTextCheckingResult *match = [regex firstMatchInString: self options:0 range: NSMakeRange(0, [self length])];
@@ -611,7 +611,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
 - (NSArray *) componentsMatchedByRegex: (NSString *) regexString {
     NSError *error = NULL;
    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: regexString
-                                                                          options: NSRegularExpressionSearch
+                                                                          options: NSRegularExpressionCaseInsensitive
                                                                             error: &error];
    if (!error) {
       NSArray *matches = [regex matchesInString: self options: 0 range: [self range]];
@@ -630,7 +630,7 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    NSInteger currentLocation = 0;
    NSError *error = nil;
    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern: regexString
-                                                                          options: NSRegularExpressionSearch
+                                                                          options: NSRegularExpressionCaseInsensitive
                                                                             error: &error];
    if (!error) {
       NSArray *matches = [regex matchesInString: self options: 0 range: [self range]];
