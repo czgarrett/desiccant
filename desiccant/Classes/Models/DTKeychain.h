@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DTSingleton.h"
 
 @interface DTKeychain : NSObject
 
