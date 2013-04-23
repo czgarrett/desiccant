@@ -25,12 +25,12 @@
 
 - (void) addInnerShadow {
    UIColor *shadowStartColor = [UIColor colorWithWhite: 0.0 alpha: 0.6];
-   UIView *topShadowView = [[[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x, 
+   UIView *topShadowView = [[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x,
                                                                       self.bounds.origin.y, 
                                                                       1024, // to support resizing, all the way up to ipad full width 
-                                                                      INNER_SHADOW_HEIGHT)] autorelease];
+                                                                      INNER_SHADOW_HEIGHT)];
    topShadowView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
-   CAGradientLayer *topGradient = [[[CAGradientLayer alloc] init] autorelease];
+   CAGradientLayer *topGradient = [[CAGradientLayer alloc] init];
    NSMutableArray *colors = [NSMutableArray array];
    [colors addObject: (id)shadowStartColor.CGColor];
    [colors addObject: (id)[UIColor clearColor].CGColor];
@@ -38,12 +38,12 @@
    topGradient.frame = topShadowView.bounds;
    [topShadowView.layer addSublayer: topGradient];
 
-   UIView *bottomShadowView = [[[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x, 
+   UIView *bottomShadowView = [[UIView alloc] initWithFrame: CGRectMake(self.bounds.origin.x,
                                                                       self.bounds.origin.y + self.bounds.size.height - INNER_SHADOW_HEIGHT, 
                                                                          1024, // to support resizing, all the way up to ipad full width 
-                                                                      INNER_SHADOW_HEIGHT)] autorelease];
+                                                                      INNER_SHADOW_HEIGHT)];
    bottomShadowView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-   CAGradientLayer *bottomGradient = [[[CAGradientLayer alloc] init] autorelease];
+   CAGradientLayer *bottomGradient = [[CAGradientLayer alloc] init];
    [colors removeAllObjects];
    [colors addObject: (id)[UIColor clearColor].CGColor];
    [colors addObject: (id)shadowStartColor.CGColor];
@@ -52,7 +52,7 @@
    [bottomShadowView.layer addSublayer: bottomGradient];
 
 
-   UIView *shadowView = [[[UIView alloc] initWithFrame: self.frame] autorelease];
+   UIView *shadowView = [[UIView alloc] initWithFrame: self.frame];
    shadowView.userInteractionEnabled = NO;
    shadowView.autoresizingMask = self.autoresizingMask;
    shadowView.clipsToBounds = YES;

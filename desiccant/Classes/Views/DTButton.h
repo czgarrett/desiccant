@@ -4,14 +4,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DTReachability.h"
 
-@interface DTButton : UIButton {
-	CAGradientLayer *normalGradient;
-	CAGradientLayer *highlightedGradient;
-	CAGradientLayer *disabledGradient;
-	CAGradientLayer *selectedGradient;
-   
-   BOOL dependsOnReachability;
-}
+@interface DTButton : UIButton
 
 @property (nonatomic, assign) BOOL shiny;
 @property (nonatomic, assign) BOOL shadow;

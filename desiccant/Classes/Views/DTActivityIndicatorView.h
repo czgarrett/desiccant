@@ -17,12 +17,7 @@ typedef enum {
 // 2. It counts the calls to startAnimating, and requires an equal number of calls to stopAnimating before it will actually stop.
 //    This way you can have a controller running multiple concurrent queries, and the spinner will only stop when all
 //    have completed.
-@interface DTActivityIndicatorView : UIView {
-	UIActivityIndicatorView *childIndicator;
-   UIView *childIndicatorBackground;
-	NSInteger activityCount;
-	BOOL hidesWhenStopped;
-}
+@interface DTActivityIndicatorView : UIView
 
 + (void) setDefaultStyle: (DTActivityIndicatorStyle) style;
 

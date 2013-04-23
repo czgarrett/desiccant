@@ -9,50 +9,49 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface DTActivityIndicatorView()
-@property (nonatomic, retain) UIActivityIndicatorView *childIndicator;
-@property (nonatomic, retain) UIView *childIndicatorBackground;
+@interface DTActivityIndicatorView() {
+	NSInteger _activityCount;
+
+}
+
+@property (nonatomic, weak) UIActivityIndicatorView *childIndicator;
+@property (nonatomic, weak) UIView *childIndicatorBackground;
+
 @end
 
 static DTActivityIndicatorStyle defaultStyle;
 
 @implementation DTActivityIndicatorView
-@synthesize childIndicator, hidesWhenStopped, dtActivityIndicatorStyle, childIndicatorBackground;
 
 + (void) setDefaultStyle: (DTActivityIndicatorStyle) style {
    defaultStyle = style;
 }
 
-- (void)dealloc {
-	self.childIndicator = nil;
-   self.childIndicatorBackground = nil;
-    [super dealloc];
-}
-
 - (id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style {
-	UIActivityIndicatorView *newIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style] autorelease];
+	UIActivityIndicatorView *newIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style];
 	if ((self = [super initWithFrame: CGRectMake(0.0, 0.0, 300.0, 300.0)])) {
 		newIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		newIndicator.hidesWhenStopped = NO;
 		self.childIndicator = newIndicator;
-      
-      self.childIndicatorBackground = [[[UIView alloc] initWithFrame: CGRectMake(100.0, 100.0, 100.0, 100.0)] autorelease];
-      self.childIndicatorBackground.layer.cornerRadius = 10.0;
+        
+        UIView *childIndicatorBackground = [[UIView alloc] initWithFrame: CGRectMake(100.0, 100.0, 100.0, 100.0)];
+        self.childIndicatorBackground = childIndicatorBackground;
+        self.childIndicatorBackground.layer.cornerRadius = 10.0;
 		self.childIndicatorBackground.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-      
-		[self.childIndicatorBackground addSubview:childIndicator];
-      [self addSubview: self.childIndicatorBackground];
-      childIndicator.center = CGPointMake(50.0, 50.0);
-      self.dtActivityIndicatorStyle = defaultStyle;
-		hidesWhenStopped = YES;
-		activityCount = 0;
+        
+		[self.childIndicatorBackground addSubview: newIndicator];
+        [self addSubview: childIndicatorBackground];
+        _childIndicator.center = CGPointMake(50.0, 50.0);
+        self.dtActivityIndicatorStyle = defaultStyle;
+		_hidesWhenStopped = YES;
+		_activityCount = 0;
 	}
 	return self;
 }
 
 - (void) setDtActivityIndicatorStyle: (DTActivityIndicatorStyle) style {
-   dtActivityIndicatorStyle = style;
-   switch (dtActivityIndicatorStyle) {
+   _dtActivityIndicatorStyle = style;
+   switch (_dtActivityIndicatorStyle) {
       case DTActivityIndicatorStyleNormal:
          break;
       case DTActivityIndicatorStyleDarkGrayBackground:
@@ -64,32 +63,32 @@ static DTActivityIndicatorStyle defaultStyle;
 }
 
 - (void)startAnimating {
-	if (activityCount == 0) {
-		[childIndicator startAnimating];
+	if (_activityCount == 0) {
+		[_childIndicator startAnimating];
 	}
-	activityCount++;
+	_activityCount++;
 }
 
 - (void)stopAnimating {
-	if (activityCount > 0) {
-		activityCount--;
+	if (_activityCount > 0) {
+		_activityCount--;
 	}
-	if (activityCount == 0) {
-		[childIndicator stopAnimating];
-		if (hidesWhenStopped && self.superview) [self removeFromSuperview];
+	if (_activityCount == 0) {
+		[_childIndicator stopAnimating];
+		if (_hidesWhenStopped && self.superview) [self removeFromSuperview];
 	}
 }
 
 - (BOOL)isAnimating {
-	return [childIndicator isAnimating];
+	return [_childIndicator isAnimating];
 }
 
 - (UIActivityIndicatorViewStyle)activityIndicatorViewStyle {
-	return childIndicator.activityIndicatorViewStyle;
+	return _childIndicator.activityIndicatorViewStyle;
 }
 
 - (void)setActivityIndicatorViewStyle:(UIActivityIndicatorViewStyle)style {
-	childIndicator.activityIndicatorViewStyle = style;
+	_childIndicator.activityIndicatorViewStyle = style;
 }
 
 @end

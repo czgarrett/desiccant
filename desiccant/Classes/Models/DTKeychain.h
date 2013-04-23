@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DTSingleton.h"
 
-@interface DTKeychain : DTSingleton {
-	NSString *defaultServiceName;
-}
+@interface DTKeychain : NSObject
 
-@property (nonatomic, retain) NSString *defaultServiceName;
+@property (nonatomic, strong) NSString *defaultServiceName;
 
 + (id)sharedKeychain;
 - (void)setString:(NSString *)value forKey:(NSString *)key;

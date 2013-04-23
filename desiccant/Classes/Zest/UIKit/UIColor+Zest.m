@@ -395,7 +395,7 @@ static NSLock *crayolaNameCacheLock;
 		[colors addObject:[UIColor colorWithHue:h2 saturation:s brightness:v alpha:a]];
 	}
 	
-	return [[colors copy] autorelease];
+	return [colors copy];
 }
 
 #pragma mark String utilities
@@ -455,7 +455,7 @@ static NSLock *crayolaNameCacheLock;
 	for (name = bestPos-1; name != nil && *name != ','; --name)
 		;
 	++name;
-	NSString *result = [[[NSString alloc] initWithBytes:name length:bestPos - name encoding:NSUTF8StringEncoding] autorelease];
+	NSString *result = [[NSString alloc] initWithBytes:name length:bestPos - name encoding:NSUTF8StringEncoding];
 	
 	return result;
 }
@@ -775,13 +775,11 @@ static const char *crayolaNameDB = ","
 		// Get the color, and add to the dictionary
 		int hex, increment;
 		if (sscanf(++h, "%x%n", &hex, &increment) != 1) {
-			[name release];
 			break;
 		}
 		[cache setObject:[self colorWithRGBHex:hex] forKey:name];
 		
 		// Cleanup and move to the next item
-		[name release];
 		entry = h + increment;
 	}
 	colorNameCache = [cache copy];
@@ -805,13 +803,11 @@ static const char *crayolaNameDB = ","
 		// Get the color, and add to the dictionary
 		int hex, increment;
 		if (sscanf(++h, "%x%n", &hex, &increment) != 1) {
-			[name release];
 			break;
 		}
 		[cache setObject:[self colorWithRGBHex:hex] forKey:name];
 		
 		// Cleanup and move to the next item
-		[name release];
 		entry = h + increment;
 	}
 	crayolaNameCache = [cache copy];

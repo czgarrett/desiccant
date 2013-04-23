@@ -11,7 +11,7 @@
 -(void) appendTag: (NSString *) htmlTag textFormat: (NSString *) htmlText, ... {
    va_list args;
    va_start(args, htmlText);          // Start scanning for arguments after firstObject.
-   NSString *text = [[[NSString alloc] initWithFormat: htmlText arguments: args] autorelease];
+   NSString *text = [[NSString alloc] initWithFormat: htmlText arguments: args];
    return [self appendTag: htmlTag text: text];
 }
 

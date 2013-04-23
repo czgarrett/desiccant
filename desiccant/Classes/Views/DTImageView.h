@@ -11,16 +11,10 @@
 
 @protocol DTImageViewDelegate;
 
-@interface DTImageView : UIImageView {
-    NSURLConnection *connection;
-    NSMutableData *data;
-    IBOutlet UIImage *defaultImage;
-    IBOutlet NSObject <DTImageViewDelegate> *delegate;
-    BOOL alwaysCacheToDisk;
-}
+@interface DTImageView : UIImageView
 
 @property (nonatomic, retain) UIImage *defaultImage;
-@property (nonatomic, assign) IBOutlet NSObject <DTImageViewDelegate> *delegate;
+@property (nonatomic, weak) IBOutlet NSObject <DTImageViewDelegate> *delegate;
 @property (nonatomic) BOOL alwaysCacheToDisk;
 
 - (void)loadFromURL:(NSURL *)url;

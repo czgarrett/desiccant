@@ -18,7 +18,6 @@
     if (!dateString) return nil;
     ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
     NSDate *date = [formatter dateFromString:dateString];
-    [formatter release];
     return date;
 }
 
@@ -26,7 +25,6 @@
 - (NSString *)iso8601FormattedString {
     ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
     NSString *string = [formatter stringFromDate:self];
-    [formatter release];
     return string;    
 }
 
@@ -50,7 +48,6 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.dateFormat = format;
 	NSString *formattedDate = [formatter stringFromDate:self];
-	[formatter release];
 	return formattedDate;
 }
 
@@ -131,9 +128,6 @@
 	NSDateComponents *components = [[NSDateComponents alloc] init];
 	[components setYear: years];
 	NSDate *newDate = [gregorian dateByAddingComponents:components toDate:today options:NSWrapCalendarComponents];
-	
-	[components release];
-	[gregorian release];
 	
 	return newDate;
 }

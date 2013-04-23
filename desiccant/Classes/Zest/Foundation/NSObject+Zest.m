@@ -22,7 +22,6 @@
 			break;
 		}
 	}
-	[owner release];
 	return result;
 }
 
@@ -232,7 +231,7 @@
 	[self performSelector:selector withReturnValue:&result andArguments:arglist];
 	va_end(arglist);
 	
-	CFShow(result);
+	CFShow((__bridge CFTypeRef)(result));
 	return result;
 }
 /*
@@ -519,7 +518,7 @@
 + (id) instanceOfClassNamed: (NSString *) className
 {
 	if (NSClassFromString(className) != nil)
-		return [[[NSClassFromString(className) alloc] init] autorelease];
+		return [[NSClassFromString(className) alloc] init];
 	else
 		return nil;
 }
@@ -553,7 +552,10 @@
 // Perform the selector if possible, returning any return value. Otherwise return nil.
 - (id) tryPerformSelector: (SEL) aSelector withObject: (id) object1 withObject: (id) object2
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 	return ([self respondsToSelector:aSelector]) ? [self performSelector:aSelector withObject: object1 withObject: object2] : nil;
+#pragma clang diagnostic pop
 }
 - (id) tryPerformSelector: (SEL) aSelector withObject: (id) object1
 {
@@ -570,7 +572,6 @@
    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
    [archiver encodeRootObject: self];
    [archiver finishEncoding];
-   [archiver release];
    return data;
 }
 
@@ -580,7 +581,6 @@
    unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
    result = [unarchiver decodeObject];
    [unarchiver finishDecoding];
-   [unarchiver release];   
    return result;
 }
 

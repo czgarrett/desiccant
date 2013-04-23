@@ -10,42 +10,35 @@
 #import "Zest.h"
 #import <objc/runtime.h>
 
-static DTKeychain *sharedKeychain = nil;
+static DTKeychain *_sharedKeychain = nil;
 
 @interface DTKeychain()
 @end
 
 @implementation DTKeychain
-@synthesize defaultServiceName;
-
-#pragma mark Memory management
-- (void)dealloc {
-	self.defaultServiceName = nil;
-    [super dealloc];
-}
 
 #pragma mark Constructors
 
 - (id)init {
 	if ((self = [super init])) {
 		self.defaultServiceName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-		unless (defaultServiceName) self.defaultServiceName = @"dtkeychain_default_service_name";
+		unless (_defaultServiceName) self.defaultServiceName = @"dtkeychain_default_service_name";
 	}
 	return self;
 }
 
 + (id)sharedKeychain {
-	return [self loadedSingleton];
-}
-
-+ (NSObject **)staticSingleton {
-	return &sharedKeychain;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedKeychain = [[DTKeychain alloc] init];
+    });
+    return _sharedKeychain;
 }
 
 #pragma mark Public methods
 
 - (void)setString:(NSString *)value forKey:(NSString *)key {
-	return [self setString:value forKey:key serviceName:defaultServiceName];
+	return [self setString:value forKey:key serviceName: _defaultServiceName];
 }
 
 - (void)setString:(NSString *)value forKey:(NSString *)key serviceName:(NSString *)serviceName {
@@ -60,7 +53,7 @@ static DTKeychain *sharedKeychain = nil;
 }
 
 - (NSString *)stringForKey:(NSString *)key {
-	return [self stringForKey:key serviceName:defaultServiceName];
+	return [self stringForKey:key serviceName:_defaultServiceName];
 }
 
 - (NSString *)stringForKey:(NSString *)key serviceName:(NSString *)serviceName {

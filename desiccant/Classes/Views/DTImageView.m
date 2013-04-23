@@ -10,21 +10,16 @@
 #import "Zest.h"
 
 @interface DTImageView()
-@property (nonatomic, retain) NSURLConnection *connection;
-@property (nonatomic, retain) NSMutableData *data;
+
+@property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *data;
+
 @end
 
 @implementation DTImageView
-@synthesize connection, data, defaultImage, delegate, alwaysCacheToDisk;
 
 - (void)dealloc {
-    [connection cancel];
-    self.connection = nil;
-    self.data = nil;
-    self.defaultImage = nil;
-    self.delegate = nil;
-    
-    [super dealloc];
+    [_connection cancel];
 }
 
 - (id)initWithImage:(UIImage *)image {
@@ -36,19 +31,19 @@
 
 - (void)loadFromURL:(NSURL *)url {
    if (url) {
-      [connection cancel];
+      [_connection cancel];
       if ([url isFileURL]) {
          self.data = nil;
          self.image = [UIImage imageWithContentsOfFile:[url path]];
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else if ([url isCached]) {
-         self.data = [[[url cachedData] mutableCopy] autorelease];
+         self.data = [[url cachedData] mutableCopy];
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else {
          NSLog(@"Loading uncached image: %@", url);
-         self.image = defaultImage;
+         self.image = _defaultImage;
          self.data = [NSMutableData data];
          NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
          [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
@@ -69,7 +64,7 @@
                                                  data:cachedResponse.data
                                              userInfo:cachedResponse.userInfo
                                         storagePolicy:NSURLCacheStorageAllowed];
-        return [memOnlyCachedResponse autorelease];
+        return memOnlyCachedResponse;
     }
     else {
         return cachedResponse;
@@ -79,21 +74,21 @@
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
     [theConnection cancel];
     self.connection = nil;
-    if (data) self.image = [UIImage imageWithData:data];
-   if (!self.image) {
-      NSLog(@"Didn't load, data size was %d", [data length]);
-      self.image = defaultImage;  
-   }
+    if (_data) self.image = [UIImage imageWithData: _data];
+    if (!self.image) {
+        NSLog(@"Didn't load, data size was %d", [_data length]);
+        self.image = _defaultImage;
+    }
     self.data = nil;
-    [delegate imageViewDidFinishLoading:self];
+    [_delegate imageViewDidFinishLoading:self];
 }
 
 - (void)connection:(NSURLConnection *)theConnection didFailWithError:(NSError *)error {
     [theConnection cancel];
     self.connection = nil;
-    self.image = defaultImage;
+    self.image = _defaultImage;
     self.data = nil;
-    [delegate imageView:self didFailLoadingWithError:error];
+    [_delegate imageView:self didFailLoadingWithError:error];
 }
 
 

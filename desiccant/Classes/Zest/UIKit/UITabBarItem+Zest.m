@@ -15,7 +15,6 @@
    UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle: [name capitalizedString] 
                                                             image: image 
                                                               tag: 0];
-   [tabBarItem autorelease];
    return tabBarItem;
 }
 
