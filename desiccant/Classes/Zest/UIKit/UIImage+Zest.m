@@ -33,14 +33,13 @@
 }
 
 + (void) loadImageFromURL: (NSURL *) url completion: (ImageBlock) imageBlock {
-   dispatch_queue_t image_queue = dispatch_queue_create(NULL, NULL);
+    dispatch_queue_t image_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
    dispatch_async(image_queue, ^{
       UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: url]];
       dispatch_async(dispatch_get_main_queue(), ^{
          imageBlock(image);   
       });
    });
-   dispatch_release(image_queue);
 }
 
 
