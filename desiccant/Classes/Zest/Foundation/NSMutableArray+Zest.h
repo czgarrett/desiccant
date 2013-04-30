@@ -27,4 +27,8 @@
 - (id) pop;
 - (id) pull;
 
++ (id)mutableArrayUsingWeakReferences;
++ (id)mutableArrayUsingWeakReferencesWithCapacity:(NSUInteger)capacity;
+
+
 @end
