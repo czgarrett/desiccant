@@ -11,7 +11,7 @@
 @interface DTActivityIndicatorWithBackground : UIView
 
 @property (nonatomic, readonly) UILabel *titleLabel;
-@property (nonatomic, retain) UIImage *iconImage;
+@property (nonatomic, weak) UIImage *iconImage;
 @property (nonatomic, assign) CGFloat cornerRadius; //corner radius for the view background, default=10.0
 
 // Configuring Title

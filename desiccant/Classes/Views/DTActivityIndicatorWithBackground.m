@@ -13,17 +13,13 @@
 
 @interface DTActivityIndicatorWithBackground () {
 @private
-    UIActivityIndicatorView *_systemIndicator;
-    UIImageView *_iconImageView;
+    __weak UIActivityIndicatorView *_systemIndicator;
+    __weak UIImageView *_iconImageView;
 }
 - (void)setup;
 @end
 
 @implementation DTActivityIndicatorWithBackground
-
-@synthesize titleLabel = _titleLabel;
-@synthesize iconImage = _iconImage;
-@synthesize cornerRadius = _cornerRadius;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -40,7 +36,8 @@
 - (void)setup {
     _cornerRadius = 10.0;
 
-    _systemIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIActivityIndicatorView *systemIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _systemIndicator = systemIndicator;
     _systemIndicator.frame = CGRectMake(
             self.bounds.origin.x + floorf((self.bounds.size.width - _systemIndicator.frame.size.width) / 2.0),
             self.bounds.origin.y + floorf((self.bounds.size.height - _systemIndicator.frame.size.height) / 2.0),
@@ -50,7 +47,8 @@
     _systemIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
             UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _titleLabel = titleLabel;
     _titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.backgroundColor = [UIColor clearColor];
@@ -58,12 +56,13 @@
             UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     _titleLabel.hidden = YES;
 
-    _iconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _iconImageView = iconImageView;
     _iconImageView.hidden = YES;
 
-    [self addSubview:_systemIndicator];
-    [self addSubview:_titleLabel];
-    [self addSubview:_iconImageView];
+    [self addSubview: systemIndicator];
+    [self addSubview: titleLabel];
+    [self addSubview: iconImageView];
 
     self.backgroundColor = [UIColor clearColor];
 }
@@ -88,8 +87,7 @@
 }
 
 - (void)setIconImage:(UIImage *)aCompletedImage {
-    [_iconImage autorelease];
-    _iconImage = [aCompletedImage retain];
+    _iconImage = aCompletedImage;
 
     [_iconImageView setImage:_iconImage];
     [_iconImageView sizeToFit];
@@ -158,14 +156,6 @@
 
 - (void)hide {
     self.hidden = YES;
-}
-
-- (void)dealloc {
-    [_systemIndicator release];
-    [_titleLabel release];
-    [_iconImage release];
-    [_iconImageView release];
-    [super dealloc];
 }
 
 @end
