@@ -12,24 +12,22 @@
 
 @implementation DTTimeSpan
 
-@synthesize start, end;
-
 + (DTTimeSpan *) timeSpanForFiveMinutesThatInclude: (NSDate *) date {
-   DTTimeSpan *result = [[[DTTimeSpan alloc] init] autorelease];
+   DTTimeSpan *result = [[DTTimeSpan alloc] init];
    result.start = [date dateAtPreviousFiveMinuteMark];
    result.end = [date dateAtNextFiveMinuteMark];
    return result;
 }
 
 + (DTTimeSpan *) timeSpanForFifteenMinutesThatInclude: (NSDate *) date {
-   DTTimeSpan *result = [[[DTTimeSpan alloc] init] autorelease];
+   DTTimeSpan *result = [[DTTimeSpan alloc] init];
    result.start = [date dateAtPreviousQuarterHour];
    result.end = [date dateAtNextQuarterHour];
    return result;
 }
 
 + (DTTimeSpan *) timeSpanWithStart: (NSDate *) start end: (NSDate *) end {
-   DTTimeSpan *result = [[[DTTimeSpan alloc] init] autorelease];
+   DTTimeSpan *result = [[DTTimeSpan alloc] init];
    result.start = start;
    result.end = end;
    return result;
@@ -60,8 +58,8 @@
 
 
 - (NSTimeInterval) interval {
-   if (start == nil || end == nil) return 0;
-   return [end timeIntervalSinceDate: start];
+   if (_start == nil || _end == nil) return 0;
+   return [_end timeIntervalSinceDate: _start];
 }
 
 - (BOOL) intersects:(DTTimeSpan *)other {
@@ -95,13 +93,7 @@
 
 
 - (id) copyWithZone:(NSZone *)zone {
-    return [[DTTimeSpan timeSpanWithStart: self.start end: self.end] retain];
-}
-
-- (void)dealloc {
-    [start release];
-    [end release];
-    [super dealloc];
+    return [DTTimeSpan timeSpanWithStart: self.start end: self.end];
 }
 
 @end
