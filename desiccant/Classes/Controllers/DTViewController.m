@@ -10,21 +10,21 @@
 #import "DTCompositeViewController.h"
 
 @interface DTViewController()
+
 @property (nonatomic, assign) UIViewController *dtContainerViewController;
 @property (nonatomic, retain) UIView *dtWindowOverlay;
 @property (nonatomic, retain) DTActivityIndicatorView *dtActivityIndicator;
+
 @end
 
 
 @implementation DTViewController
-@synthesize hasAppeared, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator;
 
 #pragma mark Memory management
 
 - (void) dealloc {
 	self.dtContainerViewController = nil;
    [self releaseRetainedSubviews];
-	[super dealloc];
 }
 
 - (void) releaseRetainedSubviews {
@@ -94,14 +94,14 @@
 #pragma mark Dynamic properties
 
 - (DTActivityIndicatorView *)activityIndicator {
-	unless (dtActivityIndicator) {
-		self.dtActivityIndicator = [[[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-		dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+	unless (_dtActivityIndicator) {
+		self.dtActivityIndicator = [[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+		_dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
 	}
-	unless (dtActivityIndicator.superview) {
-		dtActivityIndicator.hidesWhenStopped = YES;
-		dtActivityIndicator.center = self.view.center;
-		[self.view.superview addSubview:dtActivityIndicator];
+	unless (_dtActivityIndicator.superview) {
+		_dtActivityIndicator.hidesWhenStopped = YES;
+		_dtActivityIndicator.center = self.view.center;
+		[self.view.superview addSubview:_dtActivityIndicator];
 	}
 	
 	return self.dtActivityIndicator;
@@ -121,7 +121,7 @@
 }
 
 - (UIViewController *)containerViewController {
-	return dtContainerViewController;
+	return _dtContainerViewController;
 }
 
 - (UIViewController *)topContainerViewController {

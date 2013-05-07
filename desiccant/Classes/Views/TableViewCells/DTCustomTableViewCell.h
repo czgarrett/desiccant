@@ -44,14 +44,7 @@ typedef void(^DTTableCellBlock)(DTCustomTableViewCell *);
 
 @end
 
-@interface DTCustomTableViewCell : UITableViewCell {
-	CGFloat minHeight;
-	UILabel *dtTextLabel;
-	UILabel *dtDetailTextLabel;
-	UIImageView *dtImageView;
-	id <DTCustomTableViewCellDelegate> delegate;
-	NSDictionary *dtData;
-}
+@interface DTCustomTableViewCell : UITableViewCell
 
 // Custom cell deletion.  This block will get executed when delete: is called.
 // This allows a table view cell to have a custom deletion button, without knowing what

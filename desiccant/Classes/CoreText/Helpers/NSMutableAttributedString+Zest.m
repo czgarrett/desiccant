@@ -30,9 +30,9 @@
    CFAttributedStringSetAttribute(attrString, CFRangeMake(0, CFAttributedStringGetLength(attrString)), kCTParagraphStyleAttributeName, paragraphStyle);    
    CFRelease(paragraphStyle);
       
-   NSMutableAttributedString *ret = (NSMutableAttributedString *)attrString;
+   NSMutableAttributedString *ret = (NSMutableAttributedString *)CFBridgingRelease(attrString);
    
-   return [ret autorelease];
+    return ret;
 }
 
 + (id)mutableAttributedStringWithString:(NSString *)string font:(UIFont *)font color:(UIColor *)color alignment:(CTTextAlignment)alignment firstLineIndent:(CGFloat)firstLineIndent hangingIndent:(CGFloat)hangingIndent
@@ -57,9 +57,9 @@
       CFAttributedStringSetAttribute(attrString, CFRangeMake(0, CFAttributedStringGetLength(attrString)), kCTParagraphStyleAttributeName, paragraphStyle);    
       CFRelease(paragraphStyle);
       
-      NSMutableAttributedString *ret = (NSMutableAttributedString *)attrString;
+      NSMutableAttributedString *ret = (NSMutableAttributedString *)CFBridgingRelease(attrString);
       
-      return [ret autorelease];
+      return ret;
 }
 
 + (id)mutableAttributedStringWithString:(NSString *)string font:(UIFont *)font color:(UIColor *)color alignment:(CTTextAlignment)alignment firstLineIndent:(CGFloat)firstLineIndent hangingIndent:(CGFloat)hangingIndent tabInterval:(CGFloat)tabInterval
@@ -91,14 +91,14 @@
     
     CFRelease(tabStops);
     
-    NSMutableAttributedString *ret = (NSMutableAttributedString *)attrString;
+    NSMutableAttributedString *ret = (NSMutableAttributedString *)CFBridgingRelease(attrString);
     
-    return [ret autorelease];
+    return ret;
 }
 
 - (CGFloat)boundingWidthForHeight:(CGFloat)inHeight
 {
-   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString( (CFMutableAttributedStringRef) self); 
+   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString( (__bridge CFMutableAttributedStringRef) self); 
    CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGFLOAT_MAX, inHeight), NULL);
    CFRelease(framesetter);
    return suggestedSize.width;   
@@ -106,7 +106,7 @@
 
 - (CGFloat)boundingHeightForWidth:(CGFloat)inWidth
 {
-   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString( (CFMutableAttributedStringRef) self); 
+   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString( (__bridge CFMutableAttributedStringRef) self); 
    CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(inWidth, CGFLOAT_MAX), NULL);
    CFRelease(framesetter);
    return suggestedSize.height;

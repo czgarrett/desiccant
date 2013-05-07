@@ -20,8 +20,6 @@
 
 @implementation DTAttributedLabel
 
-@synthesize attributedString;
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -39,14 +37,8 @@
    self.clipsToBounds = NO;
 }
 
-- (void) dealloc {
-   [attributedString release];
-   [super dealloc];
-}
-
-- (void) setAttributedString:(NSMutableAttributedString *)aAttributedString {
-   [attributedString autorelease];
-   attributedString = [aAttributedString retain];
+- (void) setAttributedString:(NSMutableAttributedString *)attributedString {
+   _attributedString = attributedString;
    
    [self setNeedsDisplay];
 }
@@ -55,11 +47,11 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-   if (!attributedString) return;
+   if (!_attributedString) return;
    // Initialize a graphics context and set the text matrix to a known value.
    CGContextRef context = UIGraphicsGetCurrentContext();
    
-   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
+   CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)_attributedString);
    
    CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(self.bounds.size.width, CGFLOAT_MAX), NULL);
    suggestedSize.height += 20.0;

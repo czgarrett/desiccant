@@ -11,7 +11,7 @@
 @implementation UIFont (ZestCoreText)
 
 - (CTFontRef) CTFontCreate {
-   CTFontRef ctFont = CTFontCreateWithName((CFStringRef)self.fontName, 
+   CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)self.fontName, 
                                            self.pointSize, 
                                            NULL);
    return ctFont;

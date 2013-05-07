@@ -11,15 +11,7 @@
 #import "DTActivityIndicatorView.h"
 #import "UIViewController+Zest.h"
 
-@interface DTViewController : UIViewController <DTActsAsChildViewController> {
-	UIViewController *dtContainerViewController;
-	UIView *dtWindowOverlay;
-	BOOL shouldAutorotateToPortrait;
-	BOOL shouldAutorotateToLandscape;
-	BOOL shouldAutorotateUpsideDown;
-	BOOL hasAppeared;
-	DTActivityIndicatorView *dtActivityIndicator;
-}
+@interface DTViewController : UIViewController <DTActsAsChildViewController>
 
 // Returns this controller's container controller or nil if it doesn't have one.
 @property (nonatomic, assign) UIViewController *containerViewController;

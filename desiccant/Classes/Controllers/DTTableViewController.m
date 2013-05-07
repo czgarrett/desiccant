@@ -10,34 +10,28 @@
 #import "Zest.h"
 #import "DTCompositeViewController.h"
 
-@interface DTTableViewController()
+@interface DTTableViewController() {
+    BOOL _keyboardVisible;
+    CGFloat _keyboardAdjustment;
+}
 @property (nonatomic, assign) UIViewController *dtContainerViewController;
 @property (nonatomic, retain) UIView *dtWindowOverlay;
 @property (nonatomic, retain) DTActivityIndicatorView *dtActivityIndicator;
 @end
 
 @implementation DTTableViewController
-@synthesize hasAppeared, cell, headerView, footerView, dtContainerViewController, dtWindowOverlay, shouldAutorotateToPortrait, shouldAutorotateToLandscape, shouldAutorotateUpsideDown, dtActivityIndicator,
-shouldAdjustViewOnKeyboardShow;
+
 
 #pragma mark Memory management
-
-- (void) releaseRetainedSubviews {
-	self.cell = nil;
-	self.dtWindowOverlay = nil;
-	self.dtActivityIndicator = nil;
-	self.headerView = nil;
-	self.footerView = nil;
-}
 
 
 - (void)dealloc {
    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
    [nc removeObserver: self];
-   [self releaseRetainedSubviews];
-	self.dtContainerViewController = nil;
+}
 
-	[super dealloc];
+- (void) releaseRetainedSubviews {
+    // nothing
 }
 
 #pragma mark Constructors
@@ -74,7 +68,7 @@ shouldAdjustViewOnKeyboardShow;
 
 -(void) keyboardWillShow:(NSNotification *) notif
 {
-   if (!keyboardVisible && self.view.window) {
+   if (!_keyboardVisible && self.view.window) {
 
       NSDictionary* info = [notif userInfo];
       NSValue *rectValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -93,23 +87,23 @@ shouldAdjustViewOnKeyboardShow;
       
       CGFloat newHeight = newBottom - originInWindow.y;
 
-      keyboardAdjustment = newHeight - self.view.frame.size.height;
+      _keyboardAdjustment = newHeight - self.view.frame.size.height;
       
       [UIView beginAnimations: @"keyboardResize" context: nil];
          self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, newHeight);
       [UIView commitAnimations];
-      keyboardVisible = YES;      
+      _keyboardVisible = YES;
    }
 }
 
 -(void) keyboardWillHide: (NSNotification *)notif {
-	if (keyboardVisible && self.view.window) {
+	if (_keyboardVisible && self.view.window) {
       CGRect viewFrame = [self tableView].frame;
-      viewFrame.size.height -= keyboardAdjustment;
+      viewFrame.size.height -= _keyboardAdjustment;
       [UIView beginAnimations: @"keyboardResize" context: nil];
          [self tableView].frame = viewFrame;
       [UIView commitAnimations];
-      keyboardVisible = NO;      
+      _keyboardVisible = NO;
 	}   
 }
 
@@ -125,9 +119,9 @@ shouldAdjustViewOnKeyboardShow;
 
 - (void) viewDidLoad {
    [super viewDidLoad];
-   [self.tableView setTableFooterView: footerView];
-   [self.tableView setTableHeaderView: headerView];
-   keyboardAdjustment = 0.0;
+   [self.tableView setTableFooterView: _footerView];
+   [self.tableView setTableHeaderView: _headerView];
+   _keyboardAdjustment = 0.0;
    if (self.shouldAdjustViewOnKeyboardShow) {
       NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
       [nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
@@ -190,14 +184,14 @@ shouldAdjustViewOnKeyboardShow;
 #pragma mark Dynamic properties
 
 - (DTActivityIndicatorView *)activityIndicator {
-	unless (dtActivityIndicator) {
-		self.dtActivityIndicator = [[[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+	unless (_dtActivityIndicator) {
+		self.dtActivityIndicator = [[DTActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 		//dtActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
 	}
-	unless (dtActivityIndicator.superview) {
-		dtActivityIndicator.hidesWhenStopped = YES;
-		dtActivityIndicator.center = self.view.center;
-		[self.view.superview addSubview:dtActivityIndicator];
+	unless (_dtActivityIndicator.superview) {
+		_dtActivityIndicator.hidesWhenStopped = YES;
+		_dtActivityIndicator.center = self.view.center;
+		[self.view.superview addSubview:_dtActivityIndicator];
 	}
 	
 	return self.dtActivityIndicator;
@@ -217,7 +211,7 @@ shouldAdjustViewOnKeyboardShow;
 }
 
 - (UIViewController *)containerViewController {
-	return dtContainerViewController;
+	return _dtContainerViewController;
 }
 
 - (UIViewController *)topContainerViewController {
@@ -234,8 +228,8 @@ shouldAdjustViewOnKeyboardShow;
 }
 
 - (UITableViewController *)containerTableViewController {
-	if ([dtContainerViewController isKindOfClass:[UITableViewController class]]) {
-		return (UITableViewController *)dtContainerViewController;
+	if ([_dtContainerViewController isKindOfClass:[UITableViewController class]]) {
+		return (UITableViewController *)_dtContainerViewController;
 	}
 	else {
 		return nil;

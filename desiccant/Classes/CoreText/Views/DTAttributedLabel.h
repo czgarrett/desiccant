@@ -11,6 +11,6 @@
 
 @interface DTAttributedLabel : UIView
 
-@property (nonatomic, retain) NSMutableAttributedString *attributedString;
+@property (nonatomic, strong) NSMutableAttributedString *attributedString;
 
 @end

@@ -9,47 +9,45 @@
 #import "Zest.h"
 
 @interface DTCompositeViewController()
-@property (nonatomic, retain) NSMutableSet *subviewControllers;
+
 @end
 
 @implementation DTCompositeViewController
-@synthesize subviewControllers;
+
 
 - (void)dealloc {
-	NSArray *controllers = [subviewControllers allObjects];
-	[subviewControllers removeAllObjects];
+	NSArray *controllers = [_subviewControllers allObjects];
+	[_subviewControllers removeAllObjects];
 	for (UIViewController <DTActsAsChildViewController> *child in controllers) {
 		child.containerViewController = nil;
 	}
-	self.subviewControllers = nil;
-    [super dealloc];
 }
 
 #pragma mark UIViewController methdos
 
 - (void)viewWillAppear:(BOOL)animated {
-	for (UIViewController *controller in subviewControllers) {
+	for (UIViewController *controller in _subviewControllers) {
 		[controller viewWillAppear:animated];
 	}
 	[super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	for (UIViewController *controller in subviewControllers) {
+	for (UIViewController *controller in _subviewControllers) {
 		[controller viewDidAppear:animated];
 	}
 	[super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	for (UIViewController *controller in subviewControllers) {
+	for (UIViewController *controller in _subviewControllers) {
 		[controller viewWillDisappear:animated];
 	}
 	[super viewWillDisappear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	for (UIViewController *controller in subviewControllers) {
+	for (UIViewController *controller in _subviewControllers) {
 		[controller viewDidDisappear:animated];
 	}
 	[super viewDidDisappear:animated];
@@ -76,10 +74,10 @@
 #pragma mark Dynamic properties
 	 
 - (NSMutableSet *)subviewControllers {
-	if (!subviewControllers) {
+	if (!_subviewControllers) {
 		self.subviewControllers = [NSMutableSet setWithCapacity:4];
 	}
-	return subviewControllers;
+	return _subviewControllers;
 }
 
 @end

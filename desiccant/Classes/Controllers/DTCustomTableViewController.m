@@ -19,7 +19,6 @@
    self.cellNibName = nil;
    self.cellIdentifier = nil;
    DTLog(@"DTCustomTableViewController dealloc");
-   [super dealloc];
 }
 
 - (void)viewDidLoad {
@@ -50,7 +49,7 @@
 
 // Subclasses can override this to return a custom subclass of DTCustomTableViewCell with retain count 0 (autoreleased)
 - (DTCustomTableViewCell *)constructCell {
-    return [[[DTCustomTableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+    return [[DTCustomTableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,21 +58,20 @@
       theCell = [self headerRowForIndexPath:indexPath];
    } else {
       NSAssert(cellIdentifier != nil, @"Cell identifier has not been set.  Check yer code!");
-      cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-      if (cell == nil) {
+      self.cell = (DTCustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+      if (self.cell == nil) {
          if (self.cellNibName) {
             [[NSBundle mainBundle] loadNibNamed:self.cellNibName owner:self options:nil];
-            self.cellIdentifier = cell.reuseIdentifier;
+            self.cellIdentifier = self.cell.reuseIdentifier;
             NSAssert(cellIdentifier != nil, @"Cell identifier must be set in Interface Builder when using cells this way.");
-            [cell retain];
          } else {
             self.cell = [self constructCell];
             [self customizeCell];
          }
       } 
       indexPath = [self adjustIndexPathForHeaders:indexPath];
-      [self configureCell: cell atIndexPath: indexPath];
-      theCell = cell;
+      [self configureCell: self.cell atIndexPath: indexPath];
+      theCell = self.cell;
    }    
    return theCell;
 }

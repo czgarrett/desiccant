@@ -30,18 +30,6 @@
 
 #pragma mark Memory management
 
-- (void)dealloc {
-	self.dtTextLabel = nil;
-	self.dtDetailTextLabel = nil;
-	self.dtImageView = nil;
-	self.delegate = nil;
-	self.dtData = nil;
-   self.deleteBlock = nil;
-	
-	[super dealloc];
-   DTLog(@"Cell dealloced");
-}
-
 #pragma mark Public methods
 
 // Default implementation sets the title using titleFromData:, the subtitle

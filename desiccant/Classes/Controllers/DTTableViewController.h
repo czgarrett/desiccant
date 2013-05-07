@@ -11,21 +11,8 @@
 #import "DTActsAsChildViewController.h"
 #import "DTActivityIndicatorView.h"
 
-@interface DTTableViewController : UITableViewController <DTActsAsChildViewController> {
-   IBOutlet UIView *headerView;
-   IBOutlet UIView *footerView;
-   IBOutlet DTCustomTableViewCell *cell;
-	UIViewController *dtContainerViewController;
-	UIView *dtWindowOverlay;
-	BOOL shouldAutorotateToPortrait;
-	BOOL shouldAutorotateToLandscape;
-	BOOL shouldAutorotateUpsideDown;
-	BOOL hasAppeared;
-	DTActivityIndicatorView *dtActivityIndicator;
-   
-   BOOL keyboardVisible;
-   CGFloat keyboardAdjustment;
-}
+@interface DTTableViewController : UITableViewController <DTActsAsChildViewController>
+
 
 @property (nonatomic, assign) UIViewController *containerViewController;
 // Returns the top of this nested controller hierarchy, or self if controller has
