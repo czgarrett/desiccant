@@ -1,6 +1,6 @@
 //
 //  DTGLKitBaseEffectEditorViewController.m
-//  word-game-3
+//  qatqi
 //
 //  Created by Garrett Christopher on 10/26/11.
 //  Copyright (c) 2011 ZWorkbench, Inc. All rights reserved.
