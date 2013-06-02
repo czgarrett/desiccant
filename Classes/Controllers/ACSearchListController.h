@@ -10,63 +10,63 @@
 #import "Constants.h"
 #import "TableViewDataSourceDelegate.h"
 
-@class ACSearchListDataSource;
-
-@interface ACSearchListController : UIViewController <UISearchBarDelegate, TableViewDataSourceDelegate, UITableViewDelegate> {
-	UITableView *tableView;
-	UISearchBar *searchField;
-   BOOL editing;
-	ACSearchListDataSource *dataSource;
-	
-	UIActivityIndicatorView *activityIndicator;
-	UIView *busyView;
-   
-   UILabel *footerLabel;
-   
-   // Customizable properties
-   UIBarStyle searchFieldBarStyle;
-	UITableViewCellAccessoryType tableViewCellAccessoryType;
-	
-   // Querying properties
-   Class activeRecordClass;
-   NSString *queryColumn;
-   NSString *condition;
-   NSString *orderColumn;
-   NSString *resultsColumn;
-   NSInteger searchLimit;
-	BOOL startWithKeyboardVisible;
-	BOOL hideKeyboardWhenSearchButtonClicked;
-	BOOL stripDashesFromInput;
-	BOOL stripSpacesFromInput;
-	
-	Class editControllerClass;
-	Class createControllerClass;
-   Class showControllerClass;
-}
-
-@property (nonatomic,retain) UITableView *tableView;
-@property (nonatomic,retain) UISearchBar *searchField;
-@property (nonatomic,retain) ACSearchListDataSource *dataSource;
-
-@property (nonatomic, assign) UIBarStyle searchFieldBarStyle;
-@property (nonatomic, assign) UITableViewCellAccessoryType tableViewCellAccessoryType;
-
-// Querying properties
-@property (nonatomic) Class activeRecordClass;
-@property (nonatomic, retain) NSString *queryColumn;
-@property (nonatomic, retain) NSString *condition;
-@property (nonatomic, retain) NSString *orderColumn;
-@property (nonatomic, retain) NSString *resultsColumn;
-@property (nonatomic, assign) NSInteger searchLimit;
-@property (nonatomic) BOOL startWithKeyboardVisible;
-@property (nonatomic) BOOL hideKeyboardWhenSearchButtonClicked;
-@property (nonatomic) BOOL stripDashesFromInput;
-@property (nonatomic) BOOL stripSpacesFromInput;
-
-@property (nonatomic) Class editControllerClass;
-@property (nonatomic) Class createControllerClass;
-@property (nonatomic) Class showControllerClass;
-
-- (void) filterTextChanged: (NSString *)filterText;
-
-@end
+//@class ACSearchListDataSource;
+//
+//@interface ACSearchListController : UIViewController <UISearchBarDelegate, TableViewDataSourceDelegate, UITableViewDelegate> {
+//	UITableView *tableView;
+//	UISearchBar *searchField;
+//   BOOL editing;
+//	ACSearchListDataSource *dataSource;
+//	
+//	UIActivityIndicatorView *activityIndicator;
+//	UIView *busyView;
+//   
+//   UILabel *footerLabel;
+//   
+//   // Customizable properties
+//   UIBarStyle searchFieldBarStyle;
+//	UITableViewCellAccessoryType tableViewCellAccessoryType;
+//	
+//   // Querying properties
+//   Class activeRecordClass;
+//   NSString *queryColumn;
+//   NSString *condition;
+//   NSString *orderColumn;
+//   NSString *resultsColumn;
+//   NSInteger searchLimit;
+//	BOOL startWithKeyboardVisible;
+//	BOOL hideKeyboardWhenSearchButtonClicked;
+//	BOOL stripDashesFromInput;
+//	BOOL stripSpacesFromInput;
+//	
+//	Class editControllerClass;
+//	Class createControllerClass;
+//   Class showControllerClass;
+//}
+//
+//@property (nonatomic,retain) UITableView *tableView;
+//@property (nonatomic,retain) UISearchBar *searchField;
+//@property (nonatomic,retain) ACSearchListDataSource *dataSource;
+//
+//@property (nonatomic, assign) UIBarStyle searchFieldBarStyle;
+//@property (nonatomic, assign) UITableViewCellAccessoryType tableViewCellAccessoryType;
+//
+//// Querying properties
+//@property (nonatomic) Class activeRecordClass;
+//@property (nonatomic, retain) NSString *queryColumn;
+//@property (nonatomic, retain) NSString *condition;
+//@property (nonatomic, retain) NSString *orderColumn;
+//@property (nonatomic, retain) NSString *resultsColumn;
+//@property (nonatomic, assign) NSInteger searchLimit;
+//@property (nonatomic) BOOL startWithKeyboardVisible;
+//@property (nonatomic) BOOL hideKeyboardWhenSearchButtonClicked;
+//@property (nonatomic) BOOL stripDashesFromInput;
+//@property (nonatomic) BOOL stripSpacesFromInput;
+//
+//@property (nonatomic) Class editControllerClass;
+//@property (nonatomic) Class createControllerClass;
+//@property (nonatomic) Class showControllerClass;
+//
+//- (void) filterTextChanged: (NSString *)filterText;
+//
+//@end

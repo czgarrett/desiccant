@@ -202,17 +202,17 @@
 }
 
 // Returning objects by performing selectors
-- (id) objectByPerformingSelectorWithArguments: (SEL) selector, ...
-{
-	id result;
-	va_list arglist;
-	va_start(arglist, selector);
-	[self performSelector:selector withReturnValue:&result andArguments:arglist];
-	va_end(arglist);
-	
-	CFShow(result);
-	return result;
-}
+//- (id) objectByPerformingSelectorWithArguments: (SEL) selector, ...
+//{
+//	id result;
+//	va_list arglist;
+//	va_start(arglist, selector);
+//	[self performSelector:selector withReturnValue:&result andArguments:arglist];
+//	va_end(arglist);
+//	
+//	CFShow(result);
+//	return result;
+//}
 /*
  - (id) objectByPerformingSelector:(SEL)selector withObject:(id) object1 withObject: (id) object2
  {

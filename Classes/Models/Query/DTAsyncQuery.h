@@ -91,7 +91,7 @@
 @property (nonatomic, retain) NSObject <DTSortsUntypedData> *rowSorter;
 // If not nil, grouper will be called to group transformed/filtered/sorted rows
 // Retains.  Release manually to prevent circular references if necessaqry.
-@property (nonatomic, retain) NSObject <DTGroupsUntypedData> *grouper;  
+@property (nonatomic, retain) NSObject <DTGroupsUntypedData> *grouper;
 @property (nonatomic, readonly) BOOL updating;
 @property (nonatomic, readonly) BOOL loaded;
 @property (nonatomic, copy)  NSString *error;

@@ -32,7 +32,7 @@
 	}
     if (descriptionLabel) {
 		descriptionLabel.text = @"";
-		NSString *description = [[data stringForKey:@"description"] stringByRemovingMarkupTags];
+		NSString *description = [[data stringForKey:@"content_encoded"] stringByRemovingMarkupTags];
 		if (description) descriptionLabel.text = description;
 	}
     if (shortAgeLabel) {

@@ -33,7 +33,6 @@
 			  state:(NSString *)theState
 				zip:(NSString *)theZip 
 {
-	unless ([theName length] + [theAddress1 length] + [theAddress2 length] + [theCity length] + [theState length] + [theZip length]) return nil;
 	if (self = [super init]) {
 		self.name = theName;
 		self.address1 = theAddress1;
@@ -52,6 +51,7 @@
 				 state:(NSString *)theState
 				   zip:(NSString *)theZip 
 {
+    unless ([theName length] + [theAddress1 length] + [theAddress2 length] + [theCity length] + [theState length] + [theZip length]) return nil;
 	return [[[self alloc] initWithName:theName address1:theAddress1 address2:theAddress2 city:theCity state:theState zip:theZip] autorelease];
 }
 

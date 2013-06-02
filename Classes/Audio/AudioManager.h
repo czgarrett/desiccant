@@ -14,12 +14,12 @@
    NSMutableDictionary *players;
 }
 
-+ (AudioManager *)instance;
-+ (void) releaseInstance;
-
-- (AudioPlayer *) newPlayerForSound: (NSString *) soundFileName;
-- (AudioPlayer *) playerForSound: (NSString *)soundFileName;
-- (void) playSound: (NSString *)soundFileName;
-- (void) stopSound: (NSString *)soundFileName;
-- (void) stopAllPlayers;
+//+ (AudioManager *)instance;
+//+ (void) releaseInstance;
+//
+//- (AudioPlayer *) newPlayerForSound: (NSString *) soundFileName;
+//- (AudioPlayer *) playerForSound: (NSString *)soundFileName;
+//- (void) playSound: (NSString *)soundFileName;
+//- (void) stopSound: (NSString *)soundFileName;
+//- (void) stopAllPlayers;
 @end

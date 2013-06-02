@@ -328,8 +328,8 @@
         [self setResponseFields:data];
     }
     else if ([data objectForKey:@"fault"]) {
-        NSString *faultResponse = [[NSString alloc]  initWithBytes:[self.body bytes]
-                                                      length:[self.body length] encoding: NSUTF8StringEncoding];
+        NSString *faultResponse = [[[NSString alloc]  initWithBytes:[self.body bytes]
+                                                      length:[self.body length] encoding: NSUTF8StringEncoding] autorelease];
         DTLog(@"*** Fault returned for query:\n\n%@", faultResponse);
         for (NSDictionary *member in [[data dictionaryForKey:@"fault"] arrayForKey:@"struct"]) {
             if ([[member stringForKey:@"name"] isEqual:@"faultCode"]) {

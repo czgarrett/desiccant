@@ -413,54 +413,54 @@ static NSLock *crayolaNameCacheLock;
 	return [NSString stringWithFormat:@"%0.6X", (unsigned int)self.rgbHex];
 }
 
-- (NSString *)closestColorNameFor: (const char *) aColorDatabase {
-	NSAssert(self.canProvideRGBComponents, @"Must be a RGB color to use closestColorName");
-	
-	int targetHex = self.rgbHex;
-	int rInt = (targetHex >> 16) & 0x0ff;
-	int gInt = (targetHex >> 8) & 0x0ff;
-	int bInt = (targetHex >> 0) & 0x0ff;
-	
-	float bestScore = MAXFLOAT;
-	const char* bestPos = nil;
-	
-	// Walk the name db string looking for the name with closest match
-	for (const char* p = aColorDatabase; (p = strchr(p, '#')); ++p) {
-		int r,g,b;
-		if (sscanf(p+1, "%2x%2x%2x", &r, &g, &b) == 3) {
-			// Calculate difference between this color and the target color
-			int rDiff = abs(rInt - r);
-			int gDiff = abs(gInt - g);
-			int bDiff = abs(bInt - b);
-			float score = logf(rDiff+1) + logf(gDiff+1) + logf(bDiff+1);
-			
-			// Track the best score/name seen
-			if (score < bestScore) {
-				bestScore = score;
-				bestPos = p;
-			}
-		}
-	}
-	
-	// bestPos now points to the # following the best name seen
-	// Backup to the start of the name and return it
-	const char* name;
-	for (name = bestPos-1; *name != ','; --name)
-		;
-	++name;
-	NSString *result = [[[NSString alloc] initWithBytes:name length:bestPos - name encoding:NSUTF8StringEncoding] autorelease];
-	
-	return result;
-}
+//- (NSString *)closestColorNameFor: (const char *) aColorDatabase {
+//	NSAssert(self.canProvideRGBComponents, @"Must be a RGB color to use closestColorName");
+//	
+//	int targetHex = self.rgbHex;
+//	int rInt = (targetHex >> 16) & 0x0ff;
+//	int gInt = (targetHex >> 8) & 0x0ff;
+//	int bInt = (targetHex >> 0) & 0x0ff;
+//	
+//	float bestScore = MAXFLOAT;
+//	const char* bestPos = nil;
+//	
+//	// Walk the name db string looking for the name with closest match
+//	for (const char* p = aColorDatabase; (p = strchr(p, '#')); ++p) {
+//		int r,g,b;
+//		if (sscanf(p+1, "%2x%2x%2x", &r, &g, &b) == 3) {
+//			// Calculate difference between this color and the target color
+//			int rDiff = abs(rInt - r);
+//			int gDiff = abs(gInt - g);
+//			int bDiff = abs(bInt - b);
+//			float score = logf(rDiff+1) + logf(gDiff+1) + logf(bDiff+1);
+//			
+//			// Track the best score/name seen
+//			if (score < bestScore) {
+//				bestScore = score;
+//				bestPos = p;
+//			}
+//		}
+//	}
+//	
+//	// bestPos now points to the # following the best name seen
+//	// Backup to the start of the name and return it
+//	const char* name;
+//	for (name = bestPos-1; *name != ','; --name)
+//		;
+//	++name;
+//	NSString *result = [[[NSString alloc] initWithBytes:name length:bestPos - name encoding:NSUTF8StringEncoding] autorelease];
+//	
+//	return result;
+//}
 
 
-- (NSString *)closestColorName {
-	return [self closestColorNameFor:colorNameDB];
-}
-
-- (NSString *)closestCrayonName {
-	return [self closestColorNameFor:crayolaNameDB];
-}
+//- (NSString *)closestColorName {
+//	return [self closestColorNameFor:colorNameDB];
+//}
+//
+//- (NSString *)closestCrayonName {
+//	return [self closestColorNameFor:crayolaNameDB];
+//}
 
 + (UIColor *)colorWithString:(NSString *)stringToConvert {
 	NSScanner *scanner = [NSScanner scannerWithString:stringToConvert];
@@ -561,39 +561,39 @@ static NSLock *crayolaNameCacheLock;
 
 #pragma mark Color Space Conversions
 
-+ (void)hue:(CGFloat)h saturation:(CGFloat)s brightness:(CGFloat)v toRed:(CGFloat *)pR green:(CGFloat *)pG blue:(CGFloat *)pB {
-	CGFloat r,g,b;
-	
-	// From Foley and Van Dam
-	
-	if (s == 0.0f) {
-		// Achromatic color: there is no hue
-		r = g = b = v;
-	} else {
-		// Chromatic color: there is a hue
-		if (h == 360.0f) h = 0.0f;
-		h /= 60.0f; // h is now in [0, 6)
-		
-		int i = floorf(h); // largest integer <= h
-		CGFloat f = h - i; // fractional part of h
-		CGFloat p = v * (1 - s);
-		CGFloat q = v * (1 - (s * f));
-		CGFloat t = v * (1 - (s * (1 - f)));
-		
-		switch (i) {
-			case 0: r = v; g = t; b = p; break;
-			case 1: r = q; g = v; b = p; break;
-			case 2: r = p; g = v; b = t; break;
-			case 3: r = p; g = q; b = v; break;
-			case 4: r = t; g = p; b = v; break;
-			case 5: r = v; g = p; b = q; break;
-		}
-	}
-	
-	if (pR) *pR = r;
-	if (pG) *pG = g;
-	if (pB) *pB = b;
-}
+//+ (void)hue:(CGFloat)h saturation:(CGFloat)s brightness:(CGFloat)v toRed:(CGFloat *)pR green:(CGFloat *)pG blue:(CGFloat *)pB {
+//	CGFloat r,g,b;
+//	
+//	// From Foley and Van Dam
+//	
+//	if (s == 0.0f) {
+//		// Achromatic color: there is no hue
+//		r = g = b = v;
+//	} else {
+//		// Chromatic color: there is a hue
+//		if (h == 360.0f) h = 0.0f;
+//		h /= 60.0f; // h is now in [0, 6)
+//		
+//		int i = floorf(h); // largest integer <= h
+//		CGFloat f = h - i; // fractional part of h
+//		CGFloat p = v * (1 - s);
+//		CGFloat q = v * (1 - (s * f));
+//		CGFloat t = v * (1 - (s * (1 - f)));
+//		
+//		switch (i) {
+//			case 0: r = v; g = t; b = p; break;
+//			case 1: r = q; g = v; b = p; break;
+//			case 2: r = p; g = v; b = t; break;
+//			case 3: r = p; g = q; b = v; break;
+//			case 4: r = t; g = p; b = v; break;
+//			case 5: r = v; g = p; b = q; break;
+//		}
+//	}
+//	
+//	if (pR) *pR = r;
+//	if (pG) *pG = g;
+//	if (pB) *pB = b;
+//}
 
 
 + (void)red:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b toHue:(CGFloat *)pH saturation:(CGFloat *)pS brightness:(CGFloat *)pV {

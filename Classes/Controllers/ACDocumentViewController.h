@@ -19,11 +19,11 @@
    FileMenuItem *fileMenuItem;
 }
 
-@property (nonatomic, retain) FileMenuItem *fileMenuItem;
-@property (nonatomic, retain) UISearchBar *searchBar;
-@property (nonatomic, retain) ACWebSearchHandler *searchHandler;
-@property (nonatomic, retain) NSURL *baseURL;
-
-- (id) initWithFileMenuItem: (FileMenuItem *) fileMenuItem;
-
+//@property (nonatomic, retain) FileMenuItem *fileMenuItem;
+//@property (nonatomic, retain) UISearchBar *searchBar;
+//@property (nonatomic, retain) ACWebSearchHandler *searchHandler;
+//@property (nonatomic, retain) NSURL *baseURL;
+//
+//- (id) initWithFileMenuItem: (FileMenuItem *) fileMenuItem;
+//
 @end

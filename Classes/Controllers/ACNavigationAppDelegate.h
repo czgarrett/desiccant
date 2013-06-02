@@ -17,16 +17,16 @@
    Class initialControllerClass;
 }
 
-@property (nonatomic) Class initialControllerClass;
-@property (nonatomic, retain) NSOperationQueue *operationQueue;
-@property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UIViewController *startViewController;
-@property (nonatomic, retain) UINavigationController *navigationController;
-
-- (id) initWithInitialControllerClass: (Class) myControllerClass;
-- (void)createStartViewController;
-+ (NSOperationQueue *) sharedOperationQueue;
-+ (ACNavigationAppDelegate *) sharedDelegate;
-+ (void) addOperationToSharedQueue: (NSOperation *) operation;
-
+//@property (nonatomic) Class initialControllerClass;
+//@property (nonatomic, retain) NSOperationQueue *operationQueue;
+//@property (nonatomic, retain) UIWindow *window;
+//@property (nonatomic, retain) UIViewController *startViewController;
+//@property (nonatomic, retain) UINavigationController *navigationController;
+//
+//- (id) initWithInitialControllerClass: (Class) myControllerClass;
+//- (void)createStartViewController;
+//+ (NSOperationQueue *) sharedOperationQueue;
+//+ (ACNavigationAppDelegate *) sharedDelegate;
+//+ (void) addOperationToSharedQueue: (NSOperation *) operation;
+//
 @end

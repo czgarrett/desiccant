@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol DTFiltersUntypedData
+@protocol DTFiltersUntypedData <NSObject>
 - (BOOL)rejectsRow:(NSMutableDictionary *)row;
 @end

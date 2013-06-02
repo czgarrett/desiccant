@@ -1,22 +1,22 @@
+////
+////  QueryRow.h
+////  ZWorkbench
+////
+////  Created by Christopher Garrett on 6/4/08.
+////  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
+////
 //
-//  QueryRow.h
-//  ZWorkbench
+//#import <UIKit/UIKit.h>
+//#import <sqlite3.h>
 //
-//  Created by Christopher Garrett on 6/4/08.
-//  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
+//@class QueryResult;
 //
-
-#import <UIKit/UIKit.h>
-#import <sqlite3.h>
-
-@class QueryResult;
-
-@interface QueryRow : NSObject {
-	NSMutableDictionary *columnDictionary;
-}
-- initWithStatement: (sqlite3_stmt *)statement result: (QueryResult *)result;
-- (NSObject *) valueForColumn: (NSString *)columnName;
-- (NSInteger) integerValueForColumn: (NSString *)columnName;
-- (NSString *) stringValueForColumn: (NSString *)columnName;
-- (NSDictionary *)columnValues;
-@end
+//@interface QueryRow : NSObject {
+//	NSMutableDictionary *columnDictionary;
+//}
+//- initWithStatement: (sqlite3_stmt *)statement result: (QueryResult *)result;
+//- (NSObject *) valueForColumn: (NSString *)columnName;
+//- (NSInteger) integerValueForColumn: (NSString *)columnName;
+//- (NSString *) stringValueForColumn: (NSString *)columnName;
+//- (NSDictionary *)columnValues;
+//@end

@@ -16,7 +16,7 @@
 @synthesize iconName;
 
 - (id) initWithDescription: (NSString *)myDescription selector:(SEL)mySelector iconName: (NSString *)myIconName {
-   if (self == [super init]) {
+   if (self = [super init]) {
       self.description = myDescription;
       self.selector = mySelector;
       self.iconName = myIconName;

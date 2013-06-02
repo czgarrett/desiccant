@@ -1,20 +1,20 @@
+////
+////  DTSQLiteQuery.h
+////  ZWorkbench
+////
+////  Created by Curtis Duhn on 6/28/09.
+////  Copyright 2009 ZWorkbench. All rights reserved.
+////
 //
-//  DTSQLiteQuery.h
-//  ZWorkbench
+//#import <Foundation/Foundation.h>
+//#import "DTAsyncQuery.h"
 //
-//  Created by Curtis Duhn on 6/28/09.
-//  Copyright 2009 ZWorkbench. All rights reserved.
+//@interface DTSQLiteQuery : DTAsyncQuery {
+//    NSString *sql;
+//}
 //
-
-#import <Foundation/Foundation.h>
-#import "DTAsyncQuery.h"
-
-@interface DTSQLiteQuery : DTAsyncQuery {
-    NSString *sql;
-}
-
-@property (readonly, copy) NSString *sql;
-
-+ (DTSQLiteQuery *)queryWithSQL:(NSString *)sql delegate:(NSObject <DTAsyncQueryDelegate> *)delegate;
-
-@end
+//@property (readonly, copy) NSString *sql;
+//
+//+ (DTSQLiteQuery *)queryWithSQL:(NSString *)sql delegate:(NSObject <DTAsyncQueryDelegate> *)delegate;
+//
+//@end

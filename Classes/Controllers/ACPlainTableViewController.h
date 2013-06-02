@@ -1,16 +1,16 @@
+////
+////  ACPlainTableViewController.h
+////  ZWorkbench
+////
+////  Created by Christopher Garrett on 8/30/08.
+////  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
+////
 //
-//  ACPlainTableViewController.h
-//  ZWorkbench
+//#import <UIKit/UIKit.h>
+//#import "ACTableViewController.h"
 //
-//  Created by Christopher Garrett on 8/30/08.
-//  Copyright 2008 ZWorkbench, Inc.. All rights reserved.
+//@interface ACPlainTableViewController : ACTableViewController {
 //
-
-#import <UIKit/UIKit.h>
-#import "ACTableViewController.h"
-
-@interface ACPlainTableViewController : ACTableViewController {
-
-}
-
-@end
+//}
+//
+//@end

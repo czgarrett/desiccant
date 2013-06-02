@@ -28,7 +28,7 @@
 - (const char *) returnTypeForSelector:(SEL)selector;
 
 // Request return value from performing selector
-- (id) objectByPerformingSelectorWithArguments: (SEL) selector, ...;
+//- (id) objectByPerformingSelectorWithArguments: (SEL) selector, ...;
 - (id) objectByPerformingSelector:(SEL)selector withObject:(id) object1 withObject: (id) object2;
 - (id) objectByPerformingSelector:(SEL)selector withObject:(id) object1;
 - (id) objectByPerformingSelector:(SEL)selector;
