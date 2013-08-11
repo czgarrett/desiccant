@@ -106,6 +106,11 @@
    return [NSNumber numberWithInteger: [self integerValue]];
 }
 
+- (BOOL) isEqualToNumber: (NSNumber *) number {
+    NSAssert(NO, @"This string isn't a number silly!");
+    return NO;
+}
+
 
 - (NSString *)trimmed {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
