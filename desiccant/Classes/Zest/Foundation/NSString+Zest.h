@@ -79,6 +79,8 @@
 // Returns a range with index 0 and length = [self length]
 - (NSRange) range;
 
+- (NSString *) countryAbbreviation;
+- (NSString *) stateAbbreviation;
 
 /// Get a string where internal characters that need escaping for HTML are escaped 
 //

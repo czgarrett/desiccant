@@ -408,6 +408,93 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    return [[NSString alloc] initWithData: data encoding: encoding];
 }
 
+- (NSString *) countryAbbreviation {
+    if ([[self uppercaseString] isEqualToString: @"UNITED STATES"]) {
+        return @"USA";
+    } else if ([[self uppercaseString] isEqualToString: @"UNITED KINGDOM"]) {
+        return @"UK";
+    } else {
+        return self;
+    }
+}
+
+- (NSString *) stateAbbreviation {
+    NSString *upper = [self uppercaseString];
+    NSDictionary *states = @{
+                             @"ALABAMA" :  @"AL",
+                             @"ALASKA" : @"AK",
+                             @"ARIZONA" : @"AZ",
+                             @"ARKANSAS" : @"AR",
+                             @"CALIFORNIA" : @"CA",
+                             @"COLORADO" : @"CO",
+                             @"CONNECTICUT" : @"CT",
+                             @"DELAWARE" : @"DE",
+                             @"DISTRICT OF COLUMBIA" : @"DC",
+                             @"FLORIDA" : @"FL",
+                             @"GEORGIA" : @"GA",
+                             @"HAWAII" : @"HI",
+                             @"IDAHO" : @"ID",
+                             @"ILLINOIS" : @"IL",
+                             @"INDIANA" : @"IN",
+                             @"IOWA" : @"IA",
+                             @"KANSAS" : @"KS",
+                             @"KENTUCKY" : @"KY",
+                             @"LOUISIANA" : @"LA",
+                             @"MAINE" : @"ME",
+                             @"MARYLAND" : @"MD",
+                             @"MASSACHUSETTS" : @"MA",
+                             @"MICHIGAN" : @"MI",
+                             @"MINNESOTA" : @"MN",
+                             @"MISSISSIPPI" : @"MS",
+                             @"MISSOURI" : @"MO",
+                             @"MONTANA" : @"MT",
+                             @"NEBRASKA" : @"NE",
+                             @"NEVADA" : @"NV",
+                             @"NEW HAMPSHIRE" : @"NH",
+                             @"NEW JERSEY" : @"NJ",
+                             @"NEW MEXICO" : @"NM",
+                             @"NEW YORK" : @"NY",
+                             @"NORTH CAROLINA" : @"NC",
+                             @"NORTH DAKOTA" : @"ND",
+                             @"OHIO" : @"OH",
+                             @"OKLAHOMA" : @"OK",
+                             @"OREGON" : @"OR",
+                             @"PENNSYLVANIA" : @"PA",
+                             @"RHODE ISLAND" : @"RI",
+                             @"SOUTH CAROLINA" : @"SC",
+                             @"SOUTH DAKOTA" : @"SD",
+                             @"TENNESSEE" : @"TN",
+                             @"TEXAS" : @"TX",
+                             @"UTAH" : @"UT",
+                             @"VERMONT" : @"VT",
+                             @"WASHINGTON" : @"WA",
+                             @"WEST VIRGINIA" : @"WV",
+                             @"WISCONSIN" : @"WI",
+                             @"WYOMING" : @"WY",
+                             // Canada
+                             @"BRITISH COLUMBIA" : @"BC",
+                             @"NEW BRUNSWICK" : @"NB",
+                             @"NOVA SCOTIA" : @"NS",
+                             @"NEWFOUNDLAND AND LABRADOR" : @"NL",
+                             @"NORTHWEST TERRITORIES" : @"NT",
+                             @"PRINCE EDWARD ISLAND" : @"PE",
+                             @"SASKATCHEWAN" : @"SK",
+                             // Australia
+                             @"NEW SOUTH WALES" : @"NSW",
+                             @"SOUTH AUSTRALIA" : @"SA",
+                             @"WESTERN AUSTRALIA" : @"WA",
+                             @"AUSTRALIAN CAPITAL TERRITORY" : @"ACT"
+                             };
+    NSString *abbr = states[upper];
+    if(abbr) {
+        return abbr;
+    } else {
+        return self;
+    }
+    
+}
+
+
 /*
 + (NSString *) stringWithGUID {
    CFUUIDRef theUUID = CFUUIDCreate(NULL);
