@@ -443,6 +443,11 @@
 	return [components year];
 }
 
+- (NSInteger) yearForWeekOfYear {
+	NSDateComponents *components = [CURRENT_CALENDAR components: NSYearForWeekOfYearCalendarUnit fromDate:self];
+	return [components yearForWeekOfYear];
+}
+
 @end
 
 
