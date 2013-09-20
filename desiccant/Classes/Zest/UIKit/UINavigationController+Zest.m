@@ -22,7 +22,7 @@
          return parent;
       }
    }
-   return (UIViewController *)[self.viewControllers objectAtIndex: 0];
+    return nil;
 }
 
 - (void)showOrHideToolbarForViewController:(UIViewController *)controller {
