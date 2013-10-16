@@ -40,7 +40,6 @@
          imageBlock(image);   
       });
    });
-   dispatch_release(image_queue);
 }
 
 
