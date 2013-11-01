@@ -132,6 +132,7 @@
 //- (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
 
 - (NSString *) pluralize;
+- (NSString *) pluralize: (int) number;
 
 // Useful for mixing up NSString objects with NSNumber.  Returns self.
 - (NSString *) stringValue;

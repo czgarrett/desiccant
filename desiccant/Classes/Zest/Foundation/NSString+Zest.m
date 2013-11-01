@@ -507,6 +507,14 @@ static int EscapeMapCompare(const void *ucharVoid, const void *mapVoid) {
    return [self stringByAppendingString: @"s"];
 }
 
+- (NSString *) pluralize: (int) number {
+    if (number == 1) {
+        return self;
+    } else {
+        return [self pluralize];
+    }
+}
+
 - (NSString *) to_s {
     return self;
 }
