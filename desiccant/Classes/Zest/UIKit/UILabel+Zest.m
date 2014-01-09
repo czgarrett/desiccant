@@ -24,12 +24,29 @@
 
 - (CGFloat)heightToFitText {
 	NSAssert (self.bounds.size.width > 0, @"Warning: This method depends on the label having a nonzero width when called.");
-	return [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(self.bounds.size.width, [self maxHeight]) lineBreakMode:self.lineBreakMode].height;
+    
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = self.lineBreakMode;
+    NSDictionary *attributes = @{NSParagraphStyleAttributeName: paragraph,
+                                 NSFontAttributeName: self.font};
+    CGSize boundingSize = CGSizeMake(self.bounds.size.width, [self maxHeight]);
+    CGSize size = [self.text boundingRectWithSize: boundingSize
+                                   options: 0
+                                attributes: attributes
+                                   context: nil].size;
+    return ceilf(size.height);
 }
 
 - (CGFloat) currentTextWidth {
    NSAssert(self.numberOfLines == 1, @"This method should only be called on a label with one line of text");
-   return [self.text sizeWithFont: self.font constrainedToSize: self.bounds.size lineBreakMode: self.lineBreakMode].width;
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.lineBreakMode = self.lineBreakMode;
+    NSDictionary *attributes = @{NSParagraphStyleAttributeName: paragraph,
+                                 NSFontAttributeName: self.font};
+    return [self.text boundingRectWithSize: self.bounds.size
+                                   options: 0
+                                attributes: attributes
+                                   context: nil].size.width;
 }
 
 
@@ -38,12 +55,7 @@
 }
 
 - (CGFloat)lineHeight {
-//	CGFloat spaceHeight = [@" " sizeWithFont:self.font constrainedToSize:CGSizeMake(9999.0, 9999.0) lineBreakMode:self.lineBreakMode].height;
-//	CGFloat xHeight = [@"x" sizeWithFont:self.font constrainedToSize:CGSizeMake(9999.0, 9999.0) lineBreakMode:self.lineBreakMode].height;
-//	CGFloat emHeight = [@"M" sizeWithFont:self.font constrainedToSize:CGSizeMake(9999.0, 9999.0) lineBreakMode:self.lineBreakMode].height;
-//	CGFloat twoLineEmHeight = [@"M\nM" sizeWithFont:self.font constrainedToSize:CGSizeMake(9999.0, 9999.0) lineBreakMode:self.lineBreakMode].height;
 	return [self.font ascender] - [self.font descender] + 1;
-//	return [@"MyText" sizeWithFont:self.font constrainedToSize:CGSizeMake(9999.0, 9999.0) lineBreakMode:self.lineBreakMode].height;
 }
 
 - (NSInteger)numberOfLinesToFitText {
