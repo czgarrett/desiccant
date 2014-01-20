@@ -40,7 +40,20 @@
 - (void) setAttributedString:(NSMutableAttributedString *)attributedString {
    _attributedString = attributedString;
    
+   [self invalidateIntrinsicContentSize];
    [self setNeedsDisplay];
+}
+
+- (CGSize) intrinsicContentSize {
+   CGSize size = CGSizeZero;
+   if (_attributedString) {
+      CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFMutableAttributedStringRef) _attributedString);
+      if (framesetter != NULL) {
+         size = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGRectGetWidth(self.bounds), CGFLOAT_MAX), NULL);
+         CFRelease(framesetter);
+      }
+   }
+   return size;
 }
 
 // Only override drawRect: if you perform custom drawing.
@@ -48,12 +61,13 @@
 - (void)drawRect:(CGRect)rect
 {
    if (!_attributedString) return;
+   
    // Initialize a graphics context and set the text matrix to a known value.
    CGContextRef context = UIGraphicsGetCurrentContext();
    
    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)_attributedString);
    
-   CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(self.bounds.size.width, CGFLOAT_MAX), NULL);
+   CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGRectGetWidth(self.bounds), CGFLOAT_MAX), NULL);
    suggestedSize.height += 20.0;
    
    CGContextSaveGState(context);
