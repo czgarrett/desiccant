@@ -78,12 +78,14 @@
     CTTextTabRef tabArray[] = { CTTextTabCreate(kCTTextAlignmentLeft, 0, NULL) };
     CFArrayRef tabStops = CFArrayCreate( kCFAllocatorDefault, (const void**) tabArray, 1, &kCFTypeArrayCallBacks );
     CFRelease(tabArray[0]);
+    CTLineBreakMode lineBreakMode = kCTLineBreakByWordWrapping;
     CTParagraphStyleSetting settings[] = {
         {kCTParagraphStyleSpecifierAlignment, sizeof(alignment), &alignment},
         {kCTParagraphStyleSpecifierFirstLineHeadIndent, sizeof(firstLineIndent), &firstLineIndent},
         {kCTParagraphStyleSpecifierHeadIndent, sizeof(hangingIndent), &hangingIndent},
         {kCTParagraphStyleSpecifierDefaultTabInterval, sizeof(tabInterval), &tabInterval},
-        {kCTParagraphStyleSpecifierTabStops, sizeof(CFArrayRef), &tabStops}
+        {kCTParagraphStyleSpecifierTabStops, sizeof(CFArrayRef), &tabStops},
+        {kCTParagraphStyleSpecifierLineBreakMode, sizeof(CTLineBreakMode), &lineBreakMode}
     };
     CTParagraphStyleRef paragraphStyle = CTParagraphStyleCreate(settings, sizeof(settings) / sizeof(settings[0]));
     CFAttributedStringSetAttribute(attrString, CFRangeMake(0, CFAttributedStringGetLength(attrString)), kCTParagraphStyleAttributeName, paragraphStyle);
@@ -92,6 +94,9 @@
     CFRelease(tabStops);
     
     NSMutableAttributedString *ret = (NSMutableAttributedString *)CFBridgingRelease(attrString);
+    
+//    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+//    paragraph.lineBreakMode = NSLin
     
     return ret;
 }
