@@ -17,7 +17,7 @@
 
 + (NSFetchRequest *) fetchRequestFor: (NSString *) entityName inManagedObjectContext: (NSManagedObjectContext *) moc {
    NSFetchRequest *request = [self fetchRequest];
-   [request setEntity: [NSEntityDescription entityForName:@"Player" inManagedObjectContext:moc]];
+   [request setEntity: [NSEntityDescription entityForName: entityName inManagedObjectContext:moc]];
    return request;
 }
 

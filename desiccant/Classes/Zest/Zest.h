@@ -58,7 +58,6 @@
 
 #import "UIKit/UIView+Zest.h"
 #import "UIKit/UIColor+Zest.h"
-#import "UIKit/UILabel+Zest.h"
 #import "UIKit/UINavigationController+Zest.h"
 #import "UIKit/UIViewController+Zest.h"
 #import "UIKit/UIWebView+Zest.h"
