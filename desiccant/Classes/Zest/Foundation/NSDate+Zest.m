@@ -247,6 +247,9 @@
    return [self isLaterThanDate: [NSDate date]];
 }
 
+- (NSTimeInterval) timeIntervalBeforeNow {
+    return -[self timeIntervalSinceNow];
+}
 
 
 #pragma mark Adjusting Dates
