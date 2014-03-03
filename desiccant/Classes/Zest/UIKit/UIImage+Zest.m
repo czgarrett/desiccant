@@ -87,6 +87,15 @@
    return newImage;
 }
 
++ (UIImage *) drawImageWithSize: (CGSize) size drawingBlock: (ImageContextBlock) drawingBlock {
+    UIGraphicsBeginImageContextWithOptions(size,  NO,  [UIScreen mainScreen].scale);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    drawingBlock(ctx);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 
 @end
