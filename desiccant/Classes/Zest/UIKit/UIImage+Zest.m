@@ -96,7 +96,10 @@
     return image;
 }
 
-
++ (UIImage *) drawImageWithSize: (CGSize) size capInsets: (UIEdgeInsets) capInsets drawingBlock: (ImageContextBlock) drawingBlock {
+    UIImage *image = [UIImage drawImageWithSize: size drawingBlock: drawingBlock];
+    return [image resizableImageWithCapInsets: capInsets];
+}
 
 @end
 

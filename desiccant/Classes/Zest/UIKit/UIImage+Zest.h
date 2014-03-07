@@ -16,7 +16,9 @@ typedef void(^ImageContextBlock)(CGContextRef ctx);
 
 + (UIImage *)newImageFromResource:(NSString *)resource ofType:(NSString *)type;
 + (void) loadImageFromURL: (NSURL *) url completion: (ImageBlock) block;
+
 + (UIImage *) drawImageWithSize: (CGSize) size drawingBlock: (ImageContextBlock) drawingBlock;
++ (UIImage *) drawImageWithSize: (CGSize) size capInsets: (UIEdgeInsets) capInsets drawingBlock: (ImageContextBlock) drawingBlock;
 
 - (UIImage *) imageScaledAndCroppedToMaxSize: (CGSize) maxSize;
 - (UIImage *) imageScaledToMaxWidth: (CGFloat) width;
