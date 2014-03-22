@@ -289,6 +289,57 @@
 - (void)didGetPushedOntoNavigationStack {}
 - (void)controllerDidGetPushedOntoNavigationStack:(UIViewController *)topViewController {}
 
+- (UIView *) busyView {
+    return [self.view viewWithTag: 100001];
+}
+
+- (void) addBusyView {
+    if (![self busyView]) {
+        UIView *busyBackground = [[UIView alloc] init];
+        busyBackground.tag = 100001;
+        busyBackground.translatesAutoresizingMaskIntoConstraints = NO;
+        busyBackground.backgroundColor = [UIColor colorWithWhite: 0.0 alpha: 0.2];
+        [self.view addSubview: busyBackground];
+        UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge];
+        [busyBackground addSubview: activity];
+        activity.translatesAutoresizingMaskIntoConstraints = NO;
+        NSDictionary *views = NSDictionaryOfVariableBindings(busyBackground, activity);
+        NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat: @"H:|-0-[busyBackground]-0-|"
+                                                                        options: 0
+                                                                        metrics: nil
+                                                                          views: views];
+        [self.view addConstraints: hConstraints];
+        NSArray *vConstraints = [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-40-[busyBackground]-0-|"
+                                                                        options: 0
+                                                                        metrics: nil
+                                                                          views: views];
+        [self.view addConstraints: vConstraints];
+        
+        NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem: activity
+                                                                   attribute: NSLayoutAttributeCenterX
+                                                                  relatedBy: NSLayoutRelationEqual
+                                                                     toItem: busyBackground
+                                                                  attribute: NSLayoutAttributeCenterX
+                                                                 multiplier: 1.0
+                                                                   constant: 0];
+        [busyBackground addConstraint: centerX];
+        NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem: activity
+                                                                   attribute: NSLayoutAttributeCenterY
+                                                                   relatedBy: NSLayoutRelationEqual
+                                                                      toItem: busyBackground
+                                                                   attribute: NSLayoutAttributeCenterY
+                                                                  multiplier: 1.0
+                                                                    constant: 0];
+        [busyBackground addConstraint: centerY];
+        [activity startAnimating];
+    }
+}
+
+- (void) hideBusyView {
+    [[self busyView] removeFromSuperview];
+}
+
+
 @end
 
 

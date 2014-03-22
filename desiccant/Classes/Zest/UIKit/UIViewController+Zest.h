@@ -86,5 +86,7 @@ typedef enum {
 // Pops up a friendly alert.
 - (IBAction) notImplemented: (id) source;
 
+- (void) addBusyView;
+- (void) hideBusyView;
 
 @end
