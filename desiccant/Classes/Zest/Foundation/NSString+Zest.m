@@ -48,7 +48,7 @@
 }
 
 + (NSString *) stringWithInteger:(NSInteger)integer {
-	return [NSString stringWithFormat:@"%d", integer];
+	return [NSString stringWithFormat:@"%ld", (long)integer];
 }
 
 + (NSString *) stringWithData: (NSData *) data encoding: (NSStringEncoding) encoding {

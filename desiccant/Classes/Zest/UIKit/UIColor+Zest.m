@@ -417,7 +417,7 @@ static NSLock *crayolaNameCacheLock;
 }
 
 - (NSString *)hexStringFromColor {
-	return [NSString stringWithFormat:@"%0.6lX", self.rgbHex];
+	return [NSString stringWithFormat:@"%0.6lX", (long) self.rgbHex];
 }
 
 - (NSString *)closestColorNameFor: (const char *) aColorDatabase {
@@ -473,7 +473,7 @@ static NSLock *crayolaNameCacheLock;
 	NSScanner *scanner = [NSScanner scannerWithString:stringToConvert];
 	if (![scanner scanString:@"{" intoString:NULL]) return nil;
 	const NSUInteger kMaxComponents = 4;
-	CGFloat c[kMaxComponents];
+	float c[kMaxComponents];
 	NSUInteger i = 0;
 	if (![scanner scanFloat:&c[i++]]) return nil;
 	while (1) {
@@ -491,10 +491,10 @@ static NSLock *crayolaNameCacheLock;
 	UIColor *color;
 	switch (i) {
 		case 2: // monochrome
-			color = [UIColor colorWithWhite:c[0] alpha:c[1]];
+			color = [UIColor colorWithWhite: (CGFloat) c[0] alpha: (CGFloat) c[1]];
 			break;
 		case 4: // RGB
-			color = [UIColor colorWithRed:c[0] green:c[1] blue:c[2] alpha:c[3]];
+			color = [UIColor colorWithRed: (CGFloat) c[0] green: (CGFloat) c[1] blue: (CGFloat) c[2] alpha: (CGFloat) c[3]];
 			break;
 		default:
 			color = nil;

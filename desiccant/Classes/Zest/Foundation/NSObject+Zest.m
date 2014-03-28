@@ -88,8 +88,8 @@
 	[inv setTarget:self];
 	[inv setSelector:selector];
 	
-	int argcount = 2;
-	int totalArgs = [ms numberOfArguments];
+	NSUInteger argcount = 2;
+	NSUInteger totalArgs = [ms numberOfArguments];
 	
 	while (argcount < totalArgs)
 	{
@@ -181,7 +181,7 @@
 	
 	if (argcount != totalArgs)
 	{
-		printf("Invocation argument count mismatch: %d expected, %d sent\n", [ms numberOfArguments], argcount);
+		printf("Invocation argument count mismatch: %lu expected, %lu sent\n", (unsigned long) totalArgs, (unsigned long) argcount);
 		return NULL;
 	}
 	
