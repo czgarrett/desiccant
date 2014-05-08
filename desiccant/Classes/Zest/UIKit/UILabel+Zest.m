@@ -31,7 +31,7 @@
                                  NSFontAttributeName: self.font};
     CGSize boundingSize = CGSizeMake(self.bounds.size.width, [self maxHeight]);
     CGSize size = [self.text boundingRectWithSize: boundingSize
-                                   options: 0
+                                   options: NSStringDrawingUsesLineFragmentOrigin
                                 attributes: attributes
                                    context: nil].size;
     return ceilf(size.height);
