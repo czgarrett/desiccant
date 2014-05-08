@@ -76,7 +76,7 @@
     self.connection = nil;
     if (_data) self.image = [UIImage imageWithData: _data];
     if (!self.image) {
-        NSLog(@"Didn't load, data size was %d", [_data length]);
+        NSLog(@"Didn't load, data size was %lu", (unsigned long)[_data length]);
         self.image = _defaultImage;
     }
     self.data = nil;

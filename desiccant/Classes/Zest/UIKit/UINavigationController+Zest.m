@@ -16,7 +16,7 @@
 }
 
 - (UIViewController *) firstViewControllerWithClass: (Class) searchClass {
-   for (int i=[self.viewControllers count] - 2; i>=0; i--) {
+   for (NSInteger i=[self.viewControllers count] - 2; i>=0; i--) {
       UIViewController *parent = (UIViewController *)[self.viewControllers objectAtIndex: i];
       if ([parent isKindOfClass: searchClass]) {
          return parent;

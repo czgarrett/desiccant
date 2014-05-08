@@ -22,7 +22,7 @@
 }
 
 - (void)viewDidLoad {
-    self.cellIdentifier = [NSString stringWithFormat:@"cell_type_%d", [DTCustomTableViewController nextIdentifierNumber]];
+    self.cellIdentifier = [NSString stringWithFormat:@"cell_type_%lu", (unsigned long)[DTCustomTableViewController nextIdentifierNumber]];
    headerRows = 0;
     [super viewDidLoad];
 }

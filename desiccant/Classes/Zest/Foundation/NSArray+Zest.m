@@ -88,7 +88,7 @@
 
 - (NSMutableArray *) reversed {
    NSMutableArray *result = [NSMutableArray array];
-   for (int i=[self count] - 1; i > -1; i--) {
+   for (NSInteger i=[self count] - 1; i > -1; i--) {
       [result addObject: [self objectAtIndex: i]];
    }
    return result;
@@ -106,10 +106,10 @@
 
 - (NSArray *)inRandomOrder {
 	NSMutableArray *randomArray = [NSMutableArray arrayWithArray:self];
-	int n = [randomArray count];
+	NSUInteger n = [randomArray count];
 	while (n > 1) {
-		int rnd = arc4random() % n;
-		int i = n - 1;
+		NSUInteger rnd = arc4random() % n;
+		NSUInteger i = n - 1;
 		[randomArray exchangeObjectAtIndex:i withObjectAtIndex:rnd];
 		n--;
 	}
