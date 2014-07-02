@@ -132,6 +132,17 @@
     return [[self path] pathExtension];
 }
 
+- (NSString *) pathWithoutExtension {
+    NSString *path = [self path];
+    NSString *extension = [self pathExtension];
+    if ([extension length]) { // only trim it if you have an extension, because then we need to trim the period as well.
+        return [path substringToIndex: [path length] - [extension length] - 1]; // -1 for the extension period
+    } else {
+        return path;
+    }
+}
+
+
 - (NSDictionary *)queryParameters {
 	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:16];
 	if ([self query]) {

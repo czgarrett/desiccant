@@ -26,6 +26,9 @@
 - (NSString *)pathExtension;
 // Returns a dictionary containing the URL's decoded query parameters, if any
 - (NSDictionary *)queryParameters;
+
+- (NSString *) pathWithoutExtension;
+
 @end
 
 @interface FixCategoryBugNSURL : NSObject {}
