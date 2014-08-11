@@ -29,17 +29,17 @@
 // Returns the resource path for the main bundle
 + (NSString *) resourcePath;
 // Returns a file URL pointing to the resource directory.
-+ (NSString *) resourceURL;
++ (NSURL *) resourceURL;
 
 // Returns the document path for the main bundle
 + (NSString *) documentPath;
 // Returns a file URL pointing to the document directory.
-+ (NSString *) documentURL;
++ (NSURL *) documentURL;
 
 // Returns the caches path for the main bundle
 + (NSString *) cachesPath;
 // Returns a file URL pointing to the caches directory.
-+ (NSString *) cachesURL;
++ (NSURL *) cachesURL;
 
 + (NSString *) stringWithContentsOfResource: (NSString *)resourceName ofType: (NSString *)fileExtension;
 + (NSString *) stringWithInteger:(NSInteger)integer;

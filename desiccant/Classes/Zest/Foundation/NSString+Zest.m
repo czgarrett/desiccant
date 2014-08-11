@@ -23,7 +23,7 @@
     return [[NSBundle mainBundle] resourcePath];
 }
 
-+ (NSString *) resourceURL {
++ (NSURL *) resourceURL {
 	return [NSURL fileURLWithPath:[self resourcePath]];
 }
 
@@ -33,7 +33,7 @@
     return basePath;
 }
 
-+ (NSString *) documentURL {
++ (NSURL *) documentURL {
 	return [NSURL fileURLWithPath:[self documentPath]];
 }
 
@@ -43,7 +43,7 @@
     return basePath;
 }
 
-+ (NSString *) cachesURL {
++ (NSURL *) cachesURL {
 	return [NSURL fileURLWithPath:[self cachesPath]];
 }
 

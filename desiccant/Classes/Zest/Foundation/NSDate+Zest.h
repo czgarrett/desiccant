@@ -92,7 +92,7 @@
 @property (readonly) NSInteger seconds;
 @property (readonly) NSInteger day;
 @property (readonly) NSInteger month;
-@property (readonly) NSInteger week;
+@property (readonly) NSInteger weekOfYear;
 @property (readonly) NSInteger weekday;
 @property (readonly) NSInteger nthWeekday; // e.g. 2nd Tuesday of the month == 2
 @property (readonly) NSInteger year;
