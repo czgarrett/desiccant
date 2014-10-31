@@ -56,7 +56,7 @@ static unsigned read_segment(const unsigned char *str, const unsigned char **nex
 static unsigned read_segment_4digits(const unsigned char *str, const unsigned char **next, unsigned *out_num_digits);
 static unsigned read_segment_2digits(const unsigned char *str, const unsigned char **next);
 static double read_double(const unsigned char *str, const unsigned char **next);
-static BOOL is_leap_year(unsigned year);
+static BOOL is_leap_year(NSInteger year);
 
 /*Valid ISO 8601 date formats:
  *
@@ -120,7 +120,7 @@ static BOOL is_leap_year(unsigned year);
 	NSDateComponents *components = [[NSDateComponents alloc] init];
 	NSDateComponents *nowComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:now];
 
-	unsigned
+	NSInteger
 		//Date
 		year,
 		month_or_week,
@@ -159,7 +159,7 @@ static BOOL is_leap_year(unsigned year);
 	} else {
 		//Skip leading whitespace.
 		unsigned i = 0U;
-		for(unsigned len = strlen((const char *)ch); i < len; ++i) {
+		for(unsigned long len = strlen((const char *)ch); i < len; ++i) {
 			if (!isspace(ch[i]))
 				break;
 		}
@@ -384,8 +384,8 @@ static BOOL is_leap_year(unsigned year);
 
 						case 1:; //-YY; -YY-MM (implicit century)
 							NSLog(@"(%@) found %u digits and one hyphen, so this is either -YY or -YY-MM; segment (year) is %u", string, num_digits, segment);
-							unsigned current_year = nowComponents.year;
-							unsigned century = (current_year % 100U);
+							NSInteger current_year = nowComponents.year;
+							NSInteger century = (current_year % 100U);
 							year = segment + (current_year - century);
 							if (num_digits == 1U) //implied decade
 								year += century - (current_year % 10U);
@@ -393,7 +393,7 @@ static BOOL is_leap_year(unsigned year);
 							if (*ch == '-') {
 								++ch;
 								month_or_week = read_segment_2digits(ch, &ch);
-								NSLog(@"(%@) month is %u", string, month_or_week);
+								NSLog(@"(%@) month is %ld", string, (long)month_or_week);
 							}
 
 							day = 1U;
@@ -532,9 +532,9 @@ static BOOL is_leap_year(unsigned year);
 				case week:;
 					//Adapted from <http://personal.ecu.edu/mccartyr/ISOwdALG.txt>.
 					//This works by converting the week date into an ordinal date, then letting the next case handle it.
-					unsigned prevYear = year - 1U;
+					NSInteger prevYear = year - 1U;
 					unsigned YY = prevYear % 100U;
-					unsigned C = prevYear - YY;
+					NSInteger C = prevYear - YY;
 					unsigned G = YY + YY / 4U;
 					unsigned isLeapYear = (((C / 100U) % 4U) * 5U);
 					unsigned Jan1Weekday = (isLeapYear + G) % 7U;
@@ -621,7 +621,7 @@ static BOOL is_leap_year(unsigned year);
 		case ISO8601DateFormatOrdinal:
 			return [self stringFromDate:date formatString:ISO_ORDINAL_DATE_FORMAT timeZone:timeZone];
 		default:
-			[NSException raise:NSInternalInconsistencyException format:@"self.format was %d, not calendar (%d), week (%d), or ordinal (%d)", self.format, ISO8601DateFormatCalendar, ISO8601DateFormatWeek, ISO8601DateFormatOrdinal];
+			[NSException raise:NSInternalInconsistencyException format:@"self.format was %lu, not calendar (%d), week (%d), or ordinal (%d)", (unsigned long)self.format, ISO8601DateFormatCalendar, ISO8601DateFormatWeek, ISO8601DateFormatOrdinal];
 			return nil;
 	}
 }
@@ -641,12 +641,12 @@ static BOOL is_leap_year(unsigned year);
 	NSString *str = [formatter stringForObjectValue:date];
 
 	if (includeTime) {
-		int offset = [timeZone secondsFromGMT];
+		NSInteger offset = [timeZone secondsFromGMT];
 		offset /= 60;  //bring down to minutes
 		if (offset == 0)
 			str = [str stringByAppendingString:ISO_TIMEZONE_UTC_FORMAT];
 		else
-			str = [str stringByAppendingFormat:ISO_TIMEZONE_OFFSET_FORMAT, offset / 60, offset % 60];
+			str = [str stringByAppendingFormat:ISO_TIMEZONE_OFFSET_FORMAT, (int)offset / 60, (int)offset % 60];
 	}
 	return str;
 }
@@ -684,21 +684,21 @@ static BOOL is_leap_year(unsigned year);
 		october, november, december
 	};
 
-	int year = components.year;
-	int week = 0;
+	NSInteger year = components.year;
+	NSInteger week = 0;
 	//The old unparser added 6 to [calendarDate dayOfWeek], which was zero-based; components.weekday is one-based, so we now add only 5.
-	int dayOfWeek = (components.weekday + 5) % 7;
-	int dayOfYear = ordinalComponents.day;
+	NSInteger dayOfWeek = (components.weekday + 5) % 7;
+	NSInteger dayOfYear = ordinalComponents.day;
 
-	int prevYear = year - 1;
+	NSInteger prevYear = year - 1;
 
 	BOOL yearIsLeapYear = is_leap_year(year);
 	BOOL prevYearIsLeapYear = is_leap_year(prevYear);
 
 	int YY = prevYear % 100;
-	int C = prevYear - YY;
+	NSInteger C = prevYear - YY;
 	int G = YY + YY / 4;
-	int Jan1Weekday = (((((C / 100) % 4) * 5) + G) % 7);
+	NSInteger Jan1Weekday = (((((C / 100) % 4) * 5) + G) % 7);
 
 	int weekday = ((dayOfYear + Jan1Weekday) - 1) % 7;
 
@@ -711,7 +711,7 @@ static BOOL is_leap_year(unsigned year);
 			++year;
 			week = 1;
 		} else {
-			int J = dayOfYear + (sunday - weekday) + Jan1Weekday;
+			NSInteger J = dayOfYear + (sunday - weekday) + Jan1Weekday;
 			week = J / 7 - (Jan1Weekday > thursday);
 		}
 	}
@@ -828,7 +828,7 @@ static double read_double(const unsigned char *str, const unsigned char **next) 
 	return value;
 }
 
-static BOOL is_leap_year(unsigned year) {
+static BOOL is_leap_year(NSInteger year) {
 	return \
 	    ((year %   4U) == 0U)
 	&& (((year % 100U) != 0U)
