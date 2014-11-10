@@ -20,7 +20,7 @@
 
 // Tests for network reachability for this URL's host
 - (BOOL)hostIsReachable;
-- (NSData *) cachedData;
+- (NSData *) cachedURLData;
 - (BOOL) isCached;
 // Returns the URL path's file extension, if any, or an empty string if it doesn't have one.
 - (NSString *)pathExtension;

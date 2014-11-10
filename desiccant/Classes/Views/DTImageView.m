@@ -37,7 +37,7 @@
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else if ([url isCached]) {
-         self.data = [[url cachedData] mutableCopy];
+         self.data = [[url cachedURLData] mutableCopy];
          [self performSelectorOnMainThread:@selector(connectionDidFinishLoading:) withObject:nil waitUntilDone:NO];
       }
       else {
