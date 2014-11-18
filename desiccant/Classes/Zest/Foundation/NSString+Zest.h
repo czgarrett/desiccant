@@ -80,6 +80,7 @@
 // Returns a range with index 0 and length = [self length]
 - (NSRange) range;
 
+- (NSString *) concatenateTimes: (NSInteger) times;
 
 
 // Escapes the usual characters, plus legal URL characters.  Useful when

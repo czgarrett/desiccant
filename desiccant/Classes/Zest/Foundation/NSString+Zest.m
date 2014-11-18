@@ -300,6 +300,14 @@
    return result;
 }
 
+- (NSString *) concatenateTimes: (NSInteger) times {
+    NSMutableString *result = [NSMutableString string];
+    for (int i=0; i<times; i++) {
+        [result appendString: self];
+    }
+    return result;
+}
+
 
 - (BOOL)containsOnlyCharactersFromSet:(NSCharacterSet *)set {
 	return [[self stringByTrimmingCharactersInSet:set] length] == 0;
