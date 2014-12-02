@@ -1,7 +1,6 @@
 //  DTButton.h
 
-#import <Foundation/Foundation.h>
-#import <QuartzCore/QuartzCore.h>
+@import Foundation;
 #import "DTReachability.h"
 
 @interface DTButton : UIButton

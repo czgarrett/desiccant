@@ -4,6 +4,8 @@
 #import "Zest.h"
 #import "DTReachability.h"
 
+@import QuartzCore;
+
 @interface DTButton() {
     BOOL _dependsOnReachability;
 }
