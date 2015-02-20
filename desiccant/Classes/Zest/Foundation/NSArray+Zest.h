@@ -53,6 +53,7 @@
 - (NSArray *) reject: (SEL) selector;
 
 - (id) randomObject;
+- (id) arc4RandomObject;
 
 - (void)perform:(SEL)selector;
 - (void)perform:(SEL)selector withObject:(id)p1;

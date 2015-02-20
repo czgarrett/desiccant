@@ -47,6 +47,13 @@
    return result;
 }
 
+- (id) arc4RandomObject {
+    if ([self count] > 0) {
+        return [self objectAtIndex: arc4random() % [self count]];
+    }
+    return nil;
+}
+
 - (id) randomObject {
    if ([self count] > 0) {
       return [self objectAtIndex: random() % [self count]];
