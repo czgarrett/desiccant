@@ -29,12 +29,13 @@
    NSMutableDictionary *result = nil;
    NSString *path = [[NSBundle mainBundle] pathForResource: bundleFile ofType:@"plist"];
    NSData *plistData = [NSData dataWithContentsOfFile:path];
-   NSString *error;
+   NSError *error;
    NSPropertyListFormat format;
-   result = (NSMutableDictionary *) [NSPropertyListSerialization propertyListFromData:plistData
-                                                                     mutabilityOption:NSPropertyListMutableContainersAndLeaves
+    
+   result = (NSMutableDictionary *) [NSPropertyListSerialization propertyListWithData:plistData
+                                                                              options:NSPropertyListMutableContainersAndLeaves
                                                                                format:&format
-                                                                     errorDescription: &error];
+                                                                                error: &error];
    return result;
 }
 
