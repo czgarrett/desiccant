@@ -71,7 +71,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
     OSStatus status = SecKeychainItemCopyContent(item, NULL, &list, &length, (void **)&password);
 	
 	if (status != noErr) {
-		*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: status userInfo: nil];
+		*error = [NSError errorWithDomain: NSOSStatusErrorDomain code: status userInfo: nil];
 		return nil;
     }
 	
@@ -132,7 +132,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	}
 	
 	if (status != noErr) {
-		*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: status userInfo: nil];
+		*error = [NSError errorWithDomain: NSOSStatusErrorDomain code: status userInfo: nil];
 	}
 }
 
@@ -185,7 +185,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	
 	if (status != noErr) {
 		if (status != errSecItemNotFound) {
-			*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: status userInfo: nil];
+			*error = [NSError errorWithDomain: NSOSStatusErrorDomain code: status userInfo: nil];
 		}
 		
 		return nil;
@@ -230,7 +230,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		// No existing item found--simply return nil for the password
 		if (error && status != errSecItemNotFound) {
 			//Only return an error if a real exception happened--not simply for "not found."
-			*error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: status userInfo: nil];
+			*error = [NSError errorWithDomain: NSOSStatusErrorDomain code: status userInfo: nil];
 		}
 		
 		return nil;
@@ -262,7 +262,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 		else {
 			// Something else went wrong. Simply return the normal Keychain API error code.
          if (error) {
-            *error = [NSError errorWithDomain: SFHFKeychainUtilsErrorDomain code: status userInfo: nil];
+            *error = [NSError errorWithDomain: NSOSStatusErrorDomain code: status userInfo: nil];
          }
 		}
 		

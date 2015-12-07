@@ -45,7 +45,7 @@ static DTKeychain *_sharedKeychain = nil;
 	NSError *error;
 	if (value){
 		[SFHFKeychainUtils storeUsername:key andPassword:value forServiceName:serviceName updateExisting:YES error:&error];
-		NSAssert (error == nil, @"Error storing value in keychain");
+		NSAssert (error == nil, @"Error storing value in keychain: %@", error);
 	}
 	else {
 		[SFHFKeychainUtils deleteItemForUsername:key andServiceName:serviceName error:&error];
