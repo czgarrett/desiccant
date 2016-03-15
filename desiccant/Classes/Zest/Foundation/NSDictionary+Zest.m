@@ -115,7 +115,7 @@
 	NSString *separator = @"";
 	for (NSString *key in self) {
 		[queryString appendString:separator];
-		[queryString appendFormat:@"%@=%@", key, [[self stringForKey:key] stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:NSUTF8StringEncoding]];
+		[queryString appendFormat:@"%@=%@", key, [[self stringForKey:key] stringByAddingPercentEncodingForCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"]]];
 		separator = @"&";
 	}
 	return queryString;

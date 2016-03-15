@@ -83,9 +83,9 @@
 - (NSString *) concatenateTimes: (NSInteger) times;
 
 
-// Escapes the usual characters, plus legal URL characters.  Useful when
-// passing a URL as a GET parameter.
-- (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding;
+// This returns an escaped string based on character set
+// Per Apple Doc:Returns a new string made from the receiver by replacing all characters NOT in the specified set with percent encoded characters.
+- (NSString *)stringByAddingPercentEncodingForCharacters:(NSCharacterSet *)characterSet;
 
 - (NSString *) pluralize;
 

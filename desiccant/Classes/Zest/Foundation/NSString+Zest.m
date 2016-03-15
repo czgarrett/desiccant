@@ -329,16 +329,9 @@
 	return [self length] ? self : nil;
 }
 
-- (NSString *)stringByAddingPercentEscapesIncludingLegalCharactersUsingEncoding:(NSStringEncoding)encoding {
-	NSString *result = CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-															   NULL,
-															   (CFStringRef)self,
-															   NULL,
-															   (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-															   CFStringConvertNSStringEncodingToEncoding(encoding)));
-    return result;
+- (NSString *)stringByAddingPercentEncodingForCharacters:(NSCharacterSet *)characterSet {
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:[characterSet invertedSet]];
 }
-
 
 @end
 
