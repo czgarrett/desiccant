@@ -82,11 +82,6 @@
 
 - (NSString *) concatenateTimes: (NSInteger) times;
 
-
-// This returns an escaped string based on character set
-// Per Apple Doc:Returns a new string made from the receiver by replacing all characters NOT in the specified set with percent encoded characters.
-- (NSString *)stringByAddingPercentEncodingForCharacters:(NSCharacterSet *)characterSet;
-
 - (NSString *) pluralize;
 
 // Useful for mixing up NSString objects with NSNumber.  Returns self.

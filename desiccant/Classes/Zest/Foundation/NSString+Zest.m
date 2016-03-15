@@ -329,10 +329,6 @@
 	return [self length] ? self : nil;
 }
 
-- (NSString *)stringByAddingPercentEncodingForCharacters:(NSCharacterSet *)characterSet {
-    return [self stringByAddingPercentEncodingWithAllowedCharacters:[characterSet invertedSet]];
-}
-
 @end
 
 @interface FixCategoryBugNSString : NSObject {}

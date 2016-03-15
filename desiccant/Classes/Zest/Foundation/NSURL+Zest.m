@@ -56,7 +56,7 @@
 		 from.coordinate.longitude];
 		if (forcedFromTitle) {
 			[urlString appendFormat:@"+(%@)", 
-			 [forcedFromTitle stringByAddingPercentEncodingForCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+			 [forcedFromTitle stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
 		}
 		nextDelimiter = @"&";
 	}
@@ -68,7 +68,7 @@
 		 to.coordinate.longitude];
 		if (forcedToTitle) {
 			[urlString appendFormat:@"+(%@)", 
-			 [forcedToTitle stringByAddingPercentEncodingForCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+			 [forcedToTitle stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
 		}
 	}
 	
@@ -151,8 +151,8 @@
 			NSArray *pair = [pairString componentsSeparatedByString:@"="];
 			if ([pair count] != 2) NSAssert (0, @"Found more than one equals sign in a parameter assignment");
 			else {
-				NSString *key = [[pair stringAtIndex:0] stringByAddingPercentEncodingForCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-				NSString *value = [[pair stringAtIndex:1] stringByAddingPercentEncodingForCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+				NSString *key = [[pair stringAtIndex:0] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+				NSString *value = [[pair stringAtIndex:1] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 				[params setObject:value forKey:key];
 			}
 		}

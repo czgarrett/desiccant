@@ -187,7 +187,7 @@
 }
 
 - (CGRect)fullScreenViewBounds {
-	CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+	CGRect appFrame = [[UIScreen mainScreen] bounds];
 	CGFloat width = appFrame.size.height;
 	CGFloat height = appFrame.size.width;
 	if (self.navigationController.navigationBar && !self.navigationController.isNavigationBarHidden) {

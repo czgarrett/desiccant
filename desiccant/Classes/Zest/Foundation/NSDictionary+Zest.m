@@ -112,10 +112,11 @@
 
 - (NSString *)toQueryString {
 	NSMutableString *queryString = [NSMutableString stringWithCapacity:128];
+    NSCharacterSet *characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"] invertedSet];
 	NSString *separator = @"";
 	for (NSString *key in self) {
 		[queryString appendString:separator];
-		[queryString appendFormat:@"%@=%@", key, [[self stringForKey:key] stringByAddingPercentEncodingForCharacters:[NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"]]];
+		[queryString appendFormat:@"%@=%@", key, [[self stringForKey:key] stringByAddingPercentEncodingWithAllowedCharacters:characterSet]];
 		separator = @"&";
 	}
 	return queryString;
