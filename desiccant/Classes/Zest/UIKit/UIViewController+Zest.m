@@ -147,12 +147,11 @@
 // Useful for stubbing out actions that aren't complete yet.
 // Pops up a friendly alert.
 - (IBAction) notImplemented: (id) source {
-   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Not Implemented" 
-                                                   message: @"This feature is not complete yet." 
-                                                  delegate: nil 
-                                         cancelButtonTitle: @"Ok" 
-                                         otherButtonTitles: nil];
-   [alert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Not Implemented" message:@"This feature is not complete yet" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:NO completion:nil];
 }
 
 
@@ -240,43 +239,15 @@
 
 #pragma mark Alerts 
 
-- (void)errorAlertTitle: (NSString *)title message:(NSString *)message
-{
-//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
-//												 message: message
-//												 delegate: nil 
-//												 cancelButtonTitle: @"Ok" 
-//												 otherButtonTitles: nil];
-//	[alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
-//	[alert autorelease];												
-	[self alertWithTitle:title message:message];
-}
-
-- (void)alertWithTitle: (NSString *)title message: (NSString *)message {
-   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
-                                                   message: message
-                                                  delegate: self 
-                                         cancelButtonTitle: @"Ok" 
-                                         otherButtonTitles: nil];
-   [alert show];
-}
-
-- (void)confirmationWithTitle: (NSString *)title message: (NSString *)message {
-   UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title
-                                                   message: message
-                                                  delegate: self 
-                                         cancelButtonTitle: @"Cancel" 
-                                         otherButtonTitles: @"Ok", nil];
-   [alert show];
-}
-
 - (void) showAlertWithTitle: (NSString *) title message: (NSString *) message {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: title 
-                                                 message: message
-                                                 delegate: self 
-                                                 cancelButtonTitle: @"Ok" 
-                                                 otherButtonTitles: nil];
-    [alert performSelectorOnMainThread: @selector(show) withObject: nil waitUntilDone: YES];
+    WEAKSELF_T weakSelf = self;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:cancel];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf presentViewController:alert animated:NO completion:nil];
+    });
 }
 
 - (void)willPopOffOfNavigationStack {}

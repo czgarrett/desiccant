@@ -43,9 +43,6 @@ typedef enum {
 - (void) slideViewDown: (UIView *) viewToSlide slideBackgroundBy: (CGFloat) background;
 
 
-- (void)errorAlertTitle: (NSString *)title message:(NSString *)message;
-- (void)alertWithTitle: (NSString *)title message: (NSString *)message;
-- (void)confirmationWithTitle: (NSString *)title message: (NSString *)message;
 - (CGRect)fullScreenViewBounds;
 
 // Subclasses can override this to get notified when this controller is about to get popped.
