@@ -6,7 +6,8 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import UIKit;
 #import "DTImageViewDelegate.h"
 
 @protocol DTImageViewDelegate;

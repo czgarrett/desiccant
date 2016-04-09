@@ -6,8 +6,9 @@
 //  Copyright (c) 2011 ZWorkbench, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreText/CoreText.h>
+@import Foundation;
+@import UIKit;
+@import CoreText;
 
 @interface NSMutableAttributedString (Zest)
 

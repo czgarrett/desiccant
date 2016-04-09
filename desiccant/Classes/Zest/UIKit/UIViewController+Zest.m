@@ -8,6 +8,7 @@
 
 #import "UIViewController+Zest.h"
 #import "UIColor+Zest.h"
+#import "Macros.h"
 
 #define kSmallLabelHeight 18.0
 #define kMediumLabelHeight 24.0

@@ -1,6 +1,7 @@
 //  DTButton.h
 
 @import Foundation;
+@import UIKit;
 #import "DTReachability.h"
 
 @interface DTButton : UIButton

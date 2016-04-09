@@ -5,7 +5,8 @@
 //  Copyright 2009 ZWorkbench, Inc.. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import UIKit;
 
 
 @interface UITableViewCellFixed : UITableViewCell {

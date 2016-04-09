@@ -6,8 +6,9 @@
 //  Copyright 2009 ZWorkbench. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <QuartzCore/QuartzCore.h>
+@import Foundation;
+@import UIKit;
+@import QuartzCore;
 
 @interface UIView (Zest)
 
