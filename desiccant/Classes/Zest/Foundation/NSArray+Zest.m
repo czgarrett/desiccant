@@ -47,6 +47,14 @@
    return result;
 }
 
+- (NSArray *) arrayByAddingObjectIfMissing: (id) objectToAdd {
+    if ([self containsObject: objectToAdd]) {
+        return self;
+    } else {
+        return [self arrayByAddingObject: objectToAdd];
+    }
+}
+
 - (id) arc4RandomObject {
     if ([self count] > 0) {
         return [self objectAtIndex: arc4random() % [self count]];
