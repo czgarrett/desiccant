@@ -30,6 +30,8 @@
 }
 
 - (void)loadFromURL:(NSURL *)url {
+    NSAssert(0, @"LoadFromURL uses the deprecated 'NSURLConnection connectionWithRequest'");
+/*
    if (url) {
       [_connection cancel];
       if ([url isFileURL]) {
@@ -50,6 +52,7 @@
          self.connection = [NSURLConnection connectionWithRequest:url.to_request delegate:self];
       }      
    }
+*/
 }
 
 - (void)connection:(NSURLConnection *)theConnection
