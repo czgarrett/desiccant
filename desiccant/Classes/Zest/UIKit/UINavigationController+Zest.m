@@ -32,7 +32,7 @@
 }
 
 - (UIViewController *) rootViewController {
-   return [self.viewControllers objectAtIndex: 0];
+   return [self.viewControllers firstObject];
 }
 
 - (void) popViewControllerAnimateForward {
