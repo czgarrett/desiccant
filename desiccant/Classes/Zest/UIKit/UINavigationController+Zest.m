@@ -36,6 +36,7 @@
 }
 
 - (void) popViewControllerAnimateForward {
+    
    CATransition *transition = [CATransition animation];
    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
    transition.type = kCATransitionPush;
