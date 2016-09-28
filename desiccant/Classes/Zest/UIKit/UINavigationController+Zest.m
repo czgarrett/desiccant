@@ -40,7 +40,6 @@
    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
    transition.type = kCATransitionPush;
    transition.subtype = kCATransitionFromRight;
-   transition.delegate = self;
    [self.view.layer addAnimation:transition forKey:nil];
    
    [self popViewControllerAnimated: NO];
