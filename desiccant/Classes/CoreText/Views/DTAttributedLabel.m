@@ -32,6 +32,7 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
    [self setup];
+    [super awakeFromNib];
 }
 
 - (void) setup {
