@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UINavigationController (Zest) <CAAnimationDelegate>
+@interface UINavigationController (Zest) 
 
 - (NSArray *)popToViewControllerWithClass:(Class)searchClass animated:(BOOL)animated;
 - (UIViewController *) firstViewControllerWithClass: (Class) searchClass;
